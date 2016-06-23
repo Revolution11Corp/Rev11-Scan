@@ -106,11 +106,7 @@ class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
         //        messageLabel.hidden = true
         messageLabel.text = scannedURL
 
-        //        let fileMaker = FileMakerClient()
-
         do {
-
-          //            try fileMaker.openURL(scannedURL!)
 
           try CallbackURLKit.performAction("iBeconDemo", URLScheme: "fmp", parameters: ["url": scannedURL!], onSuccess: nil, onFailure: nil, onCancel: nil)
 
