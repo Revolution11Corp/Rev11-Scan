@@ -1,0 +1,359 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		14A6176F1D1BAB2B0083CFF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A6176E1D1BAB2B0083CFF2 /* AppDelegate.swift */; };
+		14A617741D1BAB2B0083CFF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14A617721D1BAB2B0083CFF2 /* Main.storyboard */; };
+		14A617761D1BAB2B0083CFF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14A617751D1BAB2B0083CFF2 /* Assets.xcassets */; };
+		14A617791D1BAB2B0083CFF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14A617771D1BAB2B0083CFF2 /* LaunchScreen.storyboard */; };
+		14A617821D1BAD010083CFF2 /* BeaconListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A617811D1BAD010083CFF2 /* BeaconListScreen.swift */; };
+		14A617841D1BAD370083CFF2 /* BeaconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A617831D1BAD370083CFF2 /* BeaconCell.swift */; };
+		14A6178A1D1BAD8F0083CFF2 /* iBeaconItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A617891D1BAD8F0083CFF2 /* iBeaconItem.swift */; };
+		14A6178C1D1BADA30083CFF2 /* EddystoneItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A6178B1D1BADA30083CFF2 /* EddystoneItem.swift */; };
+		14A6178E1D1BADF90083CFF2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A6178D1D1BADF90083CFF2 /* Constants.swift */; };
+		14A617901D1BAE280083CFF2 /* Eddystone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A6178F1D1BAE280083CFF2 /* Eddystone.swift */; };
+		14A617921D1BAE740083CFF2 /* EddystoneScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A617911D1BAE740083CFF2 /* EddystoneScanner.swift */; };
+		14A617941D1BAE950083CFF2 /* DispatchTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A617931D1BAE950083CFF2 /* DispatchTimer.swift */; };
+		14A617961D1BAEBA0083CFF2 /* AddBeaconScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A617951D1BAEBA0083CFF2 /* AddBeaconScreen.swift */; };
+		14A617981D1BAEF10083CFF2 /* QRScannerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A617971D1BAEF10083CFF2 /* QRScannerScreen.swift */; };
+		14A6179A1D1BAF1B0083CFF2 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A617991D1BAF1B0083CFF2 /* CoreBluetooth.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		14A6176B1D1BAB2B0083CFF2 /* Rev11 Scan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rev11 Scan.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		14A6176E1D1BAB2B0083CFF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		14A617731D1BAB2B0083CFF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		14A617751D1BAB2B0083CFF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		14A617781D1BAB2B0083CFF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		14A6177A1D1BAB2B0083CFF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14A617811D1BAD010083CFF2 /* BeaconListScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconListScreen.swift; sourceTree = "<group>"; };
+		14A617831D1BAD370083CFF2 /* BeaconCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconCell.swift; sourceTree = "<group>"; };
+		14A617891D1BAD8F0083CFF2 /* iBeaconItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iBeaconItem.swift; sourceTree = "<group>"; };
+		14A6178B1D1BADA30083CFF2 /* EddystoneItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EddystoneItem.swift; sourceTree = "<group>"; };
+		14A6178D1D1BADF90083CFF2 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		14A6178F1D1BAE280083CFF2 /* Eddystone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Eddystone.swift; sourceTree = "<group>"; };
+		14A617911D1BAE740083CFF2 /* EddystoneScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EddystoneScanner.swift; sourceTree = "<group>"; };
+		14A617931D1BAE950083CFF2 /* DispatchTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchTimer.swift; sourceTree = "<group>"; };
+		14A617951D1BAEBA0083CFF2 /* AddBeaconScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBeaconScreen.swift; sourceTree = "<group>"; };
+		14A617971D1BAEF10083CFF2 /* QRScannerScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerScreen.swift; sourceTree = "<group>"; };
+		14A617991D1BAF1B0083CFF2 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		14A617681D1BAB2B0083CFF2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14A6179A1D1BAF1B0083CFF2 /* CoreBluetooth.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		14A617621D1BAB2B0083CFF2 = {
+			isa = PBXGroup;
+			children = (
+				14A617991D1BAF1B0083CFF2 /* CoreBluetooth.framework */,
+				14A6176D1D1BAB2B0083CFF2 /* Rev11 Scan */,
+				14A6176C1D1BAB2B0083CFF2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		14A6176C1D1BAB2B0083CFF2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				14A6176B1D1BAB2B0083CFF2 /* Rev11 Scan.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		14A6176D1D1BAB2B0083CFF2 /* Rev11 Scan */ = {
+			isa = PBXGroup;
+			children = (
+				14A617881D1BAD760083CFF2 /* Eddystone Objects */,
+				14A617871D1BAD680083CFF2 /* Beacon Objects */,
+				14A617801D1BACE30083CFF2 /* Screens */,
+				14A6176E1D1BAB2B0083CFF2 /* AppDelegate.swift */,
+				14A617721D1BAB2B0083CFF2 /* Main.storyboard */,
+				14A617751D1BAB2B0083CFF2 /* Assets.xcassets */,
+				14A617771D1BAB2B0083CFF2 /* LaunchScreen.storyboard */,
+				14A6177A1D1BAB2B0083CFF2 /* Info.plist */,
+				14A617831D1BAD370083CFF2 /* BeaconCell.swift */,
+				14A6178D1D1BADF90083CFF2 /* Constants.swift */,
+			);
+			path = "Rev11 Scan";
+			sourceTree = "<group>";
+		};
+		14A617801D1BACE30083CFF2 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				14A617811D1BAD010083CFF2 /* BeaconListScreen.swift */,
+				14A617951D1BAEBA0083CFF2 /* AddBeaconScreen.swift */,
+				14A617971D1BAEF10083CFF2 /* QRScannerScreen.swift */,
+			);
+			name = Screens;
+			sourceTree = "<group>";
+		};
+		14A617871D1BAD680083CFF2 /* Beacon Objects */ = {
+			isa = PBXGroup;
+			children = (
+				14A617891D1BAD8F0083CFF2 /* iBeaconItem.swift */,
+			);
+			name = "Beacon Objects";
+			sourceTree = "<group>";
+		};
+		14A617881D1BAD760083CFF2 /* Eddystone Objects */ = {
+			isa = PBXGroup;
+			children = (
+				14A6178B1D1BADA30083CFF2 /* EddystoneItem.swift */,
+				14A6178F1D1BAE280083CFF2 /* Eddystone.swift */,
+				14A617911D1BAE740083CFF2 /* EddystoneScanner.swift */,
+				14A617931D1BAE950083CFF2 /* DispatchTimer.swift */,
+			);
+			name = "Eddystone Objects";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		14A6176A1D1BAB2B0083CFF2 /* Rev11 Scan */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 14A6177D1D1BAB2B0083CFF2 /* Build configuration list for PBXNativeTarget "Rev11 Scan" */;
+			buildPhases = (
+				14A617671D1BAB2B0083CFF2 /* Sources */,
+				14A617681D1BAB2B0083CFF2 /* Frameworks */,
+				14A617691D1BAB2B0083CFF2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Rev11 Scan";
+			productName = "Rev11 Scan";
+			productReference = 14A6176B1D1BAB2B0083CFF2 /* Rev11 Scan.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		14A617631D1BAB2B0083CFF2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = Revolution11;
+				TargetAttributes = {
+					14A6176A1D1BAB2B0083CFF2 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 14A617661D1BAB2B0083CFF2 /* Build configuration list for PBXProject "Rev11 Scan" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 14A617621D1BAB2B0083CFF2;
+			productRefGroup = 14A6176C1D1BAB2B0083CFF2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				14A6176A1D1BAB2B0083CFF2 /* Rev11 Scan */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		14A617691D1BAB2B0083CFF2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14A617791D1BAB2B0083CFF2 /* LaunchScreen.storyboard in Resources */,
+				14A617761D1BAB2B0083CFF2 /* Assets.xcassets in Resources */,
+				14A617741D1BAB2B0083CFF2 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		14A617671D1BAB2B0083CFF2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14A6178A1D1BAD8F0083CFF2 /* iBeaconItem.swift in Sources */,
+				14A617841D1BAD370083CFF2 /* BeaconCell.swift in Sources */,
+				14A617921D1BAE740083CFF2 /* EddystoneScanner.swift in Sources */,
+				14A6176F1D1BAB2B0083CFF2 /* AppDelegate.swift in Sources */,
+				14A617941D1BAE950083CFF2 /* DispatchTimer.swift in Sources */,
+				14A617961D1BAEBA0083CFF2 /* AddBeaconScreen.swift in Sources */,
+				14A6178C1D1BADA30083CFF2 /* EddystoneItem.swift in Sources */,
+				14A617901D1BAE280083CFF2 /* Eddystone.swift in Sources */,
+				14A617821D1BAD010083CFF2 /* BeaconListScreen.swift in Sources */,
+				14A617981D1BAEF10083CFF2 /* QRScannerScreen.swift in Sources */,
+				14A6178E1D1BADF90083CFF2 /* Constants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		14A617721D1BAB2B0083CFF2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				14A617731D1BAB2B0083CFF2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		14A617771D1BAB2B0083CFF2 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				14A617781D1BAB2B0083CFF2 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		14A6177B1D1BAB2B0083CFF2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		14A6177C1D1BAB2B0083CFF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		14A6177E1D1BAB2B0083CFF2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Rev11 Scan/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.revolution11.Rev11-Scan";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		14A6177F1D1BAB2B0083CFF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Rev11 Scan/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.revolution11.Rev11-Scan";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		14A617661D1BAB2B0083CFF2 /* Build configuration list for PBXProject "Rev11 Scan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14A6177B1D1BAB2B0083CFF2 /* Debug */,
+				14A6177C1D1BAB2B0083CFF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		14A6177D1D1BAB2B0083CFF2 /* Build configuration list for PBXNativeTarget "Rev11 Scan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14A6177E1D1BAB2B0083CFF2 /* Debug */,
+				14A6177F1D1BAB2B0083CFF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 14A617631D1BAB2B0083CFF2 /* Project object */;
+}
