@@ -22,6 +22,7 @@
 		14A617961D1BAEBA0083CFF2 /* AddBeaconScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A617951D1BAEBA0083CFF2 /* AddBeaconScreen.swift */; };
 		14A617981D1BAEF10083CFF2 /* QRScannerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A617971D1BAEF10083CFF2 /* QRScannerScreen.swift */; };
 		14A6179A1D1BAF1B0083CFF2 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A617991D1BAF1B0083CFF2 /* CoreBluetooth.framework */; };
+		CDBBE99FB938A86F93925C09 /* Pods_Rev11_Scan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C19CD5EF761E27E99BC35C8 /* Pods_Rev11_Scan.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,9 @@
 		14A617951D1BAEBA0083CFF2 /* AddBeaconScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBeaconScreen.swift; sourceTree = "<group>"; };
 		14A617971D1BAEF10083CFF2 /* QRScannerScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerScreen.swift; sourceTree = "<group>"; };
 		14A617991D1BAF1B0083CFF2 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		3C19CD5EF761E27E99BC35C8 /* Pods_Rev11_Scan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rev11_Scan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D52B615DAC3F50A9EEE0AC34 /* Pods-Rev11 Scan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rev11 Scan.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rev11 Scan/Pods-Rev11 Scan.release.xcconfig"; sourceTree = "<group>"; };
+		DCB62F3D631A327E91F3BC5F /* Pods-Rev11 Scan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rev11 Scan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Rev11 Scan/Pods-Rev11 Scan.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +54,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14A6179A1D1BAF1B0083CFF2 /* CoreBluetooth.framework in Frameworks */,
+				CDBBE99FB938A86F93925C09 /* Pods_Rev11_Scan.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +67,8 @@
 				14A617991D1BAF1B0083CFF2 /* CoreBluetooth.framework */,
 				14A6176D1D1BAB2B0083CFF2 /* Rev11 Scan */,
 				14A6176C1D1BAB2B0083CFF2 /* Products */,
+				8AC0F97CD7B28DCBBD860A91 /* Pods */,
+				7CE3A2D47FD3205D0BAC7F68 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -119,6 +126,23 @@
 			name = "Eddystone Objects";
 			sourceTree = "<group>";
 		};
+		7CE3A2D47FD3205D0BAC7F68 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3C19CD5EF761E27E99BC35C8 /* Pods_Rev11_Scan.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8AC0F97CD7B28DCBBD860A91 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DCB62F3D631A327E91F3BC5F /* Pods-Rev11 Scan.debug.xcconfig */,
+				D52B615DAC3F50A9EEE0AC34 /* Pods-Rev11 Scan.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,9 +150,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 14A6177D1D1BAB2B0083CFF2 /* Build configuration list for PBXNativeTarget "Rev11 Scan" */;
 			buildPhases = (
+				01632F6F6118FEB34305E606 /* [CP] Check Pods Manifest.lock */,
 				14A617671D1BAB2B0083CFF2 /* Sources */,
 				14A617681D1BAB2B0083CFF2 /* Frameworks */,
 				14A617691D1BAB2B0083CFF2 /* Resources */,
+				61ADD14CD4E9505E34BF0DF7 /* [CP] Embed Pods Frameworks */,
+				082D26313F37F27C9EA7B92D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -184,6 +211,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		01632F6F6118FEB34305E606 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		082D26313F37F27C9EA7B92D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Rev11 Scan/Pods-Rev11 Scan-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		61ADD14CD4E9505E34BF0DF7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Rev11 Scan/Pods-Rev11 Scan-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		14A617671D1BAB2B0083CFF2 /* Sources */ = {
@@ -313,6 +388,7 @@
 		};
 		14A6177E1D1BAB2B0083CFF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DCB62F3D631A327E91F3BC5F /* Pods-Rev11 Scan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Rev11 Scan/Info.plist";
@@ -324,6 +400,7 @@
 		};
 		14A6177F1D1BAB2B0083CFF2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D52B615DAC3F50A9EEE0AC34 /* Pods-Rev11 Scan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Rev11 Scan/Info.plist";
@@ -352,6 +429,7 @@
 				14A6177F1D1BAB2B0083CFF2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
