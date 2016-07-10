@@ -28,17 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let manager = Manager.sharedInstance
     manager.callbackURLScheme = Manager.URLSchemes?.first
 
-    manager["iBeaconDemo"] = { parameters, success, failed, cancel in
-
+    manager["rev11Scan"] = { parameters, success, failed, cancel in
       print(parameters)
-
-      //      if let text = parameters["text"] {
-      //        print(text)
-      //        success(nil)
-      //
-      //      } else {
-      //        print("error")
-      //      }
     }
 
     return true
