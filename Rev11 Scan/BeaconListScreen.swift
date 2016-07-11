@@ -27,6 +27,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     locationManager.requestAlwaysAuthorization()
     loadBeacons()
     //    setupEddystoneScanner()
+
   }
 
   func loadBeacons() {
@@ -97,6 +98,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     let beaconRegion = beaconRegionWithItem(beacon)
     locationManager.startMonitoringForRegion(beaconRegion)
     locationManager.startRangingBeaconsInRegion(beaconRegion)
+    
   }
 
   func stopMonitoringBeacon(beacon: iBeaconItem) {

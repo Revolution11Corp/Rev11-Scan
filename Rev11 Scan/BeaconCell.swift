@@ -14,6 +14,29 @@ class BeaconCell: UITableViewCell {
   @IBOutlet weak var beaconTypeImage: UIImageView!
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var locationLabel: UILabel!
+  @IBOutlet weak var tempLabel: UILabel!
+
+  func setupTLM() {
+
+    let estimoteDeviceManager = ESTDeviceManager()
+
+    let temperatureNotification = ESTTelemetryNotificationTemperature { (temperature: ESTTelemetryInfoTemperature) in
+
+      print("Current temperature: \(temperature.temperatureInCelsius) C")
+
+      self.tempLabel.text = "\(temperature.temperatureInCelsius) C"
+    }
+
+//    let temperatureNotification: ESTTelemetryNotificationTemperature = ESTTelemetryNotificationTemperature(notificationBlock: {(temperature: ESTTelemetryInfoTemperature) -> Void in
+//
+//
+//
+//
+//    })
+
+    estimoteDeviceManager.registerForTelemetryNotification(temperatureNotification)
+
+  }
 
 
   override func awakeFromNib() {
@@ -73,6 +96,8 @@ class BeaconCell: UITableViewCell {
         let proximity = nameForProximity(aBeacon.lastSeenBeacon!.proximity)
         let accuracy = NSString(format: "%.2f", aBeacon.lastSeenBeacon!.accuracy)
         locationLabel!.text = "Location: \(proximity) (approx. \(accuracy)m)"
+
+        setupTLM()
       }
     }
   }

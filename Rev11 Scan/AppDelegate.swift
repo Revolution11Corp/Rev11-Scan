@@ -11,16 +11,42 @@ import CoreLocation
 import CallbackURLKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate, ESTEddystoneManagerDelegate {
 
   var window: UIWindow?
   let locationManager = CLLocationManager()
   let beaconManager = ESTBeaconManager()
+  let eddystoneManager = ESTEddystoneManager()
 
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
     self.beaconManager.delegate = self
+    self.eddystoneManager.delegate = self
+
+//    // filter by namespace
+//    let namespaceUID = ESTEddystoneUID(namespaceID: "EDD1EBEAC04E5DEFA017")
+////    let namespaceFilter = ESTEddystoneFilterUID(UID: namespaceUID)
+//    let namespaceFilter = ESTEddystoneFilterUID(UID: namespaceUID)
+//    self.eddystoneManager.startEddystoneDiscoveryWithFilter(namespaceFilter)
+//
+//    // filter by namespace and instance
+//    let namespaceInstanceUID = ESTEddystoneUID(namespaceID: "EDD1EBEAC04E5DEFA017",
+//                                               instanceID: "0BDB87539B67")
+//    let namespaceInstanceFilter = ESTEddystoneFilterUID(UID: namespaceInstanceUID)
+//    self.eddystoneManager.startEddystoneDiscoveryWithFilter(namespaceInstanceFilter)
+//
+//    // filter by URL
+//    let urlFilter = ESTEddystoneFilterURL(URL: "http://my.restaurant.com/new-york-city")
+//    self.eddystoneManager.startEddystoneDiscoveryWithFilter(urlFilter)
+//
+//    // filter by domain name
+//    let domainNameFilter = ESTEddystoneFilterURLDomain(URLDomain: "my.restaurant.com")
+//    self.eddystoneManager.startEddystoneDiscoveryWithFilter(domainNameFilter)
+
+    func eddystoneManager(manager: ESTEddystoneManager!, didDiscoverEddystones eddystones: [AnyObject]!, withFilter eddystoneFilter: ESTEddystoneFilter!) {
+      // ...
+    }
 
     let notificationType: UIUserNotificationType = [UIUserNotificationType.Sound, UIUserNotificationType.Alert]
     let notificationSettings = UIUserNotificationSettings(forTypes: notificationType, categories: nil)
@@ -40,10 +66,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
     return true
   }
 
-
   func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
     Manager.sharedInstance.handleOpenURL(url)
     return true
+  }
+
+  func beaconManager(manager: AnyObject, didEnterRegion region: CLBeaconRegion) {
+    let notification = UILocalNotification()
+    notification.alertBody = "You are now entering a Estimote beacon reagion"
+    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
   }
 
   func applicationWillResignActive(application: UIApplication) {

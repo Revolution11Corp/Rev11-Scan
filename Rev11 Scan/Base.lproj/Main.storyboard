@@ -88,7 +88,7 @@
                                         <rect key="frame" x="0.0" y="92" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vOn-hW-SjT" id="yFs-jH-Kmj">
-                                            <rect key="frame" x="0.0" y="0.0" width="553" height="79.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="553" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibeacon-logo" translatesAutoresizingMaskIntoConstraints="NO" id="PfF-48-aoW">
@@ -98,7 +98,7 @@
                                                         <constraint firstAttribute="height" constant="45" id="nP0-m0-o5z"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1GS-cO-Emp">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location: Unknown" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1GS-cO-Emp">
                                                     <rect key="frame" x="70" y="39" width="475" height="27"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="27" id="Jgh-uB-Tar"/>
@@ -108,7 +108,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezu-ql-n6M">
-                                                    <rect key="frame" x="70" y="15" width="475" height="27"/>
+                                                    <rect key="frame" x="70" y="15" width="60" height="27"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="27" id="52w-gK-0rj"/>
                                                     </constraints>
@@ -116,18 +116,43 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Temp" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyQ-tW-7po">
+                                                    <rect key="frame" x="140" y="14" width="405" height="27"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="27" id="h4w-tu-BNS"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="dyQ-tW-7po" secondAttribute="bottom" constant="38" id="3WL-zT-6qG"/>
                                                 <constraint firstItem="PfF-48-aoW" firstAttribute="leading" secondItem="yFs-jH-Kmj" secondAttribute="leading" constant="15" id="A7z-Fk-f5L"/>
                                                 <constraint firstItem="PfF-48-aoW" firstAttribute="top" secondItem="ezu-ql-n6M" secondAttribute="bottom" constant="-25" id="DEU-0p-ABJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="dyQ-tW-7po" secondAttribute="trailing" constant="8" id="KMR-kz-yVg"/>
                                                 <constraint firstItem="1GS-cO-Emp" firstAttribute="top" secondItem="ezu-ql-n6M" secondAttribute="bottom" constant="-3" id="Ko5-w9-3kc"/>
+                                                <constraint firstItem="dyQ-tW-7po" firstAttribute="leading" secondItem="ezu-ql-n6M" secondAttribute="trailing" constant="10" id="NW7-aE-DgM"/>
                                                 <constraint firstItem="1GS-cO-Emp" firstAttribute="leading" secondItem="PfF-48-aoW" secondAttribute="trailing" constant="10" id="Omv-Ru-QBk"/>
                                                 <constraint firstAttribute="trailing" secondItem="ezu-ql-n6M" secondAttribute="trailing" constant="8" id="Pbh-so-IeI"/>
                                                 <constraint firstItem="PfF-48-aoW" firstAttribute="centerY" secondItem="yFs-jH-Kmj" secondAttribute="centerY" id="Ygy-hx-woK"/>
                                                 <constraint firstItem="ezu-ql-n6M" firstAttribute="leading" secondItem="PfF-48-aoW" secondAttribute="trailing" constant="10" id="Z0C-An-k4j"/>
+                                                <constraint firstItem="ezu-ql-n6M" firstAttribute="leading" secondItem="PfF-48-aoW" secondAttribute="trailing" constant="10" id="g2d-tk-N1g"/>
                                                 <constraint firstAttribute="trailing" secondItem="1GS-cO-Emp" secondAttribute="trailing" constant="8" id="zMM-Ke-KOm"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="Pbh-so-IeI"/>
+                                                    <exclude reference="Z0C-An-k4j"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="beaconTypeImage" destination="PfF-48-aoW" id="otC-fO-hD7"/>
+                                            <outlet property="locationLabel" destination="1GS-cO-Emp" id="eJG-33-H5P"/>
+                                            <outlet property="nameLabel" destination="ezu-ql-n6M" id="pfl-L1-V5H"/>
+                                            <outlet property="tempLabel" destination="dyQ-tW-7po" id="qib-wP-jz6"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -410,7 +435,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="mmL-8W-aw6">
                             <connections>
-                                <segue destination="VNL-Dl-Cbo" kind="unwind" unwindAction="saveBeacon:" id="qqX-Qy-l3I"/>
+                                <segue destination="VNL-Dl-Cbo" kind="unwind" identifier="SaveBeacon" unwindAction="saveBeacon:" id="qqX-Qy-l3I"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

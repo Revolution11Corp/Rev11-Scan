@@ -113,15 +113,17 @@ class AddBeaconScreen: UIViewController, UITextFieldDelegate {
 
       if switchIsOn == true {
         let uuid = NSUUID(UUIDString: uuidTextField.text!)
+
+        // Need to account for when a user doesn't input a major and/or minor value (it's optional)
         let major: CLBeaconMajorValue = UInt16(Int(majorTextField.text!)!)
         let minor: CLBeaconMinorValue = UInt16(Int(minorTextField.text!)!)
         newBeacon = iBeaconItem(name: nameTextField.text!, uuid: uuid!, majorValue: major, minorValue: minor)
 
       } else {
 
-        let namespaceID = namespaceTextField.text
-        let instanceID = instanceTextField.text
-        let url = urlTextField.text
+//        let namespaceID = namespaceTextField.text
+//        let instanceID = instanceTextField.text
+//        let url = urlTextField.text
 
       }
 
