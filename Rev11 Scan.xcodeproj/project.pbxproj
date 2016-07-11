@@ -406,8 +406,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Sean Allen (UF3KVEB7HT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Rev11",
-					Scan,
+					"\"$(PROJECT_DIR)\"/\"Rev11 Scan\"/**",
 				);
 				INFOPLIST_FILE = "Rev11 Scan/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -424,8 +423,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Sean Allen (UF3KVEB7HT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Rev11",
-					Scan,
+					"\"$(PROJECT_DIR)\"/\"Rev11 Scan\"/**",
 				);
 				INFOPLIST_FILE = "Rev11 Scan/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
