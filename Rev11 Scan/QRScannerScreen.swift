@@ -108,8 +108,7 @@ class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
 
         do {
 
-          try CallbackURLKit.performAction("iBeconDemo", URLScheme: "fmp", parameters: ["url": scannedURL!], onSuccess: nil, onFailure: nil, onCancel: nil)
-
+          try CallbackURLKit.performAction("rev11Scan", URLScheme: "fmp", parameters: ["url": scannedURL!], onSuccess: nil, onFailure: nil, onCancel: nil)
 
         } catch CallbackURLKitError.AppWithSchemeNotInstalled {
           print("FileMaker not installed or not implement x-callback-url in current os")

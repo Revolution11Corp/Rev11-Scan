@@ -11,13 +11,16 @@ import CoreLocation
 import CallbackURLKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate {
 
   var window: UIWindow?
   let locationManager = CLLocationManager()
+  let beaconManager = ESTBeaconManager()
 
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
+    self.beaconManager.delegate = self
 
     let notificationType: UIUserNotificationType = [UIUserNotificationType.Sound, UIUserNotificationType.Alert]
     let notificationSettings = UIUserNotificationSettings(forTypes: notificationType, categories: nil)
@@ -29,7 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     manager.callbackURLScheme = Manager.URLSchemes?.first
 
     manager["rev11Scan"] = { parameters, success, failed, cancel in
+
       print(parameters)
+      print(success)
     }
 
     return true
