@@ -106,29 +106,9 @@ class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
         //        messageLabel.hidden = true
         messageLabel.text = scannedURL!
 
-        let url = NSURL(string: "fmp://74.112.250.102/iBeaconDemo?script=Scanned&result=\(scannedURL!)")
+        let url = NSURL(string: "fmp://74.112.250.102/iBeaconDemo?script=Scanned&param=\(scannedURL!)")
         UIApplication.sharedApplication().openURL(url!)
         print(url!)
-
-//        UIApplication.sharedApplication().openURL(NSURL(string: "fmp://74.112.250.102/iBeaconDemoscript=Scanned&result=\(scannedURL)")!)
-
-
-//        do {
-//
-////          try CallbackURLKit.performAction("rev11Scan", URLScheme: "fmp", parameters: ["url": scannedURL!], onSuccess: nil, onFailure: nil, onCancel: nil)
-//          try CallbackURLKit.performAction("74.112.250.102/iBeaconDemo", URLScheme: "fmp")
-//
-//
-//
-//        } catch CallbackURLKitError.AppWithSchemeNotInstalled {
-//          print("FileMaker not installed or not implement x-callback-url in current os")
-//
-//        } catch CallbackURLKitError.CallbackURLSchemeNotDefined {
-//          print("current app scheme not defined")
-//
-//        } catch let e {
-//          print("exception \(e)")
-//        }
       }
     }
   }
