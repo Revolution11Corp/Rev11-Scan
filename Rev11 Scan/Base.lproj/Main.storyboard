@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Scanner Screen-->
+        <!--QR Reader-->
         <scene sceneID="cuw-86-MYq">
             <objects>
                 <viewController id="BRj-Gv-JRG" customClass="QRScannerScreen" customModule="Rev11_Scan" customModuleProvider="target" sceneMemberID="viewController">
@@ -41,7 +41,7 @@
                             <constraint firstItem="CMe-J2-cf8" firstAttribute="top" secondItem="hFC-zL-fvR" secondAttribute="bottom" id="V4W-Lf-f5s"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="history" id="Az5-Nh-gz4"/>
+                    <tabBarItem key="tabBarItem" title="QR Reader" image="qr" id="Az5-Nh-gz4"/>
                     <connections>
                         <outlet property="messageLabel" destination="hFC-zL-fvR" id="TvO-QM-BfK"/>
                     </connections>
@@ -88,7 +88,7 @@
                                         <rect key="frame" x="0.0" y="92" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vOn-hW-SjT" id="yFs-jH-Kmj">
-                                            <rect key="frame" x="0.0" y="0.0" width="553" height="79.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="553" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibeacon-logo" translatesAutoresizingMaskIntoConstraints="NO" id="PfF-48-aoW">
@@ -116,7 +116,7 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Temp" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyQ-tW-7po">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyQ-tW-7po">
                                                     <rect key="frame" x="140" y="14" width="405" height="27"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="27" id="h4w-tu-BNS"/>
@@ -184,11 +184,11 @@
             </objects>
             <point key="canvasLocation" x="1025" y="-86"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Beacons-->
         <scene sceneID="MKT-Mq-hbX">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3E0-IQ-nMh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="featured" id="Gi8-g2-rh5"/>
+                    <tabBarItem key="tabBarItem" title="Beacons" image="beacon" id="Gi8-g2-rh5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="u6B-Yp-A9s">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -497,6 +497,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="beacon" width="30" height="30"/>
         <image name="ibeacon-logo" width="148" height="146"/>
+        <image name="qr" width="30" height="30"/>
     </resources>
 </document>
