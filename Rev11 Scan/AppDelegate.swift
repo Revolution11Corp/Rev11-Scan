@@ -57,32 +57,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate,
     let manager = Manager.sharedInstance
     manager.callbackURLScheme = Manager.URLSchemes?.first
 
-//    manager["rev11Scan"] = { parameters, success, failed, cancel in
-//
-//
-//
-//      print(parameters)
-//      print(success)
-//    }
-
     CallbackURLKit.registerAction("rev11scan") { (parameters, success, failed, cancel) in
-      print(parameters)
-      print(success)
-    }
 
-//    manager["rev11scan"] = { parameters, success, failed, cancel in
-//
-//      // Pretty sure anything in here is just dealing with incoming stuff from FileMaker. If that's the case, nothing is needed here. Except to make it non-hardcoded.
-//      print(success)
-//      print(parameters)
-//
-//      if let text = parameters["text"] {
-//        print(text)
-//        success(nil)
-//      } else {
-//        print("error")
-//      }
-//    }
+      if let url = parameters["url"] {
+        print("The URL sent is \(url).")
+        URLParameter.sharedInstance.url = url
+        
+      } else {
+        print("No URL sent from source app")
+      }
+
+      print(parameters)
+    }
 
     return true
   }
