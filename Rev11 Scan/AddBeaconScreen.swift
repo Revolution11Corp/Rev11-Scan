@@ -117,7 +117,7 @@ class AddBeaconScreen: UIViewController, UITextFieldDelegate {
         // Need to account for when a user doesn't input a major and/or minor value (it's optional)
         let major: CLBeaconMajorValue = UInt16(Int(majorTextField.text!)!)
         let minor: CLBeaconMinorValue = UInt16(Int(minorTextField.text!)!)
-        newBeacon = iBeaconItem(name: nameTextField.text!, uuid: uuid!, majorValue: major, minorValue: minor)
+        newBeacon = iBeaconItem(name: nameTextField.text!, uuid: uuid!, majorValue: major, minorValue: minor, color: Colors.white)
 
       } else {
 

@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate,
         print("No URL sent from source app")
       }
 
-      print(parameters)
+      print("parameters = \(parameters)")
     }
 
     return true

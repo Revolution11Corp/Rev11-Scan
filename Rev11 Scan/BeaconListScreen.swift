@@ -56,6 +56,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     let beacon = iBeacons[indexPath.row]
 
     cell.beacon = beacon
+//    cell.backgroundColor = beacon.color
 
     return cell
   }

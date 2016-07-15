@@ -74,15 +74,19 @@ class BeaconCell: UITableViewCell {
     switch proximity {
 
     case .Unknown:
+      beacon!.color = Colors.white
       return "Unknown"
 
     case .Immediate:
+      beacon!.color = Colors.green
       return "Immediate"
 
     case .Near:
+      beacon!.color = Colors.yellow
       return "Near"
 
     case .Far:
+      beacon!.color = Colors.red
       return "Far"
     }
   }
@@ -96,8 +100,9 @@ class BeaconCell: UITableViewCell {
         let proximity = nameForProximity(aBeacon.lastSeenBeacon!.proximity)
         let accuracy = NSString(format: "%.2f", aBeacon.lastSeenBeacon!.accuracy)
         locationLabel!.text = "Location: \(proximity) (approx. \(accuracy)m)"
+        self.backgroundColor = beacon?.color
 
-        setupTLM()
+//        setupTLM()
       }
     }
   }

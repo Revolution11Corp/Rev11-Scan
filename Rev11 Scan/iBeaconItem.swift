@@ -12,17 +12,22 @@ import CoreLocation
 
 
 class iBeaconItem: NSObject, NSCoding {
+
   let name: String
   let uuid: NSUUID
   let majorValue: CLBeaconMajorValue
   let minorValue: CLBeaconMinorValue
+
+  var color: UIColor?
+
   dynamic var lastSeenBeacon: CLBeacon?
 
-  init(name: String, uuid: NSUUID, majorValue: CLBeaconMajorValue, minorValue: CLBeaconMinorValue) {
+  init(name: String, uuid: NSUUID, majorValue: CLBeaconMajorValue, minorValue: CLBeaconMinorValue, color: UIColor) {
     self.name = name
     self.uuid = uuid
     self.majorValue = majorValue
     self.minorValue = minorValue
+    self.color = Colors.white
   }
 
   // MARK: NSCoding
