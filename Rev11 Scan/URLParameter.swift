@@ -13,7 +13,7 @@ class URLParameter {
 
   static let sharedInstance = URLParameter()
 
-  var url: String?
+  var baseURL: String?
 
   private init() { }
   

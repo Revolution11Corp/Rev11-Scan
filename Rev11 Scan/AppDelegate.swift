@@ -60,14 +60,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate,
     CallbackURLKit.registerAction("rev11scan") { (parameters, success, failed, cancel) in
 
       if let url = parameters["url"] {
-        print("The URL sent is \(url).")
-        URLParameter.sharedInstance.url = url
-        
+        URLParameter.sharedInstance.baseURL = url
       } else {
         print("No URL sent from source app")
+        // handle error UI that user will see if they mess up their URL input in FileMaker
       }
-
-      print("parameters = \(parameters)")
     }
 
     return true

@@ -106,18 +106,12 @@ class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
         //        messageLabel.hidden = true
         messageLabel.text = scannedURL!
 
-        let urlStringFromSourceApp = URLParameter.sharedInstance.url
-        let decodedURLString = (urlStringFromSourceApp?.stringByReplacingOccurrencesOfString("%26", withString: "&"))! as String
+        let urlStringFromSourceApp = URLParameter.sharedInstance.baseURL!
+        let decodedURLString = (urlStringFromSourceApp.stringByReplacingOccurrencesOfString("%26", withString: "&")) as String
+        let builtURL = "\(decodedURLString)\(scannedURL!)"
 
-        print("Decoded URL = \(decodedURLString)")
-
-        let url = NSURL(string: "fmp://74.112.250.102/iBeaconDemo?script=Scanned&param=\(scannedURL!)")
-
-
-//        let url = NSURL(string: decodedURLString)
-
+        let url = NSURL(string: builtURL)
         UIApplication.sharedApplication().openURL(url!)
-
       }
     }
   }
