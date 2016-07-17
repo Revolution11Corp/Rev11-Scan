@@ -33,7 +33,7 @@ class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
 
-    setupQRFrameView()
+//    setupQRFrameView()
     messageLabel.hidden = false
 
     if (captureSession?.running == false) {
@@ -90,28 +90,41 @@ class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
       messageLabel.text = "No QR code is detected"
       dismissViewControllerAnimated(true, completion: nil)
       return
-    }
 
-    let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
+    } else {
 
-    if supportedBarCodes.contains(metadataObj.type) {
+      let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
 
-      let barCodeObject = videoPreviewLayer?.transformedMetadataObjectForMetadataObject(metadataObj)
-      qrCodeFrameView?.frame = barCodeObject!.bounds
+      if self.supportedBarCodes.contains(metadataObj.type) {
 
-      if metadataObj.stringValue != nil {
-        scannedURL = metadataObj.stringValue
-        //        showOptionsAlert(metadataObj.stringValue)
-        //        print(metadataObj.stringValue)
-        //        messageLabel.hidden = true
-        messageLabel.text = scannedURL!
+        let barCodeObject = videoPreviewLayer?.transformedMetadataObjectForMetadataObject(metadataObj)
+        qrCodeFrameView?.frame = barCodeObject!.bounds
 
-        let urlStringFromSourceApp = URLParameter.sharedInstance.baseURL!
-        let decodedURLString = (urlStringFromSourceApp.stringByReplacingOccurrencesOfString("%26", withString: "&")) as String
-        let builtURL = "\(decodedURLString)\(scannedURL!)"
+        if metadataObj.stringValue != nil {
+          scannedURL = metadataObj.stringValue
+          //        showOptionsAlert(metadataObj.stringValue)
+          print("metaObj = \(metadataObj.stringValue)")
+          //        messageLabel.hidden = true
+          messageLabel.text = scannedURL!
 
-        let url = NSURL(string: builtURL)
-        UIApplication.sharedApplication().openURL(url!)
+
+          if URLParameter.sharedInstance.isFromFileMaker == true {
+
+            let urlStringFromSourceApp = URLParameter.sharedInstance.baseURL!
+            let decodedURLString = (urlStringFromSourceApp.stringByReplacingOccurrencesOfString("%26", withString: "&")) as String
+            let builtURL = "\(decodedURLString)\(scannedURL!)"
+
+            if let url = NSURL(string: builtURL) {
+              dispatch_async(dispatch_get_main_queue(), {
+                UIApplication.sharedApplication().openURL(url)
+              })
+            }
+
+          } else {
+            let url = NSURL(string: scannedURL!)
+            UIApplication.sharedApplication().openURL(url!)
+          }
+        }
       }
     }
   }
@@ -143,18 +156,18 @@ class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
     }
   }
 
-  func setupQRFrameView() {
+//  func setupQRFrameView() {
+//
+//    qrCodeFrameView = UIView()
+//
+//    if let qrCodeFrameView = qrCodeFrameView {
+//      qrCodeFrameView.layer.borderColor = UIColor.blueColor().CGColor
+//      qrCodeFrameView.layer.borderWidth = 4
+//      view.addSubview(qrCodeFrameView)
+//      view.bringSubviewToFront(qrCodeFrameView)
+//    }
+//  }
 
-    qrCodeFrameView = UIView()
-
-    if let qrCodeFrameView = qrCodeFrameView {
-      qrCodeFrameView.layer.borderColor = UIColor.blueColor().CGColor
-      qrCodeFrameView.layer.borderWidth = 4
-      view.addSubview(qrCodeFrameView)
-      view.bringSubviewToFront(qrCodeFrameView)
-    }
-  }
-  
   
   
 }

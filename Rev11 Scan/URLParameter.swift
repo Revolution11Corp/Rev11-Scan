@@ -14,6 +14,7 @@ class URLParameter {
   static let sharedInstance = URLParameter()
 
   var baseURL: String?
+  var isFromFileMaker: Bool?
 
   private init() { }
   

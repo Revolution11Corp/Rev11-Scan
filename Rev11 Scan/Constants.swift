@@ -30,3 +30,11 @@ struct Colors {
   static let yellow   = UIColor(red: 255.0/255.0, green: 249.0/255.0, blue: 176.0/255.0, alpha: 1.0)
   static let green    = UIColor(red: 184.0/255.0, green: 233.0/255.0, blue: 134.0/255.0, alpha: 1.0)
 }
+
+struct Constants {
+  static let defaults = NSUserDefaults.standardUserDefaults()
+}
+
+struct Keys {
+  static let isFromFileMaker = "isFromFileMaker"
+}
