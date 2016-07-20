@@ -16,7 +16,6 @@
 		14A617821D1BAD010083CFF2 /* BeaconListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A617811D1BAD010083CFF2 /* BeaconListScreen.swift */; };
 		14A617841D1BAD370083CFF2 /* BeaconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A617831D1BAD370083CFF2 /* BeaconCell.swift */; };
 		14A6178A1D1BAD8F0083CFF2 /* iBeaconItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A617891D1BAD8F0083CFF2 /* iBeaconItem.swift */; };
-		14A6178C1D1BADA30083CFF2 /* EddystoneItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A6178B1D1BADA30083CFF2 /* EddystoneItem.swift */; };
 		14A6178E1D1BADF90083CFF2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A6178D1D1BADF90083CFF2 /* Constants.swift */; };
 		14A617901D1BAE280083CFF2 /* Eddystone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A6178F1D1BAE280083CFF2 /* Eddystone.swift */; };
 		14A617921D1BAE740083CFF2 /* EddystoneScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A617911D1BAE740083CFF2 /* EddystoneScanner.swift */; };
@@ -40,7 +39,6 @@
 		14A617811D1BAD010083CFF2 /* BeaconListScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconListScreen.swift; sourceTree = "<group>"; };
 		14A617831D1BAD370083CFF2 /* BeaconCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconCell.swift; sourceTree = "<group>"; };
 		14A617891D1BAD8F0083CFF2 /* iBeaconItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iBeaconItem.swift; sourceTree = "<group>"; };
-		14A6178B1D1BADA30083CFF2 /* EddystoneItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EddystoneItem.swift; sourceTree = "<group>"; };
 		14A6178D1D1BADF90083CFF2 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		14A6178F1D1BAE280083CFF2 /* Eddystone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Eddystone.swift; sourceTree = "<group>"; };
 		14A617911D1BAE740083CFF2 /* EddystoneScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EddystoneScanner.swift; sourceTree = "<group>"; };
@@ -127,7 +125,6 @@
 		14A617881D1BAD760083CFF2 /* Eddystone Objects */ = {
 			isa = PBXGroup;
 			children = (
-				14A6178B1D1BADA30083CFF2 /* EddystoneItem.swift */,
 				14A6178F1D1BAE280083CFF2 /* Eddystone.swift */,
 				14A617911D1BAE740083CFF2 /* EddystoneScanner.swift */,
 				14A617931D1BAE950083CFF2 /* DispatchTimer.swift */,
@@ -282,7 +279,6 @@
 				14A6176F1D1BAB2B0083CFF2 /* AppDelegate.swift in Sources */,
 				14A617941D1BAE950083CFF2 /* DispatchTimer.swift in Sources */,
 				14A617961D1BAEBA0083CFF2 /* AddBeaconScreen.swift in Sources */,
-				14A6178C1D1BADA30083CFF2 /* EddystoneItem.swift in Sources */,
 				14A617901D1BAE280083CFF2 /* Eddystone.swift in Sources */,
 				14A617821D1BAD010083CFF2 /* BeaconListScreen.swift in Sources */,
 				14A617981D1BAEF10083CFF2 /* QRScannerScreen.swift in Sources */,
@@ -408,7 +404,7 @@
 			baseConfigurationReference = DCB62F3D631A327E91F3BC5F /* Pods-Rev11 Scan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Sean Allen (H69U55MWXW)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sean Allen (UF3KVEB7HT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)\"/\"Rev11 Scan\"/**",
@@ -425,7 +421,7 @@
 			baseConfigurationReference = D52B615DAC3F50A9EEE0AC34 /* Pods-Rev11 Scan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Sean Allen (H69U55MWXW)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sean Allen (UF3KVEB7HT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)\"/\"Rev11 Scan\"/**",

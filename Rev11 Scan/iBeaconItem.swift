@@ -22,11 +22,11 @@ class iBeaconItem: NSObject, NSCoding {
 
   dynamic var lastSeenBeacon: CLBeacon?
 
-  init(name: String, uuid: NSUUID, majorValue: CLBeaconMajorValue, minorValue: CLBeaconMinorValue, color: UIColor) {
+  init(name: String, uuid: NSUUID, majorValue: CLBeaconMajorValue?, minorValue: CLBeaconMinorValue?, color: UIColor) {
     self.name = name
     self.uuid = uuid
-    self.majorValue = majorValue
-    self.minorValue = minorValue
+    self.majorValue = majorValue!
+    self.minorValue = minorValue!
     self.color = Colors.white
   }
 

@@ -42,7 +42,7 @@ class BeaconID : NSObject {
   ///
   let beaconID: [UInt8]
 
-  private init(beaconType: BeaconType!, beaconID: [UInt8]) {
+  init(beaconType: BeaconType!, beaconID: [UInt8]) {
     self.beaconID = beaconID
     self.beaconType = beaconType
   }
@@ -87,7 +87,10 @@ func ==(lhs: BeaconID, rhs: BeaconID) -> Bool {
 /// Contains information fully describing a beacon, including its beaconID, transmission power,
 /// RSSI, and possibly telemetry information.
 ///
-class BeaconInfo : NSObject {
+
+// I (Sean) renamed this to EddystoneItem
+
+class BeaconInfo: NSObject {
 
   static let EddystoneUIDFrameTypeID: UInt8 = 0x00
   static let EddystoneURLFrameTypeID: UInt8 = 0x10
@@ -122,7 +125,7 @@ class BeaconInfo : NSObject {
   let RSSI: Int
   let telemetry: NSData?
 
-  private init(beaconID: BeaconID, txPower: Int, RSSI: Int, telemetry: NSData?) {
+  init(beaconID: BeaconID, txPower: Int, RSSI: Int, telemetry: NSData?) {
     self.beaconID = beaconID
     self.txPower = txPower
     self.RSSI = RSSI

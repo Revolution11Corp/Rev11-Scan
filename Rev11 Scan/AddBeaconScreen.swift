@@ -43,9 +43,13 @@ class AddBeaconScreen: UIViewController, UITextFieldDelegate {
 
   var uuidRegex = try! NSRegularExpression(pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", options: .CaseInsensitive)
   var nameFieldValid = false
+  var majorFieldValid = false
+  var minorFieldValid = false
   var UUIDFieldValid = false
+
   var switchIsOn = true
   var newBeacon: iBeaconItem?
+  var newEddystone: BeaconInfo?
 
 
   override func viewDidLoad() {
@@ -93,19 +97,39 @@ class AddBeaconScreen: UIViewController, UITextFieldDelegate {
 
   func nameTextFieldChanged(textField: UITextField) {
     nameFieldValid = (textField.text!.characters.count > 0)
-    saveBarButton.enabled = (UUIDFieldValid && nameFieldValid)
+    updateSaveButton()
+  }
+
+  func majorTextFieldChanged(textField: UITextField) {
+    majorFieldValid = (textField.text!.characters.count > 0)
+    updateSaveButton()
+  }
+
+  func minorTextFieldChanged(textField: UITextField) {
+    minorFieldValid = (textField.text!.characters.count > 0)
+    updateSaveButton()
   }
 
   func uuidTextFieldChanged(textField: UITextField) {
     let numberOfMatches = uuidRegex.numberOfMatchesInString(textField.text!, options: [], range: NSMakeRange(0, textField.text!.characters.count))
     UUIDFieldValid = (numberOfMatches > 0)
-
-    saveBarButton.enabled = (UUIDFieldValid && nameFieldValid)
+    updateSaveButton()
   }
 
   func checkIfTextInputValid() {
     nameTextField.addTarget(self, action: #selector(AddBeaconScreen.nameTextFieldChanged(_:)), forControlEvents: .EditingChanged)
+    majorTextField.addTarget(self, action: #selector(AddBeaconScreen.majorTextFieldChanged(_:)), forControlEvents: .EditingChanged)
+    minorTextField.addTarget(self, action: #selector(AddBeaconScreen.minorTextFieldChanged(_:)), forControlEvents: .EditingChanged)
     uuidTextField.addTarget(self, action: #selector(AddBeaconScreen.uuidTextFieldChanged(_:)), forControlEvents: .EditingChanged)
+  }
+
+  func updateSaveButton() {
+
+    if UUIDFieldValid && nameFieldValid && majorFieldValid && minorFieldValid {
+      saveBarButton.enabled = true
+    } else {
+      saveBarButton.enabled = false
+    }
   }
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -114,22 +138,14 @@ class AddBeaconScreen: UIViewController, UITextFieldDelegate {
       if switchIsOn == true {
         let uuid = NSUUID(UUIDString: uuidTextField.text!)
 
-        // Need to account for when a user doesn't input a major and/or minor value (it's optional)
         let major: CLBeaconMajorValue = UInt16(Int(majorTextField.text!)!)
         let minor: CLBeaconMinorValue = UInt16(Int(minorTextField.text!)!)
         newBeacon = iBeaconItem(name: nameTextField.text!, uuid: uuid!, majorValue: major, minorValue: minor, color: Colors.white)
 
       } else {
 
-//        let namespaceID = namespaceTextField.text
-//        let instanceID = instanceTextField.text
-//        let url = urlTextField.text
 
       }
-
-
-
-
     }
   }
 

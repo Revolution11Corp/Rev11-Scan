@@ -11,6 +11,7 @@ import CoreLocation
 
 struct BeaconListScreenConstant {
   static let storedBeaconsKey = "storedBeacons"
+  static let storedEddystones = "storedEddystones"
 }
 
 class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, BeaconScannerDelegate {
@@ -19,18 +20,18 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
   var eddystoneScanner: EddystoneScanner!
   var iBeacons: [iBeaconItem] = []
+  var eddystones: [BeaconInfo] = []
   let locationManager = CLLocationManager()
 
   override func viewDidLoad() {
     super.viewDidLoad()
     locationManager.delegate = self
     locationManager.requestAlwaysAuthorization()
-    loadBeacons()
-    //    setupEddystoneScanner()
-
+//    loadBeacons()
+    setupEddystoneScanner()
   }
 
-  func loadBeacons() {
+  func loadiBeacons() {
     if let storedBeacons = NSUserDefaults.standardUserDefaults().arrayForKey(BeaconListScreenConstant.storedBeaconsKey) {
 
       for beaconData in storedBeacons {
@@ -40,6 +41,19 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
       }
     }
   }
+
+//  func loadEddystones() {
+//    if let storedEddystones = NSUserDefaults.standardUserDefaults().arrayForKey(BeaconListScreenConstant.storedEddystones) {
+//
+//      for eddystoneData in storedEddystones {
+//        let eddystone = NSKeyedUnarchiver.unarchiveObjectWithData(eddystoneData as! NSData) as! BeaconInfo
+//        eddystones.append(eddystone)
+//
+//        // Replace this with Eddystone version
+//        // startMonitoringBeacon(beacon)
+//      }
+//    }
+//  }
 
   @IBAction func cancel(segue: UIStoryboardSegue) {
     // Do nothing
@@ -56,7 +70,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     let beacon = iBeacons[indexPath.row]
 
     cell.beacon = beacon
-//    cell.backgroundColor = beacon.color
 
     return cell
   }

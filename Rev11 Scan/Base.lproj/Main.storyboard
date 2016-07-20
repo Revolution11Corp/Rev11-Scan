@@ -235,7 +235,7 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Optional" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hrE-ux-qbV">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Required" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hrE-ux-qbV">
                                 <rect key="frame" x="160" y="340" width="130" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="130" id="Y1l-EF-xLf"/>
@@ -288,7 +288,7 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Optional" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KQy-S4-CRf">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Required" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KQy-S4-CRf">
                                 <rect key="frame" x="310" y="340" width="130" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="CKP-Sp-cJg"/>
@@ -498,7 +498,7 @@
     </scenes>
     <resources>
         <image name="beacon" width="30" height="30"/>
-        <image name="ibeacon-logo" width="148" height="146"/>
+        <image name="ibeacon-logo" width="150" height="150"/>
         <image name="qr" width="30" height="30"/>
     </resources>
 </document>
