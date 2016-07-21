@@ -11,44 +11,19 @@ import CoreLocation
 import CallbackURLKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate, ESTEddystoneManagerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate {
 
   var window: UIWindow?
   let locationManager = CLLocationManager()
   let beaconManager = ESTBeaconManager()
-  let eddystoneManager = ESTEddystoneManager()
-
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
+    ESTConfig.setupAppID("rev11scan-nxl", andAppToken: "d55de5f606394c3cb74f007ec8bd1244")
 
     URLParameter.sharedInstance.isFromFileMaker = false
 
     self.beaconManager.delegate = self
-    self.eddystoneManager.delegate = self
-
-//    // filter by namespace
-//    let namespaceUID = ESTEddystoneUID(namespaceID: "EDD1EBEAC04E5DEFA017")
-////    let namespaceFilter = ESTEddystoneFilterUID(UID: namespaceUID)
-//    let namespaceFilter = ESTEddystoneFilterUID(UID: namespaceUID)
-//    self.eddystoneManager.startEddystoneDiscoveryWithFilter(namespaceFilter)
-//
-//    // filter by namespace and instance
-//    let namespaceInstanceUID = ESTEddystoneUID(namespaceID: "EDD1EBEAC04E5DEFA017",
-//                                               instanceID: "0BDB87539B67")
-//    let namespaceInstanceFilter = ESTEddystoneFilterUID(UID: namespaceInstanceUID)
-//    self.eddystoneManager.startEddystoneDiscoveryWithFilter(namespaceInstanceFilter)
-//
-//    // filter by URL
-//    let urlFilter = ESTEddystoneFilterURL(URL: "http://my.restaurant.com/new-york-city")
-//    self.eddystoneManager.startEddystoneDiscoveryWithFilter(urlFilter)
-//
-//    // filter by domain name
-//    let domainNameFilter = ESTEddystoneFilterURLDomain(URLDomain: "my.restaurant.com")
-//    self.eddystoneManager.startEddystoneDiscoveryWithFilter(domainNameFilter)
-
-    func eddystoneManager(manager: ESTEddystoneManager!, didDiscoverEddystones eddystones: [AnyObject]!, withFilter eddystoneFilter: ESTEddystoneFilter!) {
-      // ...
-    }
 
     let notificationType: UIUserNotificationType = [UIUserNotificationType.Sound, UIUserNotificationType.Alert]
     let notificationSettings = UIUserNotificationSettings(forTypes: notificationType, categories: nil)
