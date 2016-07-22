@@ -48,7 +48,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5iR-Np-FmH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="318" y="663"/>
+            <point key="canvasLocation" x="302" y="-111"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="DgY-bJ-GuN">
@@ -116,23 +116,11 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyQ-tW-7po">
-                                                    <rect key="frame" x="140" y="14" width="405" height="27"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="27" id="h4w-tu-BNS"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="dyQ-tW-7po" secondAttribute="bottom" constant="38" id="3WL-zT-6qG"/>
                                                 <constraint firstItem="PfF-48-aoW" firstAttribute="leading" secondItem="yFs-jH-Kmj" secondAttribute="leading" constant="15" id="A7z-Fk-f5L"/>
                                                 <constraint firstItem="PfF-48-aoW" firstAttribute="top" secondItem="ezu-ql-n6M" secondAttribute="bottom" constant="-25" id="DEU-0p-ABJ"/>
-                                                <constraint firstAttribute="trailing" secondItem="dyQ-tW-7po" secondAttribute="trailing" constant="8" id="KMR-kz-yVg"/>
                                                 <constraint firstItem="1GS-cO-Emp" firstAttribute="top" secondItem="ezu-ql-n6M" secondAttribute="bottom" constant="-3" id="Ko5-w9-3kc"/>
-                                                <constraint firstItem="dyQ-tW-7po" firstAttribute="leading" secondItem="ezu-ql-n6M" secondAttribute="trailing" constant="10" id="NW7-aE-DgM"/>
                                                 <constraint firstItem="1GS-cO-Emp" firstAttribute="leading" secondItem="PfF-48-aoW" secondAttribute="trailing" constant="10" id="Omv-Ru-QBk"/>
                                                 <constraint firstAttribute="trailing" secondItem="ezu-ql-n6M" secondAttribute="trailing" constant="8" id="Pbh-so-IeI"/>
                                                 <constraint firstItem="PfF-48-aoW" firstAttribute="centerY" secondItem="yFs-jH-Kmj" secondAttribute="centerY" id="Ygy-hx-woK"/>
@@ -151,7 +139,6 @@
                                             <outlet property="beaconTypeImage" destination="PfF-48-aoW" id="otC-fO-hD7"/>
                                             <outlet property="locationLabel" destination="1GS-cO-Emp" id="eJG-33-H5P"/>
                                             <outlet property="nameLabel" destination="ezu-ql-n6M" id="pfl-L1-V5H"/>
-                                            <outlet property="tempLabel" destination="dyQ-tW-7po" id="qib-wP-jz6"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -182,7 +169,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J7g-PT-fHa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1025" y="-86"/>
+            <point key="canvasLocation" x="1009" y="-922"/>
         </scene>
         <!--Beacons-->
         <scene sceneID="MKT-Mq-hbX">
@@ -201,7 +188,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l62-0c-Z1M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="318" y="-86"/>
+            <point key="canvasLocation" x="302" y="-922"/>
         </scene>
         <!--Add Beacon-->
         <scene sceneID="t26-oX-zzq">
@@ -475,7 +462,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MVQ-zW-Tja" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="VNL-Dl-Cbo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2475" y="-86"/>
+            <point key="canvasLocation" x="2459" y="-922"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zyJ-4O-OtQ">
@@ -493,7 +480,99 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EC8-lz-W5d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1744" y="-86"/>
+            <point key="canvasLocation" x="1728" y="-922"/>
+        </scene>
+        <!--Beacon List-->
+        <scene sceneID="Qhd-id-ATk">
+            <objects>
+                <viewController id="KR0-CP-bDK" customClass="BeaconListScreen" customModule="Rev11_Scan" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZZC-wD-TKO"/>
+                        <viewControllerLayoutGuide type="bottom" id="cTF-4b-9Fp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aLa-p8-EPi">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sDW-Nd-B8f">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="BeaconCell" id="TRd-KZ-r6w" customClass="BeaconCell" customModule="Rev11_Scan" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TRd-KZ-r6w" id="xDq-XF-d8k">
+                                            <rect key="frame" x="0.0" y="0.0" width="553" height="79"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibeacon-logo" translatesAutoresizingMaskIntoConstraints="NO" id="ECN-gM-RT9">
+                                                    <rect key="frame" x="15" y="17" width="45" height="45"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="45" id="Lga-SO-7fN"/>
+                                                        <constraint firstAttribute="height" constant="45" id="fd9-t6-6B2"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location: Unknown" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPN-sn-NpJ">
+                                                    <rect key="frame" x="70" y="39" width="475" height="27"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="27" id="ZJv-RJ-gq4"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N67-dq-udI">
+                                                    <rect key="frame" x="70" y="15" width="60" height="27"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="27" id="DXZ-zz-9pN"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ECN-gM-RT9" firstAttribute="centerY" secondItem="xDq-XF-d8k" secondAttribute="centerY" id="152-sD-zkT"/>
+                                                <constraint firstAttribute="trailing" secondItem="qPN-sn-NpJ" secondAttribute="trailing" constant="8" id="9LY-XC-FPh"/>
+                                                <constraint firstAttribute="trailing" secondItem="N67-dq-udI" secondAttribute="trailing" constant="8" id="Ljl-Qh-C3b"/>
+                                                <constraint firstItem="ECN-gM-RT9" firstAttribute="leading" secondItem="xDq-XF-d8k" secondAttribute="leading" constant="15" id="LvQ-8g-ycV"/>
+                                                <constraint firstItem="qPN-sn-NpJ" firstAttribute="top" secondItem="N67-dq-udI" secondAttribute="bottom" constant="-3" id="ML9-fC-Dgx"/>
+                                                <constraint firstItem="ECN-gM-RT9" firstAttribute="top" secondItem="N67-dq-udI" secondAttribute="bottom" constant="-25" id="PmX-iO-N2p"/>
+                                                <constraint firstItem="N67-dq-udI" firstAttribute="leading" secondItem="ECN-gM-RT9" secondAttribute="trailing" constant="10" id="e88-c1-LD2"/>
+                                                <constraint firstItem="N67-dq-udI" firstAttribute="leading" secondItem="ECN-gM-RT9" secondAttribute="trailing" constant="10" id="vvY-kH-4gK"/>
+                                                <constraint firstItem="qPN-sn-NpJ" firstAttribute="leading" secondItem="ECN-gM-RT9" secondAttribute="trailing" constant="10" id="wNo-x4-AwA"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="Ljl-Qh-C3b"/>
+                                                    <exclude reference="vvY-kH-4gK"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="beaconTypeImage" destination="ECN-gM-RT9" id="EKT-HU-byV"/>
+                                            <outlet property="locationLabel" destination="qPN-sn-NpJ" id="rvT-SV-xbZ"/>
+                                            <outlet property="nameLabel" destination="N67-dq-udI" id="7RZ-lj-I5K"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="sDW-Nd-B8f" firstAttribute="top" secondItem="aLa-p8-EPi" secondAttribute="top" id="JLc-2R-lbg"/>
+                            <constraint firstAttribute="trailing" secondItem="sDW-Nd-B8f" secondAttribute="trailing" id="JN6-jm-drK"/>
+                            <constraint firstItem="sDW-Nd-B8f" firstAttribute="leading" secondItem="aLa-p8-EPi" secondAttribute="leading" id="en4-QW-bPo"/>
+                            <constraint firstItem="cTF-4b-9Fp" firstAttribute="top" secondItem="sDW-Nd-B8f" secondAttribute="bottom" id="iF5-Kp-K1X"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Beacon List" id="kXi-h7-k2X">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="KEm-ln-mvF"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MDj-qs-DoY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="302" y="708"/>
         </scene>
     </scenes>
     <resources>
