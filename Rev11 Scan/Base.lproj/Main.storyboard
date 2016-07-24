@@ -62,6 +62,8 @@
                     <connections>
                         <segue destination="BRj-Gv-JRG" kind="relationship" relationship="viewControllers" id="TPy-rz-6UX"/>
                         <segue destination="3E0-IQ-nMh" kind="relationship" relationship="viewControllers" id="Moh-fP-vRl"/>
+                        <segue destination="KR0-CP-bDK" kind="relationship" relationship="viewControllers" id="Jva-4u-42M"/>
+                        <segue destination="FwQ-rH-LRp" kind="relationship" relationship="viewControllers" id="g58-TY-ImE"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IR4-3X-tTu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -485,7 +487,7 @@
         <!--Beacon List-->
         <scene sceneID="Qhd-id-ATk">
             <objects>
-                <viewController id="KR0-CP-bDK" customClass="BeaconListScreen" customModule="Rev11_Scan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="KR0-CP-bDK" customClass="EstimoteScreen" customModule="Rev11_Scan" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZZC-wD-TKO"/>
                         <viewControllerLayoutGuide type="bottom" id="cTF-4b-9Fp"/>
@@ -494,7 +496,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sDW-Nd-B8f">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sDW-Nd-B8f">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -556,6 +558,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="KR0-CP-bDK" id="S5R-Hk-jHe"/>
+                                    <outlet property="delegate" destination="KR0-CP-bDK" id="2MJ-RX-2F9"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -566,17 +572,123 @@
                             <constraint firstItem="cTF-4b-9Fp" firstAttribute="top" secondItem="sDW-Nd-B8f" secondAttribute="bottom" id="iF5-Kp-K1X"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Estimote" image="estimote-tabbar" id="gJ2-6t-eUu"/>
                     <navigationItem key="navigationItem" title="Beacon List" id="kXi-h7-k2X">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="KEm-ln-mvF"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="sDW-Nd-B8f" id="g7k-BC-oDY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MDj-qs-DoY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="302" y="708"/>
+            <point key="canvasLocation" x="302" y="629"/>
+        </scene>
+        <!--Beacon List-->
+        <scene sceneID="3M0-VB-plB">
+            <objects>
+                <viewController id="FwQ-rH-LRp" customClass="EddystoneScreen" customModule="Rev11_Scan" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Dpu-qJ-G3U"/>
+                        <viewControllerLayoutGuide type="bottom" id="34b-cA-DsV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ImR-dA-R9w">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Nch-RF-SZV">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="BeaconCell" id="15w-IZ-Rih" customClass="BeaconCell" customModule="Rev11_Scan" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="15w-IZ-Rih" id="zNn-Jy-RlF">
+                                            <rect key="frame" x="0.0" y="0.0" width="553" height="79"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibeacon-logo" translatesAutoresizingMaskIntoConstraints="NO" id="hUj-b4-Akn">
+                                                    <rect key="frame" x="15" y="17" width="45" height="45"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="45" id="8Le-hL-ubg"/>
+                                                        <constraint firstAttribute="height" constant="45" id="yVM-OC-8C2"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location: Unknown" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j6n-BX-55T">
+                                                    <rect key="frame" x="70" y="39" width="475" height="27"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="27" id="bQ5-LK-v6h"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0BN-uI-WV4">
+                                                    <rect key="frame" x="70" y="15" width="60" height="27"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="27" id="jUl-PY-lJw"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="j6n-BX-55T" secondAttribute="trailing" constant="8" id="61b-gG-cXZ"/>
+                                                <constraint firstItem="hUj-b4-Akn" firstAttribute="leading" secondItem="zNn-Jy-RlF" secondAttribute="leading" constant="15" id="823-CK-8Kt"/>
+                                                <constraint firstAttribute="trailing" secondItem="0BN-uI-WV4" secondAttribute="trailing" constant="8" id="MEd-ba-est"/>
+                                                <constraint firstItem="hUj-b4-Akn" firstAttribute="centerY" secondItem="zNn-Jy-RlF" secondAttribute="centerY" id="WXx-I1-Ag0"/>
+                                                <constraint firstItem="j6n-BX-55T" firstAttribute="top" secondItem="0BN-uI-WV4" secondAttribute="bottom" constant="-3" id="f9q-zx-sSr"/>
+                                                <constraint firstItem="hUj-b4-Akn" firstAttribute="top" secondItem="0BN-uI-WV4" secondAttribute="bottom" constant="-25" id="mob-4d-DdK"/>
+                                                <constraint firstItem="0BN-uI-WV4" firstAttribute="leading" secondItem="hUj-b4-Akn" secondAttribute="trailing" constant="10" id="p0t-6n-vwp"/>
+                                                <constraint firstItem="j6n-BX-55T" firstAttribute="leading" secondItem="hUj-b4-Akn" secondAttribute="trailing" constant="10" id="veI-jR-IsA"/>
+                                                <constraint firstItem="0BN-uI-WV4" firstAttribute="leading" secondItem="hUj-b4-Akn" secondAttribute="trailing" constant="10" id="x63-OM-XNe"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="MEd-ba-est"/>
+                                                    <exclude reference="x63-OM-XNe"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="beaconTypeImage" destination="hUj-b4-Akn" id="IZF-Rr-kCC"/>
+                                            <outlet property="locationLabel" destination="j6n-BX-55T" id="1M9-dO-HKt"/>
+                                            <outlet property="nameLabel" destination="0BN-uI-WV4" id="oDk-R6-mTe"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="FwQ-rH-LRp" id="KA3-UZ-pWU"/>
+                                    <outlet property="delegate" destination="FwQ-rH-LRp" id="jXa-GT-r7l"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Nch-RF-SZV" firstAttribute="leading" secondItem="ImR-dA-R9w" secondAttribute="leading" id="2Zk-oS-Pd3"/>
+                            <constraint firstAttribute="trailing" secondItem="Nch-RF-SZV" secondAttribute="trailing" id="Egj-e9-5Kh"/>
+                            <constraint firstItem="34b-cA-DsV" firstAttribute="top" secondItem="Nch-RF-SZV" secondAttribute="bottom" id="WE6-rv-dHX"/>
+                            <constraint firstItem="Nch-RF-SZV" firstAttribute="top" secondItem="ImR-dA-R9w" secondAttribute="top" id="mgw-L6-eGl"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Eddystone" image="eddystone-tabbar" id="brJ-co-UJE"/>
+                    <navigationItem key="navigationItem" title="Beacon List" id="hh4-Rv-aNL">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="KPJ-VV-6yB"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="Nch-RF-SZV" id="oaN-Zi-f3W"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mdb-Xc-FUj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="302" y="1376"/>
         </scene>
     </scenes>
     <resources>
         <image name="beacon" width="30" height="30"/>
+        <image name="eddystone-tabbar" width="30" height="30"/>
+        <image name="estimote-tabbar" width="30" height="30"/>
         <image name="ibeacon-logo" width="150" height="150"/>
         <image name="qr" width="30" height="30"/>
     </resources>

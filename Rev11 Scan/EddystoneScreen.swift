@@ -1,16 +1,15 @@
 //
-//  EstimoteScreen.swift
+//  EddystoneScreen.swift
 //  Rev11 Scan
 //
-//  Created by Sean's Macboo Pro on 7/21/16.
+//  Created by Sean's Macboo Pro on 7/23/16.
 //  Copyright © 2016 Revolution11. All rights reserved.
 //
-
 
 import UIKit
 import CoreLocation
 
-class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, BeaconScannerDelegate, ESTEddystoneManagerDelegate {
+class EddystoneScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, BeaconScannerDelegate, ESTEddystoneManagerDelegate {
 
   @IBOutlet weak var tableView: UITableView!
 
@@ -25,7 +24,7 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
     //    loadEddystones()
     setupEddystoneScanner()
     eddystoneManager.delegate = self
-    findEddystones()
+//    findEddystones()
   }
 
 
@@ -64,18 +63,18 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
 
 
-//  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//
-//    tableView.deselectRowAtIndexPath(indexPath, animated: true)
-//
-//    let beacon = iBeacons[indexPath.row] as iBeaconItem
-//    let uuid = beacon.uuid.UUIDString
-//    let detailMessage = "UUID: \(uuid)\nMajor: \(beacon.majorValue)\nMinor: \(beacon.minorValue)"
-//    let detailAlert = UIAlertController(title: "Beacon Info", message: detailMessage, preferredStyle: .Alert)
-//    detailAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-//
-//    presentViewController(detailAlert, animated: true, completion: nil)
-//  }
+  //  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  //
+  //    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+  //
+  //    let beacon = iBeacons[indexPath.row] as iBeaconItem
+  //    let uuid = beacon.uuid.UUIDString
+  //    let detailMessage = "UUID: \(uuid)\nMajor: \(beacon.majorValue)\nMinor: \(beacon.minorValue)"
+  //    let detailAlert = UIAlertController(title: "Beacon Info", message: detailMessage, preferredStyle: .Alert)
+  //    detailAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+  //
+  //    presentViewController(detailAlert, animated: true, completion: nil)
+  //  }
 
 
   //MARK: - Eddystone Methods
@@ -145,12 +144,12 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
       //      print("RSSI = \(thing.rssi)")
       //      print("Proximity Zone = \(thing.proximity.rawValue)")
     }
-    
+
     //      estimoteCloudManager.fetchBeaconDetails("D380ABAF-6096-5015-134D-39107D3CA712", completion: { (beacon, error) in
     //      print(beacon.debug)
     //     })
   }
-  
+
   func eddystoneManagerDidFailDiscovery(manager: ESTEddystoneManager, withError error: NSError?) {
     print("Did Fail Discovery")
   }
@@ -163,4 +162,3 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
   
   
 }
-
