@@ -62,8 +62,8 @@
                     <connections>
                         <segue destination="BRj-Gv-JRG" kind="relationship" relationship="viewControllers" id="TPy-rz-6UX"/>
                         <segue destination="3E0-IQ-nMh" kind="relationship" relationship="viewControllers" id="Moh-fP-vRl"/>
-                        <segue destination="KR0-CP-bDK" kind="relationship" relationship="viewControllers" id="Jva-4u-42M"/>
-                        <segue destination="FwQ-rH-LRp" kind="relationship" relationship="viewControllers" id="g58-TY-ImE"/>
+                        <segue destination="Hl3-lm-Dxz" kind="relationship" relationship="viewControllers" id="Jva-4u-42M"/>
+                        <segue destination="rAc-pu-rsj" kind="relationship" relationship="viewControllers" id="g58-TY-ImE"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IR4-3X-tTu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -484,7 +484,7 @@
             </objects>
             <point key="canvasLocation" x="1728" y="-922"/>
         </scene>
-        <!--Beacon List-->
+        <!--Estimote List-->
         <scene sceneID="Qhd-id-ATk">
             <objects>
                 <viewController id="KR0-CP-bDK" customClass="EstimoteScreen" customModule="Rev11_Scan" customModuleProvider="target" sceneMemberID="viewController">
@@ -500,14 +500,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="BeaconCell" id="TRd-KZ-r6w" customClass="BeaconCell" customModule="Rev11_Scan" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="80"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EddystoneCell" id="TRd-KZ-r6w" customClass="EddystoneCell" customModule="Rev11_Scan" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TRd-KZ-r6w" id="xDq-XF-d8k">
-                                            <rect key="frame" x="0.0" y="0.0" width="553" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibeacon-logo" translatesAutoresizingMaskIntoConstraints="NO" id="ECN-gM-RT9">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eddystone-logo" translatesAutoresizingMaskIntoConstraints="NO" id="ECN-gM-RT9">
                                                     <rect key="frame" x="15" y="17" width="45" height="45"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="45" id="Lga-SO-7fN"/>
@@ -515,7 +515,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location: Unknown" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPN-sn-NpJ">
-                                                    <rect key="frame" x="70" y="39" width="475" height="27"/>
+                                                    <rect key="frame" x="70" y="39" width="522" height="27"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="27" id="ZJv-RJ-gq4"/>
                                                     </constraints>
@@ -552,9 +552,9 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="beaconTypeImage" destination="ECN-gM-RT9" id="EKT-HU-byV"/>
-                                            <outlet property="locationLabel" destination="qPN-sn-NpJ" id="rvT-SV-xbZ"/>
-                                            <outlet property="nameLabel" destination="N67-dq-udI" id="7RZ-lj-I5K"/>
+                                            <outlet property="beaconTypeImage" destination="ECN-gM-RT9" id="luh-dZ-Gua"/>
+                                            <outlet property="locationLabel" destination="qPN-sn-NpJ" id="tcF-Sd-rLD"/>
+                                            <outlet property="nameLabel" destination="N67-dq-udI" id="UQq-IM-uQ0"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -572,8 +572,7 @@
                             <constraint firstItem="cTF-4b-9Fp" firstAttribute="top" secondItem="sDW-Nd-B8f" secondAttribute="bottom" id="iF5-Kp-K1X"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Estimote" image="estimote-tabbar" id="gJ2-6t-eUu"/>
-                    <navigationItem key="navigationItem" title="Beacon List" id="kXi-h7-k2X">
+                    <navigationItem key="navigationItem" title="Estimote List" id="kXi-h7-k2X">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="KEm-ln-mvF"/>
                     </navigationItem>
                     <connections>
@@ -582,9 +581,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MDj-qs-DoY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="302" y="629"/>
+            <point key="canvasLocation" x="1114" y="629"/>
         </scene>
-        <!--Beacon List-->
+        <!--Eddystone List-->
         <scene sceneID="3M0-VB-plB">
             <objects>
                 <viewController id="FwQ-rH-LRp" customClass="EddystoneScreen" customModule="Rev11_Scan" customModuleProvider="target" sceneMemberID="viewController">
@@ -601,7 +600,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="BeaconCell" id="15w-IZ-Rih" customClass="BeaconCell" customModule="Rev11_Scan" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="80"/>
+                                        <rect key="frame" x="0.0" y="92" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="15w-IZ-Rih" id="zNn-Jy-RlF">
                                             <rect key="frame" x="0.0" y="0.0" width="553" height="79"/>
@@ -672,8 +671,7 @@
                             <constraint firstItem="Nch-RF-SZV" firstAttribute="top" secondItem="ImR-dA-R9w" secondAttribute="top" id="mgw-L6-eGl"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Eddystone" image="eddystone-tabbar" id="brJ-co-UJE"/>
-                    <navigationItem key="navigationItem" title="Beacon List" id="hh4-Rv-aNL">
+                    <navigationItem key="navigationItem" title="Eddystone List" id="hh4-Rv-aNL">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="KPJ-VV-6yB"/>
                     </navigationItem>
                     <connections>
@@ -682,11 +680,50 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mdb-Xc-FUj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1114" y="1376"/>
+        </scene>
+        <!--Estimote-->
+        <scene sceneID="eDb-2A-pQK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Hl3-lm-Dxz" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Estimote" image="estimote-tabbar" id="gJ2-6t-eUu"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YR8-qt-mLI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="KR0-CP-bDK" kind="relationship" relationship="rootViewController" id="5HP-vB-KIt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z3W-Rb-2SN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="302" y="629"/>
+        </scene>
+        <!--Eddystone-->
+        <scene sceneID="oL0-CH-XjM">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rAc-pu-rsj" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Eddystone" image="eddystone-tabbar" id="brJ-co-UJE"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qyf-RX-Cud">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="FwQ-rH-LRp" kind="relationship" relationship="rootViewController" id="nun-gB-P9R"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cMl-X9-bBo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="302" y="1376"/>
         </scene>
     </scenes>
     <resources>
         <image name="beacon" width="30" height="30"/>
+        <image name="eddystone-logo" width="171" height="171"/>
         <image name="eddystone-tabbar" width="30" height="30"/>
         <image name="estimote-tabbar" width="30" height="30"/>
         <image name="ibeacon-logo" width="150" height="150"/>

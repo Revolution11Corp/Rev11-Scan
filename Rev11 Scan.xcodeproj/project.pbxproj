@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		145E215F1D45B91900571679 /* EddystoneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145E215E1D45B91900571679 /* EddystoneCell.swift */; };
 		1471579A1D331D4300B98EBA /* EstimoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 147157991D331D4300B98EBA /* EstimoteSDK.framework */; };
 		147A4A591D37454C006D834D /* URLParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147A4A581D37454C006D834D /* URLParameter.swift */; };
 		14A6176F1D1BAB2B0083CFF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A6176E1D1BAB2B0083CFF2 /* AppDelegate.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		145E215E1D45B91900571679 /* EddystoneCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EddystoneCell.swift; sourceTree = "<group>"; };
 		147157991D331D4300B98EBA /* EstimoteSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EstimoteSDK.framework; sourceTree = "<group>"; };
 		1471579B1D331DA600B98EBA /* ObjcBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjcBridge.h; sourceTree = "<group>"; };
 		147A4A581D37454C006D834D /* URLParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLParameter.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				14A617911D1BAE740083CFF2 /* EddystoneScanner.swift */,
 				14A617931D1BAE950083CFF2 /* DispatchTimer.swift */,
 				14AD9E571D407E250085A044 /* BeaconCloudFactory.swift */,
+				145E215E1D45B91900571679 /* EddystoneCell.swift */,
 			);
 			name = EstimoteFiltered;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				14A617821D1BAD010083CFF2 /* BeaconListScreen.swift in Sources */,
 				14A617981D1BAEF10083CFF2 /* QRScannerScreen.swift in Sources */,
 				14AD9E581D407E250085A044 /* BeaconCloudFactory.swift in Sources */,
+				145E215F1D45B91900571679 /* EddystoneCell.swift in Sources */,
 				14AD9E661D4466330085A044 /* EddystoneScreen.swift in Sources */,
 				14A6178E1D1BADF90083CFF2 /* Constants.swift in Sources */,
 			);

@@ -17,14 +17,13 @@ class EddystoneScreen: UIViewController, UITableViewDelegate, UITableViewDataSou
   var iBeacons: [iBeaconItem] = []
   var eddystones: [BeaconInfo] = []
   let eddystoneManager = ESTEddystoneManager()
-  let estimoteCloudManager = ESTCloudManager()
 
   override func viewDidLoad() {
     super.viewDidLoad()
     //    loadEddystones()
-    setupEddystoneScanner()
+//    setupEddystoneScanner()
     eddystoneManager.delegate = self
-//    findEddystones()
+    findEddystones()
   }
 
 
@@ -105,7 +104,7 @@ class EddystoneScreen: UIViewController, UITableViewDelegate, UITableViewDataSou
 
     // filter by namespace
     let namespaceID = "EDD1EBEAC04E5DEFA017"
-    //    let namespaceID = "EDD1EBEAC04E5DEF8888"
+//        let namespaceID = "EDD1EBEAC04E5DEF8888"
     let namespaceFilter = ESTEddystoneFilterUID(namespaceID: namespaceID)
     self.eddystoneManager.startEddystoneDiscoveryWithFilter(namespaceFilter)
 
@@ -135,14 +134,14 @@ class EddystoneScreen: UIViewController, UITableViewDelegate, UITableViewDataSou
     //    print(eddystones)
 
     for thing in eddystones {
-      //      print("UUID Sting = \(thing.peripheralIdentifier.UUIDString)")
-      //      print("Accuracy = \(thing.accuracy)")
-      //      print("Discovery Date = \(thing.discoveryDate)")
-      //      print("Is Equal To Eddystone (self) = \(thing.isEqualToEddystone(thing))")
-      //      print("Mac Address = \(thing.macAddress)")
-      //      print("Measured Power = \(thing.measuredPower)")
-      //      print("RSSI = \(thing.rssi)")
-      //      print("Proximity Zone = \(thing.proximity.rawValue)")
+            print("UUID Sting = \(thing.peripheralIdentifier.UUIDString)")
+            print("Accuracy = \(thing.accuracy)")
+            print("Discovery Date = \(thing.discoveryDate)")
+            print("Is Equal To Eddystone (self) = \(thing.isEqualToEddystone(thing))")
+            print("Mac Address = \(thing.macAddress)")
+            print("Measured Power = \(thing.measuredPower)")
+            print("RSSI = \(thing.rssi)")
+            print("Proximity Zone = \(thing.proximity.rawValue)")
     }
 
     //      estimoteCloudManager.fetchBeaconDetails("D380ABAF-6096-5015-134D-39107D3CA712", completion: { (beacon, error) in

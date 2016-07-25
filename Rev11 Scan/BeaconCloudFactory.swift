@@ -10,7 +10,7 @@
 //
 //  func contentForBeaconID(beaconID: BeaconID, completion: (content: AnyObject) -> ()) {
 //
-//    let beaconDetailRequest = ESTRequestGetBeaconsDetails.
+//    let beaconDetailRequest = ESTRequestGetBeaconsDetails(beacons: [CLBeacon], andFields: ESTBeaconDetailsFields)
 //
 ////    let beaconDetailsRequest = ESTRequestBeaconDetails(
 ////      proximityUUID: beaconID.proximityUUID, major: beaconID.major, minor: beaconID.minor)

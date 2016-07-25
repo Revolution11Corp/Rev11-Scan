@@ -23,7 +23,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
   var eddystones: [BeaconInfo] = []
   let locationManager = CLLocationManager()
   let eddystoneManager = ESTEddystoneManager()
-  let estimoteCloudManager = ESTCloudManager()
+//  let estimoteCloudManager = ESTCloudManager()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -244,14 +244,14 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 //    print(eddystones)
 
     for thing in eddystones {
-//      print("UUID Sting = \(thing.peripheralIdentifier.UUIDString)")
-//      print("Accuracy = \(thing.accuracy)")
-//      print("Discovery Date = \(thing.discoveryDate)")
-//      print("Is Equal To Eddystone (self) = \(thing.isEqualToEddystone(thing))")
-//      print("Mac Address = \(thing.macAddress)")
-//      print("Measured Power = \(thing.measuredPower)")
-//      print("RSSI = \(thing.rssi)")
-//      print("Proximity Zone = \(thing.proximity.rawValue)")
+      print("UUID Sting = \(thing.peripheralIdentifier.UUIDString)")
+      print("Accuracy = \(thing.accuracy)")
+      print("Discovery Date = \(thing.discoveryDate)")
+      print("Is Equal To Eddystone (self) = \(thing.isEqualToEddystone(thing))")
+      print("Mac Address = \(thing.macAddress)")
+      print("Measured Power = \(thing.measuredPower)")
+      print("RSSI = \(thing.rssi)")
+      print("Proximity Zone = \(thing.proximity.rawValue)")
     }
 
 //      estimoteCloudManager.fetchBeaconDetails("D380ABAF-6096-5015-134D-39107D3CA712", completion: { (beacon, error) in
