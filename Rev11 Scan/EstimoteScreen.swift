@@ -90,6 +90,18 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
   func eddystoneManagerDidFailDiscovery(manager: ESTEddystoneManager, withError error: NSError?) {
     print("Did Fail Discovery")
   }
+
+  //MARK: - Get Beacon Name
+
+  func getEstimoteBeconNameFromCloud(beacons: [CLBeacon]) {
+
+    let beaconDetailRequest = ESTRequestGetBeaconsDetails(beacons: beacons, andFields: ESTBeaconDetailsFields.FieldName)
+
+    beaconDetailRequest.sendRequestWithCompletion { (beaconDetails, error) in
+      print(beaconDetails)
+    }
+
+  }
   
 }
 
