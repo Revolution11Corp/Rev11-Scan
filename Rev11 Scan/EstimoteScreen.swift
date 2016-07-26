@@ -13,6 +13,7 @@ import CoreLocation
 class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, ESTEddystoneManagerDelegate {
 
   @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var emptyStateView: UIView!
 
   var iBeacons: [iBeaconItem] = []
   var eddystoneItems: [ESTEddystone] = []
@@ -22,6 +23,25 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
     super.viewDidLoad()
     eddystoneManager.delegate = self
     findEddystones()
+    checkForEmptyState()
+  }
+
+  func showEmptyState(bool: Bool) {
+    if bool == true {
+      tableView.hidden = true
+      emptyStateView.hidden = false
+    } else {
+      tableView.hidden = false
+      emptyStateView.hidden = true
+    }
+  }
+
+  func checkForEmptyState() {
+    if eddystoneItems.count == 0 {
+      showEmptyState(true)
+    } else {
+      showEmptyState(false)
+    }
   }
 
   //MARK: - TableView Methods
@@ -31,7 +51,7 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-    let cell = tableView.dequeueReusableCellWithIdentifier("EddystoneCell", forIndexPath: indexPath) as! EddystoneCell
+    let cell = tableView.dequeueReusableCellWithIdentifier("EstimoteCell", forIndexPath: indexPath) as! EstimoteCell
     let eddystone = eddystoneItems[indexPath.row]
     let eddystoneProximity = eddystone.proximity.rawValue
     var proximityString: String?
@@ -54,7 +74,7 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
     let approximateDistance = (eddystone.rssi.floatValue)/(eddystone.measuredPower.floatValue)
     let distanceString = String(format: "\(proximityString!) (~ %.2f meters)", approximateDistance)
 
-    cell.nameLabel.text = eddystone.peripheralIdentifier.UUIDString
+    cell.uuidLabel.text = eddystone.peripheralIdentifier.UUIDString
     cell.locationLabel.text = distanceString
 
     return cell
@@ -77,6 +97,7 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     eddystoneItems = eddystones
     eddystoneItems.sortInPlace({ $1.proximity.rawValue > $0.proximity.rawValue })
+    checkForEmptyState()
 
     for thing in eddystoneItems {
 //      getEstimoteBeconNameFromCloud("86732825b51273f01685a2eba15f8326")

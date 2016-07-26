@@ -12,6 +12,7 @@ import CoreLocation
 class EddystoneScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, ESTEddystoneManagerDelegate {
 
   @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var emptyStateView: UIView!
 
   var iBeacons: [iBeaconItem] = []
   var eddystoneItems: [ESTEddystone] = []
@@ -21,6 +22,25 @@ class EddystoneScreen: UIViewController, UITableViewDelegate, UITableViewDataSou
     super.viewDidLoad()
     eddystoneManager.delegate = self
     findEddystones()
+    checkForEmptyState()
+  }
+
+  func showEmptyState(bool: Bool) {
+    if bool == true {
+      tableView.hidden = true
+      emptyStateView.hidden = false
+    } else {
+      tableView.hidden = false
+      emptyStateView.hidden = true
+    }
+  }
+
+  func checkForEmptyState() {
+    if eddystoneItems.count == 0 {
+      showEmptyState(true)
+    } else {
+      showEmptyState(false)
+    }
   }
 
 
@@ -80,6 +100,7 @@ class EddystoneScreen: UIViewController, UITableViewDelegate, UITableViewDataSou
 
     eddystoneItems = eddystones
     eddystoneItems.sortInPlace({ $1.proximity.rawValue > $0.proximity.rawValue })
+    checkForEmptyState()
 
     dispatch_async(dispatch_get_main_queue()) {
       self.tableView.reloadData()
