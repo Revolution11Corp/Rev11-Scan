@@ -17,14 +17,12 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
   var iBeacons: [iBeaconItem] = []
   var eddystoneItems: [ESTEddystone] = []
   let eddystoneManager = ESTEddystoneManager()
-//  let estimoteCloudManager = ESTCloudManager()
 
   override func viewDidLoad() {
     super.viewDidLoad()
     eddystoneManager.delegate = self
     findEddystones()
   }
-
 
   //MARK: - TableView Methods
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -70,9 +68,7 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
   //MARK: - Eddystone Methods
 
   func findEddystones() {
-
     let namespaceID = "EDD1EBEAC04E5DEFA017"
-    //    let namespaceID = "EDD1EBEAC04E5DEF8888"
     let namespaceFilter = ESTEddystoneFilterUID(namespaceID: namespaceID)
     self.eddystoneManager.startEddystoneDiscoveryWithFilter(namespaceFilter)
   }
@@ -81,6 +77,15 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     eddystoneItems = eddystones
     eddystoneItems.sortInPlace({ $1.proximity.rawValue > $0.proximity.rawValue })
+
+    for thing in eddystoneItems {
+//      getEstimoteBeconNameFromCloud("86732825b51273f01685a2eba15f8326")
+
+      ESTCloudOperationDeviceInfoName.readOperationWithCompletion { (deviceName, error) in
+        print("Device Name = \(deviceName)")
+
+      }
+    }
 
     dispatch_async(dispatch_get_main_queue()) {
       self.tableView.reloadData()
@@ -93,15 +98,28 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
 
   //MARK: - Get Beacon Name
 
-  func getEstimoteBeconNameFromCloud(beacons: [CLBeacon]) {
+//  func getEstimoteBeconNameFromCloud(uuidString: String) {
+//
+//    let beaconDetailRequest = ESTRequestV2GetDeviceDetails(deviceIdentifier: uuidString)
+//
+////    beaconDetailRequest.sendRequestWithCompletion { (details, error) in
+////      print("Beacon Details = \(details!)")
+////    }
+//
+//    ESTCloudOperationDeviceInfoName.readOperationWithCompletion { (deviceName, error) in
+//      print("Device Name = \(deviceName)")
+//
+//
+//
+//    }
 
-    let beaconDetailRequest = ESTRequestGetBeaconsDetails(beacons: beacons, andFields: ESTBeaconDetailsFields.FieldName)
 
-    beaconDetailRequest.sendRequestWithCompletion { (beaconDetails, error) in
-      print(beaconDetails)
-    }
 
-  }
-  
+
+
+//    }
+
+//  }
+
 }
 
