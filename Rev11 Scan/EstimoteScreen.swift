@@ -10,7 +10,7 @@
 import UIKit
 import CoreLocation
 
-class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, ESTEddystoneManagerDelegate {
+class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, ESTEddystoneManagerDelegate, ESTDeviceManagerDelegate {
 
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var emptyStateView: UIView!
@@ -18,6 +18,8 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
   var iBeacons: [iBeaconItem] = []
   var eddystoneItems: [ESTEddystone] = []
   let eddystoneManager = ESTEddystoneManager()
+
+  let deviceManager = ESTDeviceManager()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -42,6 +44,15 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
     } else {
       showEmptyState(false)
     }
+  }
+
+  func getTempFromDevice() {
+
+    let temperatureNotification = ESTTelemetryNotificationTemperature { (temperature) in
+      print("Current temperature: \(temperature.temperatureInCelsius) C")
+    }
+
+    deviceManager.registerForTelemetryNotification(temperatureNotification)
   }
 
   //MARK: - TableView Methods
@@ -98,15 +109,12 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
     eddystoneItems = eddystones
     eddystoneItems.sortInPlace({ $1.proximity.rawValue > $0.proximity.rawValue })
     checkForEmptyState()
+    getTempFromDevice()
 
-    for thing in eddystoneItems {
-//      getEstimoteBeconNameFromCloud("86732825b51273f01685a2eba15f8326")
-
-      ESTCloudOperationDeviceInfoName.readOperationWithCompletion { (deviceName, error) in
-        print("Device Name = \(deviceName)")
-
-      }
-    }
+//    for thing in eddystoneItems {
+//
+//
+//    }
 
     dispatch_async(dispatch_get_main_queue()) {
       self.tableView.reloadData()
