@@ -45,37 +45,87 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
 
   func beaconManager(manager: AnyObject, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion) {
 
+    var beaconNameArray: [String] = []
+
+
     // create a "tempBeacons" array to use as a comparision to most recent array. If the same = no network call
 
-    dispatch_async(dispatch_get_main_queue()) {
-      self.beaconDetailsCloudFactory.contentForBeacons(beacons) { (content) in
+    self.beaconDetailsCloudFactory.contentForBeacons(beacons) { (content) in
+        dispatch_async(dispatch_get_main_queue()) {
 
         //If contentForBeacons now returns an array of "content", itereate through that array for what you need
 
-        let name = content as! BeaconDetails
+//          for item in content {
+//            beaconNameArray.append(item.beaconName)
+//
+//            //Need this For Loop to complete 100% before moving on. Need a function w/ completion handler
+//          }
 
-        print(name.beaconName)
+          self.setEstimoteNamesArray(content, namesArray: beaconNameArray, completion: {
 
+            self.iBeacons.removeAll()
+
+            for beacon in beacons {
+
+              var counter = 0
+
+              let newBeacon = EstimoteBeacon(name: beaconNameArray[counter], uuid: beacon.proximityUUID, majorValue: beacon.major, minorValue: beacon.minor, color: Colors.white)
+
+              counter += 1
+
+              newBeacon.lastSeenEstimote = beacon
+
+              self.iBeacons.append(newBeacon)
+            }
+            
+            self.checkForEmptyState()
+            
+            dispatch_async(dispatch_get_main_queue()) {
+              self.tableView.reloadData()
+            }
+          })
+        }
       }
-    }
 
-    iBeacons.removeAll()
-
-    for beacon in beacons {
-
-      let newBeacon = EstimoteBeacon(name: "", uuid: beacon.proximityUUID, majorValue: beacon.major, minorValue: beacon.minor, color: Colors.white)
-
-      newBeacon.lastSeenEstimote = beacon
-
-      iBeacons.append(newBeacon)
-    }
-
-    checkForEmptyState()
-
-    dispatch_async(dispatch_get_main_queue()) {
-      self.tableView.reloadData()
-    }
+//    iBeacons.removeAll()
+//
+//    for beacon in beacons {
+//
+//      var counter = 0
+//
+//      let newBeacon = EstimoteBeacon(name: beaconNameArray[counter], uuid: beacon.proximityUUID, majorValue: beacon.major, minorValue: beacon.minor, color: Colors.white)
+//
+//      counter += 1
+//
+//      newBeacon.lastSeenEstimote = beacon
+//
+//      iBeacons.append(newBeacon)
+//    }
+//
+//    checkForEmptyState()
+//
+//    dispatch_async(dispatch_get_main_queue()) {
+//      self.tableView.reloadData()
+//    }
   }
+
+  func setEstimoteNamesArray(beaconDetailsArray: [BeaconDetails], namesArray: [String], completion: () -> ()) {
+
+    var namesArray: [String] = namesArray
+
+    for item in beaconDetailsArray {
+      namesArray.append(item.beaconName)
+    }
+
+  }
+
+
+
+
+
+
+
+
 
   func showEmptyState(bool: Bool) {
     if bool == true {

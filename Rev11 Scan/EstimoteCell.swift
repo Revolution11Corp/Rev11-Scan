@@ -39,6 +39,7 @@ class EstimoteCell: UITableViewCell {
     didSet {
       beacon?.addObserver(self, forKeyPath: "lastSeenEstimote", options: .New, context: nil)
       uuidLabel!.text = beacon?.uuid!.UUIDString
+      nameLabel.text = beacon?.name
 
       if beacon != nil {
         setProximityProperties()

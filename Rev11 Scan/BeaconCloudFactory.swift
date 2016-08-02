@@ -8,18 +8,30 @@
 
 class BeaconDetailsCloudFactory {
 
-  func contentForBeacons(beacons: [CLBeacon], completion: (content: AnyObject) -> ()) {
+  func contentForBeacons(beacons: [CLBeacon], completion: (content: [BeaconDetails]) -> ()) {
+
+    var detailsArray: [BeaconDetails] = []
 
     let request = ESTRequestGetBeaconsDetails(beacons: beacons, andFields: ESTBeaconDetailsFields.FieldName)
 
     request.sendRequestWithCompletion { (beaconDetails, error) in
 
-      let item = beaconDetails![0]
+      if error != nil {
+
+        for item in beaconDetails! {
+          let newItem = BeaconDetails(beaconName: item.name, beaconColor: item.color)
+          detailsArray.append(newItem)
+        }
+
+      } else {
+        print("sendRequestWithCompletion Error - \(error)")
+        
+      }
 
       // iterate through beaconDetails, create new BeaconDetails object
       // completion could return an array of BeaconDetails, rather than individual one
 
-      completion(content: BeaconDetails(beaconName: item.name, beaconColor: item.color))
+      completion(content: detailsArray)
     }
   }
 }
