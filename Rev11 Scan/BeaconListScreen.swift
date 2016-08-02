@@ -14,27 +14,25 @@ struct BeaconListScreenConstant {
   static let storedEddystones = "storedEddystones"
 }
 
-class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, BeaconScannerDelegate, ESTEddystoneManagerDelegate {
+class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, ESTEddystoneManagerDelegate {
 
   @IBOutlet weak var tableView: UITableView!
 
-  var eddystoneScanner: EddystoneScanner!
+//  var eddystoneScanner: EddystoneScanner!
   var iBeacons: [iBeaconItem] = []
-  var eddystones: [BeaconInfo] = []
+//  var eddystones: [BeaconInfo] = []
   let locationManager = CLLocationManager()
   let eddystoneManager = ESTEddystoneManager()
-//  let estimoteCloudManager = ESTCloudManager()
 
   override func viewDidLoad() {
     super.viewDidLoad()
     locationManager.delegate = self
     locationManager.requestAlwaysAuthorization()
     loadiBeacons()
-//    loadEddystones()
-    setupEddystoneScanner()
+//    setupEddystoneScanner()
     eddystoneManager.delegate = self
 
-    findEddystones()
+//    findEddystones()
   }
 
   func loadiBeacons() {
@@ -47,19 +45,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
       }
     }
   }
-
-//  func loadEddystones() {
-//    if let storedEddystones = NSUserDefaults.standardUserDefaults().arrayForKey(BeaconListScreenConstant.storedEddystones) {
-//
-//      for eddystoneData in storedEddystones {
-//        let eddystone = NSKeyedUnarchiver.unarchiveObjectWithData(eddystoneData as! NSData) as! BeaconInfo
-//        eddystones.append(eddystone)
-//
-//        // Replace this with Eddystone version
-//        // startMonitoringBeacon(beacon)
-//      }
-//    }
-//  }
 
   @IBAction func cancel(segue: UIStoryboardSegue) {
     // Do nothing
@@ -181,6 +166,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
         if iBeacon == beacon {
           iBeacon.lastSeenBeacon = beacon
+          
         }
       }
     }
@@ -188,35 +174,35 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
   //MARK: - Eddystone Methods
 
-  func setupEddystoneScanner() {
-    eddystoneScanner = EddystoneScanner()
-    eddystoneScanner!.delegate = self
-    eddystoneScanner!.startScanning()
-  }
-
-  func didFindBeacon(beaconScanner: EddystoneScanner, beaconInfo: BeaconInfo) {
-//    NSLog("FIND: %@", beaconInfo.description)
-  }
-  func didLoseBeacon(beaconScanner: EddystoneScanner, beaconInfo: BeaconInfo) {
-//    NSLog("LOST: %@", beaconInfo.description)
-  }
-  func didUpdateBeacon(beaconScanner: EddystoneScanner, beaconInfo: BeaconInfo) {
-//    NSLog("UPDATE: %@", beaconInfo.description)
-  }
-  func didObserveURLBeacon(beaconScanner: EddystoneScanner, URL: NSURL, RSSI: Int) {
-//    NSLog("URL SEEN: %@, RSSI: %d", URL, RSSI)
-  }
-
-
+//  func setupEddystoneScanner() {
+//    eddystoneScanner = EddystoneScanner()
+//    eddystoneScanner!.delegate = self
+//    eddystoneScanner!.startScanning()
+//  }
+//
+//  func didFindBeacon(beaconScanner: EddystoneScanner, beaconInfo: BeaconInfo) {
+////    NSLog("FIND: %@", beaconInfo.description)
+//  }
+//  func didLoseBeacon(beaconScanner: EddystoneScanner, beaconInfo: BeaconInfo) {
+////    NSLog("LOST: %@", beaconInfo.description)
+//  }
+//  func didUpdateBeacon(beaconScanner: EddystoneScanner, beaconInfo: BeaconInfo) {
+////    NSLog("UPDATE: %@", beaconInfo.description)
+//  }
+//  func didObserveURLBeacon(beaconScanner: EddystoneScanner, URL: NSURL, RSSI: Int) {
+////    NSLog("URL SEEN: %@, RSSI: %d", URL, RSSI)
+//  }
 
 
-  func findEddystones() {
 
-    // filter by namespace
-    let namespaceID = "EDD1EBEAC04E5DEFA017"
-//    let namespaceID = "EDD1EBEAC04E5DEF8888"
-    let namespaceFilter = ESTEddystoneFilterUID(namespaceID: namespaceID)
-    self.eddystoneManager.startEddystoneDiscoveryWithFilter(namespaceFilter)
+
+//  func findEddystones() {
+//
+//    // filter by namespace
+//    let namespaceID = "EDD1EBEAC04E5DEFA017"
+////    let namespaceID = "EDD1EBEAC04E5DEF8888"
+//    let namespaceFilter = ESTEddystoneFilterUID(namespaceID: namespaceID)
+//    self.eddystoneManager.startEddystoneDiscoveryWithFilter(namespaceFilter)
 
 //    // filter by URL
 //    let urlFilter = ESTEddystoneFilterURL(URL: "http://my.restaurant.com/new-york-city")
@@ -231,7 +217,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
 
 
-  }
+//  }
 
 //  func eddystoneManager(manager: ESTEddystoneManager!, didDiscoverEddystones eddystones: [AnyObject]!, withFilter eddystoneFilter: ESTEddystoneFilter!) {
 //
@@ -240,28 +226,28 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 //
 //  }
 
-  func eddystoneManager(manager: ESTEddystoneManager, didDiscoverEddystones eddystones: [ESTEddystone], withFilter eddystoneFilter: ESTEddystoneFilter?) {
-//    print(eddystones)
-
-    for thing in eddystones {
-      print("UUID Sting = \(thing.peripheralIdentifier.UUIDString)")
-      print("Accuracy = \(thing.accuracy)")
-      print("Discovery Date = \(thing.discoveryDate)")
-      print("Is Equal To Eddystone (self) = \(thing.isEqualToEddystone(thing))")
-      print("Mac Address = \(thing.macAddress)")
-      print("Measured Power = \(thing.measuredPower)")
-      print("RSSI = \(thing.rssi)")
-      print("Proximity Zone = \(thing.proximity.rawValue)")
-    }
-
-//      estimoteCloudManager.fetchBeaconDetails("D380ABAF-6096-5015-134D-39107D3CA712", completion: { (beacon, error) in
-//      print(beacon.debug)
-//     })
-  }
-
-  func eddystoneManagerDidFailDiscovery(manager: ESTEddystoneManager, withError error: NSError?) {
-    print("Did Fail Discovery")
-  }
+//  func eddystoneManager(manager: ESTEddystoneManager, didDiscoverEddystones eddystones: [ESTEddystone], withFilter eddystoneFilter: ESTEddystoneFilter?) {
+////    print(eddystones)
+//
+//    for thing in eddystones {
+//      print("UUID Sting = \(thing.peripheralIdentifier.UUIDString)")
+//      print("Accuracy = \(thing.accuracy)")
+//      print("Discovery Date = \(thing.discoveryDate)")
+//      print("Is Equal To Eddystone (self) = \(thing.isEqualToEddystone(thing))")
+//      print("Mac Address = \(thing.macAddress)")
+//      print("Measured Power = \(thing.measuredPower)")
+//      print("RSSI = \(thing.rssi)")
+//      print("Proximity Zone = \(thing.proximity.rawValue)")
+//    }
+//
+////      estimoteCloudManager.fetchBeaconDetails("D380ABAF-6096-5015-134D-39107D3CA712", completion: { (beacon, error) in
+////      print(beacon.debug)
+////     })
+//  }
+//
+//  func eddystoneManagerDidFailDiscovery(manager: ESTEddystoneManager, withError error: NSError?) {
+//    print("Did Fail Discovery")
+//  }
 
 
 

@@ -11,6 +11,7 @@
 		145E21611D47D35F00571679 /* EstimoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145E21601D47D35F00571679 /* EstimoteCell.swift */; };
 		1471579A1D331D4300B98EBA /* EstimoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 147157991D331D4300B98EBA /* EstimoteSDK.framework */; };
 		147A4A591D37454C006D834D /* URLParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147A4A581D37454C006D834D /* URLParameter.swift */; };
+		1490637A1D4F014800637146 /* EstimoteBeacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149063791D4F014800637146 /* EstimoteBeacon.swift */; };
 		14A6176F1D1BAB2B0083CFF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A6176E1D1BAB2B0083CFF2 /* AppDelegate.swift */; };
 		14A617741D1BAB2B0083CFF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14A617721D1BAB2B0083CFF2 /* Main.storyboard */; };
 		14A617761D1BAB2B0083CFF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14A617751D1BAB2B0083CFF2 /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 		14AD9E581D407E250085A044 /* BeaconCloudFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AD9E571D407E250085A044 /* BeaconCloudFactory.swift */; };
 		14AD9E5E1D41C15B0085A044 /* EstimoteScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AD9E5D1D41C15B0085A044 /* EstimoteScreen.swift */; };
 		14AD9E661D4466330085A044 /* EddystoneScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AD9E651D4466330085A044 /* EddystoneScreen.swift */; };
+		14E999F81D5044E1002AE9F1 /* BeaconID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E999F71D5044E0002AE9F1 /* BeaconID.swift */; };
 		CDBBE99FB938A86F93925C09 /* Pods_Rev11_Scan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C19CD5EF761E27E99BC35C8 /* Pods_Rev11_Scan.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +40,7 @@
 		147157991D331D4300B98EBA /* EstimoteSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EstimoteSDK.framework; sourceTree = "<group>"; };
 		1471579B1D331DA600B98EBA /* ObjcBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjcBridge.h; sourceTree = "<group>"; };
 		147A4A581D37454C006D834D /* URLParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLParameter.swift; sourceTree = "<group>"; };
+		149063791D4F014800637146 /* EstimoteBeacon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstimoteBeacon.swift; sourceTree = "<group>"; };
 		14A6176B1D1BAB2B0083CFF2 /* Rev11 Scan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rev11 Scan.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14A6176E1D1BAB2B0083CFF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14A617731D1BAB2B0083CFF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -58,6 +61,7 @@
 		14AD9E571D407E250085A044 /* BeaconCloudFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconCloudFactory.swift; sourceTree = "<group>"; };
 		14AD9E5D1D41C15B0085A044 /* EstimoteScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstimoteScreen.swift; sourceTree = "<group>"; };
 		14AD9E651D4466330085A044 /* EddystoneScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EddystoneScreen.swift; sourceTree = "<group>"; };
+		14E999F71D5044E0002AE9F1 /* BeaconID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconID.swift; sourceTree = "<group>"; };
 		3C19CD5EF761E27E99BC35C8 /* Pods_Rev11_Scan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rev11_Scan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D52B615DAC3F50A9EEE0AC34 /* Pods-Rev11 Scan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rev11 Scan.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rev11 Scan/Pods-Rev11 Scan.release.xcconfig"; sourceTree = "<group>"; };
 		DCB62F3D631A327E91F3BC5F /* Pods-Rev11 Scan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rev11 Scan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Rev11 Scan/Pods-Rev11 Scan.debug.xcconfig"; sourceTree = "<group>"; };
@@ -77,6 +81,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		149063781D4EFFAF00637146 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		14A617621D1BAB2B0083CFF2 = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +110,7 @@
 		14A6176D1D1BAB2B0083CFF2 /* Rev11 Scan */ = {
 			isa = PBXGroup;
 			children = (
+				149063781D4EFFAF00637146 /* Extensions */,
 				147157991D331D4300B98EBA /* EstimoteSDK.framework */,
 				14AD9E591D41BF900085A044 /* QRScanner */,
 				14AD9E5A1D41BFCA0085A044 /* iBeaconAddItem */,
@@ -141,6 +153,8 @@
 				14A617931D1BAE950083CFF2 /* DispatchTimer.swift */,
 				14AD9E571D407E250085A044 /* BeaconCloudFactory.swift */,
 				145E21601D47D35F00571679 /* EstimoteCell.swift */,
+				149063791D4F014800637146 /* EstimoteBeacon.swift */,
+				14E999F71D5044E0002AE9F1 /* BeaconID.swift */,
 			);
 			name = EstimoteFiltered;
 			sourceTree = "<group>";
@@ -330,6 +344,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14E999F81D5044E1002AE9F1 /* BeaconID.swift in Sources */,
 				14A6178A1D1BAD8F0083CFF2 /* iBeaconItem.swift in Sources */,
 				147A4A591D37454C006D834D /* URLParameter.swift in Sources */,
 				145E21611D47D35F00571679 /* EstimoteCell.swift in Sources */,
@@ -337,6 +352,7 @@
 				14AD9E5E1D41C15B0085A044 /* EstimoteScreen.swift in Sources */,
 				14A617921D1BAE740083CFF2 /* EddystoneScanner.swift in Sources */,
 				14A6176F1D1BAB2B0083CFF2 /* AppDelegate.swift in Sources */,
+				1490637A1D4F014800637146 /* EstimoteBeacon.swift in Sources */,
 				14A617941D1BAE950083CFF2 /* DispatchTimer.swift in Sources */,
 				14A617961D1BAEBA0083CFF2 /* AddBeaconScreen.swift in Sources */,
 				14A617901D1BAE280083CFF2 /* Eddystone.swift in Sources */,
@@ -468,7 +484,7 @@
 			baseConfigurationReference = DCB62F3D631A327E91F3BC5F /* Pods-Rev11 Scan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Sean Allen (H69U55MWXW)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sean Allen (UF3KVEB7HT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)\"/\"Rev11 Scan\"/**",
@@ -485,7 +501,7 @@
 			baseConfigurationReference = D52B615DAC3F50A9EEE0AC34 /* Pods-Rev11 Scan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Sean Allen (H69U55MWXW)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sean Allen (UF3KVEB7HT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)\"/\"Rev11 Scan\"/**",

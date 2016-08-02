@@ -10,22 +10,71 @@
 import UIKit
 import CoreLocation
 
-class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, ESTEddystoneManagerDelegate, ESTDeviceManagerDelegate {
+class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, ESTDeviceManagerDelegate, ESTBeaconManagerDelegate {
 
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var emptyStateView: UIView!
 
-  var iBeacons: [iBeaconItem] = []
-  var eddystoneItems: [ESTEddystone] = []
-  let eddystoneManager = ESTEddystoneManager()
+  var iBeacons: [EstimoteBeacon] = []
 
+  let beaconManager = ESTBeaconManager()
   let deviceManager = ESTDeviceManager()
+  let beaconDetailsCloudFactory = BeaconDetailsCloudFactory()
+
+  let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!, identifier: "example region")
+
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    eddystoneManager.delegate = self
-    findEddystones()
     checkForEmptyState()
+    beaconManager.delegate = self
+    deviceManager.delegate = self
+
+    getTempFromDevice()
+  }
+
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    beaconManager.startRangingBeaconsInRegion(beaconRegion)
+  }
+
+  override func viewDidDisappear(animated: Bool) {
+    super.viewDidDisappear(animated)
+    beaconManager.stopRangingBeaconsInRegion(beaconRegion)
+  }
+
+  func beaconManager(manager: AnyObject, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion) {
+
+    // create a "tempBeacons" array to use as a comparision to most recent array. If the same = no network call
+
+    dispatch_async(dispatch_get_main_queue()) {
+      self.beaconDetailsCloudFactory.contentForBeacons(beacons) { (content) in
+
+        //If contentForBeacons now returns an array of "content", itereate through that array for what you need
+
+        let name = content as! BeaconDetails
+
+        print(name.beaconName)
+
+      }
+    }
+
+    iBeacons.removeAll()
+
+    for beacon in beacons {
+
+      let newBeacon = EstimoteBeacon(name: "", uuid: beacon.proximityUUID, majorValue: beacon.major, minorValue: beacon.minor, color: Colors.white)
+
+      newBeacon.lastSeenEstimote = beacon
+
+      iBeacons.append(newBeacon)
+    }
+
+    checkForEmptyState()
+
+    dispatch_async(dispatch_get_main_queue()) {
+      self.tableView.reloadData()
+    }
   }
 
   func showEmptyState(bool: Bool) {
@@ -39,7 +88,7 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
 
   func checkForEmptyState() {
-    if eddystoneItems.count == 0 {
+    if iBeacons.count == 0 {
       showEmptyState(true)
     } else {
       showEmptyState(false)
@@ -57,98 +106,19 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
 
   //MARK: - TableView Methods
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return eddystoneItems.count
+    return iBeacons.count
   }
 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
     let cell = tableView.dequeueReusableCellWithIdentifier("EstimoteCell", forIndexPath: indexPath) as! EstimoteCell
-    let eddystone = eddystoneItems[indexPath.row]
-    let eddystoneProximity = eddystone.proximity.rawValue
-    var proximityString: String?
 
-    // Setting properties here will result in the typical issues when dequing cells. Refactor this to happen in the cell class (see how it's down with iBeacons)
-    switch eddystoneProximity {
-    case 1:
-      proximityString = "Immediate"
-      cell.backgroundColor = Colors.green
-    case 2:
-      proximityString = "Near"
-      cell.backgroundColor = Colors.yellow
-    case 3:
-      proximityString = "Far"
-      cell.backgroundColor = Colors.red
-    default:
-      proximityString = "Unknown"
-    }
-
-    let approximateDistance = (eddystone.rssi.floatValue)/(eddystone.measuredPower.floatValue)
-    let distanceString = String(format: "\(proximityString!) (~ %.2f meters)", approximateDistance)
-
-    cell.uuidLabel.text = eddystone.peripheralIdentifier.UUIDString
-    cell.locationLabel.text = distanceString
+    let beacon = iBeacons[indexPath.row]
+    cell.beacon = beacon
 
     return cell
   }
 
-  func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    return true
-  }
-
-
-  //MARK: - Eddystone Methods
-
-  func findEddystones() {
-    let namespaceID = "EDD1EBEAC04E5DEFA017"
-    let namespaceFilter = ESTEddystoneFilterUID(namespaceID: namespaceID)
-    self.eddystoneManager.startEddystoneDiscoveryWithFilter(namespaceFilter)
-  }
-
-  func eddystoneManager(manager: ESTEddystoneManager, didDiscoverEddystones eddystones: [ESTEddystone], withFilter eddystoneFilter: ESTEddystoneFilter?) {
-
-    eddystoneItems = eddystones
-    eddystoneItems.sortInPlace({ $1.proximity.rawValue > $0.proximity.rawValue })
-    checkForEmptyState()
-    getTempFromDevice()
-
-//    for thing in eddystoneItems {
-//
-//
-//    }
-
-    dispatch_async(dispatch_get_main_queue()) {
-      self.tableView.reloadData()
-    }
-  }
-  
-  func eddystoneManagerDidFailDiscovery(manager: ESTEddystoneManager, withError error: NSError?) {
-    print("Did Fail Discovery")
-  }
-
-  //MARK: - Get Beacon Name
-
-//  func getEstimoteBeconNameFromCloud(uuidString: String) {
-//
-//    let beaconDetailRequest = ESTRequestV2GetDeviceDetails(deviceIdentifier: uuidString)
-//
-////    beaconDetailRequest.sendRequestWithCompletion { (details, error) in
-////      print("Beacon Details = \(details!)")
-////    }
-//
-//    ESTCloudOperationDeviceInfoName.readOperationWithCompletion { (deviceName, error) in
-//      print("Device Name = \(deviceName)")
-//
-//
-//
-//    }
-
-
-
-
-
-//    }
-
-//  }
 
 }
 

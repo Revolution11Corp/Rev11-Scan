@@ -49,7 +49,7 @@ class AddBeaconScreen: UIViewController, UITextFieldDelegate {
 
   var switchIsOn = true
   var newBeacon: iBeaconItem?
-  var newEddystone: BeaconInfo?
+//  var newEddystone: BeaconInfo?
 
 
   override func viewDidLoad() {
