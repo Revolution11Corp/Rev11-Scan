@@ -51,7 +51,6 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
     // create a "tempBeacons" array to use as a comparision to most recent array. If the same = no network call
 
     self.beaconDetailsCloudFactory.contentForBeacons(beacons) { (content) in
-        dispatch_async(dispatch_get_main_queue()) {
 
         //If contentForBeacons now returns an array of "content", itereate through that array for what you need
 
@@ -61,7 +60,26 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
 //            //Need this For Loop to complete 100% before moving on. Need a function w/ completion handler
 //          }
 
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+      //You didn't write this closure correctly. The completion isn't firing!!!
+
           self.setEstimoteNamesArray(content, namesArray: beaconNameArray, completion: {
+            dispatch_async(dispatch_get_main_queue()) {
+
+
 
             self.iBeacons.removeAll()
 
@@ -83,8 +101,8 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
             dispatch_async(dispatch_get_main_queue()) {
               self.tableView.reloadData()
             }
-          })
-        }
+          }
+        })
       }
 
 //    iBeacons.removeAll()
@@ -109,14 +127,13 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
 //    }
   }
 
-  func setEstimoteNamesArray(beaconDetailsArray: [BeaconDetails], namesArray: [String], completion: () -> ()) {
+  func setEstimoteNamesArray(beaconDetailsArray: [BeaconDetails], namesArray: [String], completion: () -> Void) {
 
     var namesArray: [String] = namesArray
 
     for item in beaconDetailsArray {
       namesArray.append(item.beaconName)
     }
-
   }
 
 

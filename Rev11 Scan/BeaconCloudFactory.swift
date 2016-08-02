@@ -18,14 +18,13 @@ class BeaconDetailsCloudFactory {
 
       if error != nil {
 
+        print("sendRequestWithCompletion Error - \(error)")
+
+      } else {
         for item in beaconDetails! {
           let newItem = BeaconDetails(beaconName: item.name, beaconColor: item.color)
           detailsArray.append(newItem)
         }
-
-      } else {
-        print("sendRequestWithCompletion Error - \(error)")
-        
       }
 
       // iterate through beaconDetails, create new BeaconDetails object
