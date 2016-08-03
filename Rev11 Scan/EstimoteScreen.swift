@@ -28,10 +28,11 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
   override func viewDidLoad() {
     super.viewDidLoad()
     checkForEmptyState()
+    showLogoInNavBar()
+    getTempFromDevice()
+
     beaconManager.delegate = self
     deviceManager.delegate = self
-
-    getTempFromDevice()
   }
 
   func getTempFromDevice() {
@@ -42,7 +43,6 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     deviceManager.registerForTelemetryNotification(temperatureNotification)
   }
-
 
 
 
@@ -125,6 +125,18 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
     } else {
       showEmptyState(false)
     }
+  }
+
+  func showLogoInNavBar() {
+    let banner = UIImage(named: "logo-nav-bar")
+    let imageView = UIImageView(image:banner)
+    let bannerWidth = navigationController?.navigationBar.frame.size.width
+    let bannerHeight = navigationController?.navigationBar.frame.size.height
+    let bannerX = bannerWidth! / 2 - banner!.size.width / 2
+    let bannerY = bannerHeight! / 2 - banner!.size.height / 2
+    imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth!, height: bannerHeight!)
+    imageView.contentMode = UIViewContentMode.ScaleAspectFit
+    self.navigationItem.titleView = imageView
   }
 
 

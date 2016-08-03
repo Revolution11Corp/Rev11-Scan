@@ -23,6 +23,7 @@ class EddystoneScreen: UIViewController, UITableViewDelegate, UITableViewDataSou
     eddystoneManager.delegate = self
     findEddystones()
     checkForEmptyState()
+    showLogoInNavBar()
   }
 
   func showEmptyState(bool: Bool) {
@@ -82,6 +83,18 @@ class EddystoneScreen: UIViewController, UITableViewDelegate, UITableViewDataSou
 
   func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
     return true
+  }
+
+  func showLogoInNavBar() {
+    let banner = UIImage(named: "logo-nav-bar")
+    let imageView = UIImageView(image:banner)
+    let bannerWidth = navigationController?.navigationBar.frame.size.width
+    let bannerHeight = navigationController?.navigationBar.frame.size.height
+    let bannerX = bannerWidth! / 2 - banner!.size.width / 2
+    let bannerY = bannerHeight! / 2 - banner!.size.height / 2
+    imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth!, height: bannerHeight!)
+    imageView.contentMode = UIViewContentMode.ScaleAspectFit
+    self.navigationItem.titleView = imageView
   }
 
 

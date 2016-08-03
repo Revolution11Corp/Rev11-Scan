@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--QR Reader-->
+        <!--Scanner Screen-->
         <scene sceneID="cuw-86-MYq">
             <objects>
                 <viewController id="BRj-Gv-JRG" customClass="QRScannerScreen" customModule="Rev11_Scan" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No QR Code Detected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hFC-zL-fvR">
-                                <rect key="frame" x="0.0" y="511" width="600" height="40"/>
+                                <rect key="frame" x="0.0" y="468" width="600" height="40"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.27671030410000003" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="6xq-br-7LP"/>
@@ -38,30 +38,29 @@
                         <constraints>
                             <constraint firstItem="hFC-zL-fvR" firstAttribute="leading" secondItem="P41-r4-fWf" secondAttribute="leading" id="1dh-zc-V3m"/>
                             <constraint firstAttribute="trailing" secondItem="hFC-zL-fvR" secondAttribute="trailing" id="Kmy-dY-NTO"/>
-                            <constraint firstItem="CMe-J2-cf8" firstAttribute="top" secondItem="hFC-zL-fvR" secondAttribute="bottom" id="V4W-Lf-f5s"/>
+                            <constraint firstItem="CMe-J2-cf8" firstAttribute="top" secondItem="hFC-zL-fvR" secondAttribute="bottom" constant="43" id="V4W-Lf-f5s"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="QR Reader" image="qr" id="Az5-Nh-gz4"/>
+                    <navigationItem key="navigationItem" id="kIY-2Y-0ta"/>
                     <connections>
                         <outlet property="messageLabel" destination="hFC-zL-fvR" id="TvO-QM-BfK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5iR-Np-FmH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="302" y="-111"/>
+            <point key="canvasLocation" x="1114" y="-485"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Rev11 Tab Bar Controller-->
         <scene sceneID="DgY-bJ-GuN">
             <objects>
-                <tabBarController id="g6g-Rq-njg" sceneMemberID="viewController">
+                <tabBarController id="g6g-Rq-njg" customClass="Rev11TabBarController" customModule="Rev11_Scan" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Pe6-cW-aUE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BRj-Gv-JRG" kind="relationship" relationship="viewControllers" id="TPy-rz-6UX"/>
-                        <segue destination="3E0-IQ-nMh" kind="relationship" relationship="viewControllers" id="Moh-fP-vRl"/>
+                        <segue destination="yig-Su-2qE" kind="relationship" relationship="viewControllers" id="TPy-rz-6UX"/>
                         <segue destination="Hl3-lm-Dxz" kind="relationship" relationship="viewControllers" id="Jva-4u-42M"/>
                         <segue destination="rAc-pu-rsj" kind="relationship" relationship="viewControllers" id="g58-TY-ImE"/>
                     </connections>
@@ -82,7 +81,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eYw-Yr-E88">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eYw-Yr-E88">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -171,7 +170,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J7g-PT-fHa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1009" y="-922"/>
+            <point key="canvasLocation" x="1009" y="-1594"/>
         </scene>
         <!--Beacons-->
         <scene sceneID="MKT-Mq-hbX">
@@ -190,7 +189,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l62-0c-Z1M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="302" y="-922"/>
+            <point key="canvasLocation" x="302" y="-1594"/>
         </scene>
         <!--Add Beacon-->
         <scene sceneID="t26-oX-zzq">
@@ -464,7 +463,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MVQ-zW-Tja" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="VNL-Dl-Cbo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2459" y="-922"/>
+            <point key="canvasLocation" x="2459" y="-1594"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zyJ-4O-OtQ">
@@ -482,7 +481,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EC8-lz-W5d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1728" y="-922"/>
+            <point key="canvasLocation" x="1728" y="-1594"/>
         </scene>
         <!--Estimote List-->
         <scene sceneID="Qhd-id-ATk">
@@ -693,7 +692,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MDj-qs-DoY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1114" y="629"/>
+            <point key="canvasLocation" x="1060" y="333"/>
         </scene>
         <!--Eddystone List-->
         <scene sceneID="3M0-VB-plB">
@@ -840,13 +839,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mdb-Xc-FUj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1114" y="1376"/>
+            <point key="canvasLocation" x="1060" y="1175"/>
         </scene>
-        <!--Estimote-->
+        <!--Navigation Controller-->
         <scene sceneID="eDb-2A-pQK">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Hl3-lm-Dxz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Estimote" image="estimote-tabbar" id="gJ2-6t-eUu"/>
+                    <tabBarItem key="tabBarItem" title="" id="gJ2-6t-eUu"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YR8-qt-mLI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -859,13 +858,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z3W-Rb-2SN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="302" y="629"/>
+            <point key="canvasLocation" x="302" y="333"/>
         </scene>
         <!--Eddystone-->
         <scene sceneID="oL0-CH-XjM">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rAc-pu-rsj" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Eddystone" image="eddystone-tabbar" id="brJ-co-UJE"/>
+                    <tabBarItem key="tabBarItem" title="Eddystone" image="eddystone-tabbar-white" id="brJ-co-UJE"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qyf-RX-Cud">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -878,16 +877,34 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cMl-X9-bBo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="302" y="1376"/>
+            <point key="canvasLocation" x="302" y="1175"/>
+        </scene>
+        <!--QR Reader-->
+        <scene sceneID="jN1-9w-x9w">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yig-Su-2qE" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="QR Reader" image="qr-tabbar-white" id="Az5-Nh-gz4"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="M7l-Nk-bPw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BRj-Gv-JRG" kind="relationship" relationship="rootViewController" id="Auu-tC-ksZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fHf-hO-0Y9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="302" y="-485"/>
         </scene>
     </scenes>
     <resources>
         <image name="beacon" width="30" height="30"/>
         <image name="beacon_blue" width="100" height="140"/>
         <image name="eddystone-logo" width="171" height="171"/>
-        <image name="eddystone-tabbar" width="30" height="30"/>
-        <image name="estimote-tabbar" width="30" height="30"/>
+        <image name="eddystone-tabbar-white" width="30" height="30"/>
         <image name="ibeacon-logo" width="150" height="150"/>
-        <image name="qr" width="30" height="30"/>
+        <image name="qr-tabbar-white" width="30" height="30"/>
     </resources>
 </document>

@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
+    setupTabBar()
+
     ESTConfig.setupAppID("rev11scan-nxl", andAppToken: "d55de5f606394c3cb74f007ec8bd1244")
 
     URLParameter.sharedInstance.isFromFileMaker = false
@@ -48,6 +50,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
     return true
   }
 
+  func setupTabBar() {
+
+    let tabBarController = self.window?.rootViewController as! UITabBarController
+    let tabItems = tabBarController.tabBar.items! as [UITabBarItem]
+
+    tabItems[0].selectedImage = UIImage(named: "qr-tabbar-blue")
+    tabItems[2].selectedImage = UIImage(named: "eddystone-tabbar-blue")
+
+//    UITabBar.appearance().tintColor = Colors.blue
+    UITabBar.appearance().barTintColor = Colors.darkGrey
+
+    UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Colors.white], forState:.Normal)
+    UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Colors.blue], forState:.Selected)
+
+  }
+
   func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
     Manager.sharedInstance.handleOpenURL(url)
     return true
@@ -73,6 +91,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
   }
 
   func applicationDidBecomeActive(application: UIApplication) {
+
+    let tabBarController = self.window?.rootViewController as! UITabBarController
+    tabBarController.selectedIndex = 1
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
   }
 

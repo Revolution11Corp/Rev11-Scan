@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14521AE71D51A03D007F38FB /* Rev11TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14521AE61D51A03D007F38FB /* Rev11TabBarController.swift */; };
 		145E215F1D45B91900571679 /* EddystoneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145E215E1D45B91900571679 /* EddystoneCell.swift */; };
 		145E21611D47D35F00571679 /* EstimoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145E21601D47D35F00571679 /* EstimoteCell.swift */; };
 		1471579A1D331D4300B98EBA /* EstimoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 147157991D331D4300B98EBA /* EstimoteSDK.framework */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14521AE61D51A03D007F38FB /* Rev11TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rev11TabBarController.swift; sourceTree = "<group>"; };
 		145E215E1D45B91900571679 /* EddystoneCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EddystoneCell.swift; sourceTree = "<group>"; };
 		145E21601D47D35F00571679 /* EstimoteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstimoteCell.swift; sourceTree = "<group>"; };
 		147157991D331D4300B98EBA /* EstimoteSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EstimoteSDK.framework; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				14A617721D1BAB2B0083CFF2 /* Main.storyboard */,
 				14A617751D1BAB2B0083CFF2 /* Assets.xcassets */,
 				1471579B1D331DA600B98EBA /* ObjcBridge.h */,
+				14521AE61D51A03D007F38FB /* Rev11TabBarController.swift */,
 			);
 			path = "Rev11 Scan";
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14E999F81D5044E1002AE9F1 /* BeaconID.swift in Sources */,
+				14521AE71D51A03D007F38FB /* Rev11TabBarController.swift in Sources */,
 				14A6178A1D1BAD8F0083CFF2 /* iBeaconItem.swift in Sources */,
 				147A4A591D37454C006D834D /* URLParameter.swift in Sources */,
 				145E21611D47D35F00571679 /* EstimoteCell.swift in Sources */,

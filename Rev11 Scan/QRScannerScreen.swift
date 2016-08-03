@@ -28,6 +28,7 @@ class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
   override func viewDidLoad() {
     super.viewDidLoad()
     setupQRCaptureSession()
+    showLogoInNavBar()
   }
 
   override func viewWillAppear(animated: Bool) {
@@ -154,6 +155,18 @@ class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
     if presentedViewController == nil {
       self.presentViewController(alertController, animated: true, completion:nil)
     }
+  }
+
+  func showLogoInNavBar() {
+    let banner = UIImage(named: "logo-nav-bar")
+    let imageView = UIImageView(image:banner)
+    let bannerWidth = navigationController?.navigationBar.frame.size.width
+    let bannerHeight = navigationController?.navigationBar.frame.size.height
+    let bannerX = bannerWidth! / 2 - banner!.size.width / 2
+    let bannerY = bannerHeight! / 2 - banner!.size.height / 2
+    imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth!, height: bannerHeight!)
+    imageView.contentMode = UIViewContentMode.ScaleAspectFit
+    self.navigationItem.titleView = imageView
   }
 
 //  func setupQRFrameView() {
