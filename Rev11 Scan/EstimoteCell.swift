@@ -66,22 +66,23 @@ class EstimoteCell: UITableViewCell {
 
     case .Immediate:
       beacon!.color = Colors.green
-      return "Immediate: < 1 meter"
+      return "Immediate: "
 
     case .Near:
       beacon!.color = Colors.yellow
-      return "Near: ~ 1-3 meters"
+      return "Near: "
 
     case .Far:
       beacon!.color = Colors.red
-      return "Far: > 3 meters"
+      return "Far: "
     }
   }
 
   func setProximityProperties() {
 
     let proximity = nameForProximity((beacon?.lastSeenEstimote!.proximity)!)
-    locationLabel.text = proximity
+    let accuracy = NSString(format: "%.2f", (beacon?.lastSeenEstimote!.accuracy)!)
+    locationLabel.text = "\(proximity) (approx. \(accuracy) meters)"
     self.backgroundColor = beacon?.color
   }
   

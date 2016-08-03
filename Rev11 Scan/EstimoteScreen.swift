@@ -16,6 +16,7 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
   @IBOutlet weak var emptyStateView: UIView!
 
   var iBeacons: [EstimoteBeacon] = []
+  var tempBeacons: [CLBeacon] = []
 
   let beaconManager = ESTBeaconManager()
   let deviceManager = ESTDeviceManager()
@@ -33,6 +34,18 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
     getTempFromDevice()
   }
 
+  func getTempFromDevice() {
+
+    let temperatureNotification = ESTTelemetryNotificationTemperature { (temperature) in
+      print("Current temperature: \(temperature.temperatureInCelsius) C")
+    }
+
+    deviceManager.registerForTelemetryNotification(temperatureNotification)
+  }
+
+
+
+
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     beaconManager.startRangingBeaconsInRegion(beaconRegion)
@@ -45,103 +58,55 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
 
   func beaconManager(manager: AnyObject, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion) {
 
-    var beaconNameArray: [String] = []
-
+    let beaconNameArray: [String] = []
 
     // create a "tempBeacons" array to use as a comparision to most recent array. If the same = no network call
+    // Fine for prototype, but if we go to production, will need to address this
 
     self.beaconDetailsCloudFactory.contentForBeacons(beacons) { (content) in
 
-        //If contentForBeacons now returns an array of "content", itereate through that array for what you need
+          self.setEstimoteNamesArray(content, namesArray: beaconNameArray, completion: { (result) in
+            print("setEstimoteNamesArray result = \(result)")
 
-//          for item in content {
-//            beaconNameArray.append(item.beaconName)
-//
-//            //Need this For Loop to complete 100% before moving on. Need a function w/ completion handler
-//          }
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-
-      //You didn't write this closure correctly. The completion isn't firing!!!
-
-          self.setEstimoteNamesArray(content, namesArray: beaconNameArray, completion: {
             dispatch_async(dispatch_get_main_queue()) {
 
+              if result.count != 0 {
 
+                self.iBeacons.removeAll()
 
-            self.iBeacons.removeAll()
+                for beacon in beacons {
 
-            for beacon in beacons {
+                  var counter = 0
+                  let newBeacon = EstimoteBeacon(name: result[counter], uuid: beacon.proximityUUID, majorValue: beacon.major, minorValue: beacon.minor, color: Colors.white)
+                  counter += 1
+                  newBeacon.lastSeenEstimote = beacon
+                  self.iBeacons.append(newBeacon)
+                }
 
-              var counter = 0
+                self.checkForEmptyState()
 
-              let newBeacon = EstimoteBeacon(name: beaconNameArray[counter], uuid: beacon.proximityUUID, majorValue: beacon.major, minorValue: beacon.minor, color: Colors.white)
+                dispatch_async(dispatch_get_main_queue()) {
+                  self.tableView.reloadData()
+                }
 
-              counter += 1
-
-              newBeacon.lastSeenEstimote = beacon
-
-              self.iBeacons.append(newBeacon)
-            }
-            
-            self.checkForEmptyState()
-            
-            dispatch_async(dispatch_get_main_queue()) {
-              self.tableView.reloadData()
-            }
+              } else {
+                print("Results Array = 0")
+              }
           }
         })
       }
-
-//    iBeacons.removeAll()
-//
-//    for beacon in beacons {
-//
-//      var counter = 0
-//
-//      let newBeacon = EstimoteBeacon(name: beaconNameArray[counter], uuid: beacon.proximityUUID, majorValue: beacon.major, minorValue: beacon.minor, color: Colors.white)
-//
-//      counter += 1
-//
-//      newBeacon.lastSeenEstimote = beacon
-//
-//      iBeacons.append(newBeacon)
-//    }
-//
-//    checkForEmptyState()
-//
-//    dispatch_async(dispatch_get_main_queue()) {
-//      self.tableView.reloadData()
-//    }
   }
 
-  func setEstimoteNamesArray(beaconDetailsArray: [BeaconDetails], namesArray: [String], completion: () -> Void) {
+  func setEstimoteNamesArray(beaconDetailsArray: [BeaconDetails], namesArray: [String], completion: (result: [String]) -> Void) {
 
     var namesArray: [String] = namesArray
 
     for item in beaconDetailsArray {
       namesArray.append(item.beaconName)
     }
+
+    completion(result: namesArray)
   }
-
-
-
-
-
-
-
 
 
   func showEmptyState(bool: Bool) {
@@ -162,14 +127,6 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
   }
 
-  func getTempFromDevice() {
-
-    let temperatureNotification = ESTTelemetryNotificationTemperature { (temperature) in
-      print("Current temperature: \(temperature.temperatureInCelsius) C")
-    }
-
-    deviceManager.registerForTelemetryNotification(temperatureNotification)
-  }
 
   //MARK: - TableView Methods
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
