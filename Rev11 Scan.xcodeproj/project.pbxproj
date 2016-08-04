@@ -22,8 +22,6 @@
 		14A6178A1D1BAD8F0083CFF2 /* iBeaconItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A617891D1BAD8F0083CFF2 /* iBeaconItem.swift */; };
 		14A6178E1D1BADF90083CFF2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A6178D1D1BADF90083CFF2 /* Constants.swift */; };
 		14A617901D1BAE280083CFF2 /* Eddystone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A6178F1D1BAE280083CFF2 /* Eddystone.swift */; };
-		14A617921D1BAE740083CFF2 /* EddystoneScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A617911D1BAE740083CFF2 /* EddystoneScanner.swift */; };
-		14A617941D1BAE950083CFF2 /* DispatchTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A617931D1BAE950083CFF2 /* DispatchTimer.swift */; };
 		14A617961D1BAEBA0083CFF2 /* AddBeaconScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A617951D1BAEBA0083CFF2 /* AddBeaconScreen.swift */; };
 		14A617981D1BAEF10083CFF2 /* QRScannerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A617971D1BAEF10083CFF2 /* QRScannerScreen.swift */; };
 		14A6179A1D1BAF1B0083CFF2 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A617991D1BAF1B0083CFF2 /* CoreBluetooth.framework */; };
@@ -54,8 +52,6 @@
 		14A617891D1BAD8F0083CFF2 /* iBeaconItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iBeaconItem.swift; sourceTree = "<group>"; };
 		14A6178D1D1BADF90083CFF2 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		14A6178F1D1BAE280083CFF2 /* Eddystone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Eddystone.swift; sourceTree = "<group>"; };
-		14A617911D1BAE740083CFF2 /* EddystoneScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EddystoneScanner.swift; sourceTree = "<group>"; };
-		14A617931D1BAE950083CFF2 /* DispatchTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchTimer.swift; sourceTree = "<group>"; };
 		14A617951D1BAEBA0083CFF2 /* AddBeaconScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBeaconScreen.swift; sourceTree = "<group>"; };
 		14A617971D1BAEF10083CFF2 /* QRScannerScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerScreen.swift; sourceTree = "<group>"; };
 		14A617991D1BAF1B0083CFF2 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
@@ -116,7 +112,7 @@
 				147157991D331D4300B98EBA /* EstimoteSDK.framework */,
 				14AD9E591D41BF900085A044 /* QRScanner */,
 				14AD9E5A1D41BFCA0085A044 /* iBeaconAddItem */,
-				14AD9E5B1D41C0630085A044 /* EstimoteFiltered */,
+				14AD9E5B1D41C0630085A044 /* Estimote */,
 				14AD9E611D41C2640085A044 /* EddystoneAll */,
 				14AD9E5C1D41C09F0085A044 /* SupportingFiles */,
 				14A617721D1BAB2B0083CFF2 /* Main.storyboard */,
@@ -146,20 +142,18 @@
 			name = iBeaconAddItem;
 			sourceTree = "<group>";
 		};
-		14AD9E5B1D41C0630085A044 /* EstimoteFiltered */ = {
+		14AD9E5B1D41C0630085A044 /* Estimote */ = {
 			isa = PBXGroup;
 			children = (
 				14AD9E601D41C2330085A044 /* Screens */,
 				14AD9E551D407E060085A044 /* BeaconDetails.swift */,
 				14A6178F1D1BAE280083CFF2 /* Eddystone.swift */,
-				14A617911D1BAE740083CFF2 /* EddystoneScanner.swift */,
-				14A617931D1BAE950083CFF2 /* DispatchTimer.swift */,
 				14AD9E571D407E250085A044 /* BeaconCloudFactory.swift */,
 				145E21601D47D35F00571679 /* EstimoteCell.swift */,
 				149063791D4F014800637146 /* EstimoteBeacon.swift */,
 				14E999F71D5044E0002AE9F1 /* BeaconID.swift */,
 			);
-			name = EstimoteFiltered;
+			name = Estimote;
 			sourceTree = "<group>";
 		};
 		14AD9E5C1D41C09F0085A044 /* SupportingFiles */ = {
@@ -354,10 +348,8 @@
 				145E21611D47D35F00571679 /* EstimoteCell.swift in Sources */,
 				14A617841D1BAD370083CFF2 /* BeaconCell.swift in Sources */,
 				14AD9E5E1D41C15B0085A044 /* EstimoteScreen.swift in Sources */,
-				14A617921D1BAE740083CFF2 /* EddystoneScanner.swift in Sources */,
 				14A6176F1D1BAB2B0083CFF2 /* AppDelegate.swift in Sources */,
 				1490637A1D4F014800637146 /* EstimoteBeacon.swift in Sources */,
-				14A617941D1BAE950083CFF2 /* DispatchTimer.swift in Sources */,
 				14A617961D1BAEBA0083CFF2 /* AddBeaconScreen.swift in Sources */,
 				14A617901D1BAE280083CFF2 /* Eddystone.swift in Sources */,
 				14AD9E561D407E060085A044 /* BeaconDetails.swift in Sources */,
@@ -488,7 +480,7 @@
 			baseConfigurationReference = DCB62F3D631A327E91F3BC5F /* Pods-Rev11 Scan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sean Allen (UF3KVEB7HT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sean Allen (H69U55MWXW)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)\"/\"Rev11 Scan\"/**",
@@ -505,7 +497,7 @@
 			baseConfigurationReference = D52B615DAC3F50A9EEE0AC34 /* Pods-Rev11 Scan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sean Allen (UF3KVEB7HT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sean Allen (H69U55MWXW)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)\"/\"Rev11 Scan\"/**",

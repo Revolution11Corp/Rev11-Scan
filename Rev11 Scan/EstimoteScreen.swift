@@ -66,7 +66,6 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
     self.beaconDetailsCloudFactory.contentForBeacons(beacons) { (content) in
 
           self.setEstimoteNamesArray(content, namesArray: beaconNameArray, completion: { (result) in
-            print("setEstimoteNamesArray result = \(result)")
 
             dispatch_async(dispatch_get_main_queue()) {
 

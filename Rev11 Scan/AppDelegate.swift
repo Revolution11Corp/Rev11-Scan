@@ -58,7 +58,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
     tabItems[0].selectedImage = UIImage(named: "qr-tabbar-blue")
     tabItems[2].selectedImage = UIImage(named: "eddystone-tabbar-blue")
 
-//    UITabBar.appearance().tintColor = Colors.blue
     UITabBar.appearance().barTintColor = Colors.darkGrey
 
     UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Colors.white], forState:.Normal)

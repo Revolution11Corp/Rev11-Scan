@@ -33,8 +33,6 @@ class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
 
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-
-//    setupQRFrameView()
     messageLabel.hidden = false
 
     if (captureSession?.running == false) {
@@ -168,20 +166,6 @@ class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
     imageView.contentMode = UIViewContentMode.ScaleAspectFit
     self.navigationItem.titleView = imageView
   }
-
-//  func setupQRFrameView() {
-//
-//    qrCodeFrameView = UIView()
-//
-//    if let qrCodeFrameView = qrCodeFrameView {
-//      qrCodeFrameView.layer.borderColor = UIColor.blueColor().CGColor
-//      qrCodeFrameView.layer.borderWidth = 4
-//      view.addSubview(qrCodeFrameView)
-//      view.bringSubviewToFront(qrCodeFrameView)
-//    }
-//  }
-
-  
   
 }
 
