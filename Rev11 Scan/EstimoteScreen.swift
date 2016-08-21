@@ -20,6 +20,7 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
 
   let beaconManager = ESTBeaconManager()
   let deviceManager = ESTDeviceManager()
+  let locationManager = CLLocationManager()
   let beaconDetailsCloudFactory = BeaconDetailsCloudFactory()
 
   let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!, identifier: "example region")
@@ -29,22 +30,22 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
     super.viewDidLoad()
     checkForEmptyState()
     showLogoInNavBar()
-    getTempFromDevice()
+//    getTempFromDevice()
 
+    locationManager.requestAlwaysAuthorization()
+    locationManager.delegate = self
     beaconManager.delegate = self
     deviceManager.delegate = self
   }
 
-  func getTempFromDevice() {
-
-    let temperatureNotification = ESTTelemetryNotificationTemperature { (temperature) in
-      print("Current temperature: \(temperature.temperatureInCelsius) C")
-    }
-
-    deviceManager.registerForTelemetryNotification(temperatureNotification)
-  }
-
-
+//  func getTempFromDevice() {
+//
+//    let temperatureNotification = ESTTelemetryNotificationTemperature { (temperature) in
+//      print("Current temperature: \(temperature.temperatureInCelsius) C")
+//    }
+//
+//    deviceManager.registerForTelemetryNotification(temperatureNotification)
+//  }
 
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
@@ -77,6 +78,7 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
 
                   var counter = 0
                   let newBeacon = EstimoteBeacon(name: result[counter], uuid: beacon.proximityUUID, majorValue: beacon.major, minorValue: beacon.minor, color: Colors.white)
+                  
                   counter += 1
                   newBeacon.lastSeenEstimote = beacon
                   self.iBeacons.append(newBeacon)
@@ -152,6 +154,19 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
     cell.beacon = beacon
 
     return cell
+  }
+
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+
+    let beacon = iBeacons[indexPath.row]
+    let uuid = beacon.uuid!.UUIDString
+    let detailMessage = "UUID: \(uuid)\nMajor: \(beacon.majorValue!)\nMinor: \(beacon.minorValue!)"
+    let detailAlert = UIAlertController(title: "Beacon Info", message: detailMessage, preferredStyle: .Alert)
+    detailAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+
+    presentViewController(detailAlert, animated: true, completion: nil)
   }
 
 

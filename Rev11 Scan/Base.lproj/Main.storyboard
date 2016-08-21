@@ -519,20 +519,13 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EstimoteCell" id="TRd-KZ-r6w" customClass="EstimoteCell" customModule="Rev11_Scan" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="EstimoteCell" id="TRd-KZ-r6w" customClass="EstimoteCell" customModule="Rev11_Scan" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TRd-KZ-r6w" id="xDq-XF-d8k">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="199"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="beacon_blue" translatesAutoresizingMaskIntoConstraints="NO" id="ECN-gM-RT9">
-                                                    <rect key="frame" x="8" y="8" width="35" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="1D7-Nk-iKT"/>
-                                                        <constraint firstAttribute="width" constant="35" id="kEG-z5-tlK"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location: Unknown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPN-sn-NpJ">
                                                     <rect key="frame" x="8" y="86" width="584" height="27"/>
                                                     <constraints>
@@ -641,22 +634,17 @@
                                                 <constraint firstItem="qPN-sn-NpJ" firstAttribute="top" secondItem="iX3-3v-sYB" secondAttribute="bottom" constant="27" id="YYu-xw-D3d"/>
                                                 <constraint firstItem="qPN-sn-NpJ" firstAttribute="leading" secondItem="xDq-XF-d8k" secondAttribute="leading" constant="8" id="bWd-Fl-JB1"/>
                                                 <constraint firstItem="W2O-Ea-8Z6" firstAttribute="leading" secondItem="KjM-nN-Keb" secondAttribute="trailing" constant="14" id="cHC-ig-RkU"/>
-                                                <constraint firstItem="ECN-gM-RT9" firstAttribute="leading" secondItem="xDq-XF-d8k" secondAttribute="leading" constant="8" id="goi-cB-vYl"/>
                                                 <constraint firstAttribute="trailing" secondItem="N67-dq-udI" secondAttribute="trailing" constant="8" id="nfy-4X-QqA"/>
                                                 <constraint firstAttribute="trailing" secondItem="iX3-3v-sYB" secondAttribute="trailing" constant="8" id="npx-e5-gHi"/>
                                                 <constraint firstItem="dZs-CI-SKW" firstAttribute="centerY" secondItem="W2O-Ea-8Z6" secondAttribute="centerY" id="rMv-bW-eBo"/>
-                                                <constraint firstItem="N67-dq-udI" firstAttribute="leading" secondItem="ECN-gM-RT9" secondAttribute="trailing" constant="10" id="vvY-kH-4gK"/>
-                                                <constraint firstItem="ECN-gM-RT9" firstAttribute="top" secondItem="xDq-XF-d8k" secondAttribute="top" constant="8" id="wYc-ml-aGg"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="Ljl-Qh-C3b"/>
-                                                    <exclude reference="vvY-kH-4gK"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="estimoteImage" destination="ECN-gM-RT9" id="LtD-2K-qHh"/>
                                             <outlet property="locationLabel" destination="qPN-sn-NpJ" id="bcN-rO-bmB"/>
                                             <outlet property="nameLabel" destination="N67-dq-udI" id="CZe-i7-iwG"/>
                                             <outlet property="telemetryOneDataLabel" destination="KjM-nN-Keb" id="PXw-WL-PLs"/>
@@ -688,9 +676,9 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="gXc-oP-1VZ"/>
                                 <exclude reference="JLc-2R-lbg"/>
                                 <exclude reference="bvh-MF-yun"/>
-                                <exclude reference="gXc-oP-1VZ"/>
                             </mask>
                         </variation>
                     </view>
@@ -911,7 +899,6 @@
     </scenes>
     <resources>
         <image name="beacon" width="30" height="30"/>
-        <image name="beacon_blue" width="100" height="140"/>
         <image name="eddystone-logo" width="171" height="171"/>
         <image name="eddystone-tabbar-white" width="30" height="30"/>
         <image name="ibeacon-logo" width="150" height="150"/>

@@ -21,7 +21,6 @@
 		14A617841D1BAD370083CFF2 /* BeaconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A617831D1BAD370083CFF2 /* BeaconCell.swift */; };
 		14A6178A1D1BAD8F0083CFF2 /* iBeaconItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A617891D1BAD8F0083CFF2 /* iBeaconItem.swift */; };
 		14A6178E1D1BADF90083CFF2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A6178D1D1BADF90083CFF2 /* Constants.swift */; };
-		14A617901D1BAE280083CFF2 /* Eddystone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A6178F1D1BAE280083CFF2 /* Eddystone.swift */; };
 		14A617961D1BAEBA0083CFF2 /* AddBeaconScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A617951D1BAEBA0083CFF2 /* AddBeaconScreen.swift */; };
 		14A617981D1BAEF10083CFF2 /* QRScannerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A617971D1BAEF10083CFF2 /* QRScannerScreen.swift */; };
 		14A6179A1D1BAF1B0083CFF2 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A617991D1BAF1B0083CFF2 /* CoreBluetooth.framework */; };
@@ -51,7 +50,6 @@
 		14A617831D1BAD370083CFF2 /* BeaconCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconCell.swift; sourceTree = "<group>"; };
 		14A617891D1BAD8F0083CFF2 /* iBeaconItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iBeaconItem.swift; sourceTree = "<group>"; };
 		14A6178D1D1BADF90083CFF2 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		14A6178F1D1BAE280083CFF2 /* Eddystone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Eddystone.swift; sourceTree = "<group>"; };
 		14A617951D1BAEBA0083CFF2 /* AddBeaconScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBeaconScreen.swift; sourceTree = "<group>"; };
 		14A617971D1BAEF10083CFF2 /* QRScannerScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerScreen.swift; sourceTree = "<group>"; };
 		14A617991D1BAF1B0083CFF2 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
@@ -147,7 +145,6 @@
 			children = (
 				14AD9E601D41C2330085A044 /* Screens */,
 				14AD9E551D407E060085A044 /* BeaconDetails.swift */,
-				14A6178F1D1BAE280083CFF2 /* Eddystone.swift */,
 				14AD9E571D407E250085A044 /* BeaconCloudFactory.swift */,
 				145E21601D47D35F00571679 /* EstimoteCell.swift */,
 				149063791D4F014800637146 /* EstimoteBeacon.swift */,
@@ -351,7 +348,6 @@
 				14A6176F1D1BAB2B0083CFF2 /* AppDelegate.swift in Sources */,
 				1490637A1D4F014800637146 /* EstimoteBeacon.swift in Sources */,
 				14A617961D1BAEBA0083CFF2 /* AddBeaconScreen.swift in Sources */,
-				14A617901D1BAE280083CFF2 /* Eddystone.swift in Sources */,
 				14AD9E561D407E060085A044 /* BeaconDetails.swift in Sources */,
 				14A617821D1BAD010083CFF2 /* BeaconListScreen.swift in Sources */,
 				14A617981D1BAEF10083CFF2 /* QRScannerScreen.swift in Sources */,
@@ -480,7 +476,7 @@
 			baseConfigurationReference = DCB62F3D631A327E91F3BC5F /* Pods-Rev11 Scan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Sean Allen (H69U55MWXW)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sean Allen (UF3KVEB7HT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)\"/\"Rev11 Scan\"/**",
@@ -497,7 +493,7 @@
 			baseConfigurationReference = D52B615DAC3F50A9EEE0AC34 /* Pods-Rev11 Scan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Sean Allen (H69U55MWXW)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sean Allen (UF3KVEB7HT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)\"/\"Rev11 Scan\"/**",

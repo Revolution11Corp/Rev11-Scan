@@ -27,9 +27,6 @@ class BeaconDetailsCloudFactory {
         }
       }
 
-      // iterate through beaconDetails, create new BeaconDetails object
-      // completion could return an array of BeaconDetails, rather than individual one
-
       completion(content: detailsArray)
     }
   }
