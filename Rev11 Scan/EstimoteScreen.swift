@@ -59,12 +59,22 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
 
   func beaconManager(manager: AnyObject, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion) {
 
+//    let beaconOne = beacons[0].major
+//    let beaconTwo = beacons[1].major
+//
+//    print("1st = \(beaconOne)\n2nd = \(beaconTwo)")
+
     let beaconNameArray: [String] = []
 
     // create a "tempBeacons" array to use as a comparision to most recent array. If the same = no network call
     // Fine for prototype, but if we go to production, will need to address this
 
     self.beaconDetailsCloudFactory.contentForBeacons(beacons) { (content) in
+
+//      let beaconOne = content[0].beaconName
+//      let beaconTwo = content[1].beaconName
+//
+//      print("1st = \(beaconOne)\n2nd = \(beaconTwo)")
 
           self.setEstimoteNamesArray(content, namesArray: beaconNameArray, completion: { (result) in
 
@@ -74,14 +84,16 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
 
                 self.iBeacons.removeAll()
 
+                var counter = 0
+
                 for beacon in beacons {
 
-                  var counter = 0
                   let newBeacon = EstimoteBeacon(name: result[counter], uuid: beacon.proximityUUID, majorValue: beacon.major, minorValue: beacon.minor, color: Colors.white)
                   
                   counter += 1
                   newBeacon.lastSeenEstimote = beacon
                   self.iBeacons.append(newBeacon)
+
                 }
 
                 self.checkForEmptyState()
