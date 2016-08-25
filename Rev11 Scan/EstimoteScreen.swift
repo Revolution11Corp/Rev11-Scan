@@ -59,26 +59,12 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
 
   func beaconManager(manager: AnyObject, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion) {
 
-//    let beaconOne = beacons[0].major
-//    let beaconTwo = beacons[1].major
-//
-//    print("1st = \(beaconOne)\n2nd = \(beaconTwo)")
-
     let beaconNameArray: [String] = []
 
     // create a "tempBeacons" array to use as a comparision to most recent array. If the same = no network call
     // Fine for prototype, but if we go to production, will need to address this
 
     self.beaconDetailsCloudFactory.contentForBeacons(beacons) { (detailsArray) in
-
-//      let beaconOne = content[0].beaconName
-//      let beaconTwo = content[1].beaconName
-//
-//      print("1st = \(beaconOne)\n2nd = \(beaconTwo)")
-
-//      DetailsArray - an array of beaconDetails ordered by Minor
-//
-//      result - array of name strings ordered by Minor
 
           self.setEstimoteNamesArray(detailsArray, namesArray: beaconNameArray, completion: { (result) in
 
@@ -96,13 +82,16 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
 
                 for beacon in sortedBeacons {
 
-                  let newBeacon = EstimoteBeacon(name: result[counter], uuid: beacon.proximityUUID, majorValue: beacon.major, minorValue: beacon.minor, color: Colors.white)
+                  let proximity = self.intForProximity(beacon.proximity)
+
+                  let newBeacon = EstimoteBeacon(name: result[counter], uuid: beacon.proximityUUID, majorValue: beacon.major, minorValue: beacon.minor, proximity: proximity, color: Colors.white)
                   
                   counter += 1
                   newBeacon.lastSeenEstimote = beacon
                   self.iBeacons.append(newBeacon)
-
                 }
+
+                self.iBeacons.sortInPlace({ $0.proximity < $1.proximity })
 
                 self.checkForEmptyState()
 
@@ -116,6 +105,21 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
           }
         })
       }
+  }
+
+  func intForProximity(proximity: CLProximity) -> Int {
+
+    switch proximity {
+    case .Immediate:
+      return 0
+    case .Near:
+      return 1
+    case .Far:
+      return 2
+    case .Unknown:
+      return 3
+    }
+
   }
 
   func setEstimoteNamesArray(beaconDetailsArray: [BeaconDetails], namesArray: [String], completion: (result: [String]) -> Void) {

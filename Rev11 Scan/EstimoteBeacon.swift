@@ -17,16 +17,18 @@ class EstimoteBeacon: NSObject {
   let uuid: NSUUID?
   let majorValue: NSNumber?
   let minorValue: NSNumber?
+  let proximity: Int?
 
   var color: UIColor?
 
   dynamic var lastSeenEstimote: CLBeacon?
 
-  init(name: String, uuid: NSUUID, majorValue: NSNumber?, minorValue: NSNumber?, color: UIColor) {
+  init(name: String, uuid: NSUUID, majorValue: NSNumber?, minorValue: NSNumber?, proximity: Int, color: UIColor) {
     self.name = name
     self.uuid = uuid
     self.majorValue = majorValue!
     self.minorValue = minorValue!
+    self.proximity = proximity
     self.color = Colors.white
     super.init()
   }
