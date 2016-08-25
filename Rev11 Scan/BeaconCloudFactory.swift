@@ -8,39 +8,36 @@
 
 class BeaconDetailsCloudFactory {
 
-  func contentForBeacons(beacons: [CLBeacon], completion: (content: [BeaconDetails]) -> ()) {
+  func contentForBeacons(beacons: [CLBeacon], completion: (detailsArray: [BeaconDetails]) -> ()) {
 
     var detailsArray: [BeaconDetails] = []
 
-    let request = ESTRequestGetBeaconsDetails(beacons: beacons, andFields: ESTBeaconDetailsFields.FieldName)
-
-    if beacons.count != 0 {
-      let beaconOne = beacons[0].major
-      let beaconTwo = beacons[1].major
-
-      print("1st Major = \(beaconOne)\n2nd Major = \(beaconTwo)")
-
-    }
-
+    let request = ESTRequestGetBeaconsDetails(beacons: beacons, andFields: [ESTBeaconDetailsFields.AllFields, ESTBeaconDetailsFields.AllSettings])
 
     request.sendRequestWithCompletion { (beaconDetails, error) in
+
+      var beaconVOObjects: [ESTBeaconVO] = []
 
       if error != nil {
         print("sendRequestWithCompletion Error - \(error)")
 
       } else {
+
         for item in beaconDetails! {
-          let newItem = BeaconDetails(beaconName: item.name, beaconColor: item.color)
-          detailsArray.append(newItem)
+          let tempItem = item as! ESTBeaconVO
+          beaconVOObjects.append(tempItem)
         }
 
-        let beaconOne = detailsArray[0].beaconName
-        let beaconTwo = detailsArray[1].beaconName
+        beaconVOObjects.sortInPlace({ Int($0.minor) < Int($1.minor) })
 
-        print("1st Name = \(beaconOne)\n2nd Name = \(beaconTwo)")
+        for beaconVO in beaconVOObjects {
+
+          let newItem = BeaconDetails(beaconName: beaconVO.name!, beaconColor: beaconVO.color)
+          detailsArray.append(newItem)
+        }
       }
 
-      completion(content: detailsArray)
+      completion(detailsArray: detailsArray)
     }
   }
 }

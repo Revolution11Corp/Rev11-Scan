@@ -69,14 +69,18 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
     // create a "tempBeacons" array to use as a comparision to most recent array. If the same = no network call
     // Fine for prototype, but if we go to production, will need to address this
 
-    self.beaconDetailsCloudFactory.contentForBeacons(beacons) { (content) in
+    self.beaconDetailsCloudFactory.contentForBeacons(beacons) { (detailsArray) in
 
 //      let beaconOne = content[0].beaconName
 //      let beaconTwo = content[1].beaconName
 //
 //      print("1st = \(beaconOne)\n2nd = \(beaconTwo)")
 
-          self.setEstimoteNamesArray(content, namesArray: beaconNameArray, completion: { (result) in
+//      DetailsArray - an array of beaconDetails ordered by Minor
+//
+//      result - array of name strings ordered by Minor
+
+          self.setEstimoteNamesArray(detailsArray, namesArray: beaconNameArray, completion: { (result) in
 
             dispatch_async(dispatch_get_main_queue()) {
 
@@ -86,7 +90,11 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
 
                 var counter = 0
 
-                for beacon in beacons {
+                var sortedBeacons = beacons
+
+                sortedBeacons.sortInPlace({ Int($0.minor) < Int($1.minor) })
+
+                for beacon in sortedBeacons {
 
                   let newBeacon = EstimoteBeacon(name: result[counter], uuid: beacon.proximityUUID, majorValue: beacon.major, minorValue: beacon.minor, color: Colors.white)
                   
