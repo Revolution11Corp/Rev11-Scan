@@ -492,7 +492,7 @@
 			baseConfigurationReference = DCB62F3D631A327E91F3BC5F /* Pods-Rev11 Scan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)\"/\"Rev11 Scan\"/**",
@@ -509,7 +509,7 @@
 			baseConfigurationReference = D52B615DAC3F50A9EEE0AC34 /* Pods-Rev11 Scan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)\"/\"Rev11 Scan\"/**",
