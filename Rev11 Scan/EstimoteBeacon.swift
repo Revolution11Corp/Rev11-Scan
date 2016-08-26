@@ -37,5 +37,4 @@ class EstimoteBeacon: NSObject {
     fatalError("init(coder:) has not been implemented")
   }
 
-
 }

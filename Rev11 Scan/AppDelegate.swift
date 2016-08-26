@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
 
     setupTabBar()
 
-    ESTConfig.setupAppID("rev11scan-nxl", andAppToken: "d55de5f606394c3cb74f007ec8bd1244")
+    ESTConfig.setupAppID(Keys.estimoteAppID, andAppToken: Keys.estimoteAppToken)
 
     URLParameter.sharedInstance.isFromFileMaker = false
 
@@ -55,8 +55,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
     let tabBarController = self.window?.rootViewController as! UITabBarController
     let tabItems = tabBarController.tabBar.items! as [UITabBarItem]
 
-    tabItems[0].selectedImage = UIImage(named: "qr-tabbar-blue")
-    tabItems[2].selectedImage = UIImage(named: "eddystone-tabbar-blue")
+    tabItems[0].selectedImage = UIImage(named: Images.qrTabBlue)
+    tabItems[2].selectedImage = UIImage(named: Images.eddystoneTabBlue)
 
     UITabBar.appearance().barTintColor = Colors.darkGrey
 

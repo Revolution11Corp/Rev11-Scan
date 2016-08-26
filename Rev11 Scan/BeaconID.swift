@@ -41,7 +41,6 @@ struct BeaconID: Equatable, CustomStringConvertible, Hashable {
   var hashValue: Int {
     get { return self.asString.hashValue }
   }
-
 }
 
 func ==(lhs: BeaconID, rhs: BeaconID) -> Bool {

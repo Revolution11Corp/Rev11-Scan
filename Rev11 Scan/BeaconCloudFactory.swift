@@ -31,7 +31,6 @@ class BeaconDetailsCloudFactory {
         beaconVOObjects.sortInPlace({ Int($0.minor) < Int($1.minor) })
 
         for beaconVO in beaconVOObjects {
-
           let newItem = BeaconDetails(beaconName: beaconVO.name!, beaconColor: beaconVO.color)
           detailsArray.append(newItem)
         }

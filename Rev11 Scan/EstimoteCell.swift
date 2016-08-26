@@ -32,11 +32,11 @@ class EstimoteCell: UITableViewCell {
 
     willSet {
       if let thisBeacon = beacon {
-        thisBeacon.removeObserver(self, forKeyPath: "lastSeenEstimote")
+        thisBeacon.removeObserver(self, forKeyPath: Keys.lastSeenEstimote)
       }
     }
     didSet {
-      beacon?.addObserver(self, forKeyPath: "lastSeenEstimote", options: .New, context: nil)
+      beacon?.addObserver(self, forKeyPath: Keys.lastSeenEstimote, options: .New, context: nil)
       uuidLabel!.text = beacon?.uuid!.UUIDString
       nameLabel.text = beacon?.name
 
@@ -47,7 +47,7 @@ class EstimoteCell: UITableViewCell {
   }
 
   deinit {
-    beacon?.removeObserver(self, forKeyPath: "lastSeenEstimote")
+    beacon?.removeObserver(self, forKeyPath: Keys.lastSeenEstimote)
   }
 
   override func prepareForReuse() {
@@ -78,7 +78,6 @@ class EstimoteCell: UITableViewCell {
   }
 
   func setProximityProperties() {
-
     let proximity = nameForProximity((beacon?.lastSeenEstimote!.proximity)!)
     let accuracy = NSString(format: "%.2f", (beacon?.lastSeenEstimote!.accuracy)!)
     locationLabel.text = "\(proximity) (approx. \(accuracy) meters)"

@@ -33,10 +33,26 @@ struct Colors {
   static let blue     = UIColor(red: 27.0/255.0, green: 117.0/255.0, blue: 187.0/255.0, alpha: 1.0)
 }
 
+struct Images {
+  static let qrTabBlue          = "qr-tabbar-blue"
+  static let eddystoneTabBlue   = "eddystone-tabbar-blue"
+}
+
 struct Constants {
   static let defaults = NSUserDefaults.standardUserDefaults()
 }
 
 struct Keys {
-  static let isFromFileMaker = "isFromFileMaker"
+  static let isFromFileMaker  = "isFromFileMaker"
+  static let lastSeenEstimote = "lastSeenEstimote"
+  static let beaconRegionUUID = "B9407F30-F5F8-466E-AFF9-25556B57FE6D"
+  static let estimoteAppID    = "rev11scan-nxl"
+  static let estimoteAppToken = "d55de5f606394c3cb74f007ec8bd1244"
+}
+
+struct Cells {
+  static let estimoteCell   = "EstimoteCell"
+  static let eddystoneCell  = "EddystoneCell"
+
+
 }

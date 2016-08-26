@@ -23,7 +23,7 @@ class EddystoneScreen: UIViewController, UITableViewDelegate, UITableViewDataSou
     eddystoneManager.delegate = self
     findEddystones()
     checkForEmptyState()
-    showLogoInNavBar()
+    NavBarSetup.showLogoInNavBar(self.navigationController!, navItem: self.navigationItem)
   }
 
   func showEmptyState(bool: Bool) {
@@ -52,12 +52,12 @@ class EddystoneScreen: UIViewController, UITableViewDelegate, UITableViewDataSou
 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-    let cell = tableView.dequeueReusableCellWithIdentifier("EddystoneCell", forIndexPath: indexPath) as! EddystoneCell
+    let cell = tableView.dequeueReusableCellWithIdentifier(Cells.eddystoneCell, forIndexPath: indexPath) as! EddystoneCell
     let eddystone = eddystoneItems[indexPath.row]
     let eddystoneProximity = eddystone.proximity.rawValue
     var proximityString: String?
 
-    // Setting properties here will result in the typical issues when dequing cells. Refactor this to happen in the cell class (see how it's down with iBeacons)
+    // Setting properties here will result in the typical issues when dequing cells. Refactor this to happen in the cell class (see how it's done with iBeacons)
     switch eddystoneProximity {
     case 1:
       proximityString = "Immediate"
@@ -85,19 +85,6 @@ class EddystoneScreen: UIViewController, UITableViewDelegate, UITableViewDataSou
     return true
   }
 
-  func showLogoInNavBar() {
-    let banner = UIImage(named: "logo-nav-bar")
-    let imageView = UIImageView(image:banner)
-    let bannerWidth = navigationController?.navigationBar.frame.size.width
-    let bannerHeight = navigationController?.navigationBar.frame.size.height
-    let bannerX = bannerWidth! / 2 - banner!.size.width / 2
-    let bannerY = bannerHeight! / 2 - banner!.size.height / 2
-    imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth!, height: bannerHeight!)
-    imageView.contentMode = UIViewContentMode.ScaleAspectFit
-    self.navigationItem.titleView = imageView
-  }
-
-
   //MARK: - Eddystone Methods
 
   func findEddystones() {
@@ -123,7 +110,5 @@ class EddystoneScreen: UIViewController, UITableViewDelegate, UITableViewDataSou
   func eddystoneManagerDidFailDiscovery(manager: ESTEddystoneManager, withError error: NSError?) {
     print("Did Fail Discovery")
   }
-  
-
   
 }

@@ -23,13 +23,13 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
   let locationManager = CLLocationManager()
   let beaconDetailsCloudFactory = BeaconDetailsCloudFactory()
 
-  let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!, identifier: "example region")
+  let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: Keys.beaconRegionUUID)!, identifier: "example region")
 
 
   override func viewDidLoad() {
     super.viewDidLoad()
     checkForEmptyState()
-    showLogoInNavBar()
+    NavBarSetup.showLogoInNavBar(self.navigationController!, navItem: self.navigationItem)
 //    getTempFromDevice()
 
     locationManager.requestAlwaysAuthorization()
@@ -73,17 +73,14 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
               if result.count != 0 {
 
                 self.iBeacons.removeAll()
-
                 var counter = 0
-
                 var sortedBeacons = beacons
 
                 sortedBeacons.sortInPlace({ Int($0.minor) < Int($1.minor) })
 
                 for beacon in sortedBeacons {
 
-                  let proximity = self.intForProximity(beacon.proximity)
-
+                  let proximity = BeaconHelper.intForProximity(beacon.proximity)
                   let newBeacon = EstimoteBeacon(name: result[counter], uuid: beacon.proximityUUID, majorValue: beacon.major, minorValue: beacon.minor, proximity: proximity, color: Colors.white)
                   
                   counter += 1
@@ -92,7 +89,6 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
 
                 self.iBeacons.sortInPlace({ $0.proximity < $1.proximity })
-
                 self.checkForEmptyState()
 
                 dispatch_async(dispatch_get_main_queue()) {
@@ -107,21 +103,7 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
       }
   }
 
-  func intForProximity(proximity: CLProximity) -> Int {
-
-    switch proximity {
-    case .Immediate:
-      return 0
-    case .Near:
-      return 1
-    case .Far:
-      return 2
-    case .Unknown:
-      return 3
-    }
-
-  }
-
+  
   func setEstimoteNamesArray(beaconDetailsArray: [BeaconDetails], namesArray: [String], completion: (result: [String]) -> Void) {
 
     var namesArray: [String] = namesArray
@@ -152,27 +134,13 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
   }
 
-  func showLogoInNavBar() {
-    let banner = UIImage(named: "logo-nav-bar")
-    let imageView = UIImageView(image:banner)
-    let bannerWidth = navigationController?.navigationBar.frame.size.width
-    let bannerHeight = navigationController?.navigationBar.frame.size.height
-    let bannerX = bannerWidth! / 2 - banner!.size.width / 2
-    let bannerY = bannerHeight! / 2 - banner!.size.height / 2
-    imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth!, height: bannerHeight!)
-    imageView.contentMode = UIViewContentMode.ScaleAspectFit
-    self.navigationItem.titleView = imageView
-  }
-
-
   //MARK: - TableView Methods
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return iBeacons.count
   }
 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
-    let cell = tableView.dequeueReusableCellWithIdentifier("EstimoteCell", forIndexPath: indexPath) as! EstimoteCell
+    let cell = tableView.dequeueReusableCellWithIdentifier(Cells.estimoteCell, forIndexPath: indexPath) as! EstimoteCell
 
     let beacon = iBeacons[indexPath.row]
     cell.beacon = beacon

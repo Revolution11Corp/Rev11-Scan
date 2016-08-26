@@ -19,7 +19,6 @@ class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
 
   var captureSession: AVCaptureSession?
   var videoPreviewLayer: AVCaptureVideoPreviewLayer?
-  var qrCodeFrameView: UIView?
   var scannedURL: String?
 
   let supportedBarCodes = [AVMetadataObjectTypeQRCode, AVMetadataObjectTypeCode128Code, AVMetadataObjectTypeCode39Code, AVMetadataObjectTypeCode93Code, AVMetadataObjectTypeUPCECode, AVMetadataObjectTypePDF417Code, AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeAztecCode]
@@ -28,7 +27,7 @@ class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
   override func viewDidLoad() {
     super.viewDidLoad()
     setupQRCaptureSession()
-    showLogoInNavBar()
+    NavBarSetup.showLogoInNavBar(self.navigationController!, navItem: self.navigationItem)
   }
 
   override func viewWillAppear(animated: Bool) {
@@ -47,7 +46,6 @@ class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
       captureSession!.stopRunning()
     }
   }
-
 
   func setupQRCaptureSession() {
 
@@ -74,7 +72,6 @@ class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
       captureSession?.startRunning()
       view.bringSubviewToFront(messageLabel)
 
-
     } catch {
       print(error)
       return
@@ -84,7 +81,6 @@ class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
   func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
 
     if metadataObjects == nil || metadataObjects.count == 0 {
-      qrCodeFrameView?.frame = CGRectZero
       messageLabel.hidden = false
       messageLabel.text = "No QR code is detected"
       dismissViewControllerAnimated(true, completion: nil)
@@ -96,16 +92,10 @@ class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
 
       if self.supportedBarCodes.contains(metadataObj.type) {
 
-        let barCodeObject = videoPreviewLayer?.transformedMetadataObjectForMetadataObject(metadataObj)
-        qrCodeFrameView?.frame = barCodeObject!.bounds
-
         if metadataObj.stringValue != nil {
-          scannedURL = metadataObj.stringValue
-          //        showOptionsAlert(metadataObj.stringValue)
-          print("metaObj = \(metadataObj.stringValue)")
-          //        messageLabel.hidden = true
-          messageLabel.text = scannedURL!
 
+          scannedURL = metadataObj.stringValue
+          messageLabel.text = scannedURL!
 
           if URLParameter.sharedInstance.isFromFileMaker == true {
 
@@ -131,41 +121,8 @@ class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
   func showWebsite(foundURL: String) {
     let url = NSURL(string: foundURL)
     let vc = SFSafariViewController(URL: url!, entersReaderIfAvailable: true)
-    qrCodeFrameView!.removeFromSuperview()
     presentViewController(vc, animated: true, completion: nil)
   }
 
-
-  func showOptionsAlert(foundURL: String) {
-
-    let alertController = UIAlertController(title: "QR Code Found", message: "Open in Safari?", preferredStyle: .Alert)
-    let yesAction = UIAlertAction(title: "Yes", style: .Default) { (action:UIAlertAction!) in
-      self.showWebsite(foundURL)
-    }
-
-    let callbackAction = UIAlertAction(title: "Return to FileMaker", style: .Default) { (action:UIAlertAction!) in
-
-    }
-
-    alertController.addAction(yesAction)
-    alertController.addAction(callbackAction)
-
-    if presentedViewController == nil {
-      self.presentViewController(alertController, animated: true, completion:nil)
-    }
-  }
-
-  func showLogoInNavBar() {
-    let banner = UIImage(named: "logo-nav-bar")
-    let imageView = UIImageView(image:banner)
-    let bannerWidth = navigationController?.navigationBar.frame.size.width
-    let bannerHeight = navigationController?.navigationBar.frame.size.height
-    let bannerX = bannerWidth! / 2 - banner!.size.width / 2
-    let bannerY = bannerHeight! / 2 - banner!.size.height / 2
-    imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth!, height: bannerHeight!)
-    imageView.contentMode = UIViewContentMode.ScaleAspectFit
-    self.navigationItem.titleView = imageView
-  }
-  
 }
 
