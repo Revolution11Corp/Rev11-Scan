@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreLocation
-import CallbackURLKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate {
@@ -17,7 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
   let locationManager = CLLocationManager()
   let beaconManager = ESTBeaconManager()
 
-  func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+
+//  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: Any]?) -> Bool {
 
     setupTabBar()
 
@@ -27,25 +28,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
 
     self.beaconManager.delegate = self
 
-    let notificationType: UIUserNotificationType = [UIUserNotificationType.Sound, UIUserNotificationType.Alert]
-    let notificationSettings = UIUserNotificationSettings(forTypes: notificationType, categories: nil)
-    UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+    let notificationType: UIUserNotificationType = [UIUserNotificationType.sound, UIUserNotificationType.alert]
+    let notificationSettings = UIUserNotificationSettings(types: notificationType, categories: nil)
+    UIApplication.shared.registerUserNotificationSettings(notificationSettings)
 
     locationManager.delegate = self
 
-    let manager = Manager.sharedInstance
-    manager.callbackURLScheme = Manager.URLSchemes?.first
-
-    CallbackURLKit.registerAction("rev11scan") { (parameters, success, failed, cancel) in
-
-      if let url = parameters["url"] {
-        URLParameter.sharedInstance.baseURL = url
-        URLParameter.sharedInstance.isFromFileMaker = true
-      } else {
-        print("No URL sent from source app")
-        // handle error UI that user will see if they mess up their URL input in FileMaker
-      }
-    }
+//    let manager = Manager.sharedInstance
+//    manager.callbackURLScheme = Manager.URLSchemes?.first
+//
+//    CallbackURLKit.registerAction("rev11scan") { (parameters, success, failed, cancel) in
+//
+//      if let url = parameters["url"] {
+//        URLParameter.sharedInstance.baseURL = url
+//        URLParameter.sharedInstance.isFromFileMaker = true
+//      } else {
+//        print("No URL sent from source app")
+//        // handle error UI that user will see if they mess up their URL input in FileMaker
+//      }
+//    }
 
     return true
   }
@@ -60,43 +61,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
 
     UITabBar.appearance().barTintColor = Colors.darkGrey
 
-    UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Colors.white], forState:.Normal)
-    UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Colors.blue], forState:.Selected)
+    UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Colors.white], for:UIControlState())
+    UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Colors.blue], for:.selected)
 
   }
 
-  func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-    Manager.sharedInstance.handleOpenURL(url)
+  func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+//    Manager.sharedInstance.handleOpenURL(url)
     return true
   }
 
-  func beaconManager(manager: AnyObject, didEnterRegion region: CLBeaconRegion) {
+  private func beaconManager(_ manager: AnyObject, didEnter region: CLBeaconRegion) {
     let notification = UILocalNotification()
     notification.alertBody = "You are now entering a Estimote beacon reagion"
-    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+    UIApplication.shared.presentLocalNotificationNow(notification)
   }
 
-  func applicationWillResignActive(application: UIApplication) {
+  func applicationWillResignActive(_ application: UIApplication) {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
   }
 
-  func applicationDidEnterBackground(application: UIApplication) {
+  func applicationDidEnterBackground(_ application: UIApplication) {
     URLParameter.sharedInstance.isFromFileMaker = false
   }
 
-  func applicationWillEnterForeground(application: UIApplication) {
+  func applicationWillEnterForeground(_ application: UIApplication) {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
   }
 
-  func applicationDidBecomeActive(application: UIApplication) {
+  func applicationDidBecomeActive(_ application: UIApplication) {
 
     let tabBarController = self.window?.rootViewController as! UITabBarController
     tabBarController.selectedIndex = 1
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
   }
 
-  func applicationWillTerminate(application: UIApplication) {
+  func applicationWillTerminate(_ application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
   }
 
@@ -104,13 +105,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
 
 // MARK: CLLocationManagerDelegate
 extension AppDelegate: CLLocationManagerDelegate {
-  func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
+  func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
 
-    if let beaconRegion = region as? CLBeaconRegion {
+    if region is CLBeaconRegion {
       let notification = UILocalNotification()
       notification.alertBody = "Are you forgetting something?"
       notification.soundName = "Default"
-      UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+      UIApplication.shared.presentLocalNotificationNow(notification)
     }
   }
 }

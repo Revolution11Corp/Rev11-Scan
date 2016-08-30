@@ -14,7 +14,7 @@ import CoreLocation
 class EstimoteBeacon: NSObject {
 
   let name: String?
-  let uuid: NSUUID?
+  let uuid: UUID?
   let majorValue: NSNumber?
   let minorValue: NSNumber?
   let proximity: Int?
@@ -23,7 +23,7 @@ class EstimoteBeacon: NSObject {
 
   dynamic var lastSeenEstimote: CLBeacon?
 
-  init(name: String, uuid: NSUUID, majorValue: NSNumber?, minorValue: NSNumber?, proximity: Int, color: UIColor) {
+  init(name: String, uuid: UUID, majorValue: NSNumber?, minorValue: NSNumber?, proximity: Int, color: UIColor) {
     self.name = name
     self.uuid = uuid
     self.majorValue = majorValue!

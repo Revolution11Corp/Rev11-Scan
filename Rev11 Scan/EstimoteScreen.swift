@@ -9,6 +9,17 @@
 
 import UIKit
 import CoreLocation
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, ESTDeviceManagerDelegate, ESTBeaconManagerDelegate {
 
@@ -23,7 +34,7 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
   let locationManager = CLLocationManager()
   let beaconDetailsCloudFactory = BeaconDetailsCloudFactory()
 
-  let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: Keys.beaconRegionUUID)!, identifier: "example region")
+  let beaconRegion = CLBeaconRegion(proximityUUID: UUID(uuidString: Keys.beaconRegionUUID)!, identifier: "example region")
 
 
   override func viewDidLoad() {
@@ -47,17 +58,17 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
 //    deviceManager.registerForTelemetryNotification(temperatureNotification)
 //  }
 
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    beaconManager.startRangingBeaconsInRegion(beaconRegion)
+    beaconManager.startRangingBeacons(in: beaconRegion)
   }
 
-  override func viewDidDisappear(animated: Bool) {
+  override func viewDidDisappear(_ animated: Bool) {
     super.viewDidDisappear(animated)
-    beaconManager.stopRangingBeaconsInRegion(beaconRegion)
+    beaconManager.stopRangingBeacons(in: beaconRegion)
   }
 
-  func beaconManager(manager: AnyObject, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion) {
+  private func beaconManager(_ manager: AnyObject, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
 
     let beaconNameArray: [String] = []
 
@@ -68,7 +79,7 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
 
           self.setEstimoteNamesArray(detailsArray, namesArray: beaconNameArray, completion: { (result) in
 
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
 
               if result.count != 0 {
 
@@ -76,7 +87,7 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
                 var counter = 0
                 var sortedBeacons = beacons
 
-                sortedBeacons.sortInPlace({ Int($0.minor) < Int($1.minor) })
+                sortedBeacons.sort(by: { Int($0.minor) < Int($1.minor) })
 
                 for beacon in sortedBeacons {
 
@@ -88,10 +99,10 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
                   self.iBeacons.append(newBeacon)
                 }
 
-                self.iBeacons.sortInPlace({ $0.proximity < $1.proximity })
+                self.iBeacons.sort(by: { $0.proximity < $1.proximity })
                 self.checkForEmptyState()
 
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
                   self.tableView.reloadData()
                 }
 
@@ -104,7 +115,7 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
 
   
-  func setEstimoteNamesArray(beaconDetailsArray: [BeaconDetails], namesArray: [String], completion: (result: [String]) -> Void) {
+  func setEstimoteNamesArray(_ beaconDetailsArray: [BeaconDetails], namesArray: [String], completion: (_ result: [String]) -> Void) {
 
     var namesArray: [String] = namesArray
 
@@ -112,17 +123,17 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
       namesArray.append(item.beaconName)
     }
 
-    completion(result: namesArray)
+    completion(namesArray)
   }
 
 
-  func showEmptyState(bool: Bool) {
+  func showEmptyState(_ bool: Bool) {
     if bool == true {
-      tableView.hidden = true
-      emptyStateView.hidden = false
+      tableView.isHidden = true
+      emptyStateView.isHidden = false
     } else {
-      tableView.hidden = false
-      emptyStateView.hidden = true
+      tableView.isHidden = false
+      emptyStateView.isHidden = true
     }
   }
 
@@ -135,30 +146,30 @@ class EstimoteScreen: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
 
   //MARK: - TableView Methods
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return iBeacons.count
   }
 
-  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(Cells.estimoteCell, forIndexPath: indexPath) as! EstimoteCell
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: Cells.estimoteCell, for: indexPath) as! EstimoteCell
 
-    let beacon = iBeacons[indexPath.row]
+    let beacon = iBeacons[(indexPath as NSIndexPath).row]
     cell.beacon = beacon
 
     return cell
   }
 
-  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    tableView.deselectRow(at: indexPath, animated: true)
 
-    let beacon = iBeacons[indexPath.row]
-    let uuid = beacon.uuid!.UUIDString
+    let beacon = iBeacons[(indexPath as NSIndexPath).row]
+    let uuid = beacon.uuid!.uuidString
     let detailMessage = "UUID: \(uuid)\nMajor: \(beacon.majorValue!)\nMinor: \(beacon.minorValue!)"
-    let detailAlert = UIAlertController(title: "Beacon Info", message: detailMessage, preferredStyle: .Alert)
-    detailAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+    let detailAlert = UIAlertController(title: "Beacon Info", message: detailMessage, preferredStyle: .alert)
+    detailAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
 
-    presentViewController(detailAlert, animated: true, completion: nil)
+    present(detailAlert, animated: true, completion: nil)
   }
 
 

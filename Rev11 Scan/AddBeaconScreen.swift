@@ -41,7 +41,7 @@ class AddBeaconScreen: UIViewController, UITextFieldDelegate {
 
   @IBOutlet var eddystoneViews: [UIView]!
 
-  var uuidRegex = try! NSRegularExpression(pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", options: .CaseInsensitive)
+  var uuidRegex = try! NSRegularExpression(pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", options: .caseInsensitive)
   var nameFieldValid = false
   var majorFieldValid = false
   var minorFieldValid = false
@@ -56,11 +56,11 @@ class AddBeaconScreen: UIViewController, UITextFieldDelegate {
     super.viewDidLoad()
     enableDismissKeyboardOnTap()
     checkIfTextInputValid()
-    beaconTypeSwitch.addTarget(self, action: #selector(AddBeaconScreen.stateChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
-    saveBarButton.enabled = false
+    beaconTypeSwitch.addTarget(self, action: #selector(AddBeaconScreen.stateChanged(_:)), for: UIControlEvents.valueChanged)
+    saveBarButton.isEnabled = false
   }
 
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
     for view in eddystoneViews {
@@ -68,9 +68,9 @@ class AddBeaconScreen: UIViewController, UITextFieldDelegate {
     }
   }
 
-  func stateChanged(switchState: UISwitch) {
+  func stateChanged(_ switchState: UISwitch) {
 
-    if switchState.on {
+    if switchState.isOn {
       switchViews(viewsToHide: eddystoneViews, viewsToShow: iBeaconViews)
       switchIsOn = true
 
@@ -80,67 +80,67 @@ class AddBeaconScreen: UIViewController, UITextFieldDelegate {
     }
   }
 
-  func switchViews(viewsToHide viewsToHide: [UIView], viewsToShow: [UIView]) {
+  func switchViews(viewsToHide: [UIView], viewsToShow: [UIView]) {
 
     for view in viewsToHide {
-      UIView.animateWithDuration(0.3, animations: {
+      UIView.animate(withDuration: 0.3, animations: {
         view.alpha = 0.0
       })
     }
 
     for view in viewsToShow {
-      UIView.animateWithDuration(0.3, animations: {
+      UIView.animate(withDuration: 0.3, animations: {
         view.alpha = 1.0
       })
     }
   }
 
-  func nameTextFieldChanged(textField: UITextField) {
+  func nameTextFieldChanged(_ textField: UITextField) {
     nameFieldValid = (textField.text!.characters.count > 0)
     updateSaveButton()
   }
 
-  func majorTextFieldChanged(textField: UITextField) {
+  func majorTextFieldChanged(_ textField: UITextField) {
     majorFieldValid = (textField.text!.characters.count > 0)
     updateSaveButton()
   }
 
-  func minorTextFieldChanged(textField: UITextField) {
+  func minorTextFieldChanged(_ textField: UITextField) {
     minorFieldValid = (textField.text!.characters.count > 0)
     updateSaveButton()
   }
 
-  func uuidTextFieldChanged(textField: UITextField) {
-    let numberOfMatches = uuidRegex.numberOfMatchesInString(textField.text!, options: [], range: NSMakeRange(0, textField.text!.characters.count))
+  func uuidTextFieldChanged(_ textField: UITextField) {
+    let numberOfMatches = uuidRegex.numberOfMatches(in: textField.text!, options: [], range: NSMakeRange(0, textField.text!.characters.count))
     UUIDFieldValid = (numberOfMatches > 0)
     updateSaveButton()
   }
 
   func checkIfTextInputValid() {
-    nameTextField.addTarget(self, action: #selector(AddBeaconScreen.nameTextFieldChanged(_:)), forControlEvents: .EditingChanged)
-    majorTextField.addTarget(self, action: #selector(AddBeaconScreen.majorTextFieldChanged(_:)), forControlEvents: .EditingChanged)
-    minorTextField.addTarget(self, action: #selector(AddBeaconScreen.minorTextFieldChanged(_:)), forControlEvents: .EditingChanged)
-    uuidTextField.addTarget(self, action: #selector(AddBeaconScreen.uuidTextFieldChanged(_:)), forControlEvents: .EditingChanged)
+    nameTextField.addTarget(self, action: #selector(AddBeaconScreen.nameTextFieldChanged(_:)), for: .editingChanged)
+    majorTextField.addTarget(self, action: #selector(AddBeaconScreen.majorTextFieldChanged(_:)), for: .editingChanged)
+    minorTextField.addTarget(self, action: #selector(AddBeaconScreen.minorTextFieldChanged(_:)), for: .editingChanged)
+    uuidTextField.addTarget(self, action: #selector(AddBeaconScreen.uuidTextFieldChanged(_:)), for: .editingChanged)
   }
 
   func updateSaveButton() {
 
     if UUIDFieldValid && nameFieldValid && majorFieldValid && minorFieldValid {
-      saveBarButton.enabled = true
+      saveBarButton.isEnabled = true
     } else {
-      saveBarButton.enabled = false
+      saveBarButton.isEnabled = false
     }
   }
 
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "SaveBeacon" {
 
       if switchIsOn == true {
-        let uuid = NSUUID(UUIDString: uuidTextField.text!)
+        let uuid = UUID(uuidString: uuidTextField.text!)
 
         let major: CLBeaconMajorValue = UInt16(Int(majorTextField.text!)!)
         let minor: CLBeaconMinorValue = UInt16(Int(minorTextField.text!)!)
-        newBeacon = iBeaconItem(name: nameTextField.text!, uuid: uuid!, majorValue: major, minorValue: minor, color: Colors.white)
+        newBeacon = iBeaconItem(name: nameTextField.text!, uuid: (uuid! as NSUUID) as UUID, majorValue: major, minorValue: minor, color: Colors.white)
 
       } else {
 

@@ -10,7 +10,6 @@ import Foundation
 import AVFoundation
 import UIKit
 import SafariServices
-import CallbackURLKit
 
 class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
@@ -30,26 +29,26 @@ class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
     NavBarSetup.showLogoInNavBar(self.navigationController!, navItem: self.navigationItem)
   }
 
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    messageLabel.hidden = false
+    messageLabel.isHidden = false
 
-    if (captureSession?.running == false) {
+    if (captureSession?.isRunning == false) {
       captureSession!.startRunning()
     }
   }
 
-  override func viewWillDisappear(animated: Bool) {
+  override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
 
-    if (captureSession?.running == true) {
+    if (captureSession?.isRunning == true) {
       captureSession!.stopRunning()
     }
   }
 
   func setupQRCaptureSession() {
 
-    let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+    let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
 
     do {
 
@@ -61,7 +60,7 @@ class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
       let captureMetadataOutput = AVCaptureMetadataOutput()
       captureSession?.addOutput(captureMetadataOutput)
 
-      captureMetadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+      captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
       captureMetadataOutput.metadataObjectTypes = supportedBarCodes
 
       videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
@@ -70,7 +69,7 @@ class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
       view.layer.addSublayer(videoPreviewLayer!)
 
       captureSession?.startRunning()
-      view.bringSubviewToFront(messageLabel)
+      view.bringSubview(toFront: messageLabel)
 
     } catch {
       print(error)
@@ -78,12 +77,12 @@ class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
     }
   }
 
-  func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
+  func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
 
     if metadataObjects == nil || metadataObjects.count == 0 {
-      messageLabel.hidden = false
+      messageLabel.isHidden = false
       messageLabel.text = "No QR code is detected"
-      dismissViewControllerAnimated(true, completion: nil)
+      dismiss(animated: true, completion: nil)
       return
 
     } else {
@@ -100,28 +99,28 @@ class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
           if URLParameter.sharedInstance.isFromFileMaker == true {
 
             let urlStringFromSourceApp = URLParameter.sharedInstance.baseURL!
-            let decodedURLString = (urlStringFromSourceApp.stringByReplacingOccurrencesOfString("%26", withString: "&")) as String
+            let decodedURLString = (urlStringFromSourceApp.replacingOccurrences(of: "%26", with: "&")) as String
             let builtURL = "\(decodedURLString)\(scannedURL!)"
 
-            if let url = NSURL(string: builtURL) {
-              dispatch_async(dispatch_get_main_queue(), {
-                UIApplication.sharedApplication().openURL(url)
+            if let url = URL(string: builtURL) {
+              DispatchQueue.main.async(execute: {
+                UIApplication.shared.openURL(url)
               })
             }
 
           } else {
-            let url = NSURL(string: scannedURL!)
-            UIApplication.sharedApplication().openURL(url!)
+            let url = URL(string: scannedURL!)
+            UIApplication.shared.openURL(url!)
           }
         }
       }
     }
   }
 
-  func showWebsite(foundURL: String) {
-    let url = NSURL(string: foundURL)
-    let vc = SFSafariViewController(URL: url!, entersReaderIfAvailable: true)
-    presentViewController(vc, animated: true, completion: nil)
+  func showWebsite(_ foundURL: String) {
+    let url = URL(string: foundURL)
+    let vc = SFSafariViewController(url: url!, entersReaderIfAvailable: true)
+    present(vc, animated: true, completion: nil)
   }
 
 }

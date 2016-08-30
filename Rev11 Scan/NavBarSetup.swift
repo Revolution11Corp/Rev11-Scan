@@ -11,7 +11,7 @@ import UIKit
 
 class NavBarSetup {
 
-  class func showLogoInNavBar(navController: UINavigationController, navItem: UINavigationItem) {
+  class func showLogoInNavBar(_ navController: UINavigationController, navItem: UINavigationItem) {
 
     let banner = UIImage(named: "logo-nav-bar")
     let imageView = UIImageView(image:banner)
@@ -20,7 +20,7 @@ class NavBarSetup {
     let bannerX = bannerWidth / 2 - banner!.size.width / 2
     let bannerY = bannerHeight / 2 - banner!.size.height / 2
     imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth, height: bannerHeight)
-    imageView.contentMode = UIViewContentMode.ScaleAspectFit
+    imageView.contentMode = UIViewContentMode.scaleAspectFit
     navItem.titleView = imageView
   }
 

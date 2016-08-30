@@ -39,7 +39,7 @@ struct Images {
 }
 
 struct Constants {
-  static let defaults = NSUserDefaults.standardUserDefaults()
+  static let defaults = UserDefaults.standard
 }
 
 struct Keys {

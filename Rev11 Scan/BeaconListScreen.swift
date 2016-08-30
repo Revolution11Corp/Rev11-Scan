@@ -36,48 +36,48 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
   }
 
   func loadiBeacons() {
-    if let storedBeacons = NSUserDefaults.standardUserDefaults().arrayForKey(BeaconListScreenConstant.storedBeaconsKey) {
+    if let storedBeacons = UserDefaults.standard.array(forKey: BeaconListScreenConstant.storedBeaconsKey) {
 
       for beaconData in storedBeacons {
-        let beacon = NSKeyedUnarchiver.unarchiveObjectWithData(beaconData as! NSData) as! iBeaconItem
+        let beacon = NSKeyedUnarchiver.unarchiveObject(with: beaconData as! Data) as! iBeaconItem
         iBeacons.append(beacon)
         startMonitoringBeacon(beacon)
       }
     }
   }
 
-  @IBAction func cancel(segue: UIStoryboardSegue) {
+  @IBAction func cancel(_ segue: UIStoryboardSegue) {
     // Do nothing
   }
 
   //MARK: - TableView Methods
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return iBeacons.count
   }
 
-  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-    let cell = tableView.dequeueReusableCellWithIdentifier("BeaconCell", forIndexPath: indexPath) as! BeaconCell
-    let beacon = iBeacons[indexPath.row]
+    let cell = tableView.dequeueReusableCell(withIdentifier: "BeaconCell", for: indexPath) as! BeaconCell
+    let beacon = iBeacons[(indexPath as NSIndexPath).row]
 
     cell.beacon = beacon
 
     return cell
   }
 
-  func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+  func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
     return true
   }
 
-  func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 
-    if editingStyle == .Delete {
+    if editingStyle == .delete {
 
-      let beaconToRemove = iBeacons[indexPath.row] as iBeaconItem
+      let beaconToRemove = iBeacons[(indexPath as NSIndexPath).row] as iBeaconItem
       stopMonitoringBeacon(beaconToRemove)
       tableView.beginUpdates()
-      iBeacons.removeAtIndex(indexPath.row)
-      tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+      iBeacons.remove(at: (indexPath as NSIndexPath).row)
+      tableView.deleteRows(at: [indexPath], with: .automatic)
       tableView.endUpdates()
 
       persistBeacons()
@@ -85,51 +85,51 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
   }
 
-  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    tableView.deselectRow(at: indexPath, animated: true)
 
-    let beacon = iBeacons[indexPath.row] as iBeaconItem
-    let uuid = beacon.uuid.UUIDString
+    let beacon = iBeacons[(indexPath as NSIndexPath).row] as iBeaconItem
+    let uuid = beacon.uuid.uuidString
     let detailMessage = "UUID: \(uuid)\nMajor: \(beacon.majorValue)\nMinor: \(beacon.minorValue)"
-    let detailAlert = UIAlertController(title: "Beacon Info", message: detailMessage, preferredStyle: .Alert)
-    detailAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+    let detailAlert = UIAlertController(title: "Beacon Info", message: detailMessage, preferredStyle: .alert)
+    detailAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
 
-    presentViewController(detailAlert, animated: true, completion: nil)
+    present(detailAlert, animated: true, completion: nil)
   }
 
   //MARK: - Beacon Monitoring
-  func startMonitoringBeacon(beacon: iBeaconItem) {
+  func startMonitoringBeacon(_ beacon: iBeaconItem) {
     let beaconRegion = beaconRegionWithItem(beacon)
-    locationManager.startMonitoringForRegion(beaconRegion)
-    locationManager.startRangingBeaconsInRegion(beaconRegion)
+    locationManager.startMonitoring(for: beaconRegion)
+    locationManager.startRangingBeacons(in: beaconRegion)
     
   }
 
-  func stopMonitoringBeacon(beacon: iBeaconItem) {
+  func stopMonitoringBeacon(_ beacon: iBeaconItem) {
     let beaconRegion = beaconRegionWithItem(beacon)
-    locationManager.stopMonitoringForRegion(beaconRegion)
-    locationManager.stopRangingBeaconsInRegion(beaconRegion)
+    locationManager.stopMonitoring(for: beaconRegion)
+    locationManager.stopRangingBeacons(in: beaconRegion)
   }
 
-  func beaconRegionWithItem(beacon: iBeaconItem) -> CLBeaconRegion {
-    let beaconRegion = CLBeaconRegion(proximityUUID: beacon.uuid, major: beacon.majorValue, minor: beacon.minorValue, identifier: beacon.name)
+  func beaconRegionWithItem(_ beacon: iBeaconItem) -> CLBeaconRegion {
+    let beaconRegion = CLBeaconRegion(proximityUUID: beacon.uuid as UUID, major: beacon.majorValue, minor: beacon.minorValue, identifier: beacon.name)
     return beaconRegion
   }
 
   //MARK: - Save and Persist Beacons
 
-  @IBAction func saveBeacon(segue: UIStoryboardSegue) {
+  @IBAction func saveBeacon(_ segue: UIStoryboardSegue) {
 
-    let addBeaconScreen = segue.sourceViewController as! AddBeaconScreen
+    let addBeaconScreen = segue.source as! AddBeaconScreen
 
     if let newBeacon = addBeaconScreen.newBeacon {
       iBeacons.append(newBeacon)
       tableView.beginUpdates()
 
-      let newIndexPath = NSIndexPath(forRow: iBeacons.count-1, inSection: 0)
+      let newIndexPath = IndexPath(row: iBeacons.count-1, section: 0)
 
-      tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Automatic)
+      tableView.insertRows(at: [newIndexPath], with: .automatic)
       tableView.endUpdates()
 
       startMonitoringBeacon(newBeacon)
@@ -138,27 +138,27 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
   }
 
   func persistBeacons() {
-    var beaconsDataArray:[NSData] = []
+    var beaconsDataArray:[Data] = []
 
     for beacon in iBeacons {
-      let beaconData = NSKeyedArchiver.archivedDataWithRootObject(beacon)
+      let beaconData = NSKeyedArchiver.archivedData(withRootObject: beacon)
       beaconsDataArray.append(beaconData)
     }
 
-    NSUserDefaults.standardUserDefaults().setObject(beaconsDataArray, forKey: BeaconListScreenConstant.storedBeaconsKey)
+    UserDefaults.standard.set(beaconsDataArray, forKey: BeaconListScreenConstant.storedBeaconsKey)
   }
 
   //MARK: - Core Location Methods
 
-  func locationManager(manager: CLLocationManager, monitoringDidFailForRegion region: CLRegion?, withError error: NSError) {
-    print("Failed monitoring region: \(error.description)")
+  func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
+    print("Failed monitoring region: \(error.localizedDescription)")
   }
 
-  func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-    print("Location manager failed: \(error.description)")
+  func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    print("Location manager failed: \(error.localizedDescription)")
   }
 
-  func locationManager(manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion) {
+  func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
 
     for beacon in beacons {
 

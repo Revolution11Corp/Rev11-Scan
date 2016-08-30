@@ -16,6 +16,6 @@ class URLParameter {
   var baseURL: String?
   var isFromFileMaker: Bool?
 
-  private init() { }
+  fileprivate init() { }
   
 }

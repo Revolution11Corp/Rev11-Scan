@@ -8,13 +8,13 @@
 
 class BeaconDetailsCloudFactory {
 
-  func contentForBeacons(beacons: [CLBeacon], completion: (detailsArray: [BeaconDetails]) -> ()) {
+  func contentForBeacons(_ beacons: [CLBeacon], completion: @escaping (_ detailsArray: [BeaconDetails]) -> ()) {
 
     var detailsArray: [BeaconDetails] = []
 
-    let request = ESTRequestGetBeaconsDetails(beacons: beacons, andFields: [ESTBeaconDetailsFields.AllFields, ESTBeaconDetailsFields.AllSettings])
+    let request = ESTRequestGetBeaconsDetails(beacons: beacons, andFields: [ESTBeaconDetailsFields.allFields, ESTBeaconDetailsFields.allSettings])
 
-    request.sendRequestWithCompletion { (beaconDetails, error) in
+    request.sendRequest { (beaconDetails, error) in
 
       var beaconVOObjects: [ESTBeaconVO] = []
 
@@ -28,7 +28,7 @@ class BeaconDetailsCloudFactory {
           beaconVOObjects.append(tempItem)
         }
 
-        beaconVOObjects.sortInPlace({ Int($0.minor) < Int($1.minor) })
+        beaconVOObjects.sort(by: { Int($0.minor) < Int($1.minor) })
 
         for beaconVO in beaconVOObjects {
           let newItem = BeaconDetails(beaconName: beaconVO.name!, beaconColor: beaconVO.color)
@@ -36,7 +36,7 @@ class BeaconDetailsCloudFactory {
         }
       }
 
-      completion(detailsArray: detailsArray)
+      completion(detailsArray)
     }
   }
 }

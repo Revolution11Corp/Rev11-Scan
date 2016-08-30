@@ -14,7 +14,7 @@ import CoreLocation
 class iBeaconItem: NSObject, NSCoding {
 
   let name: String
-  let uuid: NSUUID
+  let uuid: UUID
   let majorValue: CLBeaconMajorValue
   let minorValue: CLBeaconMinorValue
 
@@ -22,7 +22,7 @@ class iBeaconItem: NSObject, NSCoding {
 
   dynamic var lastSeenBeacon: CLBeacon?
 
-  init(name: String, uuid: NSUUID, majorValue: CLBeaconMajorValue?, minorValue: CLBeaconMinorValue?, color: UIColor) {
+  init(name: String, uuid: UUID, majorValue: CLBeaconMajorValue?, minorValue: CLBeaconMinorValue?, color: UIColor) {
     self.name = name
     self.uuid = uuid
     self.majorValue = majorValue!
@@ -32,33 +32,33 @@ class iBeaconItem: NSObject, NSCoding {
 
   // MARK: NSCoding
   required init?(coder aDecoder: NSCoder) {
-    if let aName = aDecoder.decodeObjectForKey(BeaconProperties.nameKey) as? String {
+    if let aName = aDecoder.decodeObject(forKey: BeaconProperties.nameKey) as? String {
       name = aName
     }
     else {
       name = ""
     }
-    if let aUUID = aDecoder.decodeObjectForKey(BeaconProperties.uuidKey) as? NSUUID {
+    if let aUUID = aDecoder.decodeObject(forKey: BeaconProperties.uuidKey) as? UUID {
       uuid = aUUID
     }
     else {
-      uuid = NSUUID()
+      uuid = UUID()
     }
-    majorValue = UInt16(aDecoder.decodeIntegerForKey(BeaconProperties.majorKey))
-    minorValue = UInt16(aDecoder.decodeIntegerForKey(BeaconProperties.minorKey))
+    majorValue = UInt16(aDecoder.decodeInteger(forKey: BeaconProperties.majorKey))
+    minorValue = UInt16(aDecoder.decodeInteger(forKey: BeaconProperties.minorKey))
   }
 
-  func encodeWithCoder(aCoder: NSCoder) {
-    aCoder.encodeObject(name, forKey: BeaconProperties.nameKey)
-    aCoder.encodeObject(uuid, forKey: BeaconProperties.uuidKey)
-    aCoder.encodeInteger(Int(majorValue), forKey: BeaconProperties.majorKey)
-    aCoder.encodeInteger(Int(minorValue), forKey: BeaconProperties.minorKey)
+  func encode(with aCoder: NSCoder) {
+    aCoder.encode(name, forKey: BeaconProperties.nameKey)
+    aCoder.encode(uuid, forKey: BeaconProperties.uuidKey)
+    aCoder.encode(Int(majorValue), forKey: BeaconProperties.majorKey)
+    aCoder.encode(Int(minorValue), forKey: BeaconProperties.minorKey)
   }
 
 }
 
 func ==(item: iBeaconItem, beacon: CLBeacon) -> Bool {
-  return ((beacon.proximityUUID.UUIDString == item.uuid.UUIDString)
+  return ((beacon.proximityUUID.uuidString == item.uuid.uuidString)
     && (Int(beacon.major) == Int(item.majorValue))
     && (Int(beacon.minor) == Int(item.minorValue)))
 }

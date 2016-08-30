@@ -26,13 +26,13 @@ class EddystoneScreen: UIViewController, UITableViewDelegate, UITableViewDataSou
     NavBarSetup.showLogoInNavBar(self.navigationController!, navItem: self.navigationItem)
   }
 
-  func showEmptyState(bool: Bool) {
+  func showEmptyState(_ bool: Bool) {
     if bool == true {
-      tableView.hidden = true
-      emptyStateView.hidden = false
+      tableView.isHidden = true
+      emptyStateView.isHidden = false
     } else {
-      tableView.hidden = false
-      emptyStateView.hidden = true
+      tableView.isHidden = false
+      emptyStateView.isHidden = true
     }
   }
 
@@ -46,14 +46,14 @@ class EddystoneScreen: UIViewController, UITableViewDelegate, UITableViewDataSou
 
 
   //MARK: - TableView Methods
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return eddystoneItems.count
   }
 
-  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-    let cell = tableView.dequeueReusableCellWithIdentifier(Cells.eddystoneCell, forIndexPath: indexPath) as! EddystoneCell
-    let eddystone = eddystoneItems[indexPath.row]
+    let cell = tableView.dequeueReusableCell(withIdentifier: Cells.eddystoneCell, for: indexPath) as! EddystoneCell
+    let eddystone = eddystoneItems[(indexPath as NSIndexPath).row]
     let eddystoneProximity = eddystone.proximity.rawValue
     var proximityString: String?
 
@@ -75,13 +75,13 @@ class EddystoneScreen: UIViewController, UITableViewDelegate, UITableViewDataSou
     let approximateDistance = (eddystone.rssi.floatValue)/(eddystone.measuredPower.floatValue)
     let distanceString = String(format: "\(proximityString!) (~ %.2f meters)", approximateDistance)
 
-    cell.nameLabel.text = eddystone.peripheralIdentifier.UUIDString
+    cell.nameLabel.text = eddystone.peripheralIdentifier.uuidString
     cell.locationLabel.text = distanceString
 
     return cell
   }
 
-  func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+  func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
     return true
   }
 
@@ -91,23 +91,23 @@ class EddystoneScreen: UIViewController, UITableViewDelegate, UITableViewDataSou
 
 //    let namespaceID = "EDD1EBEAC04E5DEFA017"
 //    let namespaceFilter = ESTEddystoneFilterUID(namespaceID: namespaceID)
-    self.eddystoneManager.startEddystoneDiscoveryWithFilter(nil)
+    self.eddystoneManager.startEddystoneDiscovery(with: nil)
 
   }
 
 
-  func eddystoneManager(manager: ESTEddystoneManager, didDiscoverEddystones eddystones: [ESTEddystone], withFilter eddystoneFilter: ESTEddystoneFilter?) {
+  func eddystoneManager(_ manager: ESTEddystoneManager, didDiscover eddystones: [ESTEddystone], with eddystoneFilter: ESTEddystoneFilter?) {
 
     eddystoneItems = eddystones
-    eddystoneItems.sortInPlace({ $1.proximity.rawValue > $0.proximity.rawValue })
+    eddystoneItems.sort(by: { $1.proximity.rawValue > $0.proximity.rawValue })
     checkForEmptyState()
 
-    dispatch_async(dispatch_get_main_queue()) {
+    DispatchQueue.main.async {
       self.tableView.reloadData()
     }
   }
 
-  func eddystoneManagerDidFailDiscovery(manager: ESTEddystoneManager, withError error: NSError?) {
+  private func eddystoneManagerDidFailDiscovery(_ manager: ESTEddystoneManager, withError error: NSError?) {
     print("Did Fail Discovery")
   }
   

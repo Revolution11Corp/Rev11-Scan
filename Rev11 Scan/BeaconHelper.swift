@@ -11,17 +11,17 @@ import UIKit
 
 class BeaconHelper {
 
-  class func intForProximity(proximity: CLProximity) -> Int {
+  class func intForProximity(_ proximity: CLProximity) -> Int {
 
     switch proximity {
       
-    case .Immediate:
+    case .immediate:
       return 0
-    case .Near:
+    case .near:
       return 1
-    case .Far:
+    case .far:
       return 2
-    case .Unknown:
+    case .unknown:
       return 3
     }
   }

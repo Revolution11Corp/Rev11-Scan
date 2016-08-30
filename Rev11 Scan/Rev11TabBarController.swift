@@ -29,13 +29,13 @@ class Rev11TabBarController: UITabBarController {
     menuButton.layer.cornerRadius = menuButtonFrame.height/2
     self.view.addSubview(menuButton)
 
-    menuButton.setImage(UIImage(named: "beacon-white"), forState: UIControlState.Normal)
-    menuButton.addTarget(self, action: #selector(Rev11TabBarController.menuButtonAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+    menuButton.setImage(UIImage(named: "beacon-white"), for: UIControlState())
+    menuButton.addTarget(self, action: #selector(Rev11TabBarController.menuButtonAction(_:)), for: UIControlEvents.touchUpInside)
 
     self.view.layoutIfNeeded()
   }
 
-  func menuButtonAction(sender: UIButton) {
+  func menuButtonAction(_ sender: UIButton) {
     self.selectedIndex = 1
   }
 }

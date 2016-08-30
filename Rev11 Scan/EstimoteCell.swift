@@ -24,7 +24,7 @@ class EstimoteCell: UITableViewCell {
     super.awakeFromNib()
   }
 
-  override func setSelected(selected: Bool, animated: Bool) {
+  override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
   }
 
@@ -36,8 +36,8 @@ class EstimoteCell: UITableViewCell {
       }
     }
     didSet {
-      beacon?.addObserver(self, forKeyPath: Keys.lastSeenEstimote, options: .New, context: nil)
-      uuidLabel!.text = beacon?.uuid!.UUIDString
+      beacon?.addObserver(self, forKeyPath: Keys.lastSeenEstimote, options: .new, context: nil)
+      uuidLabel!.text = beacon?.uuid!.uuidString
       nameLabel.text = beacon?.name
 
       if beacon != nil {
@@ -55,23 +55,23 @@ class EstimoteCell: UITableViewCell {
     beacon = nil
   }
 
-  func nameForProximity(proximity: CLProximity) -> String {
+  func nameForProximity(_ proximity: CLProximity) -> String {
 
     switch proximity {
 
-    case .Unknown:
+    case .unknown:
       beacon!.color = Colors.white
       return "Unknown"
 
-    case .Immediate:
+    case .immediate:
       beacon!.color = Colors.green
       return "Immediate: "
 
-    case .Near:
+    case .near:
       beacon!.color = Colors.yellow
       return "Near: "
 
-    case .Far:
+    case .far:
       beacon!.color = Colors.red
       return "Far: "
     }
