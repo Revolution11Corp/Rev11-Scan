@@ -15,6 +15,7 @@
 		1490637A1D4F014800637146 /* EstimoteBeacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149063791D4F014800637146 /* EstimoteBeacon.swift */; };
 		1496B1B31D6FE1A400DD0B2E /* NavBarSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1496B1B21D6FE1A400DD0B2E /* NavBarSetup.swift */; };
 		1496B1B61D6FE5A000DD0B2E /* BeaconHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1496B1B51D6FE5A000DD0B2E /* BeaconHelper.swift */; };
+		149F033B1D752EC40039ADEE /* QueryURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149F033A1D752EC40039ADEE /* QueryURL.swift */; };
 		14A6176F1D1BAB2B0083CFF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A6176E1D1BAB2B0083CFF2 /* AppDelegate.swift */; };
 		14A617741D1BAB2B0083CFF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14A617721D1BAB2B0083CFF2 /* Main.storyboard */; };
 		14A617761D1BAB2B0083CFF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14A617751D1BAB2B0083CFF2 /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 		149063791D4F014800637146 /* EstimoteBeacon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstimoteBeacon.swift; sourceTree = "<group>"; };
 		1496B1B21D6FE1A400DD0B2E /* NavBarSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBarSetup.swift; sourceTree = "<group>"; };
 		1496B1B51D6FE5A000DD0B2E /* BeaconHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconHelper.swift; sourceTree = "<group>"; };
+		149F033A1D752EC40039ADEE /* QueryURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryURL.swift; sourceTree = "<group>"; };
 		14A6176B1D1BAB2B0083CFF2 /* Rev11 Scan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rev11 Scan.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14A6176E1D1BAB2B0083CFF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14A617731D1BAB2B0083CFF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 		149063781D4EFFAF00637146 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				149F033A1D752EC40039ADEE /* QueryURL.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				14AD9E581D407E250085A044 /* BeaconCloudFactory.swift in Sources */,
 				145E215F1D45B91900571679 /* EddystoneCell.swift in Sources */,
 				14AD9E661D4466330085A044 /* EddystoneScreen.swift in Sources */,
+				149F033B1D752EC40039ADEE /* QueryURL.swift in Sources */,
 				14A6178E1D1BADF90083CFF2 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

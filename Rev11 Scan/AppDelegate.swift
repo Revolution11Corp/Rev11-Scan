@@ -18,14 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-//  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: Any]?) -> Bool {
-
     setupTabBar()
-
     ESTConfig.setupAppID(Keys.estimoteAppID, andAppToken: Keys.estimoteAppToken)
-
     URLParameter.sharedInstance.isFromFileMaker = false
-
     self.beaconManager.delegate = self
 
     let notificationType: UIUserNotificationType = [UIUserNotificationType.sound, UIUserNotificationType.alert]
@@ -34,19 +29,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
 
     locationManager.delegate = self
 
-//    let manager = Manager.sharedInstance
-//    manager.callbackURLScheme = Manager.URLSchemes?.first
-//
-//    CallbackURLKit.registerAction("rev11scan") { (parameters, success, failed, cancel) in
-//
-//      if let url = parameters["url"] {
-//        URLParameter.sharedInstance.baseURL = url
-//        URLParameter.sharedInstance.isFromFileMaker = true
-//      } else {
-//        print("No URL sent from source app")
-//        // handle error UI that user will see if they mess up their URL input in FileMaker
-//      }
-//    }
+    return true
+  }
+
+  func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+
+    if url.scheme! == "rev11scan" {
+
+      let parameters = url.query?.toQueryDictionary ?? [:]
+
+      if let url = parameters["url"] {
+        URLParameter.sharedInstance.baseURL = url
+        URLParameter.sharedInstance.isFromFileMaker = true
+      } else {
+        print("No URL sent from source app")
+        // handle error UI that user will see if they mess up their URL input in FileMaker
+      }
+    }
 
     return true
   }
@@ -64,11 +63,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
     UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Colors.white], for:UIControlState())
     UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Colors.blue], for:.selected)
 
-  }
-
-  func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-//    Manager.sharedInstance.handleOpenURL(url)
-    return true
   }
 
   private func beaconManager(_ manager: AnyObject, didEnter region: CLBeaconRegion) {
