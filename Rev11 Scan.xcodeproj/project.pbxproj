@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1446A6FF1D7BB7D200167BD1 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1446A6FE1D7BB7D200167BD1 /* ShareViewController.swift */; };
+		1446A7021D7BB7D200167BD1 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1446A7001D7BB7D200167BD1 /* MainInterface.storyboard */; };
+		1446A7061D7BB7D200167BD1 /* Rev11Scan-ShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1446A6FC1D7BB7D200167BD1 /* Rev11Scan-ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		14521AE71D51A03D007F38FB /* Rev11TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14521AE61D51A03D007F38FB /* Rev11TabBarController.swift */; };
 		145E215F1D45B91900571679 /* EddystoneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145E215E1D45B91900571679 /* EddystoneCell.swift */; };
 		145E21611D47D35F00571679 /* EstimoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145E21601D47D35F00571679 /* EstimoteCell.swift */; };
@@ -34,7 +37,37 @@
 		14E999F81D5044E1002AE9F1 /* BeaconID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E999F71D5044E0002AE9F1 /* BeaconID.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		1446A7041D7BB7D200167BD1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14A617631D1BAB2B0083CFF2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1446A6FB1D7BB7D200167BD1;
+			remoteInfo = "Rev11Scan-ShareExtension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1446A70A1D7BB7D200167BD1 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1446A7061D7BB7D200167BD1 /* Rev11Scan-ShareExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		1446A6FC1D7BB7D200167BD1 /* Rev11Scan-ShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Rev11Scan-ShareExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1446A6FE1D7BB7D200167BD1 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		1446A7011D7BB7D200167BD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		1446A7031D7BB7D200167BD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1446A70B1D7BB87000167BD1 /* Rev11Scan-ShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Rev11Scan-ShareExtension.entitlements"; sourceTree = "<group>"; };
+		1446A70C1D7BB89600167BD1 /* Rev11 Scan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Rev11 Scan.entitlements"; sourceTree = "<group>"; };
 		14521AE61D51A03D007F38FB /* Rev11TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rev11TabBarController.swift; sourceTree = "<group>"; };
 		145E215E1D45B91900571679 /* EddystoneCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EddystoneCell.swift; sourceTree = "<group>"; };
 		145E21601D47D35F00571679 /* EstimoteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstimoteCell.swift; sourceTree = "<group>"; };
@@ -66,6 +99,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1446A6F91D7BB7D200167BD1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14A617681D1BAB2B0083CFF2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -78,6 +118,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1446A6FD1D7BB7D200167BD1 /* Rev11Scan-ShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				1446A70B1D7BB87000167BD1 /* Rev11Scan-ShareExtension.entitlements */,
+				1446A6FE1D7BB7D200167BD1 /* ShareViewController.swift */,
+				1446A7001D7BB7D200167BD1 /* MainInterface.storyboard */,
+				1446A7031D7BB7D200167BD1 /* Info.plist */,
+			);
+			path = "Rev11Scan-ShareExtension";
+			sourceTree = "<group>";
+		};
 		149063781D4EFFAF00637146 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +152,7 @@
 			children = (
 				14A617991D1BAF1B0083CFF2 /* CoreBluetooth.framework */,
 				14A6176D1D1BAB2B0083CFF2 /* Rev11 Scan */,
+				1446A6FD1D7BB7D200167BD1 /* Rev11Scan-ShareExtension */,
 				14A6176C1D1BAB2B0083CFF2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -109,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				14A6176B1D1BAB2B0083CFF2 /* Rev11 Scan.app */,
+				1446A6FC1D7BB7D200167BD1 /* Rev11Scan-ShareExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -116,6 +169,7 @@
 		14A6176D1D1BAB2B0083CFF2 /* Rev11 Scan */ = {
 			isa = PBXGroup;
 			children = (
+				1446A70C1D7BB89600167BD1 /* Rev11 Scan.entitlements */,
 				1496B1B41D6FE1B000DD0B2E /* Classes */,
 				149063781D4EFFAF00637146 /* Extensions */,
 				147157991D331D4300B98EBA /* EstimoteSDK.framework */,
@@ -211,6 +265,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1446A6FB1D7BB7D200167BD1 /* Rev11Scan-ShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1446A7091D7BB7D200167BD1 /* Build configuration list for PBXNativeTarget "Rev11Scan-ShareExtension" */;
+			buildPhases = (
+				1446A6F81D7BB7D200167BD1 /* Sources */,
+				1446A6F91D7BB7D200167BD1 /* Frameworks */,
+				1446A6FA1D7BB7D200167BD1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Rev11Scan-ShareExtension";
+			productName = "Rev11Scan-ShareExtension";
+			productReference = 1446A6FC1D7BB7D200167BD1 /* Rev11Scan-ShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		14A6176A1D1BAB2B0083CFF2 /* Rev11 Scan */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 14A6177D1D1BAB2B0083CFF2 /* Build configuration list for PBXNativeTarget "Rev11 Scan" */;
@@ -218,10 +289,12 @@
 				14A617671D1BAB2B0083CFF2 /* Sources */,
 				14A617681D1BAB2B0083CFF2 /* Frameworks */,
 				14A617691D1BAB2B0083CFF2 /* Resources */,
+				1446A70A1D7BB7D200167BD1 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				1446A7051D7BB7D200167BD1 /* PBXTargetDependency */,
 			);
 			name = "Rev11 Scan";
 			productName = "Rev11 Scan";
@@ -234,14 +307,29 @@
 		14A617631D1BAB2B0083CFF2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Revolution11;
 				TargetAttributes = {
+					1446A6FB1D7BB7D200167BD1 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = H69U55MWXW;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					14A6176A1D1BAB2B0083CFF2 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = H69U55MWXW;
 						LastSwiftMigration = 0800;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -259,11 +347,20 @@
 			projectRoot = "";
 			targets = (
 				14A6176A1D1BAB2B0083CFF2 /* Rev11 Scan */,
+				1446A6FB1D7BB7D200167BD1 /* Rev11Scan-ShareExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1446A6FA1D7BB7D200167BD1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1446A7021D7BB7D200167BD1 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14A617691D1BAB2B0083CFF2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -277,6 +374,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1446A6F81D7BB7D200167BD1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1446A6FF1D7BB7D200167BD1 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14A617671D1BAB2B0083CFF2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -306,7 +411,23 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		1446A7051D7BB7D200167BD1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1446A6FB1D7BB7D200167BD1 /* Rev11Scan-ShareExtension */;
+			targetProxy = 1446A7041D7BB7D200167BD1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		1446A7001D7BB7D200167BD1 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1446A7011D7BB7D200167BD1 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		14A617721D1BAB2B0083CFF2 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -326,6 +447,45 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1446A7071D7BB7D200167BD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Rev11Scan-ShareExtension/Rev11Scan-ShareExtension.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = H69U55MWXW;
+				INFOPLIST_FILE = "Rev11Scan-ShareExtension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.revolution11.Rev11-Scan.Rev11Scan-ShareExtension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		1446A7081D7BB7D200167BD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Rev11Scan-ShareExtension/Rev11Scan-ShareExtension.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = H69U55MWXW;
+				INFOPLIST_FILE = "Rev11Scan-ShareExtension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.revolution11.Rev11-Scan.Rev11Scan-ShareExtension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		14A6177B1D1BAB2B0083CFF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -425,7 +585,9 @@
 		14A6177E1D1BAB2B0083CFF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Rev11 Scan/Rev11 Scan.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -443,7 +605,9 @@
 		14A6177F1D1BAB2B0083CFF2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Rev11 Scan/Rev11 Scan.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -461,6 +625,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1446A7091D7BB7D200167BD1 /* Build configuration list for PBXNativeTarget "Rev11Scan-ShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1446A7071D7BB7D200167BD1 /* Debug */,
+				1446A7081D7BB7D200167BD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		14A617661D1BAB2B0083CFF2 /* Build configuration list for PBXProject "Rev11 Scan" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
