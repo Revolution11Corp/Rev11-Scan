@@ -12,7 +12,7 @@ import MobileCoreServices
 
 class ShareViewController: SLComposeServiceViewController {
 
-  let suiteName = "group.deegeu.swift.share.extension"
+  let suiteName = "group.rev11scan"
 
   var selectedImage: UIImage?
 
@@ -21,6 +21,8 @@ class ShareViewController: SLComposeServiceViewController {
     }
 
   override func didSelectPost() {
+
+
     // This is called after the user selects Post.
     // Make sure we have a valid extension item
     if let content = extensionContext!.inputItems[0] as? NSExtensionItem {
@@ -37,6 +39,8 @@ class ShareViewController: SLComposeServiceViewController {
           if attachment.hasItemConformingToTypeIdentifier(contentType) {
             attachment.loadItem(forTypeIdentifier: contentType, options: nil) { data, error in
 
+              print("Data = \(data)")
+
               let url = data as! NSURL
 
               if let spreadsheetData = NSData(contentsOf: url as URL) {
@@ -50,13 +54,17 @@ class ShareViewController: SLComposeServiceViewController {
 
       // Inform the host that we're done, so it un-blocks its UI. Note: Alternatively you could call super's -didSelectPost, which will similarly complete the extension context.
       self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
+
+
   }
 
 // Need to convert "saveImage" to "saveFile" for .csv or .json.
 
   func saveSpreadsheet(data: NSData) {
-    let prefs = UserDefaults.standard
-    prefs.set(data, forKey: "spreadsheetFileAsData")
+
+    let prefs = UserDefaults(suiteName: suiteName)
+    prefs?.set(data, forKey: "spreadsheetFileAsData")
+    print("*** File As Data = \(prefs?.object(forKey: "spreadsheetFileAsData"))")
   }
 
   // Saves an image to user defaults.

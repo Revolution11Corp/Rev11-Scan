@@ -34,6 +34,7 @@
 		14AD9E581D407E250085A044 /* BeaconCloudFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AD9E571D407E250085A044 /* BeaconCloudFactory.swift */; };
 		14AD9E5E1D41C15B0085A044 /* EstimoteScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AD9E5D1D41C15B0085A044 /* EstimoteScreen.swift */; };
 		14AD9E661D4466330085A044 /* EddystoneScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AD9E651D4466330085A044 /* EddystoneScreen.swift */; };
+		14CA08251D7E55BA000D5764 /* EstimoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA08241D7E55BA000D5764 /* EstimoteSDK.framework */; };
 		14E999F81D5044E1002AE9F1 /* BeaconID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E999F71D5044E0002AE9F1 /* BeaconID.swift */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +96,7 @@
 		14AD9E571D407E250085A044 /* BeaconCloudFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconCloudFactory.swift; sourceTree = "<group>"; };
 		14AD9E5D1D41C15B0085A044 /* EstimoteScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstimoteScreen.swift; sourceTree = "<group>"; };
 		14AD9E651D4466330085A044 /* EddystoneScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EddystoneScreen.swift; sourceTree = "<group>"; };
+		14CA08241D7E55BA000D5764 /* EstimoteSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EstimoteSDK.framework; sourceTree = "<group>"; };
 		14E999F71D5044E0002AE9F1 /* BeaconID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconID.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14CA08251D7E55BA000D5764 /* EstimoteSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +124,7 @@
 		1446A6FD1D7BB7D200167BD1 /* Rev11Scan-ShareExtension */ = {
 			isa = PBXGroup;
 			children = (
+				14CA08241D7E55BA000D5764 /* EstimoteSDK.framework */,
 				1446A70B1D7BB87000167BD1 /* Rev11Scan-ShareExtension.entitlements */,
 				1446A6FE1D7BB7D200167BD1 /* ShareViewController.swift */,
 				1446A7001D7BB7D200167BD1 /* MainInterface.storyboard */,
@@ -456,6 +460,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = H69U55MWXW;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Rev11Scan-ShareExtension",
+				);
 				INFOPLIST_FILE = "Rev11Scan-ShareExtension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -476,6 +484,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = H69U55MWXW;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Rev11Scan-ShareExtension",
+				);
 				INFOPLIST_FILE = "Rev11Scan-ShareExtension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
