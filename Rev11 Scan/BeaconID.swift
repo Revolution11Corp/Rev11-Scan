@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation 
 
 struct BeaconID: Equatable, CustomStringConvertible, Hashable {
 

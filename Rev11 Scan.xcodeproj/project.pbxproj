@@ -632,6 +632,7 @@
 				1446A7081D7BB7D200167BD1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		14A617661D1BAB2B0083CFF2 /* Build configuration list for PBXProject "Rev11 Scan" */ = {
 			isa = XCConfigurationList;
