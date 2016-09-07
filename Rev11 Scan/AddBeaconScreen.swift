@@ -160,6 +160,8 @@ class AddBeaconScreen: UIViewController, UITextFieldDelegate {
   func dismissKeyboard() {
     view.endEditing(true)
   }
+
+  
   
   
   

@@ -35,6 +35,30 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 //    findEddystones()
   }
 
+  @IBAction func readCSVPressed(_ sender: UIButton) {
+
+    let defaults = UserDefaults(suiteName: "group.rev11scan")
+
+    let data = defaults?.data(forKey: "spreadsheetFileAsData")
+
+    print("data = \(data)")
+
+    let dataString = String(data: data!, encoding: .utf8)
+
+    print("dataString = \(dataString)")
+
+    let csv = CSVParser(with: dataString!)
+
+    let rows = csv.rows
+    let headers = csv.headers
+    let keyedRows = csv.keyedRows
+
+    print("Rows = \(rows)")
+    print("headers = \(headers)")
+    print("keyedRows = \(keyedRows)")
+  }
+
+
   func loadiBeacons() {
     if let storedBeacons = UserDefaults.standard.array(forKey: BeaconListScreenConstant.storedBeaconsKey) {
 

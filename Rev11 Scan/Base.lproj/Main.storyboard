@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11198.2" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="g6g-Rq-njg">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -63,6 +62,7 @@
                         <segue destination="yig-Su-2qE" kind="relationship" relationship="viewControllers" id="TPy-rz-6UX"/>
                         <segue destination="Hl3-lm-Dxz" kind="relationship" relationship="viewControllers" id="Jva-4u-42M"/>
                         <segue destination="rAc-pu-rsj" kind="relationship" relationship="viewControllers" id="g58-TY-ImE"/>
+                        <segue destination="3E0-IQ-nMh" kind="relationship" relationship="viewControllers" id="GV6-G3-Ynd"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IR4-3X-tTu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -88,7 +88,7 @@
                                         <rect key="frame" x="0.0" y="92" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vOn-hW-SjT" id="yFs-jH-Kmj">
-                                            <frame key="frameInset" width="328" height="80"/>
+                                            <frame key="frameInset" width="328" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibeacon-logo" translatesAutoresizingMaskIntoConstraints="NO" id="PfF-48-aoW">
@@ -144,10 +144,22 @@
                                     <outlet property="delegate" destination="x8K-YJ-Js2" id="DhI-Q0-ywC"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dxe-Be-7uq">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="d1H-W8-L4m"/>
+                                    <constraint firstAttribute="width" constant="375" id="eCq-vx-tHJ"/>
+                                </constraints>
+                                <state key="normal" title="Read CSV"/>
+                                <connections>
+                                    <action selector="readCSVPressed:" destination="x8K-YJ-Js2" eventType="touchUpInside" id="lB4-t3-FwL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="eYw-Yr-E88" firstAttribute="leading" secondItem="Kcx-cA-3kl" secondAttribute="leading" id="Ekz-zl-QCv"/>
+                            <constraint firstItem="Dxe-Be-7uq" firstAttribute="centerY" secondItem="Kcx-cA-3kl" secondAttribute="centerY" id="NqJ-xu-uKS"/>
+                            <constraint firstItem="Dxe-Be-7uq" firstAttribute="centerX" secondItem="Kcx-cA-3kl" secondAttribute="centerX" id="TEG-fh-sCx"/>
                             <constraint firstItem="Qqo-D6-w8j" firstAttribute="top" secondItem="eYw-Yr-E88" secondAttribute="bottom" id="iih-Ke-0HE"/>
                             <constraint firstAttribute="trailing" secondItem="eYw-Yr-E88" secondAttribute="trailing" id="qga-85-noD"/>
                             <constraint firstItem="eYw-Yr-E88" firstAttribute="top" secondItem="Kcx-cA-3kl" secondAttribute="top" id="qtZ-lS-fp8"/>
@@ -166,7 +178,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J7g-PT-fHa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1009" y="-1594"/>
+            <point key="canvasLocation" x="1009" y="-1260"/>
         </scene>
         <!--Beacons-->
         <scene sceneID="MKT-Mq-hbX">
@@ -185,7 +197,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l62-0c-Z1M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="302" y="-1594"/>
+            <point key="canvasLocation" x="302" y="-1260"/>
         </scene>
         <!--Add Beacon-->
         <scene sceneID="t26-oX-zzq">
@@ -386,10 +398,10 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="FTL-V2-QsS"/>
+                                <exclude reference="v3s-LX-Pcp"/>
                                 <exclude reference="9oB-yC-UxT"/>
                                 <exclude reference="RAS-BN-eu8"/>
                                 <exclude reference="YEr-xn-ZFR"/>
-                                <exclude reference="v3s-LX-Pcp"/>
                             </mask>
                         </variation>
                     </view>
@@ -441,7 +453,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MVQ-zW-Tja" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="VNL-Dl-Cbo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2459" y="-1594"/>
+            <point key="canvasLocation" x="2458" y="-1260"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zyJ-4O-OtQ">
@@ -459,7 +471,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EC8-lz-W5d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1728" y="-1594"/>
+            <point key="canvasLocation" x="1727" y="-1260"/>
         </scene>
         <!--Estimote List-->
         <scene sceneID="Qhd-id-ATk">
@@ -735,14 +747,14 @@
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
+                                                    <exclude reference="CWm-F1-rU1"/>
+                                                    <exclude reference="RdS-8a-3Qg"/>
+                                                    <exclude reference="h6H-sW-VZB"/>
                                                     <exclude reference="6tg-2p-6kE"/>
                                                     <exclude reference="EqU-w9-Pdc"/>
                                                     <exclude reference="Ov9-4O-4qI"/>
                                                     <exclude reference="WUI-GE-slX"/>
                                                     <exclude reference="tly-jP-f81"/>
-                                                    <exclude reference="CWm-F1-rU1"/>
-                                                    <exclude reference="RdS-8a-3Qg"/>
-                                                    <exclude reference="h6H-sW-VZB"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>

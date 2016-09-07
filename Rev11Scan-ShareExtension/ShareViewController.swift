@@ -22,12 +22,12 @@ class ShareViewController: SLComposeServiceViewController {
 
   override func didSelectPost() {
 
-
-    // This is called after the user selects Post.
     // Make sure we have a valid extension item
     if let content = extensionContext!.inputItems[0] as? NSExtensionItem {
-//       let contentType = kUTTypeImage as String
-      let contentType = kUTTypeSpreadsheet as String
+
+//      let contentType = kUTTypeImage as String
+//      let contentType = kUTTypeSpreadsheet as String
+      let contentType = kUTTypeCommaSeparatedText as String
       // A couple kUTTypes that might work... kUTTypeJSON, kUTTypeCommaSeparatedText, kUTTypeSpreadsheet, kUTTypeFileURL
 
       // Verify the provider is valid
