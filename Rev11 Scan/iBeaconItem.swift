@@ -10,50 +10,54 @@ import UIKit
 import Foundation
 import CoreLocation
 
-
-class iBeaconItem: NSObject, NSCoding {
+// Add NSCoding after NSObject if you want to persist beacons by coding/decoding them
+class iBeaconItem: NSObject {
 
   let name: String
   let uuid: UUID
   let majorValue: CLBeaconMajorValue
   let minorValue: CLBeaconMinorValue
+  let imageURL: String
+  let actionURL: String
 
   var color: UIColor?
 
   dynamic var lastSeenBeacon: CLBeacon?
 
-  init(name: String, uuid: UUID, majorValue: CLBeaconMajorValue?, minorValue: CLBeaconMinorValue?, color: UIColor) {
+  init(name: String, uuid: UUID, majorValue: CLBeaconMajorValue?, minorValue: CLBeaconMinorValue?, imageURL: String, actionURL: String, color: UIColor) {
     self.name = name
     self.uuid = uuid
     self.majorValue = majorValue!
     self.minorValue = minorValue!
+    self.imageURL = imageURL
+    self.actionURL = actionURL
     self.color = Colors.white
   }
 
   // MARK: NSCoding
-  required init?(coder aDecoder: NSCoder) {
-    if let aName = aDecoder.decodeObject(forKey: BeaconProperties.nameKey) as? String {
-      name = aName
-    }
-    else {
-      name = ""
-    }
-    if let aUUID = aDecoder.decodeObject(forKey: BeaconProperties.uuidKey) as? UUID {
-      uuid = aUUID
-    }
-    else {
-      uuid = UUID()
-    }
-    majorValue = UInt16(aDecoder.decodeInteger(forKey: BeaconProperties.majorKey))
-    minorValue = UInt16(aDecoder.decodeInteger(forKey: BeaconProperties.minorKey))
-  }
-
-  func encode(with aCoder: NSCoder) {
-    aCoder.encode(name, forKey: BeaconProperties.nameKey)
-    aCoder.encode(uuid, forKey: BeaconProperties.uuidKey)
-    aCoder.encode(Int(majorValue), forKey: BeaconProperties.majorKey)
-    aCoder.encode(Int(minorValue), forKey: BeaconProperties.minorKey)
-  }
+//  required init?(coder aDecoder: NSCoder) {
+//    if let aName = aDecoder.decodeObject(forKey: BeaconProperties.nameKey) as? String {
+//      name = aName
+//    }
+//    else {
+//      name = ""
+//    }
+//    if let aUUID = aDecoder.decodeObject(forKey: BeaconProperties.uuidKey) as? UUID {
+//      uuid = aUUID
+//    }
+//    else {
+//      uuid = UUID()
+//    }
+//    majorValue = UInt16(aDecoder.decodeInteger(forKey: BeaconProperties.majorKey))
+//    minorValue = UInt16(aDecoder.decodeInteger(forKey: BeaconProperties.minorKey))
+//  }
+//
+//  func encode(with aCoder: NSCoder) {
+//    aCoder.encode(name, forKey: BeaconProperties.nameKey)
+//    aCoder.encode(uuid, forKey: BeaconProperties.uuidKey)
+//    aCoder.encode(Int(majorValue), forKey: BeaconProperties.majorKey)
+//    aCoder.encode(Int(minorValue), forKey: BeaconProperties.minorKey)
+//  }
 
 }
 

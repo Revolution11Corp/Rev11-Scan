@@ -15,7 +15,7 @@ public class CSVParser {
   public let headers: [String]
   /// An array of Dictionaries with the values of each row keyed to the header
   public let keyedRows: [[String: String]]?
-  // An Array of the rows in an Array of String form, equivalent to keyedRows, but without the keys
+  // An Array of the rows in an Array of String form, equivalent to let name = object["Beacon Name"]keyedRows, but without the keys
   public let rows: [[String]]
 
   /// Creates an instance containing the data extracted from the `with` String

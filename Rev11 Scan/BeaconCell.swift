@@ -8,12 +8,14 @@
 
 import UIKit
 import CoreLocation
+import SafariServices
 
 class BeaconCell: UITableViewCell {
 
   @IBOutlet weak var beaconTypeImage: UIImageView!
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var locationLabel: UILabel!
+  @IBOutlet weak var actionURLButton: UIButton!
 
 
   override func awakeFromNib() {
@@ -81,4 +83,5 @@ class BeaconCell: UITableViewCell {
       }
     }
   }
+
 }

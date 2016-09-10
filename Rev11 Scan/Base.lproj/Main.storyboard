@@ -49,10 +49,10 @@
             </objects>
             <point key="canvasLocation" x="1114" y="-485"/>
         </scene>
-        <!--Rev11 Tab Bar Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="DgY-bJ-GuN">
             <objects>
-                <tabBarController id="g6g-Rq-njg" customClass="Rev11TabBarController" customModule="Rev11_Scan" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="g6g-Rq-njg" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Pe6-cW-aUE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -81,14 +81,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eYw-Yr-E88">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eYw-Yr-E88">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="BeaconCell" id="vOn-hW-SjT" customClass="BeaconCell" customModule="Rev11_Scan" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="92" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vOn-hW-SjT" id="yFs-jH-Kmj">
-                                            <frame key="frameInset" width="328" height="79"/>
+                                            <frame key="frameInset" width="328" height="119"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibeacon-logo" translatesAutoresizingMaskIntoConstraints="NO" id="PfF-48-aoW">
@@ -113,15 +113,27 @@
                                                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PgI-2C-EWf">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="250" id="SZu-Ph-Sqh"/>
+                                                        <constraint firstAttribute="height" constant="30" id="oLr-ke-3X9"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" title="Action URL">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="PfF-48-aoW" firstAttribute="leading" secondItem="yFs-jH-Kmj" secondAttribute="leading" constant="15" id="A7z-Fk-f5L"/>
-                                                <constraint firstItem="PfF-48-aoW" firstAttribute="top" secondItem="ezu-ql-n6M" secondAttribute="bottom" constant="-25" id="DEU-0p-ABJ"/>
-                                                <constraint firstItem="1GS-cO-Emp" firstAttribute="top" secondItem="ezu-ql-n6M" secondAttribute="bottom" constant="-3" id="Ko5-w9-3kc"/>
+                                                <constraint firstItem="PfF-48-aoW" firstAttribute="top" secondItem="ezu-ql-n6M" secondAttribute="bottom" constant="-17.5" id="DEU-0p-ABJ"/>
+                                                <constraint firstItem="PgI-2C-EWf" firstAttribute="leading" secondItem="1GS-cO-Emp" secondAttribute="leading" id="JgV-76-Dov"/>
+                                                <constraint firstItem="1GS-cO-Emp" firstAttribute="top" secondItem="ezu-ql-n6M" secondAttribute="bottom" constant="-1.5" id="Ko5-w9-3kc"/>
                                                 <constraint firstItem="1GS-cO-Emp" firstAttribute="leading" secondItem="PfF-48-aoW" secondAttribute="trailing" constant="10" id="Omv-Ru-QBk"/>
                                                 <constraint firstAttribute="trailing" secondItem="ezu-ql-n6M" secondAttribute="trailing" constant="8" id="Pbh-so-IeI"/>
                                                 <constraint firstItem="PfF-48-aoW" firstAttribute="centerY" secondItem="yFs-jH-Kmj" secondAttribute="centerY" id="Ygy-hx-woK"/>
                                                 <constraint firstItem="ezu-ql-n6M" firstAttribute="leading" secondItem="PfF-48-aoW" secondAttribute="trailing" constant="10" id="Z0C-An-k4j"/>
+                                                <constraint firstItem="PgI-2C-EWf" firstAttribute="top" secondItem="1GS-cO-Emp" secondAttribute="bottom" constant="-2" id="axM-F3-n87"/>
                                                 <constraint firstItem="ezu-ql-n6M" firstAttribute="leading" secondItem="PfF-48-aoW" secondAttribute="trailing" constant="10" id="g2d-tk-N1g"/>
                                                 <constraint firstAttribute="trailing" secondItem="1GS-cO-Emp" secondAttribute="trailing" constant="8" id="zMM-Ke-KOm"/>
                                             </constraints>
@@ -133,6 +145,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="actionURLButton" destination="PgI-2C-EWf" id="Ofa-S0-rvA"/>
                                             <outlet property="beaconTypeImage" destination="PfF-48-aoW" id="otC-fO-hD7"/>
                                             <outlet property="locationLabel" destination="1GS-cO-Emp" id="eJG-33-H5P"/>
                                             <outlet property="nameLabel" destination="ezu-ql-n6M" id="pfl-L1-V5H"/>
@@ -144,22 +157,10 @@
                                     <outlet property="delegate" destination="x8K-YJ-Js2" id="DhI-Q0-ywC"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dxe-Be-7uq">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="d1H-W8-L4m"/>
-                                    <constraint firstAttribute="width" constant="375" id="eCq-vx-tHJ"/>
-                                </constraints>
-                                <state key="normal" title="Read CSV"/>
-                                <connections>
-                                    <action selector="readCSVPressed:" destination="x8K-YJ-Js2" eventType="touchUpInside" id="lB4-t3-FwL"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="eYw-Yr-E88" firstAttribute="leading" secondItem="Kcx-cA-3kl" secondAttribute="leading" id="Ekz-zl-QCv"/>
-                            <constraint firstItem="Dxe-Be-7uq" firstAttribute="centerY" secondItem="Kcx-cA-3kl" secondAttribute="centerY" id="NqJ-xu-uKS"/>
-                            <constraint firstItem="Dxe-Be-7uq" firstAttribute="centerX" secondItem="Kcx-cA-3kl" secondAttribute="centerX" id="TEG-fh-sCx"/>
                             <constraint firstItem="Qqo-D6-w8j" firstAttribute="top" secondItem="eYw-Yr-E88" secondAttribute="bottom" id="iih-Ke-0HE"/>
                             <constraint firstAttribute="trailing" secondItem="eYw-Yr-E88" secondAttribute="trailing" id="qga-85-noD"/>
                             <constraint firstItem="eYw-Yr-E88" firstAttribute="top" secondItem="Kcx-cA-3kl" secondAttribute="top" id="qtZ-lS-fp8"/>
@@ -178,13 +179,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J7g-PT-fHa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1009" y="-1260"/>
+            <point key="canvasLocation" x="1008.8" y="-1260.7196401799101"/>
         </scene>
         <!--Beacons-->
         <scene sceneID="MKT-Mq-hbX">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3E0-IQ-nMh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Beacons" image="beacon" id="Gi8-g2-rh5"/>
+                    <tabBarItem key="tabBarItem" title="Beacons" image="beacon-white" id="Gi8-g2-rh5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="u6B-Yp-A9s">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -811,11 +812,11 @@
             </objects>
             <point key="canvasLocation" x="1060" y="1175"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Estimote-->
         <scene sceneID="eDb-2A-pQK">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Hl3-lm-Dxz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" id="gJ2-6t-eUu"/>
+                    <tabBarItem key="tabBarItem" title="Estimote" image="beacon-white" id="gJ2-6t-eUu"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YR8-qt-mLI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -870,7 +871,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="beacon" width="30" height="30"/>
+        <image name="beacon-white" width="40" height="40"/>
         <image name="eddystone-logo" width="171" height="171"/>
         <image name="eddystone-tabbar-white" width="30" height="30"/>
         <image name="ibeacon-logo" width="150" height="150"/>

@@ -132,22 +132,22 @@ class AddBeaconScreen: UIViewController, UITextFieldDelegate {
     }
   }
 
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "SaveBeacon" {
-
-      if switchIsOn == true {
-        let uuid = UUID(uuidString: uuidTextField.text!)
-
-        let major: CLBeaconMajorValue = UInt16(Int(majorTextField.text!)!)
-        let minor: CLBeaconMinorValue = UInt16(Int(minorTextField.text!)!)
-        newBeacon = iBeaconItem(name: nameTextField.text!, uuid: (uuid! as NSUUID) as UUID, majorValue: major, minorValue: minor, color: Colors.white)
-
-      } else {
-
-
-      }
-    }
-  }
+//  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//    if segue.identifier == "SaveBeacon" {
+//
+//      if switchIsOn == true {
+//        let uuid = UUID(uuidString: uuidTextField.text!)
+//
+//        let major: CLBeaconMajorValue = UInt16(Int(majorTextField.text!)!)
+//        let minor: CLBeaconMinorValue = UInt16(Int(minorTextField.text!)!)
+//        newBeacon = iBeaconItem(name: nameTextField.text!, uuid: (uuid! as NSUUID) as UUID, majorValue: major, minorValue: minor, color: Colors.white)
+//
+//      } else {
+//
+//
+//      }
+//    }
+//  }
 
 
   // MARK: - Keyboard Functions

@@ -8,67 +8,112 @@
 
 import UIKit
 import CoreLocation
+import SafariServices
 
 struct BeaconListScreenConstant {
   static let storedBeaconsKey = "storedBeacons"
   static let storedEddystones = "storedEddystones"
 }
 
-class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, ESTEddystoneManagerDelegate {
+class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
 
   @IBOutlet weak var tableView: UITableView!
 
-//  var eddystoneScanner: EddystoneScanner!
   var iBeacons: [iBeaconItem] = []
-//  var eddystones: [BeaconInfo] = []
   let locationManager = CLLocationManager()
-  let eddystoneManager = ESTEddystoneManager()
 
   override func viewDidLoad() {
     super.viewDidLoad()
     locationManager.delegate = self
     locationManager.requestAlwaysAuthorization()
-    loadiBeacons()
-//    setupEddystoneScanner()
-    eddystoneManager.delegate = self
-
-//    findEddystones()
+    readSharedCSV()
   }
 
-  @IBAction func readCSVPressed(_ sender: UIButton) {
+  func readSharedCSV() {
+    // handle empty state for when a CSV has not been shared yet.
 
     let defaults = UserDefaults(suiteName: "group.rev11scan")
-
     let data = defaults?.data(forKey: "spreadsheetFileAsData")
-
-    print("data = \(data)")
-
     let dataString = String(data: data!, encoding: .utf8)
-
-    print("dataString = \(dataString)")
 
     let csv = CSVParser(with: dataString!)
 
-    let rows = csv.rows
-    let headers = csv.headers
-    let keyedRows = csv.keyedRows
+    for object in csv.keyedRows! {
 
-    print("Rows = \(rows)")
-    print("headers = \(headers)")
-    print("keyedRows = \(keyedRows)")
-  }
+      //Need to handle nils, for when the spreadsheet has blank spots
+      let name = object["Beacon Name"]
+      let uuid = object["UUID"]?.convertToUUID()
+      let major = object["Major"]?.convertToMajorValue()
+      let minor = object["Minor"]?.convertToMinorValue()
+      let imageURL = object["Image URL"]
+      let actionURL = object["Action URL"]
+      let color = Colors.white
 
+      let newBeacon = iBeaconItem(name: name!, uuid: uuid!, majorValue: major, minorValue: minor, imageURL: imageURL!, actionURL: actionURL!, color: color)
 
-  func loadiBeacons() {
-    if let storedBeacons = UserDefaults.standard.array(forKey: BeaconListScreenConstant.storedBeaconsKey) {
-
-      for beaconData in storedBeacons {
-        let beacon = NSKeyedUnarchiver.unarchiveObject(with: beaconData as! Data) as! iBeaconItem
-        iBeacons.append(beacon)
-        startMonitoringBeacon(beacon)
-      }
+      iBeacons.append(newBeacon)
+      startMonitoringBeacon(newBeacon)
     }
+    
+    tableView.reloadData()
   }
+
+//  @IBAction func readCSVPressed(_ sender: UIButton) {
+//
+//    let defaults = UserDefaults(suiteName: "group.rev11scan")
+//
+//    let data = defaults?.data(forKey: "spreadsheetFileAsData")
+//
+//    print("data = \(data)")
+//
+//    let dataString = String(data: data!, encoding: .utf8)
+//
+//    print("dataString = \(dataString)")
+//
+//    let csv = CSVParser(with: dataString!)
+//
+//    let rows = csv.rows
+//    let headers = csv.headers
+//    let keyedRows = csv.keyedRows
+//
+//    print("Rows = \(rows)")
+//    print("headers = \(headers)")
+//    print("keyedRows = \(keyedRows)")
+//
+//    print("Keyed Rows Count = \(keyedRows?.count)")
+//
+//    for object in keyedRows! {
+//
+//      //Need to handle nils, for when the spreadsheet has blank spots
+//      let name = object["Beacon Name"]
+//      let uuid = object["UUID"]?.convertToUUID()
+//      let major = object["Major"]?.convertToMajorValue()
+//      let minor = object["Minor"]?.convertToMinorValue()
+//      let imageURL = object["Image URL"]
+//      let actionURL = object["Action URL"]
+//      let color = Colors.white
+//
+//      let newBeacon = iBeaconItem(name: name!, uuid: uuid!, majorValue: major, minorValue: minor, imageURL: imageURL!, actionURL: actionURL!, color: color)
+//
+//      iBeacons.append(newBeacon)
+//      startMonitoringBeacon(newBeacon)
+//
+//      
+//    }
+//
+//    tableView.reloadData()
+//  }
+
+//  func loadiBeacons() {
+//    if let storedBeacons = UserDefaults.standard.array(forKey: BeaconListScreenConstant.storedBeaconsKey) {
+//
+//      for beaconData in storedBeacons {
+//        let beacon = NSKeyedUnarchiver.unarchiveObject(with: beaconData as! Data) as! iBeaconItem
+//        iBeacons.append(beacon)
+//        startMonitoringBeacon(beacon)
+//      }
+//    }
+//  }
 
   @IBAction func cancel(_ segue: UIStoryboardSegue) {
     // Do nothing
@@ -85,6 +130,8 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     let beacon = iBeacons[(indexPath as NSIndexPath).row]
 
     cell.beacon = beacon
+    cell.actionURLButton.tag = indexPath.row
+    cell.actionURLButton.addTarget(self, action: #selector(BeaconListScreen.actionURLPressed(sender:)), for: .touchUpInside)
 
     return cell
   }
@@ -120,6 +167,17 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     detailAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
 
     present(detailAlert, animated: true, completion: nil)
+    
+  }
+
+  func actionURLPressed(sender: UIButton) {
+
+    let beaconRow = sender.tag
+    let selectedBeacon = iBeacons[beaconRow]
+
+    let url = URL(string: (selectedBeacon.actionURL))
+    let vc = SFSafariViewController(url: url!, entersReaderIfAvailable: true)
+    present(vc, animated: true, completion: nil)
   }
 
   //MARK: - Beacon Monitoring
@@ -142,7 +200,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
   }
 
   //MARK: - Save and Persist Beacons
-
   @IBAction func saveBeacon(_ segue: UIStoryboardSegue) {
 
     let addBeaconScreen = segue.source as! AddBeaconScreen
@@ -173,7 +230,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
   }
 
   //MARK: - Core Location Methods
-
   func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
     print("Failed monitoring region: \(error.localizedDescription)")
   }
@@ -195,89 +251,4 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
       }
     }
   }
-
-  //MARK: - Eddystone Methods
-
-//  func setupEddystoneScanner() {
-//    eddystoneScanner = EddystoneScanner()
-//    eddystoneScanner!.delegate = self
-//    eddystoneScanner!.startScanning()
-//  }
-//
-//  func didFindBeacon(beaconScanner: EddystoneScanner, beaconInfo: BeaconInfo) {
-////    NSLog("FIND: %@", beaconInfo.description)
-//  }
-//  func didLoseBeacon(beaconScanner: EddystoneScanner, beaconInfo: BeaconInfo) {
-////    NSLog("LOST: %@", beaconInfo.description)
-//  }
-//  func didUpdateBeacon(beaconScanner: EddystoneScanner, beaconInfo: BeaconInfo) {
-////    NSLog("UPDATE: %@", beaconInfo.description)
-//  }
-//  func didObserveURLBeacon(beaconScanner: EddystoneScanner, URL: NSURL, RSSI: Int) {
-////    NSLog("URL SEEN: %@, RSSI: %d", URL, RSSI)
-//  }
-
-
-
-
-//  func findEddystones() {
-//
-//    // filter by namespace
-//    let namespaceID = "EDD1EBEAC04E5DEFA017"
-////    let namespaceID = "EDD1EBEAC04E5DEF8888"
-//    let namespaceFilter = ESTEddystoneFilterUID(namespaceID: namespaceID)
-//    self.eddystoneManager.startEddystoneDiscoveryWithFilter(namespaceFilter)
-
-//    // filter by URL
-//    let urlFilter = ESTEddystoneFilterURL(URL: "http://my.restaurant.com/new-york-city")
-//    self.eddystoneManager.startEddystoneDiscoveryWithFilter(urlFilter)
-//
-//    // filter by domain name
-//    let domainNameFilter = ESTEddystoneFilterURLDomain(URLDomain: "my.restaurant.com")
-//    self.eddystoneManager.startEddystoneDiscoveryWithFilter(domainNameFilter)
-
-
-
-
-
-
-//  }
-
-//  func eddystoneManager(manager: ESTEddystoneManager!, didDiscoverEddystones eddystones: [AnyObject]!, withFilter eddystoneFilter: ESTEddystoneFilter!) {
-//
-//    print(eddystones)
-//
-//
-//  }
-
-//  func eddystoneManager(manager: ESTEddystoneManager, didDiscoverEddystones eddystones: [ESTEddystone], withFilter eddystoneFilter: ESTEddystoneFilter?) {
-////    print(eddystones)
-//
-//    for thing in eddystones {
-//      print("UUID Sting = \(thing.peripheralIdentifier.UUIDString)")
-//      print("Accuracy = \(thing.accuracy)")
-//      print("Discovery Date = \(thing.discoveryDate)")
-//      print("Is Equal To Eddystone (self) = \(thing.isEqualToEddystone(thing))")
-//      print("Mac Address = \(thing.macAddress)")
-//      print("Measured Power = \(thing.measuredPower)")
-//      print("RSSI = \(thing.rssi)")
-//      print("Proximity Zone = \(thing.proximity.rawValue)")
-//    }
-//
-////      estimoteCloudManager.fetchBeaconDetails("D380ABAF-6096-5015-134D-39107D3CA712", completion: { (beacon, error) in
-////      print(beacon.debug)
-////     })
-//  }
-//
-//  func eddystoneManagerDidFailDiscovery(manager: ESTEddystoneManager, withError error: NSError?) {
-//    print("Did Fail Discovery")
-//  }
-
-
-
-
-
-
-
-
 }

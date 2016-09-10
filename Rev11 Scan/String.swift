@@ -17,5 +17,22 @@ extension String {
   var isNotEmptyOrWhitespace: Bool {
     return !isEmptyOrWhitespace
   }
-  
+
+  func convertToUUID() -> UUID {
+    let convertedString = UUID(uuidString: self)
+    return convertedString!
+  }
+
+  func convertToMajorValue() -> CLBeaconMajorValue {
+    let convertedToInt = Int(self)
+    let convertedToMajorValue = CLBeaconMajorValue(convertedToInt!)
+    return convertedToMajorValue
+  }
+
+  func convertToMinorValue() -> CLBeaconMinorValue {
+    let convertedToInt = Int(self)
+    let convertedToMinorValue = CLBeaconMinorValue(convertedToInt!)
+    return convertedToMinorValue
+  }
+
 }
