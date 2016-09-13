@@ -152,6 +152,7 @@
 				1496B1B21D6FE1A400DD0B2E /* NavBarSetup.swift */,
 				14521AE61D51A03D007F38FB /* Rev11TabBarController.swift */,
 				1496B1B51D6FE5A000DD0B2E /* BeaconHelper.swift */,
+				14B9CC8B1D7FB93000B666FC /* CSVParser.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -190,7 +191,6 @@
 				14A617721D1BAB2B0083CFF2 /* Main.storyboard */,
 				14A617751D1BAB2B0083CFF2 /* Assets.xcassets */,
 				1471579B1D331DA600B98EBA /* ObjcBridge.h */,
-				14B9CC8B1D7FB93000B666FC /* CSVParser.swift */,
 			);
 			path = "Rev11 Scan";
 			sourceTree = "<group>";

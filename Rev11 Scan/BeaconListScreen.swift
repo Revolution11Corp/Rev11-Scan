@@ -10,17 +10,17 @@ import UIKit
 import CoreLocation
 import SafariServices
 
-struct BeaconListScreenConstant {
-  static let storedBeaconsKey = "storedBeacons"
-  static let storedEddystones = "storedEddystones"
-}
 
 class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
 
   @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var emptyStateLabel: UILabel!
 
-  var iBeacons: [iBeaconItem] = []
   let locationManager = CLLocationManager()
+  var iBeacons: [iBeaconItem] = []
+  var uuidRegex = try! NSRegularExpression(pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", options: .caseInsensitive)
+  var UUIDFieldValid = false
+
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -54,66 +54,55 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
       iBeacons.append(newBeacon)
       startMonitoringBeacon(newBeacon)
     }
+
+    if iBeacons.count == 0 {
+      emptyStateLabel.isHidden = false
+    } else {
+      emptyStateLabel.isHidden = true
+    }
     
     tableView.reloadData()
   }
 
-//  @IBAction func readCSVPressed(_ sender: UIButton) {
-//
-//    let defaults = UserDefaults(suiteName: "group.rev11scan")
-//
-//    let data = defaults?.data(forKey: "spreadsheetFileAsData")
-//
-//    print("data = \(data)")
-//
-//    let dataString = String(data: data!, encoding: .utf8)
-//
-//    print("dataString = \(dataString)")
-//
-//    let csv = CSVParser(with: dataString!)
-//
-//    let rows = csv.rows
-//    let headers = csv.headers
-//    let keyedRows = csv.keyedRows
-//
-//    print("Rows = \(rows)")
-//    print("headers = \(headers)")
-//    print("keyedRows = \(keyedRows)")
-//
-//    print("Keyed Rows Count = \(keyedRows?.count)")
-//
-//    for object in keyedRows! {
-//
-//      //Need to handle nils, for when the spreadsheet has blank spots
-//      let name = object["Beacon Name"]
-//      let uuid = object["UUID"]?.convertToUUID()
-//      let major = object["Major"]?.convertToMajorValue()
-//      let minor = object["Minor"]?.convertToMinorValue()
-//      let imageURL = object["Image URL"]
-//      let actionURL = object["Action URL"]
-//      let color = Colors.white
-//
-//      let newBeacon = iBeaconItem(name: name!, uuid: uuid!, majorValue: major, minorValue: minor, imageURL: imageURL!, actionURL: actionURL!, color: color)
-//
-//      iBeacons.append(newBeacon)
-//      startMonitoringBeacon(newBeacon)
-//
-//      
-//    }
-//
-//    tableView.reloadData()
-//  }
+  @IBAction func changeUUIDButtonPressed(_ sender: UIBarButtonItem) {
+    changeBeaconRegion()
+  }
 
-//  func loadiBeacons() {
-//    if let storedBeacons = UserDefaults.standard.array(forKey: BeaconListScreenConstant.storedBeaconsKey) {
-//
-//      for beaconData in storedBeacons {
-//        let beacon = NSKeyedUnarchiver.unarchiveObject(with: beaconData as! Data) as! iBeaconItem
-//        iBeacons.append(beacon)
-//        startMonitoringBeacon(beacon)
-//      }
-//    }
-//  }
+  func changeBeaconRegion() {
+
+    let alertController = UIAlertController(title: "Change Beacons Detected", message: "Enter new UUID to change the Beacon Region", preferredStyle: .alert)
+
+    let confirmAction = UIAlertAction(title: "Change UUID", style: .default) { (_) in
+
+      if let field = alertController.textFields?[0] {
+
+        let numberOfMatches = self.uuidRegex.numberOfMatches(in: field.text!, options: [], range: NSMakeRange(0, field.text!.characters.count))
+
+        self.UUIDFieldValid = (numberOfMatches > 0)
+        // store your data
+        UserDefaults.standard.set(field.text, forKey: "BeaconRegion")
+
+      } else {
+
+        let failAlert = UIAlertController(title: "Invalid UUID", message: "Please enter a correct UUID", preferredStyle: .alert)
+        failAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+
+        self.present(failAlert, animated: true, completion: nil)
+      }
+    }
+
+    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+
+    alertController.addTextField { (textField) in
+      textField.placeholder = "UUID"
+    }
+
+    alertController.addAction(confirmAction)
+    alertController.addAction(cancelAction)
+
+    self.present(alertController, animated: true, completion: nil)
+  }
+
 
   @IBAction func cancel(_ segue: UIStoryboardSegue) {
     // Do nothing
@@ -185,7 +174,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     let beaconRegion = beaconRegionWithItem(beacon)
     locationManager.startMonitoring(for: beaconRegion)
     locationManager.startRangingBeacons(in: beaconRegion)
-    
+
   }
 
   func stopMonitoringBeacon(_ beacon: iBeaconItem) {
@@ -195,6 +184,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
   }
 
   func beaconRegionWithItem(_ beacon: iBeaconItem) -> CLBeaconRegion {
+//    let beaconRegion = CLBeaconRegion(proximityUUID: UUID(uuidString: Keys.beaconRegionUUID)!, identifier: "default beacon region")
     let beaconRegion = CLBeaconRegion(proximityUUID: beacon.uuid as UUID, major: beacon.majorValue, minor: beacon.minorValue, identifier: beacon.name)
     return beaconRegion
   }
@@ -226,7 +216,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
       beaconsDataArray.append(beaconData)
     }
 
-    UserDefaults.standard.set(beaconsDataArray, forKey: BeaconListScreenConstant.storedBeaconsKey)
+//    UserDefaults.standard.set(beaconsDataArray, forKey: BeaconListScreenConstant.storedBeaconsKey)
   }
 
   //MARK: - Core Location Methods

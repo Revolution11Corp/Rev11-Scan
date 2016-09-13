@@ -56,7 +56,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
     let tabItems = tabBarController.tabBar.items! as [UITabBarItem]
 
     tabItems[0].selectedImage = UIImage(named: Images.qrTabBlue)
+    tabItems[1].selectedImage = UIImage(named: Images.estimoteTabBlue)
     tabItems[2].selectedImage = UIImage(named: Images.eddystoneTabBlue)
+    tabItems[3].selectedImage = UIImage(named: Images.beaconTabBlue)
 
     UITabBar.appearance().barTintColor = Colors.darkGrey
 

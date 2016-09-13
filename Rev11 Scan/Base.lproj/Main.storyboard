@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11198.2" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="g6g-Rq-njg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11198.2" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="g6g-Rq-njg">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -81,6 +81,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Import a spreadsheet of beacons to monitor them" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUZ-7Z-Im6">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="306" id="ByG-6d-f4e"/>
+                                    <constraint firstAttribute="height" constant="85" id="cc6-3I-qR7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" red="0.2156862745" green="0.37254901959999998" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eYw-Yr-E88">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -160,20 +169,17 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="eYw-Yr-E88" firstAttribute="top" secondItem="96j-2w-l7j" secondAttribute="bottom" id="CmE-IW-fJ2"/>
                             <constraint firstItem="eYw-Yr-E88" firstAttribute="leading" secondItem="Kcx-cA-3kl" secondAttribute="leading" id="Ekz-zl-QCv"/>
+                            <constraint firstItem="oUZ-7Z-Im6" firstAttribute="centerX" secondItem="Kcx-cA-3kl" secondAttribute="centerX" id="f7l-EV-oIm"/>
                             <constraint firstItem="Qqo-D6-w8j" firstAttribute="top" secondItem="eYw-Yr-E88" secondAttribute="bottom" id="iih-Ke-0HE"/>
+                            <constraint firstItem="oUZ-7Z-Im6" firstAttribute="centerY" secondItem="Kcx-cA-3kl" secondAttribute="centerY" id="jV6-R3-yJ0"/>
                             <constraint firstAttribute="trailing" secondItem="eYw-Yr-E88" secondAttribute="trailing" id="qga-85-noD"/>
-                            <constraint firstItem="eYw-Yr-E88" firstAttribute="top" secondItem="Kcx-cA-3kl" secondAttribute="top" id="qtZ-lS-fp8"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Beacon List" id="kc1-J8-ZgF">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="x4c-Vy-SeN">
-                            <connections>
-                                <segue destination="tLz-6X-1ON" kind="show" id="lcM-Hu-eo9"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Beacon List" id="kc1-J8-ZgF"/>
                     <connections>
+                        <outlet property="emptyStateLabel" destination="oUZ-7Z-Im6" id="xa0-Dw-AcB"/>
                         <outlet property="tableView" destination="eYw-Yr-E88" id="f0x-Ir-BQQ"/>
                     </connections>
                 </viewController>
@@ -185,7 +191,7 @@
         <scene sceneID="MKT-Mq-hbX">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3E0-IQ-nMh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Beacons" image="beacon-white" id="Gi8-g2-rh5"/>
+                    <tabBarItem key="tabBarItem" title="Beacons" image="beacon-tabbar-white" id="Gi8-g2-rh5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="u6B-Yp-A9s">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -508,10 +514,10 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="EstimoteCell" id="TRd-KZ-r6w" customClass="EstimoteCell" customModule="Rev11_Scan" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="200"/>
+                                        <rect key="frame" x="0.0" y="28" width="1000" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TRd-KZ-r6w" id="xDq-XF-d8k">
-                                            <frame key="frameInset" width="375" height="200"/>
+                                            <frame key="frameInset" width="1000" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location: Unknown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPN-sn-NpJ">
@@ -687,10 +693,10 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EddystoneCell" id="KM5-UL-6LD" customClass="EddystoneCell" customModule="Rev11_Scan" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="92" width="1000" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KM5-UL-6LD" id="8kz-tm-ASe">
-                                            <frame key="frameInset" width="375" height="80"/>
+                                            <frame key="frameInset" width="1000" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eddystone-logo" translatesAutoresizingMaskIntoConstraints="NO" id="QLJ-Zz-gJS">
@@ -816,7 +822,7 @@
         <scene sceneID="eDb-2A-pQK">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Hl3-lm-Dxz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Estimote" image="beacon-white" id="gJ2-6t-eUu"/>
+                    <tabBarItem key="tabBarItem" title="Estimote" image="estimote-tabbar-white" id="gJ2-6t-eUu"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YR8-qt-mLI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -871,9 +877,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="beacon-white" width="40" height="40"/>
+        <image name="beacon-tabbar-white" width="30" height="30"/>
         <image name="eddystone-logo" width="171" height="171"/>
         <image name="eddystone-tabbar-white" width="30" height="30"/>
+        <image name="estimote-tabbar-white" width="30" height="30"/>
         <image name="ibeacon-logo" width="150" height="150"/>
         <image name="qr-tabbar-white" width="30" height="30"/>
     </resources>

@@ -36,6 +36,8 @@ struct Colors {
 struct Images {
   static let qrTabBlue          = "qr-tabbar-blue"
   static let eddystoneTabBlue   = "eddystone-tabbar-blue"
+  static let beaconTabBlue      = "beacon-tabbar-blue"
+  static let estimoteTabBlue    = "estimote-tabbar-blue"
 }
 
 struct Constants {
