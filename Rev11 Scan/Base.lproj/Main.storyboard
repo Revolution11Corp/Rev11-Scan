@@ -94,10 +94,10 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="BeaconCell" id="vOn-hW-SjT" customClass="BeaconCell" customModule="Rev11_Scan" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="120"/>
+                                        <rect key="frame" x="0.0" y="28" width="1000" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vOn-hW-SjT" id="yFs-jH-Kmj">
-                                            <frame key="frameInset" width="328" height="119"/>
+                                            <frame key="frameInset" width="804" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibeacon-logo" translatesAutoresizingMaskIntoConstraints="NO" id="PfF-48-aoW">
@@ -693,10 +693,10 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EddystoneCell" id="KM5-UL-6LD" customClass="EddystoneCell" customModule="Rev11_Scan" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="1000" height="80"/>
+                                        <rect key="frame" x="0.0" y="92" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KM5-UL-6LD" id="8kz-tm-ASe">
-                                            <frame key="frameInset" width="1000" height="80"/>
+                                            <frame key="frameInset" width="375" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eddystone-logo" translatesAutoresizingMaskIntoConstraints="NO" id="QLJ-Zz-gJS">

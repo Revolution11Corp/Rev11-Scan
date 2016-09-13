@@ -324,7 +324,7 @@
 					1446A6FB1D7BB7D200167BD1 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = H69U55MWXW;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -335,6 +335,7 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = H69U55MWXW;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -466,7 +467,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Rev11Scan-ShareExtension/Rev11Scan-ShareExtension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = H69U55MWXW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -477,6 +478,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.revolution11.Rev11-Scan.Rev11Scan-ShareExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "3d22a73f-da0f-42a7-8761-112d221eb0f1";
+				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanDistributionShareExt;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 3.0;
@@ -490,7 +493,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Rev11Scan-ShareExtension/Rev11Scan-ShareExtension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = H69U55MWXW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -501,6 +504,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.revolution11.Rev11-Scan.Rev11Scan-ShareExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "3d22a73f-da0f-42a7-8761-112d221eb0f1";
+				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanDistributionShareExt;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
@@ -608,7 +613,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Rev11 Scan/Rev11 Scan.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = H69U55MWXW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)\"/\"Rev11 Scan\"/**",
@@ -618,6 +625,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.revolution11.Rev11-Scan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "d7270200-f851-4ecc-813a-3797e7c629eb";
+				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanDistribution;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -628,7 +637,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Rev11 Scan/Rev11 Scan.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = H69U55MWXW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)\"/\"Rev11 Scan\"/**",
@@ -638,6 +649,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.revolution11.Rev11-Scan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "d7270200-f851-4ecc-813a-3797e7c629eb";
+				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanDistribution;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

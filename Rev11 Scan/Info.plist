@@ -30,13 +30,17 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>7</string>
+	<string>8</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fmp</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Rev11Scan uses bluetooth to disover your Eddystone Beacons</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Rev11Scan uses your camera to scan QR codes</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Your location is necessary to find iBeacons</string>
 	<key>UILaunchStoryboardName</key>
