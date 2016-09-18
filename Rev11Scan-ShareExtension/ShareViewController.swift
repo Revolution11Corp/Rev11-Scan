@@ -12,8 +12,6 @@ import MobileCoreServices
 
 class ShareViewController: SLComposeServiceViewController {
 
-  let suiteName = "group.rev11scan"
-
   var selectedImage: UIImage?
 
   override func isContentValid() -> Bool {
@@ -21,6 +19,8 @@ class ShareViewController: SLComposeServiceViewController {
     }
 
   override func didSelectPost() {
+
+    clearSpreadsheetCache()
 
     // Make sure we have a valid extension item
     if let content = extensionContext!.inputItems[0] as? NSExtensionItem {
@@ -45,6 +45,7 @@ class ShareViewController: SLComposeServiceViewController {
 
               if let spreadsheetData = NSData(contentsOf: url as URL) {
                 self.saveSpreadsheet(data: spreadsheetData)
+                
               }
             }
           }
@@ -54,17 +55,18 @@ class ShareViewController: SLComposeServiceViewController {
 
       // Inform the host that we're done, so it un-blocks its UI. Note: Alternatively you could call super's -didSelectPost, which will similarly complete the extension context.
       self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
-
-
   }
-
-// Need to convert "saveImage" to "saveFile" for .csv or .json.
 
   func saveSpreadsheet(data: NSData) {
 
-    let prefs = UserDefaults(suiteName: suiteName)
-    prefs?.set(data, forKey: "spreadsheetFileAsData")
-    print("*** File As Data = \(prefs?.object(forKey: "spreadsheetFileAsData"))")
+    let prefs = UserDefaults(suiteName: Keys.suiteName)
+    prefs?.set(data, forKey: Keys.spreadsheetFile)
+    print("*** File As Data = \(prefs?.object(forKey: Keys.spreadsheetFile))")
+  }
+
+  func clearSpreadsheetCache() {
+    let prefs = UserDefaults(suiteName: Keys.suiteName)
+    prefs?.set(nil, forKey: Keys.spreadsheetFile)
   }
 
   // Saves an image to user defaults.

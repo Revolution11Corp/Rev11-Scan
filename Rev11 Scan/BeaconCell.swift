@@ -30,17 +30,21 @@ class BeaconCell: UITableViewCell {
 
     willSet {
       if let thisBeacon = beacon {
-        thisBeacon.removeObserver(self, forKeyPath: "lastSeenBeacon")
+        thisBeacon.removeObserver(self, forKeyPath: Keys.lastSeenBeacon)
       }
     }
     didSet {
-      beacon?.addObserver(self, forKeyPath: "lastSeenBeacon", options: .new, context: nil)
+      self.beacon?.addObserver(self, forKeyPath: Keys.lastSeenBeacon, options: .new, context: nil)
       nameLabel!.text = beacon?.name
+
+//      if beacon?.lastSeenBeacon != nil {
+//        setProximityProperties()
+//      }
     }
   }
 
   deinit {
-    beacon?.removeObserver(self, forKeyPath: "lastSeenBeacon")
+    beacon?.removeObserver(self, forKeyPath: Keys.lastSeenBeacon)
   }
 
   override func prepareForReuse() {
@@ -70,7 +74,14 @@ class BeaconCell: UITableViewCell {
     }
   }
 
-  func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [String : Any]?, context: UnsafeMutableRawPointer?) {
+//  func setProximityProperties() {
+//    let proximity = nameForProximity((beacon?.lastSeenBeacon!.proximity)!)
+//    let accuracy = NSString(format: "%.2f", (beacon?.lastSeenBeacon!.accuracy)!)
+//    locationLabel.text = "\(proximity) (approx. \(accuracy) meters)"
+//    self.backgroundColor = beacon?.color
+//  }
+
+  override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 
     if let aBeacon = object as? iBeaconItem {
 
@@ -83,5 +94,20 @@ class BeaconCell: UITableViewCell {
       }
     }
   }
+
+
+//  func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [String : Any]?, context: UnsafeMutableRawPointer?) {
+//
+//    if let aBeacon = object as? iBeaconItem {
+//
+//      if aBeacon == beacon && keyPath == "lastSeenBeacon" {
+//
+//        let proximity = nameForProximity(aBeacon.lastSeenBeacon!.proximity)
+//        let accuracy = NSString(format: "%.2f", aBeacon.lastSeenBeacon!.accuracy)
+//        locationLabel!.text = "Location: \(proximity) (approx. \(accuracy)m)"
+//        self.backgroundColor = beacon?.color
+//      }
+//    }
+//  }
 
 }

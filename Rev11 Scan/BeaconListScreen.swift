@@ -24,44 +24,61 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    NavBarSetup.showLogoInNavBar(self.navigationController!, navItem: self.navigationItem)
     locationManager.delegate = self
     locationManager.requestAlwaysAuthorization()
+
+  }
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
     readSharedCSV()
+
   }
 
   func readSharedCSV() {
     // handle empty state for when a CSV has not been shared yet.
 
-    let defaults = UserDefaults(suiteName: "group.rev11scan")
-    let data = defaults?.data(forKey: "spreadsheetFileAsData")
-    let dataString = String(data: data!, encoding: .utf8)
+    iBeacons.removeAll()
 
-    let csv = CSVParser(with: dataString!)
+    let defaults = UserDefaults(suiteName: Keys.suiteName)
 
-    for object in csv.keyedRows! {
+    print("spreadsheet = \(defaults?.data(forKey: Keys.spreadsheetFile))")
 
-      //Need to handle nils, for when the spreadsheet has blank spots
-      let name = object["Beacon Name"]
-      let uuid = object["UUID"]?.convertToUUID()
-      let major = object["Major"]?.convertToMajorValue()
-      let minor = object["Minor"]?.convertToMinorValue()
-      let imageURL = object["Image URL"]
-      let actionURL = object["Action URL"]
-      let color = Colors.white
+    if defaults?.data(forKey: Keys.spreadsheetFile) != nil {
 
-      let newBeacon = iBeaconItem(name: name!, uuid: uuid!, majorValue: major, minorValue: minor, imageURL: imageURL!, actionURL: actionURL!, color: color)
+      let data = defaults?.data(forKey: Keys.spreadsheetFile)
+      let dataString = String(data: data!, encoding: .utf8)
 
-      iBeacons.append(newBeacon)
-      startMonitoringBeacon(newBeacon)
-    }
+      let csv = CSVParser(with: dataString!)
 
-    if iBeacons.count == 0 {
-      emptyStateLabel.isHidden = false
+      for object in csv.keyedRows! {
+
+        //Need to handle nils, for when the spreadsheet has blank spots
+        let name = object["Beacon Name"]
+        let uuid = object["UUID"]?.convertToUUID()
+        let major = object["Major"]?.convertToMajorValue()
+        let minor = object["Minor"]?.convertToMinorValue()
+        let imageURL = object["Image URL"]
+        let actionURL = object["Action URL"]
+        let color = Colors.white
+
+        let newBeacon = iBeaconItem(name: name!, uuid: uuid!, majorValue: major, minorValue: minor, imageURL: imageURL!, actionURL: actionURL!, color: color)
+
+        iBeacons.append(newBeacon)
+      }
+      
+      tableView.reloadData()
+      tableView.isHidden = false
+
+      for beacon in iBeacons {
+        startMonitoringBeacon(beacon)
+      }
+
     } else {
-      emptyStateLabel.isHidden = true
+
+      tableView.isHidden = true
     }
-    
-    tableView.reloadData()
   }
 
   @IBAction func changeUUIDButtonPressed(_ sender: UIBarButtonItem) {
@@ -115,7 +132,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-    let cell = tableView.dequeueReusableCell(withIdentifier: "BeaconCell", for: indexPath) as! BeaconCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: Cells.beaconCell, for: indexPath) as! BeaconCell
     let beacon = iBeacons[(indexPath as NSIndexPath).row]
 
     cell.beacon = beacon
@@ -236,7 +253,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
         if iBeacon == beacon {
           iBeacon.lastSeenBeacon = beacon
-          
+        
         }
       }
     }

@@ -13,6 +13,7 @@
 		14521AE71D51A03D007F38FB /* Rev11TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14521AE61D51A03D007F38FB /* Rev11TabBarController.swift */; };
 		145E215F1D45B91900571679 /* EddystoneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145E215E1D45B91900571679 /* EddystoneCell.swift */; };
 		145E21611D47D35F00571679 /* EstimoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145E21601D47D35F00571679 /* EstimoteCell.swift */; };
+		14605E6A1D8E5B1C0072CBCA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14605E691D8E5B1C0072CBCA /* Constants.swift */; };
 		1471579A1D331D4300B98EBA /* EstimoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 147157991D331D4300B98EBA /* EstimoteSDK.framework */; };
 		147A4A591D37454C006D834D /* URLParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147A4A581D37454C006D834D /* URLParameter.swift */; };
 		1490637A1D4F014800637146 /* EstimoteBeacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149063791D4F014800637146 /* EstimoteBeacon.swift */; };
@@ -74,6 +75,7 @@
 		14521AE61D51A03D007F38FB /* Rev11TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rev11TabBarController.swift; sourceTree = "<group>"; };
 		145E215E1D45B91900571679 /* EddystoneCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EddystoneCell.swift; sourceTree = "<group>"; };
 		145E21601D47D35F00571679 /* EstimoteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstimoteCell.swift; sourceTree = "<group>"; };
+		14605E691D8E5B1C0072CBCA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		147157991D331D4300B98EBA /* EstimoteSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EstimoteSDK.framework; sourceTree = "<group>"; };
 		1471579B1D331DA600B98EBA /* ObjcBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjcBridge.h; sourceTree = "<group>"; };
 		147A4A581D37454C006D834D /* URLParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLParameter.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				1446A6FE1D7BB7D200167BD1 /* ShareViewController.swift */,
 				1446A7001D7BB7D200167BD1 /* MainInterface.storyboard */,
 				1446A7031D7BB7D200167BD1 /* Info.plist */,
+				14605E691D8E5B1C0072CBCA /* Constants.swift */,
 			);
 			path = "Rev11Scan-ShareExtension";
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1446A6FF1D7BB7D200167BD1 /* ShareViewController.swift in Sources */,
+				14605E6A1D8E5B1C0072CBCA /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,8 +470,8 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Rev11Scan-ShareExtension/Rev11Scan-ShareExtension.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sean Allen (UF3KVEB7HT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sean Allen (UF3KVEB7HT)";
 				DEVELOPMENT_TEAM = H69U55MWXW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -478,8 +482,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.revolution11.Rev11-Scan.Rev11Scan-ShareExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3d22a73f-da0f-42a7-8761-112d221eb0f1";
-				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanDistributionShareExt;
+				PROVISIONING_PROFILE = "d1b986f1-d7e1-4d36-8ec6-4d028908d461";
+				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanShareExtDevelopment;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 3.0;
@@ -492,8 +496,8 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Rev11Scan-ShareExtension/Rev11Scan-ShareExtension.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sean Allen (UF3KVEB7HT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sean Allen (UF3KVEB7HT)";
 				DEVELOPMENT_TEAM = H69U55MWXW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -504,8 +508,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.revolution11.Rev11-Scan.Rev11Scan-ShareExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3d22a73f-da0f-42a7-8761-112d221eb0f1";
-				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanDistributionShareExt;
+				PROVISIONING_PROFILE = "d1b986f1-d7e1-4d36-8ec6-4d028908d461";
+				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanShareExtDevelopment;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
@@ -613,8 +617,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Rev11 Scan/Rev11 Scan.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sean Allen (UF3KVEB7HT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sean Allen (UF3KVEB7HT)";
 				DEVELOPMENT_TEAM = H69U55MWXW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -625,8 +629,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.revolution11.Rev11-Scan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d7270200-f851-4ecc-813a-3797e7c629eb";
-				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanDistribution;
+				PROVISIONING_PROFILE = "50fa35d8-8b74-488a-80bc-e589d9d14c6a";
+				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanDevelopment;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -637,8 +641,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Rev11 Scan/Rev11 Scan.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sean Allen (UF3KVEB7HT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sean Allen (UF3KVEB7HT)";
 				DEVELOPMENT_TEAM = H69U55MWXW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -649,8 +653,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.revolution11.Rev11-Scan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d7270200-f851-4ecc-813a-3797e7c629eb";
-				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanDistribution;
+				PROVISIONING_PROFILE = "50fa35d8-8b74-488a-80bc-e589d9d14c6a";
+				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanDevelopment;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
