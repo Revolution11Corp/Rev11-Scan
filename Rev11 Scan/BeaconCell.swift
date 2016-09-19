@@ -36,10 +36,7 @@ class BeaconCell: UITableViewCell {
     didSet {
       self.beacon?.addObserver(self, forKeyPath: Keys.lastSeenBeacon, options: .new, context: nil)
       nameLabel!.text = beacon?.name
-
-
-//      beaconImage.image =
-
+      beaconImage.image = beacon?.itemImage
     }
   }
 
@@ -51,18 +48,6 @@ class BeaconCell: UITableViewCell {
     super.prepareForReuse()
     beacon = nil
   }
-
-  func getImageFromURL() {
-
-    let URLString = beacon?.imageURL
-    let URL = NSURL(string:URLString!)!
-    beaconImage.image
-
-    cell.imageView.hnk_setImageFromURL(URL)
-
-  }
-
-  
 
   func nameForProximity(_ proximity: CLProximity) -> String {
 

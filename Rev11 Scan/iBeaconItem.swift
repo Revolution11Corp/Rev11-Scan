@@ -17,19 +17,19 @@ class iBeaconItem: NSObject {
   let uuid: UUID
   let majorValue: CLBeaconMajorValue
   let minorValue: CLBeaconMinorValue
-  let imageURL: String
   let actionURL: String
+  let itemImage: UIImage
 
   var color: UIColor?
 
   dynamic var lastSeenBeacon: CLBeacon?
 
-  init(name: String, uuid: UUID, majorValue: CLBeaconMajorValue?, minorValue: CLBeaconMinorValue?, imageURL: String, actionURL: String, color: UIColor) {
+  init(name: String, uuid: UUID, majorValue: CLBeaconMajorValue?, minorValue: CLBeaconMinorValue?, itemImage: UIImage, actionURL: String, color: UIColor) {
     self.name = name
     self.uuid = uuid
     self.majorValue = majorValue!
     self.minorValue = minorValue!
-    self.imageURL = imageURL
+    self.itemImage = itemImage
     self.actionURL = actionURL
     self.color = Colors.white
   }

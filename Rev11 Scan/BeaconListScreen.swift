@@ -54,29 +54,39 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
       for object in csv.keyedRows! {
 
+        var newBeacon: iBeaconItem?
+
         //Need to handle nils, for when the spreadsheet has blank spots
         let name = object["Beacon Name"]
         let uuid = object["UUID"]?.convertToUUID()
         let major = object["Major"]?.convertToMajorValue()
         let minor = object["Minor"]?.convertToMinorValue()
-        let imageURL = object["Image URL"]
         let actionURL = object["Action URL"]
         let color = Colors.white
 
-        let newBeacon = iBeaconItem(name: name!, uuid: uuid!, majorValue: major, minorValue: minor, imageURL: imageURL!, actionURL: actionURL!, color: color)
+        if let imageURL = object["Image URL"] {
 
-        iBeacons.append(newBeacon)
+          let convertedURL = NSURL(string: imageURL)
+          let networking = Networking(url: convertedURL!)
+          networking.downloadImage(completion: { (imageData) in
+
+            let itemImage = UIImage(data: imageData)
+            newBeacon = iBeaconItem(name: name!, uuid: uuid!, majorValue: major, minorValue: minor, itemImage: itemImage!, actionURL: actionURL!, color: color)
+            self.iBeacons.append(newBeacon!)
+            self.startMonitoringBeacon(newBeacon!) // Need to do the caching/networking more efficiently
+            self.tableView.reloadData() // Need to NOT do this in the for loop. Need to CACHE images, so we don't make a network call each time.
+          })
+        }
       }
       
       tableView.reloadData()
       tableView.isHidden = false
 
-      for beacon in iBeacons {
-        startMonitoringBeacon(beacon)
-      }
+//      for beacon in iBeacons {
+//        startMonitoringBeacon(beacon)
+//      }
 
     } else {
-
       tableView.isHidden = true
     }
   }
