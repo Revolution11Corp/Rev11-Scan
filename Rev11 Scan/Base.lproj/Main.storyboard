@@ -155,7 +155,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="actionURLButton" destination="PgI-2C-EWf" id="Ofa-S0-rvA"/>
-                                            <outlet property="beaconTypeImage" destination="PfF-48-aoW" id="otC-fO-hD7"/>
+                                            <outlet property="beaconImage" destination="PfF-48-aoW" id="8V6-Fl-Q2T"/>
                                             <outlet property="locationLabel" destination="1GS-cO-Emp" id="eJG-33-H5P"/>
                                             <outlet property="nameLabel" destination="ezu-ql-n6M" id="pfl-L1-V5H"/>
                                         </connections>
@@ -514,10 +514,10 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="EstimoteCell" id="TRd-KZ-r6w" customClass="EstimoteCell" customModule="Rev11_Scan" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="200"/>
+                                        <rect key="frame" x="0.0" y="28" width="1000" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TRd-KZ-r6w" id="xDq-XF-d8k">
-                                            <frame key="frameInset" width="375" height="200"/>
+                                            <frame key="frameInset" width="1000" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location: Unknown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPN-sn-NpJ">
@@ -693,10 +693,10 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EddystoneCell" id="KM5-UL-6LD" customClass="EddystoneCell" customModule="Rev11_Scan" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="92" width="1000" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KM5-UL-6LD" id="8kz-tm-ASe">
-                                            <frame key="frameInset" width="375" height="80"/>
+                                            <frame key="frameInset" width="1000" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eddystone-logo" translatesAutoresizingMaskIntoConstraints="NO" id="QLJ-Zz-gJS">

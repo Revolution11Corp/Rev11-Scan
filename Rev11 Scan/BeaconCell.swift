@@ -12,7 +12,7 @@ import SafariServices
 
 class BeaconCell: UITableViewCell {
 
-  @IBOutlet weak var beaconTypeImage: UIImageView!
+  @IBOutlet weak var beaconImage: UIImageView!
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var locationLabel: UILabel!
   @IBOutlet weak var actionURLButton: UIButton!
@@ -37,9 +37,9 @@ class BeaconCell: UITableViewCell {
       self.beacon?.addObserver(self, forKeyPath: Keys.lastSeenBeacon, options: .new, context: nil)
       nameLabel!.text = beacon?.name
 
-//      if beacon?.lastSeenBeacon != nil {
-//        setProximityProperties()
-//      }
+
+//      beaconImage.image =
+
     }
   }
 
@@ -51,6 +51,18 @@ class BeaconCell: UITableViewCell {
     super.prepareForReuse()
     beacon = nil
   }
+
+  func getImageFromURL() {
+
+    let URLString = beacon?.imageURL
+    let URL = NSURL(string:URLString!)!
+    beaconImage.image
+
+    cell.imageView.hnk_setImageFromURL(URL)
+
+  }
+
+  
 
   func nameForProximity(_ proximity: CLProximity) -> String {
 
@@ -74,13 +86,6 @@ class BeaconCell: UITableViewCell {
     }
   }
 
-//  func setProximityProperties() {
-//    let proximity = nameForProximity((beacon?.lastSeenBeacon!.proximity)!)
-//    let accuracy = NSString(format: "%.2f", (beacon?.lastSeenBeacon!.accuracy)!)
-//    locationLabel.text = "\(proximity) (approx. \(accuracy) meters)"
-//    self.backgroundColor = beacon?.color
-//  }
-
   override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 
     if let aBeacon = object as? iBeaconItem {
@@ -94,20 +99,5 @@ class BeaconCell: UITableViewCell {
       }
     }
   }
-
-
-//  func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [String : Any]?, context: UnsafeMutableRawPointer?) {
-//
-//    if let aBeacon = object as? iBeaconItem {
-//
-//      if aBeacon == beacon && keyPath == "lastSeenBeacon" {
-//
-//        let proximity = nameForProximity(aBeacon.lastSeenBeacon!.proximity)
-//        let accuracy = NSString(format: "%.2f", aBeacon.lastSeenBeacon!.accuracy)
-//        locationLabel!.text = "Location: \(proximity) (approx. \(accuracy)m)"
-//        self.backgroundColor = beacon?.color
-//      }
-//    }
-//  }
 
 }

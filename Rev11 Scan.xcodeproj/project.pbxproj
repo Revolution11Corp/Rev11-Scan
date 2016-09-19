@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1404C8131D8F624E00981495 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1404C8121D8F624E00981495 /* Networking.swift */; };
 		1446A6FF1D7BB7D200167BD1 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1446A6FE1D7BB7D200167BD1 /* ShareViewController.swift */; };
 		1446A7021D7BB7D200167BD1 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1446A7001D7BB7D200167BD1 /* MainInterface.storyboard */; };
 		1446A7061D7BB7D200167BD1 /* Rev11Scan-ShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1446A6FC1D7BB7D200167BD1 /* Rev11Scan-ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -66,6 +67,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1404C8121D8F624E00981495 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		1446A6FC1D7BB7D200167BD1 /* Rev11Scan-ShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Rev11Scan-ShareExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1446A6FE1D7BB7D200167BD1 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		1446A7011D7BB7D200167BD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 			children = (
 				14A6176E1D1BAB2B0083CFF2 /* AppDelegate.swift */,
 				14A6178D1D1BADF90083CFF2 /* Constants.swift */,
+				1404C8121D8F624E00981495 /* Networking.swift */,
 				14A6177A1D1BAB2B0083CFF2 /* Info.plist */,
 				14A617771D1BAB2B0083CFF2 /* LaunchScreen.storyboard */,
 			);
@@ -408,6 +411,7 @@
 				145E21611D47D35F00571679 /* EstimoteCell.swift in Sources */,
 				14B9CC8C1D7FB93000B666FC /* CSVParser.swift in Sources */,
 				14A617841D1BAD370083CFF2 /* BeaconCell.swift in Sources */,
+				1404C8131D8F624E00981495 /* Networking.swift in Sources */,
 				14AD9E5E1D41C15B0085A044 /* EstimoteScreen.swift in Sources */,
 				14A6176F1D1BAB2B0083CFF2 /* AppDelegate.swift in Sources */,
 				1496B1B61D6FE5A000DD0B2E /* BeaconHelper.swift in Sources */,

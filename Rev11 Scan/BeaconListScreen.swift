@@ -88,7 +88,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
   func changeBeaconRegion() {
 
     let alertController = UIAlertController(title: "Change Beacons Detected", message: "Enter new UUID to change the Beacon Region", preferredStyle: .alert)
-
     let confirmAction = UIAlertAction(title: "Change UUID", style: .default) { (_) in
 
       if let field = alertController.textFields?[0] {
@@ -159,7 +158,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
       persistBeacons()
     }
-
   }
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
