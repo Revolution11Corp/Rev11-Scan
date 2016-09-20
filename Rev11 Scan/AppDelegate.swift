@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
     let notificationSettings = UIUserNotificationSettings(types: notificationType, categories: nil)
     UIApplication.shared.registerUserNotificationSettings(notificationSettings)
 
-    locationManager.delegate = self
+//    locationManager.delegate = self
 
     return true
   }
@@ -100,15 +100,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
 }
 
 // MARK: CLLocationManagerDelegate
-extension AppDelegate: CLLocationManagerDelegate {
-  func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-
-    if region is CLBeaconRegion {
-      let notification = UILocalNotification()
-      notification.alertBody = "Are you forgetting something?"
-      notification.soundName = "Default"
-      UIApplication.shared.presentLocalNotificationNow(notification)
-    }
-  }
-}
+//extension AppDelegate: CLLocationManagerDelegate {
+//  func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+//
+//    if region is CLBeaconRegion {
+//      let notification = UILocalNotification()
+//      notification.alertBody = "Are you forgetting something?"
+//      notification.soundName = "Default"
+//      UIApplication.shared.presentLocalNotificationNow(notification)
+//    }
+//  }
+//}
 

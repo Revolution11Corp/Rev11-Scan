@@ -11,7 +11,7 @@ import Foundation
 import CoreLocation
 
 // Add NSCoding after NSObject if you want to persist beacons by coding/decoding them
-class iBeaconItem: NSObject {
+class iBeaconItem: NSObject, NSCoding {
 
   let name: String
   let uuid: UUID
@@ -34,30 +34,51 @@ class iBeaconItem: NSObject {
     self.color = Colors.white
   }
 
-  // MARK: NSCoding
-//  required init?(coder aDecoder: NSCoder) {
-//    if let aName = aDecoder.decodeObject(forKey: BeaconProperties.nameKey) as? String {
-//      name = aName
-//    }
-//    else {
-//      name = ""
-//    }
-//    if let aUUID = aDecoder.decodeObject(forKey: BeaconProperties.uuidKey) as? UUID {
-//      uuid = aUUID
-//    }
-//    else {
-//      uuid = UUID()
-//    }
-//    majorValue = UInt16(aDecoder.decodeInteger(forKey: BeaconProperties.majorKey))
-//    minorValue = UInt16(aDecoder.decodeInteger(forKey: BeaconProperties.minorKey))
-//  }
-//
-//  func encode(with aCoder: NSCoder) {
-//    aCoder.encode(name, forKey: BeaconProperties.nameKey)
-//    aCoder.encode(uuid, forKey: BeaconProperties.uuidKey)
-//    aCoder.encode(Int(majorValue), forKey: BeaconProperties.majorKey)
-//    aCoder.encode(Int(minorValue), forKey: BeaconProperties.minorKey)
-//  }
+  //MARK: NSCoding
+  required init?(coder aDecoder: NSCoder) {
+    if let aName = aDecoder.decodeObject(forKey: BeaconProperties.nameKey) as? String {
+      name = aName
+    }
+    else {
+      name = ""
+    }
+    if let aUUID = aDecoder.decodeObject(forKey: BeaconProperties.uuidKey) as? UUID {
+      uuid = aUUID
+    }
+    else {
+      uuid = UUID()
+    }
+    majorValue = UInt16(aDecoder.decodeInteger(forKey: BeaconProperties.majorKey))
+    minorValue = UInt16(aDecoder.decodeInteger(forKey: BeaconProperties.minorKey))
+
+    if let aActionURL = aDecoder.decodeObject(forKey: BeaconProperties.actionURLKey) as? String {
+      actionURL = aActionURL
+    } else {
+      actionURL = ""
+    }
+
+    if let aItemImage = aDecoder.decodeObject(forKey: BeaconProperties.itemImageKey) as? UIImage {
+      itemImage = aItemImage
+    } else {
+      itemImage = UIImage()
+    }
+
+    if let aColor = aDecoder.decodeObject(forKey: BeaconProperties.colorKey) as? UIColor {
+      color = aColor
+    } else {
+      color = UIColor()
+    }
+  }
+
+  func encode(with aCoder: NSCoder) {
+    aCoder.encode(name, forKey: BeaconProperties.nameKey)
+    aCoder.encode(uuid, forKey: BeaconProperties.uuidKey)
+    aCoder.encode(Int(majorValue), forKey: BeaconProperties.majorKey)
+    aCoder.encode(Int(minorValue), forKey: BeaconProperties.minorKey)
+    aCoder.encode(actionURL, forKey: BeaconProperties.actionURLKey)
+    aCoder.encode(itemImage, forKey: BeaconProperties.itemImageKey)
+    aCoder.encode(color, forKey: BeaconProperties.colorKey)
+  }
 
 }
 

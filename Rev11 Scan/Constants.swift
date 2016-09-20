@@ -16,6 +16,11 @@ struct BeaconProperties {
   static let uuidKey = "uuid"
   static let majorKey = "major"
   static let minorKey = "minor"
+  static let actionURLKey = "actionURL"
+  static let itemImageKey = "itemImage"
+  static let colorKey = "color"
+
+  static let storedBeaconArrayKey = "storedBeaconsArray"
 
   // Eddystone Properties
   static let namespaceKey = "namespace"

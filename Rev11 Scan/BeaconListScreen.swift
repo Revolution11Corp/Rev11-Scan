@@ -10,11 +10,11 @@ import UIKit
 import CoreLocation
 import SafariServices
 
-
 class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
 
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var emptyStateLabel: UILabel!
+  @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
   let locationManager = CLLocationManager()
   var iBeacons: [iBeaconItem] = []
@@ -32,13 +32,41 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    readSharedCSV()
 
+    // add check for if/when a new spreadsheet has been loaded
+
+    if UserDefaults.standard.array(forKey: BeaconProperties.storedBeaconArrayKey) != nil {
+      loadStoredBeacons()
+    } else {
+
+      readSharedCSV { () -> () in
+
+        self.tableView.isHidden = false
+        self.persistBeacons()
+
+        DispatchQueue.main.async {
+          self.activityIndicator.stopAnimating()
+          self.tableView.reloadData()
+        }
+      }
+    }
   }
 
-  func readSharedCSV() {
-    // handle empty state for when a CSV has not been shared yet.
+  func loadStoredBeacons() {
 
+    if let storedBeacons = UserDefaults.standard.array(forKey: BeaconProperties.storedBeaconArrayKey) {
+      
+      for beaconData in storedBeacons {
+        let beacon = NSKeyedUnarchiver.unarchiveObject(with: (beaconData as! NSData) as Data) as! iBeaconItem
+        startMonitoringBeacon(beacon)
+        iBeacons.append(beacon)
+      }
+    }
+  }
+
+  func readSharedCSV(completionHandler: @escaping (() -> ())) {
+
+    activityIndicator.startAnimating()
     iBeacons.removeAll()
 
     let defaults = UserDefaults(suiteName: Keys.suiteName)
@@ -51,6 +79,8 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
       let dataString = String(data: data!, encoding: .utf8)
 
       let csv = CSVParser(with: dataString!)
+      let csvCount = csv.keyedRows!.count
+      var beaconCounter = 0
 
       for object in csv.keyedRows! {
 
@@ -68,24 +98,22 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
           let convertedURL = NSURL(string: imageURL)
           let networking = Networking(url: convertedURL!)
+
           networking.downloadImage(completion: { (imageData) in
 
             let itemImage = UIImage(data: imageData)
             newBeacon = iBeaconItem(name: name!, uuid: uuid!, majorValue: major, minorValue: minor, itemImage: itemImage!, actionURL: actionURL!, color: color)
+            self.startMonitoringBeacon(newBeacon!)
             self.iBeacons.append(newBeacon!)
-            self.startMonitoringBeacon(newBeacon!) // Need to do the caching/networking more efficiently
-            self.tableView.reloadData() // Need to NOT do this in the for loop. Need to CACHE images, so we don't make a network call each time.
+
+            beaconCounter += 1
+
+            if beaconCounter == csvCount {
+              completionHandler()
+            }
           })
         }
       }
-      
-      tableView.reloadData()
-      tableView.isHidden = false
-
-//      for beacon in iBeacons {
-//        startMonitoringBeacon(beacon)
-//      }
-
     } else {
       tableView.isHidden = true
     }
@@ -209,31 +237,12 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
   }
 
   func beaconRegionWithItem(_ beacon: iBeaconItem) -> CLBeaconRegion {
-//    let beaconRegion = CLBeaconRegion(proximityUUID: UUID(uuidString: Keys.beaconRegionUUID)!, identifier: "default beacon region")
     let beaconRegion = CLBeaconRegion(proximityUUID: beacon.uuid as UUID, major: beacon.majorValue, minor: beacon.minorValue, identifier: beacon.name)
     return beaconRegion
   }
 
-  //MARK: - Save and Persist Beacons
-  @IBAction func saveBeacon(_ segue: UIStoryboardSegue) {
-
-    let addBeaconScreen = segue.source as! AddBeaconScreen
-
-    if let newBeacon = addBeaconScreen.newBeacon {
-      iBeacons.append(newBeacon)
-      tableView.beginUpdates()
-
-      let newIndexPath = IndexPath(row: iBeacons.count-1, section: 0)
-
-      tableView.insertRows(at: [newIndexPath], with: .automatic)
-      tableView.endUpdates()
-
-      startMonitoringBeacon(newBeacon)
-      persistBeacons()
-    }
-  }
-
   func persistBeacons() {
+
     var beaconsDataArray:[Data] = []
 
     for beacon in iBeacons {
@@ -241,7 +250,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
       beaconsDataArray.append(beaconData)
     }
 
-//    UserDefaults.standard.set(beaconsDataArray, forKey: BeaconListScreenConstant.storedBeaconsKey)
+    UserDefaults.standard.set(beaconsDataArray, forKey: BeaconProperties.storedBeaconArrayKey)
   }
 
   //MARK: - Core Location Methods
