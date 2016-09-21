@@ -50,14 +50,15 @@ struct Constants {
 }
 
 struct Keys {
-  static let isFromFileMaker  = "isFromFileMaker"
-  static let lastSeenEstimote = "lastSeenEstimote"
-  static let lastSeenBeacon   = "lastSeenBeacon"
-  static let suiteName        = "group.rev11scan"
-  static let spreadsheetFile  = "spreadsheetFileAsData"
-  static let beaconRegionUUID = "B9407F30-F5F8-466E-AFF9-25556B57FE6D"
-  static let estimoteAppID    = "rev11scan-nxl"
-  static let estimoteAppToken = "d55de5f606394c3cb74f007ec8bd1244"
+  static let isFromFileMaker        = "isFromFileMaker"
+  static let lastSeenEstimote       = "lastSeenEstimote"
+  static let lastSeenBeacon         = "lastSeenBeacon"
+  static let suiteName              = "group.rev11scan"
+  static let spreadsheetFile        = "spreadsheetFileAsData"
+  static let isNewSharedSpreadsheet = "isNewSharedSpreadsheet"
+  static let beaconRegionUUID       = "B9407F30-F5F8-466E-AFF9-25556B57FE6D"
+  static let estimoteAppID          = "rev11scan-nxl"
+  static let estimoteAppToken       = "d55de5f606394c3cb74f007ec8bd1244"
 }
 
 struct Cells {

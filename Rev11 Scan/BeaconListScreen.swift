@@ -19,6 +19,9 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
   let locationManager = CLLocationManager()
   var iBeacons: [iBeaconItem] = []
   var uuidRegex = try! NSRegularExpression(pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", options: .caseInsensitive)
+
+  let defaults = UserDefaults(suiteName: Keys.suiteName)
+
   var UUIDFieldValid = false
 
 
@@ -27,28 +30,21 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     NavBarSetup.showLogoInNavBar(self.navigationController!, navItem: self.navigationItem)
     locationManager.delegate = self
     locationManager.requestAlwaysAuthorization()
-
   }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
-    // add check for if/when a new spreadsheet has been loaded
-
     if UserDefaults.standard.array(forKey: BeaconProperties.storedBeaconArrayKey) != nil {
-      loadStoredBeacons()
-    } else {
 
-      readSharedCSV { () -> () in
-
-        self.tableView.isHidden = false
-        self.persistBeacons()
-
-        DispatchQueue.main.async {
-          self.activityIndicator.stopAnimating()
-          self.tableView.reloadData()
-        }
+      if defaults?.bool(forKey: Keys.isNewSharedSpreadsheet) == false {
+        loadStoredBeacons()
+      } else {
+        readSharedCSVWithClosure()
       }
+
+    } else {
+      readSharedCSVWithClosure()
     }
   }
 
@@ -66,14 +62,11 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
   func readSharedCSV(completionHandler: @escaping (() -> ())) {
 
-    activityIndicator.startAnimating()
     iBeacons.removeAll()
 
-    let defaults = UserDefaults(suiteName: Keys.suiteName)
-
-    print("spreadsheet = \(defaults?.data(forKey: Keys.spreadsheetFile))")
-
     if defaults?.data(forKey: Keys.spreadsheetFile) != nil {
+
+//      activityIndicator.startAnimating()
 
       let data = defaults?.data(forKey: Keys.spreadsheetFile)
       let dataString = String(data: data!, encoding: .utf8)
@@ -116,6 +109,21 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
       }
     } else {
       tableView.isHidden = true
+    }
+  }
+
+  func readSharedCSVWithClosure() {
+
+    readSharedCSV { () -> () in
+
+      self.tableView.isHidden = false
+      self.defaults?.set(false, forKey: Keys.isNewSharedSpreadsheet)
+      self.persistBeacons()
+
+      DispatchQueue.main.async {
+//        self.activityIndicator.stopAnimating()
+        self.tableView.reloadData()
+      }
     }
   }
 

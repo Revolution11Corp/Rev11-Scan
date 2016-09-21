@@ -9,7 +9,8 @@
 import Foundation
 
 struct Keys {
-  static let spreadsheetFile  = "spreadsheetFileAsData"
-  static let suiteName = "group.rev11scan"
+  static let spreadsheetFile        = "spreadsheetFileAsData"
+  static let suiteName              = "group.rev11scan"
+  static let isNewSharedSpreadsheet = "isNewSharedSpreadsheet"
 }
 

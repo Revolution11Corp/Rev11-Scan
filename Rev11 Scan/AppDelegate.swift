@@ -23,9 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
     URLParameter.sharedInstance.isFromFileMaker = false
     self.beaconManager.delegate = self
 
-    let notificationType: UIUserNotificationType = [UIUserNotificationType.sound, UIUserNotificationType.alert]
-    let notificationSettings = UIUserNotificationSettings(types: notificationType, categories: nil)
-    UIApplication.shared.registerUserNotificationSettings(notificationSettings)
+//    let notificationType: UIUserNotificationType = [UIUserNotificationType.sound, UIUserNotificationType.alert]
+//    let notificationSettings = UIUserNotificationSettings(types: notificationType, categories: nil)
+//    UIApplication.shared.registerUserNotificationSettings(notificationSettings)
 
 //    locationManager.delegate = self
 
