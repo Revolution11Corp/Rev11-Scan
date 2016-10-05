@@ -16,10 +16,13 @@ class BeaconCell: UITableViewCell {
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var locationLabel: UILabel!
   @IBOutlet weak var actionURLButton: UIButton!
+  @IBOutlet weak var typeLabel: UILabel!
 
 
   override func awakeFromNib() {
     super.awakeFromNib()
+    actionURLButton.layoutIfNeeded()
+    actionURLButton.layer.cornerRadius = actionURLButton.frame.size.height/2
   }
 
   override func setSelected(_ selected: Bool, animated: Bool) {
@@ -35,8 +38,6 @@ class BeaconCell: UITableViewCell {
     }
     didSet {
       self.beacon?.addObserver(self, forKeyPath: Keys.lastSeenBeacon, options: .new, context: nil)
-      nameLabel!.text = beacon?.name
-      beaconImage.image = beacon?.itemImage
     }
   }
 

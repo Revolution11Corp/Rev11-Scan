@@ -13,12 +13,14 @@ struct BeaconProperties {
   static let nameKey = "name"
 
   // iBeacon Properties
-  static let uuidKey = "uuid"
-  static let majorKey = "major"
-  static let minorKey = "minor"
-  static let actionURLKey = "actionURL"
-  static let itemImageKey = "itemImage"
-  static let colorKey = "color"
+  static let uuidKey          = "uuid"
+  static let majorKey         = "major"
+  static let minorKey         = "minor"
+  static let actionURLKey     = "actionURL"
+  static let actionURLNameKey = "actionURLName"
+  static let typeKey          = "type"
+  static let itemImageKey     = "itemImage"
+  static let colorKey         = "color"
 
   static let storedBeaconArrayKey = "storedBeaconsArray"
 
@@ -27,7 +29,6 @@ struct BeaconProperties {
   static let instanceKey = "instance"
   static let urlKey = "url"
 }
-
 
 struct Colors {
   static let white    = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)

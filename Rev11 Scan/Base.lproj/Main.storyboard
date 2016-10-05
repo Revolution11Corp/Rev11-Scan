@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="g6g-Rq-njg">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="g6g-Rq-njg">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -93,11 +93,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eYw-Yr-E88">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="BeaconCell" id="vOn-hW-SjT" customClass="BeaconCell" customModule="Rev11_Scan" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BeaconCell" id="vOn-hW-SjT" customClass="BeaconCell" customModule="Rev11_Scan" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vOn-hW-SjT" id="yFs-jH-Kmj">
-                                            <frame key="frameInset" width="328" height="119"/>
+                                            <frame key="frameInset" width="375" height="119"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibeacon-logo" translatesAutoresizingMaskIntoConstraints="NO" id="PfF-48-aoW">
@@ -122,28 +122,41 @@
                                                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PgI-2C-EWf">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PgI-2C-EWf">
+                                                    <color key="backgroundColor" red="0.2156862745" green="0.37254901959999998" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="250" id="SZu-Ph-Sqh"/>
+                                                        <constraint firstAttribute="width" constant="140" id="d9j-80-aVm"/>
                                                         <constraint firstAttribute="height" constant="30" id="oLr-ke-3X9"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <state key="normal" title="Action URL">
-                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <inset key="titleEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                    <state key="normal" title="Action URL Name">
+                                                        <color key="titleColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </state>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type: Unknown" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zez-qQ-oVl">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="27" id="p9k-YL-eJd"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                    <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="PfF-48-aoW" firstAttribute="leading" secondItem="yFs-jH-Kmj" secondAttribute="leading" constant="15" id="A7z-Fk-f5L"/>
-                                                <constraint firstItem="PfF-48-aoW" firstAttribute="top" secondItem="ezu-ql-n6M" secondAttribute="bottom" constant="-17.5" id="DEU-0p-ABJ"/>
-                                                <constraint firstItem="PgI-2C-EWf" firstAttribute="leading" secondItem="1GS-cO-Emp" secondAttribute="leading" id="JgV-76-Dov"/>
+                                                <constraint firstItem="PfF-48-aoW" firstAttribute="top" secondItem="ezu-ql-n6M" secondAttribute="bottom" constant="9" id="DEU-0p-ABJ"/>
                                                 <constraint firstItem="1GS-cO-Emp" firstAttribute="top" secondItem="ezu-ql-n6M" secondAttribute="bottom" constant="-1.5" id="Ko5-w9-3kc"/>
+                                                <constraint firstAttribute="trailing" secondItem="Zez-qQ-oVl" secondAttribute="trailing" constant="8" id="N0y-2G-mCE"/>
                                                 <constraint firstItem="1GS-cO-Emp" firstAttribute="leading" secondItem="PfF-48-aoW" secondAttribute="trailing" constant="20" id="Omv-Ru-QBk"/>
                                                 <constraint firstAttribute="trailing" secondItem="ezu-ql-n6M" secondAttribute="trailing" constant="8" id="Pbh-so-IeI"/>
+                                                <constraint firstItem="PgI-2C-EWf" firstAttribute="centerX" secondItem="yFs-jH-Kmj" secondAttribute="centerX" id="UtN-X9-lig"/>
                                                 <constraint firstItem="PfF-48-aoW" firstAttribute="centerY" secondItem="yFs-jH-Kmj" secondAttribute="centerY" id="Ygy-hx-woK"/>
                                                 <constraint firstItem="ezu-ql-n6M" firstAttribute="leading" secondItem="PfF-48-aoW" secondAttribute="trailing" constant="10" id="Z0C-An-k4j"/>
-                                                <constraint firstItem="PgI-2C-EWf" firstAttribute="top" secondItem="1GS-cO-Emp" secondAttribute="bottom" constant="-2" id="axM-F3-n87"/>
+                                                <constraint firstItem="Zez-qQ-oVl" firstAttribute="top" secondItem="1GS-cO-Emp" secondAttribute="bottom" constant="-6" id="ZNs-8d-3Jv"/>
                                                 <constraint firstItem="ezu-ql-n6M" firstAttribute="leading" secondItem="PfF-48-aoW" secondAttribute="trailing" constant="20" id="g2d-tk-N1g"/>
+                                                <constraint firstItem="Zez-qQ-oVl" firstAttribute="leading" secondItem="PfF-48-aoW" secondAttribute="trailing" constant="20" id="x2N-CV-dO8"/>
+                                                <constraint firstItem="PgI-2C-EWf" firstAttribute="top" secondItem="Zez-qQ-oVl" secondAttribute="bottom" constant="4" id="xMw-kX-Oip"/>
                                                 <constraint firstAttribute="trailing" secondItem="1GS-cO-Emp" secondAttribute="trailing" constant="8" id="zMM-Ke-KOm"/>
                                             </constraints>
                                             <variation key="default">
@@ -158,6 +171,7 @@
                                             <outlet property="beaconImage" destination="PfF-48-aoW" id="8V6-Fl-Q2T"/>
                                             <outlet property="locationLabel" destination="1GS-cO-Emp" id="eJG-33-H5P"/>
                                             <outlet property="nameLabel" destination="ezu-ql-n6M" id="pfl-L1-V5H"/>
+                                            <outlet property="typeLabel" destination="Zez-qQ-oVl" id="yvY-NL-JeB"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

@@ -18,19 +18,23 @@ class iBeaconItem: NSObject, NSCoding {
   let majorValue: CLBeaconMajorValue
   let minorValue: CLBeaconMinorValue
   let actionURL: String
+  let actionURLName: String
+  let type: String
   let itemImage: UIImage
 
   var color: UIColor?
 
   dynamic var lastSeenBeacon: CLBeacon?
 
-  init(name: String, uuid: UUID, majorValue: CLBeaconMajorValue?, minorValue: CLBeaconMinorValue?, itemImage: UIImage, actionURL: String, color: UIColor) {
+  init(name: String, uuid: UUID, majorValue: CLBeaconMajorValue?, minorValue: CLBeaconMinorValue?, itemImage: UIImage, actionURL: String, actionURLName: String, type: String, color: UIColor) {
     self.name = name
     self.uuid = uuid
     self.majorValue = majorValue!
     self.minorValue = minorValue!
     self.itemImage = itemImage
     self.actionURL = actionURL
+    self.actionURLName = actionURLName
+    self.type = type
     self.color = Colors.white
   }
 
@@ -57,6 +61,18 @@ class iBeaconItem: NSObject, NSCoding {
       actionURL = ""
     }
 
+    if let aActionURLName = aDecoder.decodeObject(forKey: BeaconProperties.actionURLNameKey) as? String {
+      actionURLName = aActionURLName
+    } else {
+      actionURLName = ""
+    }
+
+    if let aType = aDecoder.decodeObject(forKey: BeaconProperties.typeKey) as? String {
+      type = aType
+    } else {
+      type = ""
+    }
+
     if let aItemImage = aDecoder.decodeObject(forKey: BeaconProperties.itemImageKey) as? UIImage {
       itemImage = aItemImage
     } else {
@@ -76,6 +92,8 @@ class iBeaconItem: NSObject, NSCoding {
     aCoder.encode(Int(majorValue), forKey: BeaconProperties.majorKey)
     aCoder.encode(Int(minorValue), forKey: BeaconProperties.minorKey)
     aCoder.encode(actionURL, forKey: BeaconProperties.actionURLKey)
+    aCoder.encode(actionURLName, forKey: BeaconProperties.actionURLNameKey)
+    aCoder.encode(type, forKey: BeaconProperties.typeKey)
     aCoder.encode(itemImage, forKey: BeaconProperties.itemImageKey)
     aCoder.encode(color, forKey: BeaconProperties.colorKey)
   }

@@ -80,12 +80,14 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         var newBeacon: iBeaconItem?
 
         //Need to handle nils, for when the spreadsheet has blank spots
-        let name = object["Beacon Name"]
-        let uuid = object["UUID"]?.convertToUUID()
-        let major = object["Major"]?.convertToMajorValue()
-        let minor = object["Minor"]?.convertToMinorValue()
-        let actionURL = object["Action URL"]
-        let color = Colors.white
+        let name            = object["Beacon Name"]
+        let uuid            = object["UUID"]?.convertToUUID()
+        let major           = object["Major"]?.convertToMajorValue()
+        let minor           = object["Minor"]?.convertToMinorValue()
+        let actionURL       = object["Action URL"]
+        let actionURLName   = object["Action URL Name"]
+        let type            = object["Type"]
+        let color           = Colors.white
 
         if let imageURL = object["Image URL"] {
 
@@ -95,7 +97,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
           networking.downloadImage(completion: { (imageData) in
 
             let itemImage = UIImage(data: imageData)
-            newBeacon = iBeaconItem(name: name!, uuid: uuid!, majorValue: major, minorValue: minor, itemImage: itemImage!, actionURL: actionURL!, color: color)
+            newBeacon = iBeaconItem(name: name!, uuid: uuid!, majorValue: major, minorValue: minor, itemImage: itemImage!, actionURL: actionURL!, actionURLName: actionURLName!, type: type!, color: color)
             self.startMonitoringBeacon(newBeacon!)
             self.iBeacons.append(newBeacon!)
 
@@ -181,6 +183,12 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     let beacon = iBeacons[(indexPath as NSIndexPath).row]
 
     cell.beacon = beacon
+
+    cell.nameLabel!.text = beacon.name
+    cell.typeLabel!.text = "Type: \(beacon.type)"
+    cell.actionURLButton.setTitle(beacon.actionURLName, for: .normal)
+    cell.beaconImage.image = beacon.itemImage
+
     cell.actionURLButton.tag = indexPath.row
     cell.actionURLButton.addTarget(self, action: #selector(BeaconListScreen.actionURLPressed(sender:)), for: .touchUpInside)
 
