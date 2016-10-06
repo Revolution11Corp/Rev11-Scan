@@ -44,6 +44,7 @@ struct Images {
   static let eddystoneTabBlue   = "eddystone-tabbar-blue"
   static let beaconTabBlue      = "beacon-tabbar-blue"
   static let estimoteTabBlue    = "estimote-tabbar-blue"
+  static let searchTabBlue      = "search-tabbar-blue"
 }
 
 struct Constants {

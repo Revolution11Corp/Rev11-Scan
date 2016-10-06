@@ -56,15 +56,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
     let tabItems = tabBarController.tabBar.items! as [UITabBarItem]
 
     tabItems[0].selectedImage = UIImage(named: Images.qrTabBlue)
-    tabItems[1].selectedImage = UIImage(named: Images.estimoteTabBlue)
-    tabItems[2].selectedImage = UIImage(named: Images.eddystoneTabBlue)
-    tabItems[3].selectedImage = UIImage(named: Images.beaconTabBlue)
+    tabItems[1].selectedImage = UIImage(named: Images.searchTabBlue)
 
     UITabBar.appearance().barTintColor = Colors.darkGrey
 
     UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Colors.white], for:UIControlState())
     UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Colors.blue], for:.selected)
-
   }
 
   private func beaconManager(_ manager: AnyObject, didEnter region: CLBeaconRegion) {
@@ -89,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
   func applicationDidBecomeActive(_ application: UIApplication) {
 
     let tabBarController = self.window?.rootViewController as! UITabBarController
-    tabBarController.selectedIndex = 1
+    tabBarController.selectedIndex = 0
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
   }
 
