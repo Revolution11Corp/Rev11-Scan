@@ -34,21 +34,16 @@ extension String {
     let subDelimitersToEncode = "!$&'()*+,;="
 
     var allowedCharacterSet = NSCharacterSet.urlQueryAllowed
-//    let allowedCharacterSet = NSCharacterSet.URLQueryAllowedCharacterSet.mutableCopy() as! NSMutableCharacterSet
     allowedCharacterSet.remove(charactersIn: generalDelimitersToEncode + subDelimitersToEncode)
-//    allowedCharacterSet.removeCharactersInString(generalDelimitersToEncode + subDelimitersToEncode)
 
-//    return self.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacterSet) ?? self
     return self.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet) ?? self
   }
 
   var queryEncode: String {
-//    return self.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()) ?? self
     return self.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? self
   }
 
   var queryDecode: String {
-//    return self.stringByRemovingPercentEncoding ?? self
     return self.removingPercentEncoding ?? self
   }
 
