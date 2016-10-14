@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
       if let url = parameters["url"] {
         URLParameter.sharedInstance.baseURL = url
         URLParameter.sharedInstance.isFromFileMaker = true
+
       } else {
         print("No URL sent from source app")
         // handle error UI that user will see if they mess up their URL input in FileMaker

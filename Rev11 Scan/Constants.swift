@@ -64,9 +64,10 @@ struct Keys {
 }
 
 struct Cells {
-  static let estimoteCell   = "EstimoteCell"
-  static let eddystoneCell  = "EddystoneCell"
-  static let beaconCell     = "BeaconCell"
+  static let estimoteCell     = "EstimoteCell"
+  static let eddystoneCell    = "EddystoneCell"
+  static let beaconCell       = "BeaconCell"
+  static let beaconSearchCell = "BeaconSearchCell"
 
 
 }

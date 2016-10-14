@@ -14,9 +14,10 @@ class BeaconSearchScreen: UIViewController, UITableViewDelegate, UITableViewData
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var emptyStateLabel: UILabel!
   @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+  @IBOutlet weak var uuidSearchField: UITextField!
 
   let locationManager = CLLocationManager()
-  var iBeacons: [iBeaconItem] = []
+  var iBeacons: [CLBeacon] = []
   let defaults = UserDefaults(suiteName: Keys.suiteName)
   var uuidRegex = try! NSRegularExpression(pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", options: .caseInsensitive)
   var UUIDFieldValid = false
@@ -28,47 +29,32 @@ class BeaconSearchScreen: UIViewController, UITableViewDelegate, UITableViewData
     locationManager.delegate = self
   }
 
-  @IBAction func changeUUIDButtonPressed(_ sender: UIBarButtonItem) {
-    changeBeaconRegion()
-  }
-
   func changeBeaconRegion() {
 
-    let alertController = UIAlertController(title: "Change Beacons Detected", message: "Enter new UUID to change the Beacon Region", preferredStyle: .alert)
-    let confirmAction = UIAlertAction(title: "Change UUID", style: .default) { (_) in
+    if let field = self.uuidSearchField {
 
-      if let field = alertController.textFields?[0] {
+      let numberOfMatches = self.uuidRegex.numberOfMatches(in: field.text!, options: [], range: NSMakeRange(0, field.text!.characters.count))
 
-        let numberOfMatches = self.uuidRegex.numberOfMatches(in: field.text!, options: [], range: NSMakeRange(0, field.text!.characters.count))
+      self.UUIDFieldValid = (numberOfMatches > 0)
+      print(UUIDFieldValid)
 
-        self.UUIDFieldValid = (numberOfMatches > 0)
-        // store your data
-        UserDefaults.standard.set(field.text, forKey: "BeaconRegion")
+      let beaconRegion = CLBeaconRegion(proximityUUID: (field.text?.convertToUUID())!, identifier: "Searched Region")
+      locationManager.startRangingBeacons(in: beaconRegion)
+      print(beaconRegion)
 
-      } else {
+      UserDefaults.standard.set(field.text, forKey: "BeaconRegion")
 
-        let failAlert = UIAlertController(title: "Invalid UUID", message: "Please enter a correct UUID", preferredStyle: .alert)
-        failAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    } else {
 
-        self.present(failAlert, animated: true, completion: nil)
-      }
+      let failAlert = UIAlertController(title: "Invalid UUID", message: "Please enter a correct UUID", preferredStyle: .alert)
+      failAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+
+      self.present(failAlert, animated: true, completion: nil)
     }
-
-    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
-
-    alertController.addTextField { (textField) in
-      textField.placeholder = "UUID"
-    }
-
-    alertController.addAction(confirmAction)
-    alertController.addAction(cancelAction)
-
-    self.present(alertController, animated: true, completion: nil)
   }
 
-
-  @IBAction func cancel(_ segue: UIStoryboardSegue) {
-    // Do nothing
+  @IBAction func searchButtonPressed(_ sender: UIButton) {
+    changeBeaconRegion()
   }
 
   //MARK: - TableView Methods
@@ -78,62 +64,36 @@ class BeaconSearchScreen: UIViewController, UITableViewDelegate, UITableViewData
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-    let cell = tableView.dequeueReusableCell(withIdentifier: Cells.beaconCell, for: indexPath) as! BeaconCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: Cells.beaconSearchCell, for: indexPath) as! BeaconSearchCell
 
-    // New cell stuff (BeaconSearchCell) - Very basic.
+    let beacon = iBeacons[(indexPath as NSIndexPath).row]
+    var proximityText = "Unknown"
 
-//    let beacon = iBeacons[(indexPath as NSIndexPath).row]
-//
-//    cell.beacon = beacon
-//
-//    cell.nameLabel!.text = beacon.name
-//    cell.typeLabel!.text = "Type: \(beacon.type)"
-//    cell.actionURLButton.setTitle(beacon.actionURLName, for: .normal)
-//    cell.beaconImage.image = beacon.itemImage
-//
-//    cell.actionURLButton.tag = indexPath.row
-//    cell.actionURLButton.addTarget(self, action: #selector(BeaconListScreen.actionURLPressed(sender:)), for: .touchUpInside)
+    switch beacon.proximity {
+
+    case .unknown:
+      cell.backgroundColor = Colors.white
+      proximityText = "Unknown"
+
+
+    case .immediate:
+      cell.backgroundColor = Colors.green
+      proximityText =  "Immediate"
+
+    case .near:
+      cell.backgroundColor = Colors.yellow
+      proximityText = "Near"
+
+    case .far:
+      cell.backgroundColor = Colors.red
+      proximityText = "Far"
+    }
+
+    cell.uuidLabel.text = beacon.proximityUUID.uuidString
+    cell.majorMinorLabel.text = "Major: \(beacon.major.stringValue)    Minor: \(beacon.minor.stringValue)"
+    cell.locationLabel.text = "\(proximityText) (approx. \(NSString(format: "%.2f", beacon.accuracy))m)"
 
     return cell
-  }
-
-  func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-    return true
-  }
-
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-    tableView.deselectRow(at: indexPath, animated: true)
-
-    let beacon = iBeacons[(indexPath as NSIndexPath).row] as iBeaconItem
-    let uuid = beacon.uuid.uuidString
-    let detailMessage = "UUID: \(uuid)\nMajor: \(beacon.majorValue)\nMinor: \(beacon.minorValue)"
-    let detailAlert = UIAlertController(title: "Beacon Info", message: detailMessage, preferredStyle: .alert)
-    detailAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-
-    present(detailAlert, animated: true, completion: nil)
-  }
-
-  //MARK: - Beacon Monitoring
-  func startMonitoringBeacon(_ beacon: iBeaconItem) {
-    let beaconRegion = beaconRegionWithItem(beacon)
-    locationManager.startMonitoring(for: beaconRegion)
-    locationManager.startRangingBeacons(in: beaconRegion)
-
-  }
-
-  func stopMonitoringBeacon(_ beacon: iBeaconItem) {
-    let beaconRegion = beaconRegionWithItem(beacon)
-    locationManager.stopMonitoring(for: beaconRegion)
-    locationManager.stopRangingBeacons(in: beaconRegion)
-  }
-
-  func beaconRegionWithItem(_ beacon: iBeaconItem) -> CLBeaconRegion {
-
-    // Determine new beacon region based on user input.
-
-    let beaconRegion = CLBeaconRegion(proximityUUID: beacon.uuid as UUID, major: beacon.majorValue, minor: beacon.minorValue, identifier: beacon.name)
-    return beaconRegion
   }
 
   //MARK: - Core Location Methods
@@ -144,20 +104,15 @@ class BeaconSearchScreen: UIViewController, UITableViewDelegate, UITableViewData
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
     print("Location manager failed: \(error.localizedDescription)")
   }
-  
-  func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
 
-    // Do new array with the 'beacons' array from this delegate method.
-    
-//    for beacon in beacons {
-//      
-//      for iBeacon in iBeacons {
-//        
-//        if iBeacon == beacon {
-//          iBeacon.lastSeenBeacon = beacon
-//          
-//        }
-//      }
-//    }
+  func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
+    iBeacons = beacons
+
+    iBeacons.sort(by: { $0.major.intValue > $1.major.intValue })
+
+    print(beacons.count)
+    DispatchQueue.main.async {
+      self.tableView.reloadData()
+    }
   }
 }
