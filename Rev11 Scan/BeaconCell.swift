@@ -17,12 +17,17 @@ class BeaconCell: UITableViewCell {
   @IBOutlet weak var locationLabel: UILabel!
   @IBOutlet weak var actionURLButton: UIButton!
   @IBOutlet weak var typeLabel: UILabel!
+  @IBOutlet weak var distanceLabel: UILabel!
 
 
   override func awakeFromNib() {
     super.awakeFromNib()
     actionURLButton.layoutIfNeeded()
+    beaconImage.layoutIfNeeded()
     actionURLButton.layer.cornerRadius = actionURLButton.frame.size.height/2
+    beaconImage.layer.cornerRadius = beaconImage.frame.size.height/2
+    beaconImage.layer.masksToBounds = true
+    backgroundColor = Colors.lightGrey
   }
 
   override func setSelected(_ selected: Bool, animated: Bool) {
@@ -56,18 +61,25 @@ class BeaconCell: UITableViewCell {
 
     case .unknown:
       beacon!.color = Colors.lightGrey
+      locationLabel.textColor = Colors.darkGrey
       return "Unknown"
 
     case .immediate:
       beacon!.color = Colors.white
-      return "Immediate"
+      locationLabel.textColor = Colors.green
+      distanceLabel.text = "~ < 1 meter"
+      return "Close"
 
     case .near:
       beacon!.color = Colors.white
+      locationLabel.textColor = Colors.yellow
+      distanceLabel.text = "~ 1-3 meters"
       return "Near"
 
     case .far:
       beacon!.color = Colors.white
+      locationLabel.textColor = Colors.red
+      distanceLabel.text = "~ 3+ meters"
       return "Far"
     }
   }
@@ -79,8 +91,15 @@ class BeaconCell: UITableViewCell {
       if aBeacon == beacon && keyPath == "lastSeenBeacon" {
 
         let proximity = nameForProximity(aBeacon.lastSeenBeacon!.proximity)
-        let accuracy = NSString(format: "%.2f", aBeacon.lastSeenBeacon!.accuracy)
-        locationLabel!.text = "Location: \(proximity) (approx. \(accuracy)m)"
+        let accuracy = NSString(format: "%.1f", aBeacon.lastSeenBeacon!.accuracy)
+
+        if proximity == "Unknown" {
+          locationLabel.text = "--"
+          distanceLabel.text = "Weak Signal"
+        } else {
+          locationLabel!.text = "\(proximity)"
+        }
+
         self.backgroundColor = beacon?.color
       }
     }

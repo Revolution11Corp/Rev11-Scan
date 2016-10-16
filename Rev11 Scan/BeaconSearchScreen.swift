@@ -27,6 +27,8 @@ class BeaconSearchScreen: UIViewController, UITableViewDelegate, UITableViewData
     super.viewDidLoad()
     NavBarSetup.showLogoInNavBar(self.navigationController!, navItem: self.navigationItem)
     locationManager.delegate = self
+    tableView.tableFooterView = UIView(frame: CGRect.zero)
+    tableView.isHidden = true
   }
 
   func changeBeaconRegion() {
@@ -55,6 +57,12 @@ class BeaconSearchScreen: UIViewController, UITableViewDelegate, UITableViewData
 
   @IBAction func searchButtonPressed(_ sender: UIButton) {
     changeBeaconRegion()
+    dismissKeyboard()
+    tableView.isHidden = false
+  }
+
+  func dismissKeyboard() {
+    view.endEditing(true)
   }
 
   //MARK: - TableView Methods
@@ -73,25 +81,31 @@ class BeaconSearchScreen: UIViewController, UITableViewDelegate, UITableViewData
 
     case .unknown:
       cell.backgroundColor = Colors.white
-      proximityText = "Unknown"
-
+      cell.locationLabel.textColor = Colors.darkGrey
+      cell.distanceLabel.text = "Weak Signal"
+      proximityText = "--"
 
     case .immediate:
-      cell.backgroundColor = Colors.green
-      proximityText =  "Immediate"
+      cell.backgroundColor = Colors.white
+      cell.locationLabel.textColor = Colors.green
+      cell.distanceLabel.text = "~ < 1 meter"
+      proximityText =  "Close"
 
     case .near:
-      cell.backgroundColor = Colors.yellow
+      cell.backgroundColor = Colors.white
+      cell.locationLabel.textColor = Colors.yellow
+      cell.distanceLabel.text = "~ 1-3 meters"
       proximityText = "Near"
 
     case .far:
-      cell.backgroundColor = Colors.red
+      cell.backgroundColor = Colors.white
+      cell.locationLabel.textColor = Colors.red
+      cell.distanceLabel.text = "~ 3+ meters"
       proximityText = "Far"
     }
 
-    cell.uuidLabel.text = beacon.proximityUUID.uuidString
-    cell.majorMinorLabel.text = "Major: \(beacon.major.stringValue)    Minor: \(beacon.minor.stringValue)"
-    cell.locationLabel.text = "\(proximityText) (approx. \(NSString(format: "%.2f", beacon.accuracy))m)"
+    cell.majorMinorLabel.text = "Major:  \(beacon.major.stringValue)" + "\nMinor:  \(beacon.minor.stringValue)"
+    cell.locationLabel.text = "\(proximityText)"
 
     return cell
   }

@@ -10,14 +10,12 @@ import UIKit
 
 class BeaconSearchCell: UITableViewCell {
 
-  @IBOutlet weak var uuidLabel: UILabel!
   @IBOutlet weak var majorMinorLabel: UILabel!
   @IBOutlet weak var locationLabel: UILabel!
+  @IBOutlet weak var distanceLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
-
-
 }
