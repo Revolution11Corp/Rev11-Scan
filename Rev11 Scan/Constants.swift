@@ -31,12 +31,13 @@ struct BeaconProperties {
 }
 
 struct Colors {
-  static let white    = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)
-  static let darkGrey = UIColor(red: 50.0/255.0, green: 50.0/255.0, blue: 50.0/255.0, alpha: 1.0)
-  static let red      = UIColor(red: 255.0/255.0, green: 157.0/255.0, blue: 169.0/255.0, alpha: 1.0)
-  static let yellow   = UIColor(red: 255.0/255.0, green: 249.0/255.0, blue: 176.0/255.0, alpha: 1.0)
-  static let green    = UIColor(red: 184.0/255.0, green: 233.0/255.0, blue: 134.0/255.0, alpha: 1.0)
-  static let blue     = UIColor(red: 27.0/255.0, green: 117.0/255.0, blue: 187.0/255.0, alpha: 1.0)
+  static let white      = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+  static let darkGrey   = UIColor(red: 50.0/255.0, green: 50.0/255.0, blue: 50.0/255.0, alpha: 1.0)
+  static let red        = UIColor(red: 255.0/255.0, green: 157.0/255.0, blue: 169.0/255.0, alpha: 1.0)
+  static let yellow     = UIColor(red: 255.0/255.0, green: 249.0/255.0, blue: 176.0/255.0, alpha: 1.0)
+  static let green      = UIColor(red: 184.0/255.0, green: 233.0/255.0, blue: 134.0/255.0, alpha: 1.0)
+  static let blue       = UIColor(red: 27.0/255.0, green: 117.0/255.0, blue: 187.0/255.0, alpha: 1.0)
+  static let lightGrey  = UIColor(red: 220.0/255.0, green: 220.0/255.0, blue: 220.0/255.0, alpha: 1.0)
 }
 
 struct Images {

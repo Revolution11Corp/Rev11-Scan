@@ -55,19 +55,19 @@ class BeaconCell: UITableViewCell {
     switch proximity {
 
     case .unknown:
-      beacon!.color = Colors.white
+      beacon!.color = Colors.lightGrey
       return "Unknown"
 
     case .immediate:
-      beacon!.color = Colors.green
+      beacon!.color = Colors.white
       return "Immediate"
 
     case .near:
-      beacon!.color = Colors.yellow
+      beacon!.color = Colors.white
       return "Near"
 
     case .far:
-      beacon!.color = Colors.red
+      beacon!.color = Colors.white
       return "Far"
     }
   }
