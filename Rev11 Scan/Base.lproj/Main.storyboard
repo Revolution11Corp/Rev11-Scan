@@ -96,7 +96,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vOn-hW-SjT" id="yFs-jH-Kmj">
-                                            <frame key="frameInset" width="375" height="119"/>
+                                            <frame key="frameInset" width="375" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibeacon-logo" translatesAutoresizingMaskIntoConstraints="NO" id="PfF-48-aoW">
@@ -217,7 +217,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3E0-IQ-nMh" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Beacons" image="beacon-tabbar-grey" id="Gi8-g2-rh5"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="u6B-Yp-A9s">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="u6B-Yp-A9s">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -491,7 +491,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tLz-6X-1ON" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RJh-aJ-k3G">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="RJh-aJ-k3G">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -537,11 +537,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="200" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sDW-Nd-B8f">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="EstimoteCell" id="TRd-KZ-r6w" customClass="EstimoteCell" customModule="Rev11_Scan" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="200"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="EstimoteCell" id="TRd-KZ-r6w" customClass="EstimoteCell" customModule="Rev11_Scan" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="1000" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TRd-KZ-r6w" id="xDq-XF-d8k">
-                                            <frame key="frameInset" width="375" height="200"/>
+                                            <frame key="frameInset" width="1000" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location: Unknown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPN-sn-NpJ">
@@ -716,11 +716,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Nch-RF-SZV">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EddystoneCell" id="KM5-UL-6LD" customClass="EddystoneCell" customModule="Rev11_Scan" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="80"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EddystoneCell" id="KM5-UL-6LD" customClass="EddystoneCell" customModule="Rev11_Scan" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="1000" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KM5-UL-6LD" id="8kz-tm-ASe">
-                                            <frame key="frameInset" width="375" height="80"/>
+                                            <frame key="frameInset" width="1000" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eddystone-logo" translatesAutoresizingMaskIntoConstraints="NO" id="QLJ-Zz-gJS">
@@ -848,7 +848,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Hl3-lm-Dxz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Estimote" image="estimote-tabbar-white" id="gJ2-6t-eUu"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YR8-qt-mLI">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="YR8-qt-mLI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -867,7 +867,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rAc-pu-rsj" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Eddystone" image="eddystone-tabbar-white" id="brJ-co-UJE"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qyf-RX-Cud">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="qyf-RX-Cud">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -886,7 +886,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yig-Su-2qE" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="QR Reader" image="qr-tabbar-white" id="Az5-Nh-gz4"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="M7l-Nk-bPw">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="M7l-Nk-bPw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -920,6 +920,30 @@
                                 <color key="textColor" red="0.2156862745" green="0.37254901959999998" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d8s-Pf-1eI" customClass="RVSegmentedControl" customModule="Rev11_Scan" customModuleProvider="target">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="DbB-HF-WrW"/>
+                                    <constraint firstAttribute="width" constant="240" id="g9j-XM-TLb"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="thumbColor">
+                                        <color key="value" red="0.2156862745" green="0.37254901959999998" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="unselectedLabelColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedLabelColor">
+                                        <color key="value" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="segmentedControlTapped:" destination="2iS-rp-4lO" eventType="valueChanged" id="4CZ-B6-Ibe"/>
+                                </connections>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DCZ-2T-6f8">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -987,45 +1011,36 @@
                                     <outlet property="delegate" destination="2iS-rp-4lO" id="7CC-aM-zU6"/>
                                 </connections>
                             </tableView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter UUID to search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="51E-I8-JH5">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UUID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Kb-dG-nnk">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="nVQ-XS-Xj7"/>
+                                    <constraint firstAttribute="height" constant="21" id="IDN-zL-9nP"/>
                                 </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3wH-vU-kDs">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="OT1-v0-CHv"/>
-                                    <constraint firstAttribute="height" constant="30" id="POA-J3-j30"/>
-                                </constraints>
-                                <state key="normal" image="search-tabbar-blue"/>
-                                <connections>
-                                    <action selector="searchButtonPressed:" destination="2iS-rp-4lO" eventType="touchUpInside" id="iDH-Hx-VE5"/>
-                                </connections>
-                            </button>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="3wH-vU-kDs" firstAttribute="leading" secondItem="51E-I8-JH5" secondAttribute="trailing" constant="8" id="7RG-mh-Rq7"/>
-                            <constraint firstItem="51E-I8-JH5" firstAttribute="top" secondItem="XRv-TH-plV" secondAttribute="bottom" constant="23" id="CIj-UC-pjF"/>
-                            <constraint firstItem="3wH-vU-kDs" firstAttribute="centerY" secondItem="51E-I8-JH5" secondAttribute="centerY" id="IvW-AL-EhI"/>
+                            <constraint firstItem="d8s-Pf-1eI" firstAttribute="top" secondItem="XRv-TH-plV" secondAttribute="bottom" constant="15" id="6Wn-Fp-cKI"/>
+                            <constraint firstItem="d8s-Pf-1eI" firstAttribute="centerX" secondItem="8AL-ZW-RdT" secondAttribute="centerX" id="99U-Ak-YeG"/>
                             <constraint firstItem="5jm-Ue-qqN" firstAttribute="centerX" secondItem="8AL-ZW-RdT" secondAttribute="centerX" id="JpC-Ok-6AW"/>
-                            <constraint firstItem="51E-I8-JH5" firstAttribute="leading" secondItem="8AL-ZW-RdT" secondAttribute="leading" constant="10" id="NLc-5k-Opo"/>
-                            <constraint firstAttribute="trailing" secondItem="3wH-vU-kDs" secondAttribute="trailing" constant="10" id="Ot1-LX-las"/>
+                            <constraint firstItem="DCZ-2T-6f8" firstAttribute="top" secondItem="7Kb-dG-nnk" secondAttribute="bottom" constant="25" id="Pac-If-sXl"/>
                             <constraint firstItem="5jm-Ue-qqN" firstAttribute="centerY" secondItem="8AL-ZW-RdT" secondAttribute="centerY" id="Up8-ro-MYA"/>
+                            <constraint firstItem="7Kb-dG-nnk" firstAttribute="leading" secondItem="8AL-ZW-RdT" secondAttribute="leadingMargin" id="Wbi-Ho-4nr"/>
                             <constraint firstAttribute="trailing" secondItem="DCZ-2T-6f8" secondAttribute="trailing" id="bCi-ex-e0p"/>
                             <constraint firstItem="m7P-O0-5S7" firstAttribute="top" secondItem="DCZ-2T-6f8" secondAttribute="bottom" id="ej9-Bl-JKa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7Kb-dG-nnk" secondAttribute="trailing" id="f0v-sj-Zhb"/>
                             <constraint firstItem="DCZ-2T-6f8" firstAttribute="leading" secondItem="8AL-ZW-RdT" secondAttribute="leading" id="kPk-L2-gFh"/>
-                            <constraint firstItem="DCZ-2T-6f8" firstAttribute="top" secondItem="51E-I8-JH5" secondAttribute="bottom" constant="22" id="ktr-nm-Dww"/>
+                            <constraint firstItem="7Kb-dG-nnk" firstAttribute="top" secondItem="d8s-Pf-1eI" secondAttribute="bottom" constant="19" id="nnU-Bl-T7g"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Beacon List" id="Wkc-Fo-mRt"/>
                     <connections>
                         <outlet property="emptyStateLabel" destination="5jm-Ue-qqN" id="Uj7-hx-5dF"/>
+                        <outlet property="segmentedControl" destination="d8s-Pf-1eI" id="yzZ-oz-mN1"/>
                         <outlet property="tableView" destination="DCZ-2T-6f8" id="F4g-Xd-h8A"/>
-                        <outlet property="uuidSearchField" destination="51E-I8-JH5" id="A82-9s-OPj"/>
+                        <outlet property="uuidLabel" destination="7Kb-dG-nnk" id="ONb-fG-KHM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ush-m1-3cp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1038,7 +1053,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Dk7-0y-JJt" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Scan" image="search-tabbar-grey" id="0aP-xK-UOn"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QHC-9u-Bwf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="QHC-9u-Bwf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1059,7 +1074,6 @@
         <image name="estimote-tabbar-white" width="30" height="30"/>
         <image name="ibeacon-logo" width="150" height="150"/>
         <image name="qr-tabbar-white" width="30" height="30"/>
-        <image name="search-tabbar-blue" width="30" height="30"/>
         <image name="search-tabbar-grey" width="30" height="30"/>
     </resources>
 </document>
