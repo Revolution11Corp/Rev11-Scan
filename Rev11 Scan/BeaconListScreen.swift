@@ -86,6 +86,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         let minor           = object["Minor"]?.convertToMinorValue()
         let actionURL       = object["Action URL"]
         let actionURLName   = object["Action URL Name"]
+        let actionType      = object["Action Type"]
         let type            = object["Type"]
         let color           = Colors.white
 
@@ -97,7 +98,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
           networking.downloadImage(completion: { (imageData) in
 
             let itemImage = UIImage(data: imageData)
-            newBeacon = iBeaconItem(name: name!, uuid: uuid!, majorValue: major, minorValue: minor, itemImage: itemImage!, actionURL: actionURL!, actionURLName: actionURLName!, type: type!, color: color)
+            newBeacon = iBeaconItem(name: name!, uuid: uuid!, majorValue: major, minorValue: minor, itemImage: itemImage!, actionURL: actionURL!, actionURLName: actionURLName!, actionType: actionType!, type: type!, color: color)
             self.startMonitoringBeacon(newBeacon!)
             self.iBeacons.append(newBeacon!)
 
@@ -225,7 +226,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     detailAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
 
     present(detailAlert, animated: true, completion: nil)
-    
   }
 
   func actionURLPressed(sender: UIButton) {
@@ -233,9 +233,34 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     let beaconRow = sender.tag
     let selectedBeacon = iBeacons[beaconRow]
 
-    let url = URL(string: (selectedBeacon.actionURL))
-    let vc = SFSafariViewController(url: url!, entersReaderIfAvailable: true)
-    present(vc, animated: true, completion: nil)
+    switch selectedBeacon.actionType {
+
+    case "Website":
+
+      let url = URL(string: (selectedBeacon.actionURL))
+      let vc = SFSafariViewController(url: url!, entersReaderIfAvailable: true)
+      present(vc, animated: true, completion: nil)
+
+    case "FileMaker":
+
+      let urlFromBeacon = selectedBeacon.actionURL
+
+      // Not sure If I need the below stuff.
+//      let decodedURLString = (urlFromBeacon.replacingOccurrences(of: "%26", with: "&")) as String
+//      let builtURL = "\(decodedURLString)\(scannedURL!)"
+
+      if let url = URL(string: urlFromBeacon) {
+        DispatchQueue.main.async(execute: {
+          UIApplication.shared.openURL(url)
+        })
+      }
+
+    case "PhoneNumber":
+      UIApplication.shared.openURL(NSURL(string: "tel://\(selectedBeacon.actionURL)")! as URL)
+
+    default:
+      break
+    }
   }
 
   //MARK: - Beacon Monitoring

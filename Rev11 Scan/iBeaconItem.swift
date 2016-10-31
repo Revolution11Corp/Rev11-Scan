@@ -19,6 +19,7 @@ class iBeaconItem: NSObject, NSCoding {
   let minorValue: CLBeaconMinorValue
   let actionURL: String
   let actionURLName: String
+  let actionType: String
   let type: String
   let itemImage: UIImage
 
@@ -26,7 +27,7 @@ class iBeaconItem: NSObject, NSCoding {
 
   dynamic var lastSeenBeacon: CLBeacon?
 
-  init(name: String, uuid: UUID, majorValue: CLBeaconMajorValue?, minorValue: CLBeaconMinorValue?, itemImage: UIImage, actionURL: String, actionURLName: String, type: String, color: UIColor) {
+  init(name: String, uuid: UUID, majorValue: CLBeaconMajorValue?, minorValue: CLBeaconMinorValue?, itemImage: UIImage, actionURL: String, actionURLName: String, actionType: String, type: String, color: UIColor) {
     self.name = name
     self.uuid = uuid
     self.majorValue = majorValue!
@@ -34,6 +35,7 @@ class iBeaconItem: NSObject, NSCoding {
     self.itemImage = itemImage
     self.actionURL = actionURL
     self.actionURLName = actionURLName
+    self.actionType = actionType
     self.type = type
     self.color = Colors.white
   }
@@ -65,6 +67,12 @@ class iBeaconItem: NSObject, NSCoding {
       actionURLName = aActionURLName
     } else {
       actionURLName = ""
+    }
+
+    if let aActionType = aDecoder.decodeObject(forKey: BeaconProperties.actionType) as? String {
+      actionType = aActionType
+    } else {
+      actionType = ""
     }
 
     if let aType = aDecoder.decodeObject(forKey: BeaconProperties.typeKey) as? String {
