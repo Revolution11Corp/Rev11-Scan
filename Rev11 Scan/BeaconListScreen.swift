@@ -39,6 +39,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
       if defaults?.bool(forKey: Keys.isNewSharedSpreadsheet) == false {
         loadStoredBeacons()
+        setupBeaconRegions()
       } else {
         readSharedCSVWithClosure()
       }
@@ -48,13 +49,22 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
   }
 
+  func setupBeaconRegions() {
+
+    let beaconRegions: [iBeaconItem] = iBeacons.filterDuplicates { $0.uuid == $1.uuid && $0.uuid == $1.uuid }
+
+    for beacon in beaconRegions {
+      startRangingBeacon(beacon)
+    }
+  }
+
   func loadStoredBeacons() {
 
     if let storedBeacons = UserDefaults.standard.array(forKey: BeaconProperties.storedBeaconArrayKey) {
       
       for beaconData in storedBeacons {
         let beacon = NSKeyedUnarchiver.unarchiveObject(with: (beaconData as! NSData) as Data) as! iBeaconItem
-        startMonitoringBeacon(beacon)
+//        startRangingBeacon(beacon)
         iBeacons.append(beacon)
       }
     }
@@ -88,6 +98,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         let actionURLName   = object["Action URL Name"]
         let actionType      = object["Action Type"]
         let type            = object["Type"]
+        let mapURL          = object["Map URL"] 
         let color           = Colors.white
 
         if let imageURL = object["Image URL"] {
@@ -98,8 +109,8 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
           networking.downloadImage(completion: { (imageData) in
 
             let itemImage = UIImage(data: imageData)
-            newBeacon = iBeaconItem(name: name!, uuid: uuid!, majorValue: major, minorValue: minor, itemImage: itemImage!, actionURL: actionURL!, actionURLName: actionURLName!, actionType: actionType!, type: type!, color: color)
-            self.startMonitoringBeacon(newBeacon!)
+            newBeacon = iBeaconItem(name: name!, uuid: uuid!, majorValue: major, minorValue: minor, itemImage: itemImage!, actionURL: actionURL!, actionURLName: actionURLName!, actionType: actionType!, type: type!, mapURL: mapURL!, color: color)
+//            self.startRangingBeacon(newBeacon!)
             self.iBeacons.append(newBeacon!)
 
             beaconCounter += 1
@@ -122,6 +133,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
       self.tableView.isHidden = false
       self.defaults?.set(false, forKey: Keys.isNewSharedSpreadsheet)
       self.persistBeacons()
+      self.setupBeaconRegions()
 
       DispatchQueue.main.async {
 //        self.activityIndicator.stopAnimating()
@@ -205,7 +217,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     if editingStyle == .delete {
 
       let beaconToRemove = iBeacons[(indexPath as NSIndexPath).row] as iBeaconItem
-      stopMonitoringBeacon(beaconToRemove)
+      stopRangingBeacon(beaconToRemove)
       tableView.beginUpdates()
       iBeacons.remove(at: (indexPath as NSIndexPath).row)
       tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -245,10 +257,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
       let urlFromBeacon = selectedBeacon.actionURL
 
-      // Not sure If I need the below stuff.
-//      let decodedURLString = (urlFromBeacon.replacingOccurrences(of: "%26", with: "&")) as String
-//      let builtURL = "\(decodedURLString)\(scannedURL!)"
-
       if let url = URL(string: urlFromBeacon) {
         DispatchQueue.main.async(execute: {
           UIApplication.shared.openURL(url)
@@ -263,22 +271,20 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
   }
 
-  //MARK: - Beacon Monitoring
-  func startMonitoringBeacon(_ beacon: iBeaconItem) {
+  //MARK: - Beacon Ranging
+  func startRangingBeacon(_ beacon: iBeaconItem) {
     let beaconRegion = beaconRegionWithItem(beacon)
-    locationManager.startMonitoring(for: beaconRegion)
     locationManager.startRangingBeacons(in: beaconRegion)
-
   }
 
-  func stopMonitoringBeacon(_ beacon: iBeaconItem) {
+  func stopRangingBeacon(_ beacon: iBeaconItem) {
     let beaconRegion = beaconRegionWithItem(beacon)
-    locationManager.stopMonitoring(for: beaconRegion)
     locationManager.stopRangingBeacons(in: beaconRegion)
   }
 
   func beaconRegionWithItem(_ beacon: iBeaconItem) -> CLBeaconRegion {
-    let beaconRegion = CLBeaconRegion(proximityUUID: beacon.uuid as UUID, major: beacon.majorValue, minor: beacon.minorValue, identifier: beacon.name)
+//    let beaconRegion = CLBeaconRegion(proximityUUID: beacon.uuid as UUID, major: beacon.majorValue, minor: beacon.minorValue, identifier: beacon.name)
+    let beaconRegion = CLBeaconRegion(proximityUUID: beacon.uuid as UUID, identifier: beacon.name)
     return beaconRegion
   }
 

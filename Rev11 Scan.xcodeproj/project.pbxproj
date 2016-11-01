@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1404C8131D8F624E00981495 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1404C8121D8F624E00981495 /* Networking.swift */; };
+		14222B8C1DC8448600C9EA63 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14222B8B1DC8448600C9EA63 /* ArrayExtension.swift */; };
 		143AA2121DB5C48B00485CC7 /* RVSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143AA2111DB5C48B00485CC7 /* RVSegmentedControl.swift */; };
 		1446A6FF1D7BB7D200167BD1 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1446A6FE1D7BB7D200167BD1 /* ShareViewController.swift */; };
 		1446A7021D7BB7D200167BD1 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1446A7001D7BB7D200167BD1 /* MainInterface.storyboard */; };
@@ -71,6 +72,7 @@
 
 /* Begin PBXFileReference section */
 		1404C8121D8F624E00981495 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		14222B8B1DC8448600C9EA63 /* ArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		143AA2111DB5C48B00485CC7 /* RVSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RVSegmentedControl.swift; sourceTree = "<group>"; };
 		1446A6FC1D7BB7D200167BD1 /* Rev11Scan-ShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Rev11Scan-ShareExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1446A6FE1D7BB7D200167BD1 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			children = (
 				149F033A1D752EC40039ADEE /* QueryURL.swift */,
 				14B9CC8D1D7FB95500B666FC /* String.swift */,
+				14222B8B1DC8448600C9EA63 /* ArrayExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				14AD9E561D407E060085A044 /* BeaconDetails.swift in Sources */,
 				14A617821D1BAD010083CFF2 /* BeaconListScreen.swift in Sources */,
 				14A617981D1BAEF10083CFF2 /* QRScannerScreen.swift in Sources */,
+				14222B8C1DC8448600C9EA63 /* ArrayExtension.swift in Sources */,
 				14AD9E581D407E250085A044 /* BeaconCloudFactory.swift in Sources */,
 				145E215F1D45B91900571679 /* EddystoneCell.swift in Sources */,
 				14AD9E661D4466330085A044 /* EddystoneScreen.swift in Sources */,
