@@ -22,6 +22,7 @@
 		1490637A1D4F014800637146 /* EstimoteBeacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149063791D4F014800637146 /* EstimoteBeacon.swift */; };
 		1496B1B31D6FE1A400DD0B2E /* NavBarSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1496B1B21D6FE1A400DD0B2E /* NavBarSetup.swift */; };
 		1496B1B61D6FE5A000DD0B2E /* BeaconHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1496B1B51D6FE5A000DD0B2E /* BeaconHelper.swift */; };
+		1498D8A31DC9A20400BC55E7 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1498D8A21DC9A20400BC55E7 /* CloudKit.framework */; };
 		149F033B1D752EC40039ADEE /* QueryURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149F033A1D752EC40039ADEE /* QueryURL.swift */; };
 		14A6176F1D1BAB2B0083CFF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A6176E1D1BAB2B0083CFF2 /* AppDelegate.swift */; };
 		14A617741D1BAB2B0083CFF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14A617721D1BAB2B0083CFF2 /* Main.storyboard */; };
@@ -90,6 +91,7 @@
 		149063791D4F014800637146 /* EstimoteBeacon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstimoteBeacon.swift; sourceTree = "<group>"; };
 		1496B1B21D6FE1A400DD0B2E /* NavBarSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBarSetup.swift; sourceTree = "<group>"; };
 		1496B1B51D6FE5A000DD0B2E /* BeaconHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconHelper.swift; sourceTree = "<group>"; };
+		1498D8A21DC9A20400BC55E7 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		149F033A1D752EC40039ADEE /* QueryURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryURL.swift; sourceTree = "<group>"; };
 		14A6176B1D1BAB2B0083CFF2 /* Rev11 Scan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rev11 Scan.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14A6176E1D1BAB2B0083CFF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1498D8A31DC9A20400BC55E7 /* CloudKit.framework in Frameworks */,
 				14A6179A1D1BAF1B0083CFF2 /* CoreBluetooth.framework in Frameworks */,
 				1471579A1D331D4300B98EBA /* EstimoteSDK.framework in Frameworks */,
 			);
@@ -179,6 +182,7 @@
 				14D3FDC11DA60F08004F39EF /* Currently Unused */,
 				1446A6FD1D7BB7D200167BD1 /* Rev11Scan-ShareExtension */,
 				14A6176C1D1BAB2B0083CFF2 /* Products */,
+				14C831B01DC99DBF00EE3FDC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -277,6 +281,14 @@
 			name = Screens;
 			sourceTree = "<group>";
 		};
+		14C831B01DC99DBF00EE3FDC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1498D8A21DC9A20400BC55E7 /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		14D3FDC11DA60F08004F39EF /* Currently Unused */ = {
 			isa = PBXGroup;
 			children = (
@@ -354,9 +366,15 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = H69U55MWXW;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
 								enabled = 1;
 							};
 						};
@@ -640,7 +658,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Rev11 Scan/Rev11 Scan.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Sean Allen (H69U55MWXW)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = H69U55MWXW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)\"/\"Rev11 Scan\"/**",
@@ -650,8 +668,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.revolution11.Rev11-Scan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "681f4cc9-ca90-4b46-91d6-cb10db8d3b7d";
+				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanDevelopment;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -664,7 +682,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Rev11 Scan/Rev11 Scan.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Sean Allen (H69U55MWXW)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = H69U55MWXW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(PROJECT_DIR)\"/\"Rev11 Scan\"/**",
@@ -674,8 +692,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.revolution11.Rev11-Scan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "681f4cc9-ca90-4b46-91d6-cb10db8d3b7d";
+				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanDevelopment;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
