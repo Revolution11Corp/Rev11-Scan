@@ -9,8 +9,9 @@
 import UIKit
 import CoreLocation
 import SafariServices
+import MobileCoreServices
 
-class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
+class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, UIDocumentMenuDelegate, UIDocumentPickerDelegate {
 
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var emptyStateLabel: UILabel!
@@ -180,10 +181,34 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     self.present(alertController, animated: true, completion: nil)
   }
 
+  @IBAction func importButtonPressed(_ sender: UIBarButtonItem) {
+
+    let importMenu = UIDocumentMenuViewController(documentTypes: [kUTTypeCommaSeparatedText as String], in: .import)
+    importMenu.delegate = self
+    importMenu.addOption(withTitle: "From FileMaker", image: nil, order: .first, handler: {
+      print("Open FileMaker")
+      // In this completion is where you put the code top open FileMaker App. ust open the app, simple URL Scheme stuff
+    })
+    self.present(importMenu, animated: true, completion: nil)
+  }
+
+  func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+    //update UI and cached array with new CSV.
+    print("Imported Document url = \(url)")
+  }
+
+  func documentMenu(_ documentMenu: UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
+    let documentPicker = UIDocumentPickerViewController(documentTypes: [kUTTypeCommaSeparatedText as String], in: .import)
+    documentPicker.delegate = self
+    present(documentPicker, animated: true, completion: nil)
+  }
+
 
   @IBAction func cancel(_ segue: UIStoryboardSegue) {
     // Do nothing
   }
+
+
 
   //MARK: - TableView Methods
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
