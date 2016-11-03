@@ -65,7 +65,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
       
       for beaconData in storedBeacons {
         let beacon = NSKeyedUnarchiver.unarchiveObject(with: (beaconData as! NSData) as Data) as! iBeaconItem
-//        startRangingBeacon(beacon)
         iBeacons.append(beacon)
       }
     }
@@ -111,7 +110,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
             let itemImage = UIImage(data: imageData)
             newBeacon = iBeaconItem(name: name!, uuid: uuid!, majorValue: major, minorValue: minor, itemImage: itemImage!, actionURL: actionURL!, actionURLName: actionURLName!, actionType: actionType!, type: type!, mapURL: mapURL!, color: color)
-//            self.startRangingBeacon(newBeacon!)
+
             self.iBeacons.append(newBeacon!)
 
             beaconCounter += 1
@@ -186,15 +185,19 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     let importMenu = UIDocumentMenuViewController(documentTypes: [kUTTypeCommaSeparatedText as String], in: .import)
     importMenu.delegate = self
     importMenu.addOption(withTitle: "From FileMaker", image: nil, order: .first, handler: {
-      print("Open FileMaker")
-      // In this completion is where you put the code top open FileMaker App. ust open the app, simple URL Scheme stuff
+      self.openFileMaker()
     })
     self.present(importMenu, animated: true, completion: nil)
   }
 
-  func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
-    //update UI and cached array with new CSV.
-    print("Imported Document url = \(url)")
+  func openFileMaker() {
+
+    let fileMakerURL = "fmp://"
+    let url = URL(string: fileMakerURL)
+
+    DispatchQueue.main.async(execute: {
+      UIApplication.shared.openURL(url!)
+    })
   }
 
   func documentMenu(_ documentMenu: UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
@@ -203,12 +206,27 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     present(documentPicker, animated: true, completion: nil)
   }
 
+  func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+    if let spreadsheetData = NSData(contentsOf: url as URL) {
+      saveSpreadsheet(data: spreadsheetData, completionHandler: { 
+        self.readSharedCSVWithClosure()
+      })
+    }
+  }
+
+  func saveSpreadsheet(data: NSData, completionHandler: @escaping (() -> ())) {
+    defaults?.set(data, forKey: Keys.spreadsheetFile)
+    defaults?.set(true, forKey: Keys.isNewSharedSpreadsheet)
+    completionHandler()
+  }
+
+  func clearSpreadsheetCache() {
+    defaults?.set(nil, forKey: Keys.spreadsheetFile)
+  }
 
   @IBAction func cancel(_ segue: UIStoryboardSegue) {
     // Do nothing
   }
-
-
 
   //MARK: - TableView Methods
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
