@@ -191,7 +191,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     let importMenu = UIDocumentMenuViewController(documentTypes: [kUTTypeCommaSeparatedText as String], in: .import)
     importMenu.delegate = self
-    importMenu.addOption(withTitle: "From FileMaker", image: nil, order: .first, handler: {
+    importMenu.addOption(withTitle: "CSV From FileMaker", image: UIImage(named: "filemaker-line-logo")?.withRenderingMode(.alwaysOriginal), order: .first, handler: {
       self.openFileMaker()
     })
     self.present(importMenu, animated: true, completion: nil)
@@ -215,20 +215,16 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
   func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
 
-    var urlString: String?
+    clearSpreadsheetCache()
+    var csvString: String?
 
-    // Converting CSV to String
     do {
-
-      urlString = try String(contentsOf: url)
-
+      csvString = try String(contentsOf: url)
     } catch {
       print("No URL found at document picked")
     }
 
-    //Convert that to data
-    let spreadsheetData = urlString?.data(using: .utf8)
-
+    let spreadsheetData = csvString?.data(using: .utf8)
     saveSpreadsheet(data: spreadsheetData! as NSData, completionHandler: {
       self.readSharedCSVWithClosure()
     })
@@ -327,7 +323,17 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
       }
 
     case "PhoneNumber":
-      UIApplication.shared.openURL(NSURL(string: "tel://\(selectedBeacon.actionURL)")! as URL)
+
+      let alert = UIAlertController(title: "Call \(selectedBeacon.actionURL)?", message: nil, preferredStyle: .alert)
+      let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in }
+
+      let callAction = UIAlertAction(title: "Call", style: .default) { (action) in
+        UIApplication.shared.openURL(NSURL(string: "tel://\(selectedBeacon.actionURL)")! as URL)
+      }
+
+      alert.addAction(callAction)
+      alert.addAction(cancelAction)
+      self.view.window?.rootViewController?.present(alert, animated: true, completion: nil)
 
     default:
       break
