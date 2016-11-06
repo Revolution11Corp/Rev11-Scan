@@ -81,10 +81,10 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
       let data = defaults?.data(forKey: Keys.spreadsheetFile)
       let dataString = String(data: data!, encoding: .utf8)
 
-//      let cleanString = dataString?.replacingOccurrences(of: "\r", with: "\n")
-//      let csv = CSVParser(with: cleanString!)
+      let cleanString = dataString?.replacingOccurrences(of: "\r", with: "\n")
+      let csv = CSVParser(with: cleanString!)
 
-      let csv = CSVParser(with: dataString!)
+//      let csv = CSVParser(with: dataString!)
 
       let csvCount = csv.keyedRows!.count
       var beaconCounter = 0
@@ -120,7 +120,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
             self.iBeacons.append(newBeacon!)
 
             beaconCounter += 1
-
+            print(beaconCounter)
             if beaconCounter == csvCount {
 
               completionHandler()
