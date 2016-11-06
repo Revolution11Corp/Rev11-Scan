@@ -81,7 +81,11 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
       let data = defaults?.data(forKey: Keys.spreadsheetFile)
       let dataString = String(data: data!, encoding: .utf8)
 
+//      let cleanString = dataString?.replacingOccurrences(of: "\r", with: "\n")
+//      let csv = CSVParser(with: cleanString!)
+
       let csv = CSVParser(with: dataString!)
+
       let csvCount = csv.keyedRows!.count
       var beaconCounter = 0
       print(beaconCounter)
@@ -195,7 +199,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
   func openFileMaker() {
 
-    let fileMakerURL = "fmp://"
+    let fileMakerURL = "fmp:"
     let url = URL(string: fileMakerURL)
 
     DispatchQueue.main.async(execute: {
@@ -210,11 +214,24 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
   }
 
   func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
-    if let spreadsheetData = NSData(contentsOf: url as URL) {
-      saveSpreadsheet(data: spreadsheetData, completionHandler: { 
-        self.readSharedCSVWithClosure()
-      })
+
+    var urlString: String?
+
+    // Converting CSV to String
+    do {
+
+      urlString = try String(contentsOf: url)
+
+    } catch {
+      print("No URL found at document picked")
     }
+
+    //Convert that to data
+    let spreadsheetData = urlString?.data(using: .utf8)
+
+    saveSpreadsheet(data: spreadsheetData! as NSData, completionHandler: {
+      self.readSharedCSVWithClosure()
+    })
   }
 
   func saveSpreadsheet(data: NSData, completionHandler: @escaping (() -> ())) {
