@@ -84,6 +84,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
       let csv = CSVParser(with: dataString!)
       let csvCount = csv.keyedRows!.count
       var beaconCounter = 0
+      print(beaconCounter)
 
       for object in csv.keyedRows! {
 
@@ -109,6 +110,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
           networking.downloadImage(completion: { (imageData) in
 
             let itemImage = UIImage(data: imageData)
+
             newBeacon = iBeaconItem(name: name!, uuid: uuid!, majorValue: major, minorValue: minor, itemImage: itemImage!, actionURL: actionURL!, actionURLName: actionURLName!, actionType: actionType!, type: type!, mapURL: mapURL!, color: color)
 
             self.iBeacons.append(newBeacon!)
@@ -116,6 +118,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
             beaconCounter += 1
 
             if beaconCounter == csvCount {
+
               completionHandler()
             }
           })
