@@ -14,7 +14,8 @@ class BeaconSearchScreen: UIViewController, UITableViewDelegate, UITableViewData
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var emptyStateLabel: UILabel!
   @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-  @IBOutlet weak var uuidSearchField: UITextField!
+  @IBOutlet weak var segmentedControl: RVSegmentedControl!
+  @IBOutlet weak var uuidLabel: UILabel!
 
   let locationManager = CLLocationManager()
   var iBeacons: [CLBeacon] = []
@@ -22,48 +23,72 @@ class BeaconSearchScreen: UIViewController, UITableViewDelegate, UITableViewData
   var uuidRegex = try! NSRegularExpression(pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", options: .caseInsensitive)
   var UUIDFieldValid = false
 
+  let regionOne     = "B9407F30-F5F8-466E-AFF9-25556B57FE6D"
+  let regionTwo     = "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6"
+  let regionThree   = "B9407F30-F5F8-466E-AFF9-25556B57FE6D"
+
+  var regionUUID: UUID!
+
 
   override func viewDidLoad() {
     super.viewDidLoad()
     NavBarSetup.showLogoInNavBar(self.navigationController!, navItem: self.navigationItem)
     locationManager.delegate = self
     tableView.tableFooterView = UIView(frame: CGRect.zero)
-    tableView.isHidden = true
+    segmentedControl.selectedIndex = 0
+
+    let beaconRegion = CLBeaconRegion(proximityUUID: regionOne.convertToUUID(), identifier: "Selected Region")
+    locationManager.startRangingBeacons(in: beaconRegion)
+
+    uuidLabel.text = regionOne
   }
 
-  func changeBeaconRegion() {
+//  func changeBeaconRegion() {
+//
+//    if let field = self.uuidSearchField {
+//
+//      let numberOfMatches = self.uuidRegex.numberOfMatches(in: field.text!, options: [], range: NSMakeRange(0, field.text!.characters.count))
+//
+//      self.UUIDFieldValid = (numberOfMatches > 0)
+//      print(UUIDFieldValid)
+//
+//      let beaconRegion = CLBeaconRegion(proximityUUID: (field.text?.convertToUUID())!, identifier: "Searched Region")
+//      locationManager.startRangingBeacons(in: beaconRegion)
+//      print(beaconRegion)
+//
+//      UserDefaults.standard.set(field.text, forKey: "BeaconRegion")
+//
+//    } else {
+//
+//      let failAlert = UIAlertController(title: "Invalid UUID", message: "Please enter a correct UUID", preferredStyle: .alert)
+//      failAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//
+//      self.present(failAlert, animated: true, completion: nil)
+//    }
+//  }
 
-    if let field = self.uuidSearchField {
+  @IBAction func segmentedControlTapped(_ sender: RVSegmentedControl) {
 
-      let numberOfMatches = self.uuidRegex.numberOfMatches(in: field.text!, options: [], range: NSMakeRange(0, field.text!.characters.count))
+    switch segmentedControl.selectedIndex {
 
-      self.UUIDFieldValid = (numberOfMatches > 0)
-      print(UUIDFieldValid)
-
-      let beaconRegion = CLBeaconRegion(proximityUUID: (field.text?.convertToUUID())!, identifier: "Searched Region")
-      locationManager.startRangingBeacons(in: beaconRegion)
-      print(beaconRegion)
-
-      UserDefaults.standard.set(field.text, forKey: "BeaconRegion")
-
-    } else {
-
-      let failAlert = UIAlertController(title: "Invalid UUID", message: "Please enter a correct UUID", preferredStyle: .alert)
-      failAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-
-      self.present(failAlert, animated: true, completion: nil)
+    case 0:
+      regionUUID = regionOne.convertToUUID()
+      uuidLabel.text = regionOne
+    case 1:
+      regionUUID = regionTwo.convertToUUID()
+      uuidLabel.text = regionTwo
+    case 2:
+      regionUUID = regionThree.convertToUUID()
+      uuidLabel.text = regionThree
+    default:
+      regionUUID = regionOne.convertToUUID()
+      uuidLabel.text = regionOne
     }
+
+    let beaconRegion = CLBeaconRegion(proximityUUID: regionUUID, identifier: "Selected Region")
+    locationManager.startRangingBeacons(in: beaconRegion)
   }
 
-  @IBAction func searchButtonPressed(_ sender: UIButton) {
-    changeBeaconRegion()
-    dismissKeyboard()
-    tableView.isHidden = false
-  }
-
-  func dismissKeyboard() {
-    view.endEditing(true)
-  }
 
   //MARK: - TableView Methods
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -120,11 +145,10 @@ class BeaconSearchScreen: UIViewController, UITableViewDelegate, UITableViewData
   }
 
   func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-    iBeacons = beacons
 
+    iBeacons = beacons
     iBeacons.sort(by: { $0.major.intValue > $1.major.intValue })
 
-    print(beacons.count)
     DispatchQueue.main.async {
       self.tableView.reloadData()
     }

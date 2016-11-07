@@ -9,10 +9,12 @@
 import UIKit
 import CoreLocation
 import SafariServices
+import MobileCoreServices
 
-class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
+class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, UIDocumentMenuDelegate, UIDocumentPickerDelegate {
 
   @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var emptyStateIcon: UIImageView!
   @IBOutlet weak var emptyStateLabel: UILabel!
   @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
@@ -30,6 +32,12 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     NavBarSetup.showLogoInNavBar(self.navigationController!, navItem: self.navigationItem)
     locationManager.delegate = self
     locationManager.requestAlwaysAuthorization()
+    NotificationCenter.default.addObserver(self, selector:#selector(BeaconListScreen.reloadViewFromBackground), name:
+      NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+  }
+
+  func reloadViewFromBackground() {
+    viewWillAppear(true)
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -39,6 +47,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
       if defaults?.bool(forKey: Keys.isNewSharedSpreadsheet) == false {
         loadStoredBeacons()
+        setupBeaconRegions()
       } else {
         readSharedCSVWithClosure()
       }
@@ -48,13 +57,21 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
   }
 
+  func setupBeaconRegions() {
+
+    let beaconRegions: [iBeaconItem] = iBeacons.filterDuplicates { $0.uuid == $1.uuid && $0.uuid == $1.uuid }
+
+    for beacon in beaconRegions {
+      startRangingBeacon(beacon)
+    }
+  }
+
   func loadStoredBeacons() {
 
     if let storedBeacons = UserDefaults.standard.array(forKey: BeaconProperties.storedBeaconArrayKey) {
       
       for beaconData in storedBeacons {
         let beacon = NSKeyedUnarchiver.unarchiveObject(with: (beaconData as! NSData) as Data) as! iBeaconItem
-        startMonitoringBeacon(beacon)
         iBeacons.append(beacon)
       }
     }
@@ -66,14 +83,22 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     if defaults?.data(forKey: Keys.spreadsheetFile) != nil {
 
-//      activityIndicator.startAnimating()
+      tableView.isHidden = true
+      activityIndicator.startAnimating()
+      emptyStateLabel.alpha = 0
+      emptyStateIcon.alpha = 0
 
       let data = defaults?.data(forKey: Keys.spreadsheetFile)
       let dataString = String(data: data!, encoding: .utf8)
 
-      let csv = CSVParser(with: dataString!)
+      let cleanString = dataString?.replacingOccurrences(of: "\r", with: "\n")
+      let csv = CSVParser(with: cleanString!)
+
+//      let csv = CSVParser(with: dataString!)
+
       let csvCount = csv.keyedRows!.count
       var beaconCounter = 0
+      print(beaconCounter)
 
       for object in csv.keyedRows! {
 
@@ -86,7 +111,9 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         let minor           = object["Minor"]?.convertToMinorValue()
         let actionURL       = object["Action URL"]
         let actionURLName   = object["Action URL Name"]
+        let actionType      = object["Action Type"]
         let type            = object["Type"]
+        let mapURL          = object["Map URL"] 
         let color           = Colors.white
 
         if let imageURL = object["Image URL"] {
@@ -97,13 +124,15 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
           networking.downloadImage(completion: { (imageData) in
 
             let itemImage = UIImage(data: imageData)
-            newBeacon = iBeaconItem(name: name!, uuid: uuid!, majorValue: major, minorValue: minor, itemImage: itemImage!, actionURL: actionURL!, actionURLName: actionURLName!, type: type!, color: color)
-            self.startMonitoringBeacon(newBeacon!)
+
+            newBeacon = iBeaconItem(name: name!, uuid: uuid!, majorValue: major, minorValue: minor, itemImage: itemImage!, actionURL: actionURL!, actionURLName: actionURLName!, actionType: actionType!, type: type!, mapURL: mapURL!, color: color)
+
             self.iBeacons.append(newBeacon!)
 
             beaconCounter += 1
-
+            print(beaconCounter)
             if beaconCounter == csvCount {
+
               completionHandler()
             }
           })
@@ -118,12 +147,13 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     readSharedCSV { () -> () in
 
-      self.tableView.isHidden = false
       self.defaults?.set(false, forKey: Keys.isNewSharedSpreadsheet)
       self.persistBeacons()
+      self.setupBeaconRegions()
 
       DispatchQueue.main.async {
-//        self.activityIndicator.stopAnimating()
+        self.activityIndicator.stopAnimating()
+        self.tableView.isHidden = false
         self.tableView.reloadData()
       }
     }
@@ -167,6 +197,58 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     self.present(alertController, animated: true, completion: nil)
   }
 
+  @IBAction func importButtonPressed(_ sender: UIBarButtonItem) {
+
+    let importMenu = UIDocumentMenuViewController(documentTypes: [kUTTypeCommaSeparatedText as String], in: .import)
+    importMenu.delegate = self
+    importMenu.addOption(withTitle: "CSV From FileMaker", image: UIImage(named: "filemaker-line-logo")?.withRenderingMode(.alwaysOriginal), order: .first, handler: {
+      self.openFileMaker()
+    })
+    self.present(importMenu, animated: true, completion: nil)
+  }
+
+  func openFileMaker() {
+
+    let fileMakerURL = "fmp:"
+    let url = URL(string: fileMakerURL)
+
+    DispatchQueue.main.async(execute: {
+      UIApplication.shared.openURL(url!)
+    })
+  }
+
+  func documentMenu(_ documentMenu: UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
+    let documentPicker = UIDocumentPickerViewController(documentTypes: [kUTTypeCommaSeparatedText as String], in: .import)
+    documentPicker.delegate = self
+    present(documentPicker, animated: true, completion: nil)
+  }
+
+  func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+
+    clearSpreadsheetCache()
+    var csvString: String?
+
+    do {
+      csvString = try String(contentsOf: url)
+    } catch {
+      print("No URL found at document picked")
+    }
+
+    let spreadsheetData = csvString?.data(using: .utf8)
+    saveSpreadsheet(data: spreadsheetData! as NSData, completionHandler: {
+      self.readSharedCSVWithClosure()
+    })
+  }
+
+  func saveSpreadsheet(data: NSData, completionHandler: @escaping (() -> ())) {
+    defaults?.set(data, forKey: Keys.spreadsheetFile)
+    defaults?.set(true, forKey: Keys.isNewSharedSpreadsheet)
+    completionHandler()
+  }
+
+  func clearSpreadsheetCache() {
+    defaults?.set(nil, forKey: Keys.spreadsheetFile)
+  }
 
   @IBAction func cancel(_ segue: UIStoryboardSegue) {
     // Do nothing
@@ -204,7 +286,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     if editingStyle == .delete {
 
       let beaconToRemove = iBeacons[(indexPath as NSIndexPath).row] as iBeaconItem
-      stopMonitoringBeacon(beaconToRemove)
+      stopRangingBeacon(beaconToRemove)
       tableView.beginUpdates()
       iBeacons.remove(at: (indexPath as NSIndexPath).row)
       tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -225,7 +307,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     detailAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
 
     present(detailAlert, animated: true, completion: nil)
-    
   }
 
   func actionURLPressed(sender: UIButton) {
@@ -233,27 +314,56 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     let beaconRow = sender.tag
     let selectedBeacon = iBeacons[beaconRow]
 
-    let url = URL(string: (selectedBeacon.actionURL))
-    let vc = SFSafariViewController(url: url!, entersReaderIfAvailable: true)
-    present(vc, animated: true, completion: nil)
+    switch selectedBeacon.actionType {
+
+    case "Website":
+
+      let url = URL(string: (selectedBeacon.actionURL))
+      let vc = SFSafariViewController(url: url!, entersReaderIfAvailable: true)
+      present(vc, animated: true, completion: nil)
+
+    case "FileMaker":
+
+      let urlFromBeacon = selectedBeacon.actionURL
+
+      if let url = URL(string: urlFromBeacon) {
+        DispatchQueue.main.async(execute: {
+          UIApplication.shared.openURL(url)
+        })
+      }
+
+    case "PhoneNumber":
+
+      let alert = UIAlertController(title: "Call \(selectedBeacon.actionURL)?", message: nil, preferredStyle: .alert)
+      let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in }
+
+      let callAction = UIAlertAction(title: "Call", style: .default) { (action) in
+        UIApplication.shared.openURL(NSURL(string: "tel://\(selectedBeacon.actionURL)")! as URL)
+      }
+
+      alert.addAction(callAction)
+      alert.addAction(cancelAction)
+      self.view.window?.rootViewController?.present(alert, animated: true, completion: nil)
+
+    default:
+      break
+    }
   }
 
-  //MARK: - Beacon Monitoring
-  func startMonitoringBeacon(_ beacon: iBeaconItem) {
+  //MARK: - Beacon Ranging
+  func startRangingBeacon(_ beacon: iBeaconItem) {
     let beaconRegion = beaconRegionWithItem(beacon)
-    locationManager.startMonitoring(for: beaconRegion)
     locationManager.startRangingBeacons(in: beaconRegion)
-
   }
 
-  func stopMonitoringBeacon(_ beacon: iBeaconItem) {
+  func stopRangingBeacon(_ beacon: iBeaconItem) {
     let beaconRegion = beaconRegionWithItem(beacon)
-    locationManager.stopMonitoring(for: beaconRegion)
     locationManager.stopRangingBeacons(in: beaconRegion)
   }
 
   func beaconRegionWithItem(_ beacon: iBeaconItem) -> CLBeaconRegion {
-    let beaconRegion = CLBeaconRegion(proximityUUID: beacon.uuid as UUID, major: beacon.majorValue, minor: beacon.minorValue, identifier: beacon.name)
+//    let beaconRegion = CLBeaconRegion(proximityUUID: beacon.uuid as UUID, major: beacon.majorValue, minor: beacon.minorValue, identifier: beacon.name)
+    let beaconRegion = CLBeaconRegion(proximityUUID: beacon.uuid as UUID, identifier: beacon.name)
     return beaconRegion
   }
 

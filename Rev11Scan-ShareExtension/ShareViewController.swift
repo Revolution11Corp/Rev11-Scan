@@ -26,6 +26,7 @@ class ShareViewController: SLComposeServiceViewController {
   override func didSelectPost() {
 
     clearSpreadsheetCache()
+    var csvString: String?
 
     if let content = extensionContext!.inputItems[0] as? NSExtensionItem {
 
@@ -40,9 +41,14 @@ class ShareViewController: SLComposeServiceViewController {
 
               let url = data as! NSURL
 
-              if let spreadsheetData = NSData(contentsOf: url as URL) {
-                self.saveSpreadsheet(data: spreadsheetData)
+              do {
+                csvString = try String(contentsOf: url as URL)
+              } catch {
+                print("No URL found at document picked")
               }
+
+              let spreadsheetData = csvString?.data(using: .utf8)
+              self.saveSpreadsheet(data: spreadsheetData! as NSData)
             }
           }
         }

@@ -18,8 +18,10 @@ struct BeaconProperties {
   static let minorKey         = "minor"
   static let actionURLKey     = "actionURL"
   static let actionURLNameKey = "actionURLName"
+  static let actionType       = "actionType"
   static let typeKey          = "type"
   static let itemImageKey     = "itemImage"
+  static let mapURL           = "mapURL"
   static let colorKey         = "color"
 
   static let storedBeaconArrayKey = "storedBeaconsArray"
