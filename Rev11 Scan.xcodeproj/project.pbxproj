@@ -355,7 +355,7 @@
 					1446A6FB1D7BB7D200167BD1 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = H69U55MWXW;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -510,8 +510,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Rev11Scan-ShareExtension/Rev11Scan-ShareExtension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Sean Allen (H69U55MWXW)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = H69U55MWXW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Rev11Scan-ShareExtension",
@@ -521,8 +521,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.revolution11.Rev11-Scan.Rev11Scan-ShareExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "df4fbee6-81e2-45ad-ba3e-3971e4aaf8fd";
+				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanDistributionShareExt;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 3.0;
@@ -536,8 +536,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Rev11Scan-ShareExtension/Rev11Scan-ShareExtension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Sean Allen (H69U55MWXW)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = H69U55MWXW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Rev11Scan-ShareExtension",
@@ -547,8 +547,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.revolution11.Rev11-Scan.Rev11Scan-ShareExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "df4fbee6-81e2-45ad-ba3e-3971e4aaf8fd";
+				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanDistributionShareExt;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
@@ -657,7 +657,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Rev11 Scan/Rev11 Scan.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Sean Allen (H69U55MWXW)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = H69U55MWXW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -668,8 +668,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.revolution11.Rev11-Scan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "681f4cc9-ca90-4b46-91d6-cb10db8d3b7d";
-				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanDevelopment;
+				PROVISIONING_PROFILE = "67c5aae1-3109-4730-aebc-12a610b36b9b";
+				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanDistribution;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -681,7 +681,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Rev11 Scan/Rev11 Scan.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Sean Allen (H69U55MWXW)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = H69U55MWXW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -692,8 +692,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.revolution11.Rev11-Scan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "681f4cc9-ca90-4b46-91d6-cb10db8d3b7d";
-				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanDevelopment;
+				PROVISIONING_PROFILE = "67c5aae1-3109-4730-aebc-12a610b36b9b";
+				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanDistribution;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
