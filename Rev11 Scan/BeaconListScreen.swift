@@ -14,6 +14,7 @@ import MobileCoreServices
 class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, UIDocumentMenuDelegate, UIDocumentPickerDelegate {
 
   @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var emptyStateIcon: UIImageView!
   @IBOutlet weak var emptyStateLabel: UILabel!
   @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
@@ -31,6 +32,12 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     NavBarSetup.showLogoInNavBar(self.navigationController!, navItem: self.navigationItem)
     locationManager.delegate = self
     locationManager.requestAlwaysAuthorization()
+    NotificationCenter.default.addObserver(self, selector:#selector(BeaconListScreen.reloadViewFromBackground), name:
+      NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+  }
+
+  func reloadViewFromBackground() {
+    viewWillAppear(true)
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -76,7 +83,10 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     if defaults?.data(forKey: Keys.spreadsheetFile) != nil {
 
-//      activityIndicator.startAnimating()
+      tableView.isHidden = true
+      activityIndicator.startAnimating()
+      emptyStateLabel.alpha = 0
+      emptyStateIcon.alpha = 0
 
       let data = defaults?.data(forKey: Keys.spreadsheetFile)
       let dataString = String(data: data!, encoding: .utf8)
@@ -137,13 +147,13 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     readSharedCSV { () -> () in
 
-      self.tableView.isHidden = false
       self.defaults?.set(false, forKey: Keys.isNewSharedSpreadsheet)
       self.persistBeacons()
       self.setupBeaconRegions()
 
       DispatchQueue.main.async {
-//        self.activityIndicator.stopAnimating()
+        self.activityIndicator.stopAnimating()
+        self.tableView.isHidden = false
         self.tableView.reloadData()
       }
     }
