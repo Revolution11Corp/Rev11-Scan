@@ -40,7 +40,6 @@ class BeaconCell: UITableViewCell {
     }
     didSet {
       self.beacon?.addObserver(self, forKeyPath: Keys.lastSeenBeacon, options: .new, context: nil)
-        print("Incoming = \(beacon?.name)")
     }
   }
 
@@ -50,9 +49,8 @@ class BeaconCell: UITableViewCell {
 
   override func prepareForReuse() {
     super.prepareForReuse()
-    print("Outgoing = \(beacon?.name)")
     beacon = nil
-    print("Outgoing Set To = \(beacon)")
+    resetCellUI()
   }
 
   override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -107,5 +105,13 @@ class BeaconCell: UITableViewCell {
         return "Far"
       }
   }
+    
+    func resetCellUI() {
+        locationLabel.text = "--"
+        distanceLabel.text = "Not Found"
+        locationLabel.textColor = Colors.darkGrey
+        backgroundColor = Colors.lightGrey
+        contentView.alpha = 0.5
+    }
 
 }
