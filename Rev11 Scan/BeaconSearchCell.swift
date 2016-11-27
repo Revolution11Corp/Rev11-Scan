@@ -16,6 +16,5 @@ class BeaconSearchCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
     }
 }
