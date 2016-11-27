@@ -31,10 +31,6 @@ class BeaconCell: UITableViewCell {
     contentView.alpha = 0.5
   }
 
-  override func setSelected(_ selected: Bool, animated: Bool) {
-    super.setSelected(selected, animated: animated)
-  }
-
   var beacon: iBeaconItem? = nil {
 
     willSet {
@@ -44,6 +40,7 @@ class BeaconCell: UITableViewCell {
     }
     didSet {
       self.beacon?.addObserver(self, forKeyPath: Keys.lastSeenBeacon, options: .new, context: nil)
+        print("Incoming = \(beacon?.name)")
     }
   }
 
@@ -53,49 +50,18 @@ class BeaconCell: UITableViewCell {
 
   override func prepareForReuse() {
     super.prepareForReuse()
+    print("Outgoing = \(beacon?.name)")
     beacon = nil
-  }
-
-  func nameForProximity(_ proximity: CLProximity) -> String {
-
-    switch proximity {
-        
-    case .unknown:
-      beacon!.color = Colors.lightGrey
-      locationLabel.textColor = Colors.darkGrey
-      return "Unknown"
-
-    case .immediate:
-      beacon!.color = Colors.white
-      locationLabel.textColor = Colors.green
-      distanceLabel.text = "~ < 1 meter"
-      contentView.alpha = 1.0
-      return "Close"
-
-    case .near:
-      beacon!.color = Colors.white
-      locationLabel.textColor = Colors.yellow
-      distanceLabel.text = "~ 1-3 meters"
-      contentView.alpha = 1.0
-      return "Near"
-
-    case .far:
-      beacon!.color = Colors.white
-      locationLabel.textColor = Colors.red
-      distanceLabel.text = "~ 3+ meters"
-      contentView.alpha = 1.0
-      return "Far"
-    }
+    print("Outgoing Set To = \(beacon)")
   }
 
   override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 
     if let aBeacon = object as? iBeaconItem {
 
-      if aBeacon == beacon && keyPath == "lastSeenBeacon" {
+      if aBeacon == beacon && keyPath == Keys.lastSeenBeacon {
 
         let proximity = nameForProximity(aBeacon.lastSeenBeacon!.proximity)
-//        let accuracy = NSString(format: "%.1f", aBeacon.lastSeenBeacon!.accuracy)
 
         if proximity == "Unknown" {
           locationLabel.text = "--"
@@ -107,6 +73,39 @@ class BeaconCell: UITableViewCell {
         self.backgroundColor = beacon?.color
       }
     }
+  }
+    
+  func nameForProximity(_ proximity: CLProximity) -> String {
+        
+    switch proximity {
+            
+    case .unknown:
+        beacon!.color = Colors.lightGrey
+        locationLabel.textColor = Colors.darkGrey
+        contentView.alpha = 0.5
+        return "Unknown"
+            
+    case .immediate:
+        beacon!.color = Colors.white
+        locationLabel.textColor = Colors.green
+        distanceLabel.text = "~ < 1 meter"
+        contentView.alpha = 1.0
+        return "Close"
+            
+    case .near:
+        beacon!.color = Colors.white
+        locationLabel.textColor = Colors.yellow
+        distanceLabel.text = "~ 1-3 meters"
+        contentView.alpha = 1.0
+        return "Near"
+            
+    case .far:
+        beacon!.color = Colors.white
+        locationLabel.textColor = Colors.red
+        distanceLabel.text = "~ 3+ meters"
+        contentView.alpha = 1.0
+        return "Far"
+      }
   }
 
 }

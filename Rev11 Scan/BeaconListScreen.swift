@@ -362,7 +362,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
   }
 
   func beaconRegionWithItem(_ beacon: iBeaconItem) -> CLBeaconRegion {
-//    let beaconRegion = CLBeaconRegion(proximityUUID: beacon.uuid as UUID, major: beacon.majorValue, minor: beacon.minorValue, identifier: beacon.name)
     let beaconRegion = CLBeaconRegion(proximityUUID: beacon.uuid as UUID, identifier: beacon.name)
     return beaconRegion
   }
@@ -396,7 +395,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
         if iBeacon == beacon {
           iBeacon.lastSeenBeacon = beacon
-        
         }
       }
     }
