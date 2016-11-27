@@ -94,11 +94,8 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
       let cleanString = dataString?.replacingOccurrences(of: "\r", with: "\n")
       let csv = CSVParser(with: cleanString!)
 
-//      let csv = CSVParser(with: dataString!)
-
       let csvCount = csv.keyedRows!.count
       var beaconCounter = 0
-      print(beaconCounter)
 
       for object in csv.keyedRows! {
 
@@ -130,7 +127,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
             self.iBeacons.append(newBeacon!)
 
             beaconCounter += 1
-            print(beaconCounter)
+            
             if beaconCounter == csvCount {
 
               completionHandler()
@@ -209,7 +206,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
   func openFileMaker() {
 
-    let fileMakerURL = "fmp:"
+    let fileMakerURL = "fmp://$"
     let url = URL(string: fileMakerURL)
 
     DispatchQueue.main.async(execute: {
