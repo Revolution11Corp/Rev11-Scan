@@ -40,6 +40,7 @@ struct Colors {
   static let green      = UIColor(red: 91.0/255.0, green: 197.0/255.0, blue: 157.0/255.0, alpha: 1.0)
   static let blue       = UIColor(red: 27.0/255.0, green: 117.0/255.0, blue: 187.0/255.0, alpha: 1.0)
   static let lightGrey  = UIColor(red: 220.0/255.0, green: 220.0/255.0, blue: 220.0/255.0, alpha: 1.0)
+  static let black      = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1.0)
 }
 
 struct Images {
@@ -56,6 +57,7 @@ struct Constants {
 
 struct Keys {
   static let isFromFileMaker        = "isFromFileMaker"
+  static let hasViewedPermissions   = "hasViewedPermissions"
   static let lastSeenEstimote       = "lastSeenEstimote"
   static let lastSeenBeacon         = "lastSeenBeacon"
   static let suiteName              = "group.rev11scan"

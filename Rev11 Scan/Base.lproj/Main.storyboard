@@ -85,14 +85,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="download-icloud" translatesAutoresizingMaskIntoConstraints="NO" id="M71-Ps-skr">
-                                <rect key="frame" x="167.5" y="269" width="40" height="40"/>
+                                <rect key="frame" x="168" y="269" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="EN3-us-Ihk"/>
                                     <constraint firstAttribute="height" constant="40" id="LYE-eU-bys"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the import button to import a CSV from iCloud or FileMaker." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUZ-7Z-Im6">
-                                <rect key="frame" x="34.5" y="291" width="306" height="85"/>
+                                <rect key="frame" x="35" y="291" width="306" height="85"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="306" id="ByG-6d-f4e"/>
                                     <constraint firstAttribute="height" constant="85" id="cc6-3I-qR7"/>
@@ -109,7 +109,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vOn-hW-SjT" id="yFs-jH-Kmj">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibeacon-logo" translatesAutoresizingMaskIntoConstraints="NO" id="PfF-48-aoW">
@@ -208,12 +208,47 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="color" red="0.2156862745" green="0.37254901959999998" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1J-6X-JuN">
+                                <rect key="frame" x="47" y="183" width="280" height="300"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="r11AppIcon120" translatesAutoresizingMaskIntoConstraints="NO" id="Vix-C6-KhQ">
+                                        <rect key="frame" x="105" y="28" width="70" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="In order to find iBeacon's near you, this app needs to know your location during use." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMV-V9-iU6">
+                                        <rect key="frame" x="8" y="111" width="264" height="94"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                        <color key="textColor" red="0.39124602079999998" green="0.39156565069999999" blue="0.39129555230000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dqc-ug-Bnm" customClass="RVButton" customModule="Rev11_Scan" customModuleProvider="target">
+                                        <rect key="frame" x="70" y="229" width="140" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.0" green="0.46714377403259277" blue="0.75565165281295776" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                                        <state key="normal" title="OK">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="permissionsOKButtonPressed:" destination="x8K-YJ-Js2" eventType="touchUpInside" id="fTD-ee-pC5"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="mFe-R4-bxZ"/>
+                                    <constraint firstAttribute="height" constant="300" id="rrZ-ML-w3L"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="p1J-6X-JuN" firstAttribute="centerY" secondItem="Kcx-cA-3kl" secondAttribute="centerY" id="1RD-Rc-gng"/>
                             <constraint firstItem="eYw-Yr-E88" firstAttribute="top" secondItem="96j-2w-l7j" secondAttribute="bottom" id="CmE-IW-fJ2"/>
                             <constraint firstItem="oUZ-7Z-Im6" firstAttribute="top" secondItem="M71-Ps-skr" secondAttribute="bottom" constant="-18" id="EBT-xo-n64"/>
                             <constraint firstItem="eYw-Yr-E88" firstAttribute="leading" secondItem="Kcx-cA-3kl" secondAttribute="leading" id="Ekz-zl-QCv"/>
+                            <constraint firstItem="p1J-6X-JuN" firstAttribute="centerX" secondItem="Kcx-cA-3kl" secondAttribute="centerX" id="b7Q-7e-ubs"/>
                             <constraint firstItem="oUZ-7Z-Im6" firstAttribute="centerX" secondItem="Kcx-cA-3kl" secondAttribute="centerX" id="f7l-EV-oIm"/>
                             <constraint firstItem="Qqo-D6-w8j" firstAttribute="top" secondItem="eYw-Yr-E88" secondAttribute="bottom" id="iih-Ke-0HE"/>
                             <constraint firstItem="oUZ-7Z-Im6" firstAttribute="centerY" secondItem="Kcx-cA-3kl" secondAttribute="centerY" id="jV6-R3-yJ0"/>
@@ -232,6 +267,7 @@
                         <outlet property="activityIndicator" destination="xA7-pS-s3t" id="ZcR-ZI-52J"/>
                         <outlet property="emptyStateIcon" destination="M71-Ps-skr" id="248-Pd-o0M"/>
                         <outlet property="emptyStateLabel" destination="oUZ-7Z-Im6" id="xa0-Dw-AcB"/>
+                        <outlet property="permissionsView" destination="p1J-6X-JuN" id="Ktr-NN-qGY"/>
                         <outlet property="tableView" destination="eYw-Yr-E88" id="f0x-Ir-BQQ"/>
                     </connections>
                 </viewController>
@@ -245,9 +281,10 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3E0-IQ-nMh" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Beacons" image="beacon-tabbar-grey" id="Gi8-g2-rh5"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="u6B-Yp-A9s">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="u6B-Yp-A9s">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -439,9 +476,10 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Dk7-0y-JJt" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Scan" image="search-tabbar-grey" id="0aP-xK-UOn"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QHC-9u-Bwf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="QHC-9u-Bwf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -458,6 +496,7 @@
         <image name="download-icloud" width="30" height="30"/>
         <image name="ibeacon-logo" width="150" height="150"/>
         <image name="qr-tabbar-white" width="30" height="30"/>
+        <image name="r11AppIcon120" width="60" height="60"/>
         <image name="search-tabbar-grey" width="30" height="30"/>
     </resources>
 </document>

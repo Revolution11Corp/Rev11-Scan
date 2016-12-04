@@ -17,21 +17,24 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
   @IBOutlet weak var emptyStateIcon: UIImageView!
   @IBOutlet weak var emptyStateLabel: UILabel!
   @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+  @IBOutlet weak var permissionsView: UIView!
 
   let locationManager = CLLocationManager()
   var iBeacons: [iBeaconItem] = []
   var uuidRegex = try! NSRegularExpression(pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", options: .caseInsensitive)
 
   let defaults = UserDefaults(suiteName: Keys.suiteName)
+  var transparencyView: UIView!
+
 
   var UUIDFieldValid = false
 
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    transparencyView = createTransparencyView()
     NavBarSetup.showLogoInNavBar(self.navigationController!, navItem: self.navigationItem)
     locationManager.delegate = self
-    locationManager.requestAlwaysAuthorization()
     NotificationCenter.default.addObserver(self, selector:#selector(BeaconListScreen.reloadViewFromBackground), name:
       NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
   }
@@ -42,19 +45,42 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-
+    checkForExistingCSV()
+    
+    if Constants.defaults.bool(forKey: Keys.hasViewedPermissions) != true {
+        showPermissionsView(bool: true)
+    }
+  }
+    
+    
+  func checkForExistingCSV() {
+    
     if UserDefaults.standard.array(forKey: BeaconProperties.storedBeaconArrayKey) != nil {
-
-      if defaults?.bool(forKey: Keys.isNewSharedSpreadsheet) == false {
-        loadStoredBeacons()
-        setupBeaconRegions()
-      } else {
-        readSharedCSVWithClosure()
-      }
-
+            
+        if defaults?.bool(forKey: Keys.isNewSharedSpreadsheet) == false {
+          loadStoredBeacons()
+          setupBeaconRegions()
+        } else {
+          readSharedCSVWithClosure()
+        }
     } else {
       readSharedCSVWithClosure()
     }
+  }
+    
+  func showPermissionsView(bool: Bool) {
+
+    UIView.animate(withDuration: 0.33, animations: {
+        self.transparencyView.alpha = bool ? 0.7 : 0.0
+        self.permissionsView.alpha = bool ? 1.0 : 0.0
+        self.view.bringSubview(toFront: self.permissionsView)
+    })
+  }
+    
+  @IBAction func permissionsOKButtonPressed(_ sender: RVButton) {
+    showPermissionsView(bool: false)
+    Constants.defaults.set(true, forKey: Keys.hasViewedPermissions)
+    locationManager.requestWhenInUseAuthorization()
   }
 
   func setupBeaconRegions() {

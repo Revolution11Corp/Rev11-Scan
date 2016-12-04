@@ -60,6 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
     tabItems[1].selectedImage = UIImage(named: Images.searchTabBlue)
 
     UITabBar.appearance().barTintColor = Colors.white
+    UITabBar.appearance().backgroundColor = Colors.white
 
     UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Colors.darkGrey], for:UIControlState())
     UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Colors.blue], for:.selected)

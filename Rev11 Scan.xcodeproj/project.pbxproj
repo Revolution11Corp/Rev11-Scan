@@ -37,6 +37,8 @@
 		14CA08251D7E55BA000D5764 /* EstimoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA08241D7E55BA000D5764 /* EstimoteSDK.framework */; };
 		14D3FDC31DA60FA4004F39EF /* BeaconSearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D3FDC21DA60FA4004F39EF /* BeaconSearchScreen.swift */; };
 		14D3FDC51DA61215004F39EF /* BeaconSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D3FDC41DA61215004F39EF /* BeaconSearchCell.swift */; };
+		ED5FE28A1DF46EBF00C0408E /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5FE2891DF46EBF00C0408E /* UIViewControllerExtension.swift */; };
+		ED5FE28C1DF4727E00C0408E /* RVButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5FE28B1DF4727E00C0408E /* RVButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +102,8 @@
 		14CA08241D7E55BA000D5764 /* EstimoteSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EstimoteSDK.framework; sourceTree = "<group>"; };
 		14D3FDC21DA60FA4004F39EF /* BeaconSearchScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconSearchScreen.swift; sourceTree = "<group>"; };
 		14D3FDC41DA61215004F39EF /* BeaconSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconSearchCell.swift; sourceTree = "<group>"; };
+		ED5FE2891DF46EBF00C0408E /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		ED5FE28B1DF4727E00C0408E /* RVButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RVButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +147,7 @@
 				149F033A1D752EC40039ADEE /* QueryURL.swift */,
 				14B9CC8D1D7FB95500B666FC /* String.swift */,
 				14222B8B1DC8448600C9EA63 /* ArrayExtension.swift */,
+				ED5FE2891DF46EBF00C0408E /* UIViewControllerExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -154,6 +159,7 @@
 				1496B1B51D6FE5A000DD0B2E /* BeaconHelper.swift */,
 				14B9CC8B1D7FB93000B666FC /* CSVParser.swift */,
 				143AA2111DB5C48B00485CC7 /* RVSegmentedControl.swift */,
+				ED5FE28B1DF4727E00C0408E /* RVButton.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -391,6 +397,8 @@
 				1496B1B61D6FE5A000DD0B2E /* BeaconHelper.swift in Sources */,
 				14D3FDC51DA61215004F39EF /* BeaconSearchCell.swift in Sources */,
 				1496B1B31D6FE1A400DD0B2E /* NavBarSetup.swift in Sources */,
+				ED5FE28A1DF46EBF00C0408E /* UIViewControllerExtension.swift in Sources */,
+				ED5FE28C1DF4727E00C0408E /* RVButton.swift in Sources */,
 				14B9CC8E1D7FB95500B666FC /* String.swift in Sources */,
 				14A617961D1BAEBA0083CFF2 /* AddBeaconScreen.swift in Sources */,
 				14A617821D1BAD010083CFF2 /* BeaconListScreen.swift in Sources */,
