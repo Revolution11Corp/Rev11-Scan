@@ -299,6 +299,16 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     return cell
   }
+    
+//  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//    let cell = tableView.dequeueReusableCell(withIdentifier: Cells.beaconCell, for: indexPath) as! BeaconCell
+//    
+//    if cell.distanceLabel.text == "Not Found" {
+//      return 0
+//    } else {
+//      return 120
+//    }
+//  }
 
   func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
     return true

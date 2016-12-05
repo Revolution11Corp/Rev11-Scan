@@ -16,16 +16,22 @@ class BeaconSearchScreen: UIViewController, UITableViewDelegate, UITableViewData
   @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
   @IBOutlet weak var segmentedControl: RVSegmentedControl!
   @IBOutlet weak var uuidLabel: UILabel!
-
+    
+  @IBOutlet weak var uuidOneTextField: RVTextField!
+  @IBOutlet weak var uuidTwoTextField: RVTextField!
+  @IBOutlet weak var uuidThreeTextField: RVTextField!
+    
+  @IBOutlet var textFields: [RVTextField]!
+    
   let locationManager = CLLocationManager()
   var iBeacons: [CLBeacon] = []
   let defaults = UserDefaults(suiteName: Keys.suiteName)
   var uuidRegex = try! NSRegularExpression(pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", options: .caseInsensitive)
   var UUIDFieldValid = false
 
-  let regionOne     = "B9407F30-F5F8-466E-AFF9-25556B57FE6D"
-  let regionTwo     = "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6"
-  let regionThree   = "B9407F30-F5F8-466E-AFF9-25556B57FE6D"
+  var regionOne     = "B9407F30-F5F8-466E-AFF9-25556B57FE6D"
+  var regionTwo     = "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6"
+  var regionThree   = "B9407F30-F5F8-466E-AFF9-25556B57FE6D"
 
   var regionUUID: UUID!
 
@@ -42,30 +48,45 @@ class BeaconSearchScreen: UIViewController, UITableViewDelegate, UITableViewData
 
     uuidLabel.text = regionOne
   }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        uuidOneTextField.text = regionOne
+        uuidTwoTextField.text = regionTwo
+        uuidThreeTextField.text = regionThree
+    }
 
-//  func changeBeaconRegion() {
-//
-//    if let field = self.uuidSearchField {
-//
-//      let numberOfMatches = self.uuidRegex.numberOfMatches(in: field.text!, options: [], range: NSMakeRange(0, field.text!.characters.count))
-//
-//      self.UUIDFieldValid = (numberOfMatches > 0)
-//      print(UUIDFieldValid)
-//
-//      let beaconRegion = CLBeaconRegion(proximityUUID: (field.text?.convertToUUID())!, identifier: "Searched Region")
-//      locationManager.startRangingBeacons(in: beaconRegion)
-//      print(beaconRegion)
-//
-//      UserDefaults.standard.set(field.text, forKey: "BeaconRegion")
-//
-//    } else {
-//
-//      let failAlert = UIAlertController(title: "Invalid UUID", message: "Please enter a correct UUID", preferredStyle: .alert)
-//      failAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//
-//      self.present(failAlert, animated: true, completion: nil)
-//    }
-//  }
+  func changeBeaconRegion() {
+    
+    for textField in textFields {
+        
+        // need Switch Statement for different UUID Fields, to set the UUID1, 2, 3 user defaults and anything else you need.
+        
+        if let field = textField {
+            
+            let numberOfMatches = self.uuidRegex.numberOfMatches(in: field.text!, options: [], range: NSMakeRange(0, field.text!.characters.count))
+            
+            self.UUIDFieldValid = (numberOfMatches > 0)
+            print(UUIDFieldValid)
+            
+            let beaconRegion = CLBeaconRegion(proximityUUID: (field.text?.convertToUUID())!, identifier: "Searched Region")
+            locationManager.startRangingBeacons(in: beaconRegion)
+            print(beaconRegion)
+            
+            Constants.defaults.standard.set(field.text, forKey: "BeaconRegion")
+            
+        } else {
+            
+            let failAlert = UIAlertController(title: "Invalid UUID", message: "Please enter a correct UUID", preferredStyle: .alert)
+            failAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            
+            self.present(failAlert, animated: true, completion: nil)
+        }
+        
+    }
+
+
+  }
 
   @IBAction func segmentedControlTapped(_ sender: RVSegmentedControl) {
 
