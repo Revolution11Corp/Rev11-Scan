@@ -257,7 +257,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Beacons" id="kc1-J8-ZgF">
+                        <barButtonItem key="leftBarButtonItem" image="filter" id="Eno-Vq-tAo">
+                            <color key="tintColor" red="0.0" green="0.46714377403259277" blue="0.75565165281295776" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="filterButtonPressed:" destination="x8K-YJ-Js2" id="VCx-BZ-saA"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="download-icloud" id="rZ3-hH-2N5">
+                            <color key="tintColor" red="0.0" green="0.46714377403259277" blue="0.75565165281295776" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="importButtonPressed:" destination="x8K-YJ-Js2" id="4nf-iR-GC7"/>
                             </connections>
@@ -644,6 +651,7 @@
         <image name="beacon-tabbar-grey" width="30" height="30"/>
         <image name="cancel-button" width="30" height="30"/>
         <image name="download-icloud" width="30" height="30"/>
+        <image name="filter" width="30" height="30"/>
         <image name="ibeacon-logo" width="150" height="150"/>
         <image name="qr-tabbar-white" width="30" height="30"/>
         <image name="r11AppIcon120" width="60" height="60"/>
