@@ -27,9 +27,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
   var transparencyView: UIView!
 
 
-  var UUIDFieldValid = false
-
-
   override func viewDidLoad() {
     super.viewDidLoad()
     transparencyView = createTransparencyView()
@@ -51,8 +48,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         showPermissionsView(bool: true)
     }
   }
-    
-    
+
   func checkForExistingCSV() {
     
     if UserDefaults.standard.array(forKey: BeaconProperties.storedBeaconArrayKey) != nil {
@@ -180,44 +176,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         self.tableView.reloadData()
       }
     }
-  }
-
-  @IBAction func changeUUIDButtonPressed(_ sender: UIBarButtonItem) {
-    changeBeaconRegion()
-  }
-
-  func changeBeaconRegion() {
-
-    let alertController = UIAlertController(title: "Change Beacons Detected", message: "Enter new UUID to change the Beacon Region", preferredStyle: .alert)
-    let confirmAction = UIAlertAction(title: "Change UUID", style: .default) { (_) in
-
-      if let field = alertController.textFields?[0] {
-
-        let numberOfMatches = self.uuidRegex.numberOfMatches(in: field.text!, options: [], range: NSMakeRange(0, field.text!.characters.count))
-
-        self.UUIDFieldValid = (numberOfMatches > 0)
-        // store your data
-        UserDefaults.standard.set(field.text, forKey: "BeaconRegion")
-
-      } else {
-
-        let failAlert = UIAlertController(title: "Invalid UUID", message: "Please enter a correct UUID", preferredStyle: .alert)
-        failAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-
-        self.present(failAlert, animated: true, completion: nil)
-      }
-    }
-
-    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
-
-    alertController.addTextField { (textField) in
-      textField.placeholder = "UUID"
-    }
-
-    alertController.addAction(confirmAction)
-    alertController.addAction(cancelAction)
-
-    self.present(alertController, animated: true, completion: nil)
   }
 
   @IBAction func importButtonPressed(_ sender: UIBarButtonItem) {

@@ -23,7 +23,7 @@ class RVTextField: UITextField {
     
     func setUpTextField() {
         self.layoutIfNeeded()
-        self.layer.cornerRadius = self.frame.size.height/2
+        self.layer.cornerRadius = 10
         layer.borderWidth = 1.5
         layer.borderColor = Colors.lightGrey.cgColor
     }

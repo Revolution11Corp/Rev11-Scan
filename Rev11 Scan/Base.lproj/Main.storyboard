@@ -109,7 +109,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vOn-hW-SjT" id="yFs-jH-Kmj">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibeacon-logo" translatesAutoresizingMaskIntoConstraints="NO" id="PfF-48-aoW">
@@ -442,11 +442,11 @@
                                 <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z9i-Qc-rwh">
-                                <rect key="frame" x="37.5" y="133.5" width="300" height="400"/>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z9i-Qc-rwh">
+                                <rect key="frame" x="27.5" y="113.5" width="320" height="440"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter new UUID's" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2UX-98-M97">
-                                        <rect key="frame" x="8" y="20" width="284" height="40"/>
+                                        <rect key="frame" x="8" y="9.5" width="304" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="kW7-Wh-e53"/>
                                         </constraints>
@@ -454,38 +454,47 @@
                                         <color key="textColor" red="0.0" green="0.46714377403259277" blue="0.75565165281295776" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="UUID 1" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="sMp-6J-YiG" customClass="RVTextField" customModule="Rev11_Scan" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="90" width="260" height="50"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="UUID 1" textAlignment="center" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="sMp-6J-YiG" customClass="RVTextField" customModule="Rev11_Scan" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="99.5" width="290" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="260" id="U9X-Nv-19B"/>
+                                            <constraint firstAttribute="width" constant="290" id="U9X-Nv-19B"/>
                                             <constraint firstAttribute="height" constant="50" id="yUb-2F-J09"/>
                                         </constraints>
-                                        <color key="textColor" red="0.39124602079999998" green="0.39156565069999999" blue="0.39129555230000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="2iS-rp-4lO" id="0Ds-fw-8pu"/>
+                                        </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="UUID 2" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Ksg-yz-Vi3" customClass="RVTextField" customModule="Rev11_Scan" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="160" width="260" height="50"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="UUID 2" textAlignment="center" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="Ksg-yz-Vi3" customClass="RVTextField" customModule="Rev11_Scan" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="189.5" width="290" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="UwO-Gk-g6L"/>
-                                            <constraint firstAttribute="width" constant="260" id="sEn-ZQ-RHm"/>
+                                            <constraint firstAttribute="width" constant="290" id="sEn-ZQ-RHm"/>
                                         </constraints>
-                                        <color key="textColor" red="0.39124602079999998" green="0.39156565069999999" blue="0.39129555230000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="2iS-rp-4lO" id="J7F-fr-jzm"/>
+                                        </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="UUID 3" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="rbo-Ow-PWh" customClass="RVTextField" customModule="Rev11_Scan" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="230" width="260" height="50"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="UUID 3" textAlignment="center" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="rbo-Ow-PWh" customClass="RVTextField" customModule="Rev11_Scan" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="279.5" width="290" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="260" id="a2g-LD-lQf"/>
+                                            <constraint firstAttribute="width" constant="290" id="a2g-LD-lQf"/>
                                             <constraint firstAttribute="height" constant="50" id="uie-KW-BaI"/>
                                         </constraints>
-                                        <color key="textColor" red="0.39124602079999998" green="0.39156565069999999" blue="0.39129555230000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="2iS-rp-4lO" id="pkR-Mc-eEg"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6kF-Bm-mpM" customClass="RVButton" customModule="Rev11_Scan" customModuleProvider="target">
-                                        <rect key="frame" x="60" y="331" width="180" height="44"/>
+                                        <rect key="frame" x="70" y="371" width="180" height="44"/>
                                         <color key="backgroundColor" red="0.0" green="0.46714377403259277" blue="0.75565165281295776" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="AmW-vk-YA9"/>
@@ -495,22 +504,74 @@
                                         <state key="normal" title="Update UUID's">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="updateUUIDsPressed:" destination="2iS-rp-4lO" eventType="touchUpInside" id="EYz-kn-WMm"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UUID 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLr-3a-P12">
+                                        <rect key="frame" x="15" y="77.5" width="50" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="KST-xz-ykg"/>
+                                            <constraint firstAttribute="height" constant="21" id="YNO-B7-345"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
+                                        <color key="textColor" red="0.0" green="0.46714377403259277" blue="0.75565165281295776" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UUID 2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Fe-gO-VBw">
+                                        <rect key="frame" x="15" y="167.5" width="50" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="AQI-Bq-1iA"/>
+                                            <constraint firstAttribute="height" constant="21" id="xqU-rh-qr9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
+                                        <color key="textColor" red="0.0" green="0.46714377403259277" blue="0.75565165281295776" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UUID 3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVX-VI-biT">
+                                        <rect key="frame" x="15" y="257.5" width="50" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="XUk-zp-Xsc"/>
+                                            <constraint firstAttribute="height" constant="21" id="giH-WP-EQK"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
+                                        <color key="textColor" red="0.0" green="0.46714377403259277" blue="0.75565165281295776" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kNZ-Z6-Cjr">
+                                        <rect key="frame" x="12" y="12" width="35" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="AGV-Ta-VKe"/>
+                                            <constraint firstAttribute="width" constant="35" id="ypn-aH-kqK"/>
+                                        </constraints>
+                                        <state key="normal" image="cancel-button"/>
+                                        <connections>
+                                            <action selector="uuidViewCancelPressed:" destination="2iS-rp-4lO" eventType="touchUpInside" id="Hk3-Ob-upM"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="Ksg-yz-Vi3" firstAttribute="top" secondItem="sMp-6J-YiG" secondAttribute="bottom" constant="20" id="9GW-na-ZwO"/>
+                                    <constraint firstItem="Ksg-yz-Vi3" firstAttribute="top" secondItem="sMp-6J-YiG" secondAttribute="bottom" constant="40" id="9GW-na-ZwO"/>
+                                    <constraint firstItem="5Fe-gO-VBw" firstAttribute="leading" secondItem="Ksg-yz-Vi3" secondAttribute="leading" id="ACu-Bp-Gdd"/>
+                                    <constraint firstItem="VVX-VI-biT" firstAttribute="leading" secondItem="rbo-Ow-PWh" secondAttribute="leading" id="Cft-fa-kzb"/>
                                     <constraint firstAttribute="trailing" secondItem="2UX-98-M97" secondAttribute="trailing" constant="8" id="DI8-xl-uL9"/>
                                     <constraint firstItem="Ksg-yz-Vi3" firstAttribute="centerX" secondItem="Z9i-Qc-rwh" secondAttribute="centerX" id="FnE-de-Kj7"/>
                                     <constraint firstItem="sMp-6J-YiG" firstAttribute="centerX" secondItem="Z9i-Qc-rwh" secondAttribute="centerX" id="LMW-1c-yju"/>
-                                    <constraint firstAttribute="height" constant="400" id="PaE-eT-Bcu"/>
+                                    <constraint firstAttribute="height" constant="440" id="PaE-eT-Bcu"/>
                                     <constraint firstItem="rbo-Ow-PWh" firstAttribute="centerX" secondItem="Z9i-Qc-rwh" secondAttribute="centerX" id="R4t-ps-saK"/>
-                                    <constraint firstAttribute="width" constant="300" id="aMn-8B-FHt"/>
-                                    <constraint firstItem="rbo-Ow-PWh" firstAttribute="top" secondItem="Ksg-yz-Vi3" secondAttribute="bottom" constant="20" id="eVl-ml-1XJ"/>
+                                    <constraint firstItem="kNZ-Z6-Cjr" firstAttribute="leading" secondItem="Z9i-Qc-rwh" secondAttribute="leading" constant="12" id="Yv7-JI-Q2Q"/>
+                                    <constraint firstAttribute="width" constant="320" id="aMn-8B-FHt"/>
+                                    <constraint firstItem="rbo-Ow-PWh" firstAttribute="top" secondItem="Ksg-yz-Vi3" secondAttribute="bottom" constant="40" id="eVl-ml-1XJ"/>
+                                    <constraint firstItem="LLr-3a-P12" firstAttribute="leading" secondItem="sMp-6J-YiG" secondAttribute="leading" id="eaj-As-D7w"/>
+                                    <constraint firstItem="rbo-Ow-PWh" firstAttribute="top" secondItem="VVX-VI-biT" secondAttribute="bottom" constant="1" id="fuG-TG-mbh"/>
                                     <constraint firstAttribute="bottom" secondItem="6kF-Bm-mpM" secondAttribute="bottom" constant="25" id="lC7-TY-bE4"/>
-                                    <constraint firstItem="2UX-98-M97" firstAttribute="top" secondItem="Z9i-Qc-rwh" secondAttribute="top" constant="20" id="mFF-JM-lj8"/>
+                                    <constraint firstItem="kNZ-Z6-Cjr" firstAttribute="top" secondItem="Z9i-Qc-rwh" secondAttribute="top" constant="12" id="lPl-Yq-KHr"/>
+                                    <constraint firstItem="2UX-98-M97" firstAttribute="centerY" secondItem="kNZ-Z6-Cjr" secondAttribute="centerY" id="m3f-bM-8Yj"/>
                                     <constraint firstItem="6kF-Bm-mpM" firstAttribute="centerX" secondItem="Z9i-Qc-rwh" secondAttribute="centerX" id="qyX-iO-3zS"/>
-                                    <constraint firstItem="sMp-6J-YiG" firstAttribute="top" secondItem="2UX-98-M97" secondAttribute="bottom" constant="30" id="yXE-XC-Uhq"/>
+                                    <constraint firstItem="sMp-6J-YiG" firstAttribute="top" secondItem="LLr-3a-P12" secondAttribute="bottom" constant="1" id="rXK-mT-ino"/>
+                                    <constraint firstItem="Ksg-yz-Vi3" firstAttribute="top" secondItem="5Fe-gO-VBw" secondAttribute="bottom" constant="1" id="uAr-kS-Pvr"/>
+                                    <constraint firstItem="sMp-6J-YiG" firstAttribute="top" secondItem="2UX-98-M97" secondAttribute="bottom" constant="50" id="yXE-XC-Uhq"/>
                                     <constraint firstItem="2UX-98-M97" firstAttribute="leading" secondItem="Z9i-Qc-rwh" secondAttribute="leading" constant="8" id="zbJ-A9-c2o"/>
                                 </constraints>
                             </view>
@@ -535,12 +596,16 @@
                     <navigationItem key="navigationItem" title="Beacon List" id="Wkc-Fo-mRt">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="5OD-RU-a68">
                             <color key="tintColor" red="0.0" green="0.46714377403259277" blue="0.75565165281295776" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="editRegionsPressed:" destination="2iS-rp-4lO" id="w5p-gH-OCR"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="emptyStateLabel" destination="5jm-Ue-qqN" id="Uj7-hx-5dF"/>
                         <outlet property="segmentedControl" destination="d8s-Pf-1eI" id="yzZ-oz-mN1"/>
                         <outlet property="tableView" destination="DCZ-2T-6f8" id="F4g-Xd-h8A"/>
+                        <outlet property="updateUUIDView" destination="Z9i-Qc-rwh" id="uzU-kT-Llv"/>
                         <outlet property="uuidLabel" destination="7Kb-dG-nnk" id="ONb-fG-KHM"/>
                         <outlet property="uuidOneTextField" destination="sMp-6J-YiG" id="uaV-OH-xoO"/>
                         <outlet property="uuidThreeTextField" destination="rbo-Ow-PWh" id="GPO-Go-lPS"/>
@@ -577,6 +642,7 @@
     </scenes>
     <resources>
         <image name="beacon-tabbar-grey" width="30" height="30"/>
+        <image name="cancel-button" width="30" height="30"/>
         <image name="download-icloud" width="30" height="30"/>
         <image name="ibeacon-logo" width="150" height="150"/>
         <image name="qr-tabbar-white" width="30" height="30"/>
