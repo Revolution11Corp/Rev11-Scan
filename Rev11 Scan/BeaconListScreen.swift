@@ -22,7 +22,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     let locationManager = CLLocationManager()
     let defaults = UserDefaults(suiteName: Keys.suiteName)
     var iBeacons: [iBeaconItem] = []
-    var filteredIBeacons: [iBeaconItem] = []
+    var filteredBeacons: [iBeaconItem] = []
     
     var transparencyView: UIView!
     var uuidRegex = try! NSRegularExpression(pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", options: .caseInsensitive)
@@ -34,6 +34,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         super.viewDidLoad()
         transparencyView = createTransparencyView()
         NavBarSetup.showLogoInNavBar(self.navigationController!, navItem: self.navigationItem)
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
         locationManager.delegate = self
         NotificationCenter.default.addObserver(self, selector:#selector(BeaconListScreen.reloadViewFromBackground), name:
             NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
@@ -183,7 +184,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     @IBAction func filterButtonPressed(_ sender: UIBarButtonItem) {
         isFiltered = isFiltered ? false : true
-        print(isFiltered)
     }
     
     @IBAction func importButtonPressed(_ sender: UIBarButtonItem) {
@@ -245,13 +245,14 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     //MARK: - TableView Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return iBeacons.count
+        let beaconArray = isFiltered ? filteredBeacons.count : iBeacons.count
+        return beaconArray
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: Cells.beaconCell, for: indexPath) as! BeaconCell
-        let beacon = iBeacons[(indexPath as NSIndexPath).row]
+        let beacon = isFiltered ? filteredBeacons[(indexPath as NSIndexPath).row] : iBeacons[(indexPath as NSIndexPath).row]
         
         cell.beacon = beacon
         
@@ -388,14 +389,53 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         
-        for beacon in beacons {
+        var tempArray: [iBeaconItem] = []
+        
+        if isFiltered {
             
-            for iBeacon in iBeacons {
+            tempArray.removeAll()
+            
+            for beacon in beacons {
                 
-                if iBeacon == beacon {
-                    iBeacon.lastSeenBeacon = beacon
+                for iBeacon in iBeacons {
+                    
+                    if iBeacon == beacon {
+                        iBeacon.lastSeenBeacon = beacon
+                        tempArray.append(iBeacon)
+                    }
                 }
             }
+            
+            // Compare a temp array with filtered array. If different, then reload data.
+            // This is working fine until I dynamically add a new beacon
+            
+            tempArray.sort(by: { $0.name < $1.name })
+            
+            if tempArray.count == 0 {
+                
+            } else if tempArray == filteredBeacons {
+                print("No New Beacons Discovered")
+            } else {
+                filteredBeacons = tempArray
+                print("New Beacon!")
+                tableView.reloadData()
+                // check memory performance when working
+            }
+            
+        } else {
+            
+            for beacon in beacons {
+                
+                for iBeacon in iBeacons {
+                    
+                    if iBeacon == beacon {
+                        iBeacon.lastSeenBeacon = beacon
+                    }
+                }
+            }
+            
         }
+        
+
     }
 }
