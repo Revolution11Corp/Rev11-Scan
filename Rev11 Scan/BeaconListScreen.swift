@@ -18,7 +18,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var emptyStateLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var permissionsView: UIView!
-    @IBOutlet weak var filterBarButton: UIBarButtonItem!
     
     let locationManager = CLLocationManager()
     let defaults = UserDefaults(suiteName: Keys.suiteName)
@@ -35,6 +34,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         super.viewDidLoad()
         transparencyView = createTransparencyView()
         NavBarSetup.showLogoInNavBar(self.navigationController!, navItem: self.navigationItem)
+        changeFilterButtonImage()
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         locationManager.delegate = self
         NotificationCenter.default.addObserver(self, selector:#selector(BeaconListScreen.reloadViewFromBackground), name:
@@ -183,10 +183,9 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
     }
     
-    @IBAction func filterButtonPressed(_ sender: UIBarButtonItem) {
+    func filterButtonPressed() {
         isFiltered = isFiltered ? false : true
-//        filterBarButton.setBackgroundImage(UIImage(named: "filter-filled"), for: .normal, barMetrics: .default)
-//        filterBarButton.setBackButtonBackgroundImage(UIImage(named: "filter-filled"), for: .normal, barMetrics: .default)
+        changeFilterButtonImage()
         tableView.reloadData()
     }
     
@@ -270,16 +269,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         return cell
     }
-    
-    //  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    //    let cell = tableView.dequeueReusableCell(withIdentifier: Cells.beaconCell, for: indexPath) as! BeaconCell
-    //
-    //    if cell.distanceLabel.text == "Not Found" {
-    //      return 0
-    //    } else {
-    //      return 120
-    //    }
-    //  }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -393,8 +382,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         
-//        var tempArray: [iBeaconItem] = []
-        
         if isFiltered {
             
             for beacon in beacons {
@@ -413,41 +400,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
                 }
             }
             
-//            tempArray.removeAll()
-            
-//            for beacon in beacons {
-//                
-//                for iBeacon in iBeacons {
-//                    
-//                    if iBeacon == beacon {
-//                        iBeacon.lastSeenBeacon = beacon
-//                        tempArray.append(iBeacon)
-//                    }
-//                }
-//            }
-            
-//            tempArray = loopThroughDiscoveredBeacons(discoveredBeacons: beacons, beaconList: iBeacons)
-            
-            
-            
-            // Compare a temp array with filtered array. If different, then reload data.
-            // This is working fine until I dynamically add a new beacon
-            
-//            tempArray.sort(by: { $0.name < $1.name })
-//            
-//            if tempArray.count == 0 {
-//                print("tempArray count = 0")
-//                
-//            } else if tempArray == filteredBeacons {
-//                print("No New Beacons Discovered")
-//            } else {
-//                filteredBeacons = tempArray
-//                print("New Beacon!")
-//                print("tempArray count = \(tempArray.count)")
-//                tableView.reloadData()
-//                // check memory performance when working
-//            }
-            
         } else {
             
             for beacon in beacons {
@@ -462,31 +414,16 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
     }
     
-    func loopThroughDiscoveredBeacons(discoveredBeacons: [CLBeacon], beaconList: [iBeaconItem]) -> [iBeaconItem] {
-        
-        var tempArray: [iBeaconItem] = []
-        
-        for beacon in discoveredBeacons {
-            
-            for iBeacon in beaconList {
-                
-                if iBeacon == beacon {
-                    iBeacon.lastSeenBeacon = beacon
-                    tempArray.append(iBeacon)
-                }
-            }
-        }
-        
-        return tempArray
-    }
-    
     func changeFilterButtonImage() {
+        
+        navigationItem.leftBarButtonItem = nil
         
         let image = isFiltered ? UIImage(named: "filter-filled") : UIImage(named: "filter")
         
         let button = UIButton.init(type: .custom)
         button.setImage(image, for: .normal)
-        button.addTarget(self, action:#selector(BeaconListScreen.filterButtonPressed(_:)), for: .touchUpInside)
+        button.removeTarget(nil, action: nil, for: .allEvents)
+        button.addTarget(self, action:#selector(BeaconListScreen.filterButtonPressed), for: .touchUpInside)
         button.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30)
         let barButton = UIBarButtonItem.init(customView: button)
         navigationItem.leftBarButtonItem = barButton

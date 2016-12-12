@@ -257,12 +257,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Beacons" id="kc1-J8-ZgF">
-                        <barButtonItem key="leftBarButtonItem" image="filter" style="done" id="Eno-Vq-tAo">
-                            <color key="tintColor" red="0.0" green="0.46714377403259277" blue="0.75565165281295776" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="filterButtonPressed:" destination="x8K-YJ-Js2" id="VCx-BZ-saA"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="download-icloud" id="rZ3-hH-2N5">
                             <color key="tintColor" red="0.0" green="0.46714377403259277" blue="0.75565165281295776" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -274,7 +268,6 @@
                         <outlet property="activityIndicator" destination="xA7-pS-s3t" id="ZcR-ZI-52J"/>
                         <outlet property="emptyStateIcon" destination="M71-Ps-skr" id="248-Pd-o0M"/>
                         <outlet property="emptyStateLabel" destination="oUZ-7Z-Im6" id="xa0-Dw-AcB"/>
-                        <outlet property="filterBarButton" destination="Eno-Vq-tAo" id="gh5-yZ-JB3"/>
                         <outlet property="permissionsView" destination="p1J-6X-JuN" id="Ktr-NN-qGY"/>
                         <outlet property="tableView" destination="eYw-Yr-E88" id="f0x-Ir-BQQ"/>
                     </connections>
@@ -652,7 +645,6 @@
         <image name="beacon-tabbar-grey" width="30" height="30"/>
         <image name="cancel-button" width="30" height="30"/>
         <image name="download-icloud" width="30" height="30"/>
-        <image name="filter" width="30" height="30"/>
         <image name="ibeacon-logo" width="150" height="150"/>
         <image name="qr-tabbar-white" width="30" height="30"/>
         <image name="r11AppIcon120" width="60" height="60"/>
