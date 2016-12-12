@@ -109,7 +109,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vOn-hW-SjT" id="yFs-jH-Kmj">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibeacon-logo" translatesAutoresizingMaskIntoConstraints="NO" id="PfF-48-aoW">
@@ -257,7 +257,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Beacons" id="kc1-J8-ZgF">
-                        <barButtonItem key="leftBarButtonItem" image="filter" id="Eno-Vq-tAo">
+                        <barButtonItem key="leftBarButtonItem" image="filter" style="done" id="Eno-Vq-tAo">
                             <color key="tintColor" red="0.0" green="0.46714377403259277" blue="0.75565165281295776" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="filterButtonPressed:" destination="x8K-YJ-Js2" id="VCx-BZ-saA"/>
@@ -274,6 +274,7 @@
                         <outlet property="activityIndicator" destination="xA7-pS-s3t" id="ZcR-ZI-52J"/>
                         <outlet property="emptyStateIcon" destination="M71-Ps-skr" id="248-Pd-o0M"/>
                         <outlet property="emptyStateLabel" destination="oUZ-7Z-Im6" id="xa0-Dw-AcB"/>
+                        <outlet property="filterBarButton" destination="Eno-Vq-tAo" id="gh5-yZ-JB3"/>
                         <outlet property="permissionsView" destination="p1J-6X-JuN" id="Ktr-NN-qGY"/>
                         <outlet property="tableView" destination="eYw-Yr-E88" id="f0x-Ir-BQQ"/>
                     </connections>
@@ -376,7 +377,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZwK-hs-81i" id="vl6-j5-kbz">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibeacon-logo" translatesAutoresizingMaskIntoConstraints="NO" id="w0S-du-F6Q">
