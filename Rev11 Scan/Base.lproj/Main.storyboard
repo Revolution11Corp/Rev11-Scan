@@ -203,9 +203,8 @@
                                     <outlet property="delegate" destination="x8K-YJ-Js2" id="DhI-Q0-ywC"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="xA7-pS-s3t">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="xA7-pS-s3t">
                                 <rect key="frame" x="169" y="315" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="color" red="0.2156862745" green="0.37254901959999998" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1J-6X-JuN">
@@ -248,8 +247,10 @@
                             <constraint firstItem="eYw-Yr-E88" firstAttribute="top" secondItem="96j-2w-l7j" secondAttribute="bottom" id="CmE-IW-fJ2"/>
                             <constraint firstItem="oUZ-7Z-Im6" firstAttribute="top" secondItem="M71-Ps-skr" secondAttribute="bottom" constant="-18" id="EBT-xo-n64"/>
                             <constraint firstItem="eYw-Yr-E88" firstAttribute="leading" secondItem="Kcx-cA-3kl" secondAttribute="leading" id="Ekz-zl-QCv"/>
+                            <constraint firstItem="xA7-pS-s3t" firstAttribute="centerX" secondItem="Kcx-cA-3kl" secondAttribute="centerX" id="YqR-PC-RfD"/>
                             <constraint firstItem="p1J-6X-JuN" firstAttribute="centerX" secondItem="Kcx-cA-3kl" secondAttribute="centerX" id="b7Q-7e-ubs"/>
                             <constraint firstItem="oUZ-7Z-Im6" firstAttribute="centerX" secondItem="Kcx-cA-3kl" secondAttribute="centerX" id="f7l-EV-oIm"/>
+                            <constraint firstItem="xA7-pS-s3t" firstAttribute="centerY" secondItem="Kcx-cA-3kl" secondAttribute="centerY" id="fZR-At-gDA"/>
                             <constraint firstItem="Qqo-D6-w8j" firstAttribute="top" secondItem="eYw-Yr-E88" secondAttribute="bottom" id="iih-Ke-0HE"/>
                             <constraint firstItem="oUZ-7Z-Im6" firstAttribute="centerY" secondItem="Kcx-cA-3kl" secondAttribute="centerY" id="jV6-R3-yJ0"/>
                             <constraint firstItem="M71-Ps-skr" firstAttribute="centerX" secondItem="oUZ-7Z-Im6" secondAttribute="centerX" id="kxW-Dc-gem"/>
@@ -268,6 +269,7 @@
                         <outlet property="activityIndicator" destination="xA7-pS-s3t" id="ZcR-ZI-52J"/>
                         <outlet property="emptyStateIcon" destination="M71-Ps-skr" id="248-Pd-o0M"/>
                         <outlet property="emptyStateLabel" destination="oUZ-7Z-Im6" id="xa0-Dw-AcB"/>
+                        <outlet property="importButton" destination="rZ3-hH-2N5" id="pcM-G6-7gu"/>
                         <outlet property="permissionsView" destination="p1J-6X-JuN" id="Ktr-NN-qGY"/>
                         <outlet property="tableView" destination="eYw-Yr-E88" id="f0x-Ir-BQQ"/>
                     </connections>

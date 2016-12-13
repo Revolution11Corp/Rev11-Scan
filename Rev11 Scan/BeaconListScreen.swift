@@ -18,6 +18,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var emptyStateLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var permissionsView: UIView!
+    @IBOutlet weak var importButton: UIBarButtonItem!
     
     let locationManager = CLLocationManager()
     let defaults = UserDefaults(suiteName: Keys.suiteName)
@@ -196,6 +197,10 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         importMenu.addOption(withTitle: "CSV From FileMaker", image: UIImage(named: "filemaker-line-logo")?.withRenderingMode(.alwaysOriginal), order: .first, handler: {
             self.openFileMaker()
         })
+        
+        modalPresentationStyle = .popover
+        importMenu.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        
         self.present(importMenu, animated: true, completion: nil)
     }
     
