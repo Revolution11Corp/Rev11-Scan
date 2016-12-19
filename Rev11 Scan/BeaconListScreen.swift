@@ -108,6 +108,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     func readSharedCSV(completionHandler: @escaping (() -> ())) {
         
         iBeacons.removeAll()
+        filteredBeacons.removeAll()
         
         if defaults?.data(forKey: Keys.spreadsheetFile) != nil {
             
@@ -139,7 +140,12 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
                 let actionType      = object["Action Type"]
                 let type            = object["Type"]
                 let mapURL          = object["Map URL"]
-                let color           = Colors.white
+                let colorR          = CGFloat(NumberFormatter().number(from: object["ColorR"]!)!)
+                let colorG          = CGFloat(NumberFormatter().number(from: object["ColorG"]!)!)
+                let colorB          = CGFloat(NumberFormatter().number(from: object["ColorB"]!)!)
+    
+                let color = UIColor(red: colorR/255.0, green: colorG/255.0, blue: colorB/255.0, alpha: 1.0)
+                let backgroundColor = Colors.white
                 
                 if let imageURL = object["Image URL"] {
                     
@@ -150,7 +156,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
                         
                         let itemImage = UIImage(data: imageData)
                         
-                        newBeacon = iBeaconItem(name: name!, uuid: uuid!, majorValue: major, minorValue: minor, itemImage: itemImage!, actionURL: actionURL!, actionURLName: actionURLName!, actionType: actionType!, type: type!, mapURL: mapURL!, color: color)
+                        newBeacon = iBeaconItem(name: name!, uuid: uuid!, majorValue: major, minorValue: minor, itemImage: itemImage!, actionURL: actionURL!, actionURLName: actionURLName!, actionType: actionType!, type: type!, mapURL: mapURL!, color: color, backgroundColor: backgroundColor)
                         
                         self.iBeacons.append(newBeacon!)
                         
@@ -268,6 +274,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         cell.typeLabel!.text = "Type: \(beacon.type)"
         cell.actionURLButton.setTitle(beacon.actionURLName, for: .normal)
         cell.beaconImage.image = beacon.itemImage
+        cell.beaconImage.layer.borderColor = beacon.color.cgColor
         
         cell.actionURLButton.tag = indexPath.row
         cell.actionURLButton.addTarget(self, action: #selector(BeaconListScreen.actionURLPressed(sender:)), for: .touchUpInside)
