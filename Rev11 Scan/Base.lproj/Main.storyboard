@@ -109,7 +109,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="422" height="343"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.86888931236118849" green="0.86888931236118849" blue="0.86888931236118849" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="djo-pq-N5T" firstAttribute="top" secondItem="Xtl-qL-rUF" secondAttribute="top" id="BS1-BO-17a"/>
                                     <constraint firstAttribute="bottom" secondItem="djo-pq-N5T" secondAttribute="bottom" id="adK-sh-gIh"/>
@@ -293,19 +293,11 @@
                             <constraint firstItem="eYw-Yr-E88" firstAttribute="top" secondItem="Xtl-qL-rUF" secondAttribute="bottom" id="zNm-IR-AWE"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Beacons" id="kc1-J8-ZgF">
-                        <barButtonItem key="rightBarButtonItem" image="download-icloud" id="rZ3-hH-2N5">
-                            <color key="tintColor" red="0.0" green="0.46714377403259277" blue="0.75565165281295776" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="importButtonPressed:" destination="x8K-YJ-Js2" id="4nf-iR-GC7"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Beacons" id="kc1-J8-ZgF"/>
                     <connections>
                         <outlet property="activityIndicator" destination="xA7-pS-s3t" id="ZcR-ZI-52J"/>
                         <outlet property="emptyStateIcon" destination="M71-Ps-skr" id="248-Pd-o0M"/>
                         <outlet property="emptyStateLabel" destination="oUZ-7Z-Im6" id="xa0-Dw-AcB"/>
-                        <outlet property="importButton" destination="rZ3-hH-2N5" id="pcM-G6-7gu"/>
                         <outlet property="mapImageView" destination="djo-pq-N5T" id="iBb-7y-YBP"/>
                         <outlet property="permissionsView" destination="p1J-6X-JuN" id="Ktr-NN-qGY"/>
                         <outlet property="scrollView" destination="Xtl-qL-rUF" id="dyL-36-blk"/>

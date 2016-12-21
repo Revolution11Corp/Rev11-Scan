@@ -18,7 +18,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var emptyStateLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var permissionsView: UIView!
-    @IBOutlet weak var importButton: UIBarButtonItem!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var mapImageView: UIImageView!
     @IBOutlet weak var upArrow: UIButton!
@@ -31,6 +30,9 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     var iBeacons: [iBeaconItem] = []
     var filteredBeacons: [iBeaconItem] = []
     
+    var importButton: UIBarButtonItem!
+    var mapButton: UIBarButtonItem!
+    
     var transparencyView: UIView!
     var uuidRegex = try! NSRegularExpression(pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", options: .caseInsensitive)
     
@@ -39,6 +41,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupRightNavButtons()
         transparencyView = createTransparencyView()
         NavBarSetup.showLogoInNavBar(self.navigationController!, navItem: self.navigationItem)
         changeFilterButtonImage()
@@ -202,7 +205,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         tableView.reloadData()
     }
     
-    @IBAction func importButtonPressed(_ sender: UIBarButtonItem) {
+    func importButtonPressed(_ sender: UIBarButtonItem) {
         
         let importMenu = UIDocumentMenuViewController(documentTypes: [kUTTypeCommaSeparatedText as String], in: .import)
         importMenu.delegate = self
@@ -214,6 +217,17 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         importMenu.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         
         self.present(importMenu, animated: true, completion: nil)
+    }
+    
+    func mapButtonPressed(_ sender: UIBarButtonItem) {
+        
+        scrollViewHeightConstraint = scrollViewHeightConstraint.setMultiplier(multiplier: 0.4)
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.view.layoutIfNeeded()
+        })
+        
+        mapButton.isEnabled = false
     }
     
     func openFileMaker() {
@@ -447,21 +461,25 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         navigationItem.leftBarButtonItem = barButton
     }
     
-//    func setupRightNavButtons() {
-//        
-//        let importButton    = UIBarButtonItem(image: editImage,  style: .Plain, target: self, action: "didTapEditButton:")
-//        let mapButton       = UIBarButtonItem(image: searchImage,  style: .Plain, target: self, action: "didTapSearchButton:")
-//        
-//        navigationItem.rightBarButtonItems = [importButton, mapButton]
-//    }
+    func setupRightNavButtons() {
+        
+        importButton    = UIBarButtonItem(image: UIImage(named: "download-icloud"),  style: .plain, target: self, action: #selector(BeaconListScreen.importButtonPressed(_:)))
+        mapButton       = UIBarButtonItem(image: UIImage(named: "map-button"),  style: .plain, target: self, action: #selector(BeaconListScreen.mapButtonPressed(_:)))
+        
+        navigationItem.rightBarButtonItems = [importButton, mapButton]
+        
+        mapButton.isEnabled = false
+    }
     
     @IBAction func upArrowPressed(_ sender: UIButton) {
         
-        scrollViewHeightConstraint = scrollViewHeightConstraint.setMultiplier(multiplier: 0.0)
+        scrollViewHeightConstraint = scrollViewHeightConstraint.setMultiplier(multiplier: 0.001)
         
         UIView.animate(withDuration: 0.5, animations: {
             self.view.layoutIfNeeded()
         })
+        
+        mapButton.isEnabled = true
     }
 
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
