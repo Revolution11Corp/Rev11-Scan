@@ -11,7 +11,7 @@ import CoreLocation
 import SafariServices
 import MobileCoreServices
 
-class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, UIDocumentMenuDelegate, UIDocumentPickerDelegate {
+class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, UIDocumentMenuDelegate, UIDocumentPickerDelegate, UIScrollViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyStateIcon: UIImageView!
@@ -19,6 +19,8 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var permissionsView: UIView!
     @IBOutlet weak var importButton: UIBarButtonItem!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var mapImageView: UIImageView!
     
     let locationManager = CLLocationManager()
     let defaults = UserDefaults(suiteName: Keys.suiteName)
@@ -439,5 +441,9 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         button.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30)
         let barButton = UIBarButtonItem.init(customView: button)
         navigationItem.leftBarButtonItem = barButton
+    }
+
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return mapImageView
     }
 }
