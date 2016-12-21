@@ -21,6 +21,10 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var importButton: UIBarButtonItem!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var mapImageView: UIImageView!
+    @IBOutlet weak var upArrow: UIButton!
+    
+    @IBOutlet weak var scrollViewHeightConstraint: NSLayoutConstraint!
+    
     
     let locationManager = CLLocationManager()
     let defaults = UserDefaults(suiteName: Keys.suiteName)
@@ -441,6 +445,23 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         button.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30)
         let barButton = UIBarButtonItem.init(customView: button)
         navigationItem.leftBarButtonItem = barButton
+    }
+    
+//    func setupRightNavButtons() {
+//        
+//        let importButton    = UIBarButtonItem(image: editImage,  style: .Plain, target: self, action: "didTapEditButton:")
+//        let mapButton       = UIBarButtonItem(image: searchImage,  style: .Plain, target: self, action: "didTapSearchButton:")
+//        
+//        navigationItem.rightBarButtonItems = [importButton, mapButton]
+//    }
+    
+    @IBAction func upArrowPressed(_ sender: UIButton) {
+        
+        scrollViewHeightConstraint = scrollViewHeightConstraint.setMultiplier(multiplier: 0.0)
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.view.layoutIfNeeded()
+        })
     }
 
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {

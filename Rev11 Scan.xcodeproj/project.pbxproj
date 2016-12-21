@@ -37,6 +37,7 @@
 		14CA08251D7E55BA000D5764 /* EstimoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA08241D7E55BA000D5764 /* EstimoteSDK.framework */; };
 		14D3FDC31DA60FA4004F39EF /* BeaconSearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D3FDC21DA60FA4004F39EF /* BeaconSearchScreen.swift */; };
 		14D3FDC51DA61215004F39EF /* BeaconSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D3FDC41DA61215004F39EF /* BeaconSearchCell.swift */; };
+		ED5FBD8D1E0A46A100FCB022 /* NSLayoutConstraintExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5FBD8C1E0A46A100FCB022 /* NSLayoutConstraintExtension.swift */; };
 		ED5FE28A1DF46EBF00C0408E /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5FE2891DF46EBF00C0408E /* UIViewControllerExtension.swift */; };
 		ED5FE28C1DF4727E00C0408E /* RVButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5FE28B1DF4727E00C0408E /* RVButton.swift */; };
 		EDB84CF71DF5051400F6CF27 /* RVTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB84CF61DF5051400F6CF27 /* RVTextField.swift */; };
@@ -103,6 +104,7 @@
 		14CA08241D7E55BA000D5764 /* EstimoteSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EstimoteSDK.framework; sourceTree = "<group>"; };
 		14D3FDC21DA60FA4004F39EF /* BeaconSearchScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconSearchScreen.swift; sourceTree = "<group>"; };
 		14D3FDC41DA61215004F39EF /* BeaconSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconSearchCell.swift; sourceTree = "<group>"; };
+		ED5FBD8C1E0A46A100FCB022 /* NSLayoutConstraintExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintExtension.swift; sourceTree = "<group>"; };
 		ED5FE2891DF46EBF00C0408E /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		ED5FE28B1DF4727E00C0408E /* RVButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RVButton.swift; sourceTree = "<group>"; };
 		EDB84CF61DF5051400F6CF27 /* RVTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RVTextField.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				14B9CC8D1D7FB95500B666FC /* String.swift */,
 				14222B8B1DC8448600C9EA63 /* ArrayExtension.swift */,
 				ED5FE2891DF46EBF00C0408E /* UIViewControllerExtension.swift */,
+				ED5FBD8C1E0A46A100FCB022 /* NSLayoutConstraintExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				14222B8C1DC8448600C9EA63 /* ArrayExtension.swift in Sources */,
 				149F033B1D752EC40039ADEE /* QueryURL.swift in Sources */,
 				14A6178E1D1BADF90083CFF2 /* Constants.swift in Sources */,
+				ED5FBD8D1E0A46A100FCB022 /* NSLayoutConstraintExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
