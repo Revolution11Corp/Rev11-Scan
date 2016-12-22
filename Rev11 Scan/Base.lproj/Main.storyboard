@@ -139,10 +139,10 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vOn-hW-SjT" id="yFs-jH-Kmj">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibeacon-logo" translatesAutoresizingMaskIntoConstraints="NO" id="PfF-48-aoW">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibeacon-logo-white" translatesAutoresizingMaskIntoConstraints="NO" id="PfF-48-aoW">
                                                     <rect key="frame" x="10" y="25" width="70" height="70"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="70" id="HK9-go-UYN"/>
@@ -680,6 +680,7 @@
         <image name="cancel-button" width="30" height="30"/>
         <image name="download-icloud" width="30" height="30"/>
         <image name="ibeacon-logo" width="150" height="150"/>
+        <image name="ibeacon-logo-white" width="128" height="128"/>
         <image name="qr-tabbar-white" width="30" height="30"/>
         <image name="r11AppIcon120" width="60" height="60"/>
         <image name="search-tabbar-grey" width="30" height="30"/>

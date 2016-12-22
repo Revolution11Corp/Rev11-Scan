@@ -27,8 +27,6 @@ class BeaconCell: UITableViewCell {
     actionURLButton.layer.cornerRadius = actionURLButton.frame.size.height/2
     beaconImage.layer.cornerRadius = beaconImage.frame.size.height/2
     beaconImage.layer.masksToBounds = true
-    beaconImage.layer.borderWidth = 5.0
-    beaconImage.layer.borderColor = Colors.lightGrey.cgColor
     backgroundColor = Colors.lightGrey
     contentView.alpha = 0.5
   }

@@ -293,8 +293,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         cell.nameLabel!.text = beacon.name
         cell.typeLabel!.text = "Type: \(beacon.type)"
         cell.actionURLButton.setTitle(beacon.actionURLName, for: .normal)
-        cell.beaconImage.image = beacon.itemImage
-        cell.beaconImage.layer.borderColor = beacon.color.cgColor
+        cell.beaconImage.backgroundColor = beacon.color
         
         cell.actionURLButton.tag = indexPath.row
         cell.actionURLButton.addTarget(self, action: #selector(BeaconListScreen.actionURLPressed(sender:)), for: .touchUpInside)
