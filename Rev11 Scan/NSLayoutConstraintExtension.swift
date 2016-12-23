@@ -11,7 +11,7 @@ import UIKit
 
 extension NSLayoutConstraint {
 
-    func setMultiplier(multiplier:CGFloat) -> NSLayoutConstraint {
+    func setMultiplier(multiplier: CGFloat) -> NSLayoutConstraint {
         
         NSLayoutConstraint.deactivate([self])
         

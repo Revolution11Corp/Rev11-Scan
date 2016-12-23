@@ -20,8 +20,8 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var permissionsView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var mapImageView: UIImageView!
-    @IBOutlet weak var upArrow: UIButton!
     @IBOutlet weak var tableContainerView: UIView!
+    @IBOutlet weak var hideMapButton: UIButton!
     
     @IBOutlet weak var scrollViewHeightConstraint: NSLayoutConstraint!
     
@@ -38,6 +38,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     var uuidRegex = try! NSRegularExpression(pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", options: .caseInsensitive)
     
     var isFiltered = false
+    var isShowingMap = true
     
     
     override func viewDidLoad() {
@@ -219,17 +220,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         importMenu.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         
         self.present(importMenu, animated: true, completion: nil)
-    }
-    
-    func mapButtonPressed(_ sender: UIBarButtonItem) {
-        
-        scrollViewHeightConstraint = scrollViewHeightConstraint.setMultiplier(multiplier: 0.4)
-        
-        UIView.animate(withDuration: 0.5, animations: {
-            self.view.layoutIfNeeded()
-        })
-        
-        mapButton.isEnabled = false
     }
     
     func openFileMaker() {
@@ -465,23 +455,26 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     func setupRightNavButtons() {
         
         importButton    = UIBarButtonItem(image: UIImage(named: "download-icloud"),  style: .plain, target: self, action: #selector(BeaconListScreen.importButtonPressed(_:)))
-        mapButton       = UIBarButtonItem(image: UIImage(named: "map-button"),  style: .plain, target: self, action: #selector(BeaconListScreen.mapButtonPressed(_:)))
         
-        navigationItem.rightBarButtonItems = [importButton, mapButton]
-        
-        mapButton.isEnabled = false
+        navigationItem.rightBarButtonItems = [importButton]
     }
     
-    @IBAction func upArrowPressed(_ sender: UIButton) {
+    @IBAction func hideMapButtonPressed(_ sender: UIButton) {
         
-        scrollViewHeightConstraint = scrollViewHeightConstraint.setMultiplier(multiplier: 0.001)
+        let multiplier: CGFloat = isShowingMap ? 0.001 : 0.4
+        scrollViewHeightConstraint = scrollViewHeightConstraint.setMultiplier(multiplier: multiplier)
+        
+        let flipped = self.isShowingMap ? CGAffineTransform(scaleX: 1, y: -1) : CGAffineTransform(scaleX: -1, y: 1)
         
         UIView.animate(withDuration: 0.5, animations: {
+//            self.hideMapButton.layer.setAffineTransform(flipped)
+            self.hideMapButton.imageView?.layer.setAffineTransform(flipped)
             self.view.layoutIfNeeded()
         })
         
-        mapButton.isEnabled = true
+        isShowingMap = isShowingMap ? false : true
     }
+    
 
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return mapImageView
