@@ -68,7 +68,7 @@ class BeaconCell: UITableViewCell {
           locationLabel!.text = "\(proximity)"
         }
 
-        self.backgroundColor = beacon?.color
+        self.backgroundColor = beacon?.backgroundColor
       }
     }
   }
@@ -78,27 +78,27 @@ class BeaconCell: UITableViewCell {
     switch proximity {
             
     case .unknown:
-        beacon!.color = Colors.lightGrey
+        beacon!.backgroundColor = Colors.lightGrey
         locationLabel.textColor = Colors.darkGrey
         contentView.alpha = 0.5
         return "Unknown"
             
     case .immediate:
-        beacon!.color = Colors.white
+        beacon!.backgroundColor = Colors.white
         locationLabel.textColor = Colors.green
         distanceLabel.text = "~ < 1 meter"
         contentView.alpha = 1.0
         return "Close"
             
     case .near:
-        beacon!.color = Colors.white
+        beacon!.backgroundColor = Colors.white
         locationLabel.textColor = Colors.yellow
         distanceLabel.text = "~ 1-3 meters"
         contentView.alpha = 1.0
         return "Near"
             
     case .far:
-        beacon!.color = Colors.white
+        beacon!.backgroundColor = Colors.white
         locationLabel.textColor = Colors.red
         distanceLabel.text = "~ 3+ meters"
         contentView.alpha = 1.0

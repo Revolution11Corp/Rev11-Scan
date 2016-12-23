@@ -9,31 +9,40 @@
 import UIKit
 import CoreLocation
 
-class BeaconSearchScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
+class BeaconSearchScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, UITextFieldDelegate {
 
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var emptyStateLabel: UILabel!
-  @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
   @IBOutlet weak var segmentedControl: RVSegmentedControl!
   @IBOutlet weak var uuidLabel: UILabel!
-
+  @IBOutlet weak var updateUUIDView: UIView!
+    
+  @IBOutlet weak var uuidOneTextField: RVTextField!
+  @IBOutlet weak var uuidTwoTextField: RVTextField!
+  @IBOutlet weak var uuidThreeTextField: RVTextField!
+    
+  @IBOutlet var textFields: [RVTextField]!
+    
   let locationManager = CLLocationManager()
   var iBeacons: [CLBeacon] = []
   let defaults = UserDefaults(suiteName: Keys.suiteName)
   var uuidRegex = try! NSRegularExpression(pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", options: .caseInsensitive)
   var UUIDFieldValid = false
+  var transparencyView: UIView!
 
-  let regionOne     = "B9407F30-F5F8-466E-AFF9-25556B57FE6D"
-  let regionTwo     = "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6"
-  let regionThree   = "B9407F30-F5F8-466E-AFF9-25556B57FE6D"
+  var regionOne: String!
+  var regionTwo: String!
+  var regionThree: String!
 
   var regionUUID: UUID!
 
-
+    
   override func viewDidLoad() {
     super.viewDidLoad()
+    transparencyView = createTransparencyView()
     NavBarSetup.showLogoInNavBar(self.navigationController!, navItem: self.navigationItem)
     locationManager.delegate = self
+    setDefaultRegions()
     tableView.tableFooterView = UIView(frame: CGRect.zero)
     segmentedControl.selectedIndex = 0
 
@@ -42,31 +51,81 @@ class BeaconSearchScreen: UIViewController, UITableViewDelegate, UITableViewData
 
     uuidLabel.text = regionOne
   }
+    
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    uuidOneTextField.text = regionOne
+    uuidTwoTextField.text = regionTwo
+    uuidThreeTextField.text = regionThree
+    
+    updateUUIDView.layer.cornerRadius = 12
+  }
+    
+  @IBAction func editRegionsPressed(_ sender: UIBarButtonItem) {
+    showUpdateUUIDView(bool: true)
+  }
+    
+  @IBAction func uuidViewCancelPressed(_ sender: UIButton) {
+    showUpdateUUIDView(bool: false)
+  }
+    
+  @IBAction func updateUUIDsPressed(_ sender: RVButton) {
+    updateBeaconRegions()
+  }
+    
+    func showUpdateUUIDView(bool: Bool) {
+        UIView.animate(withDuration: 0.33, animations: {
+            self.transparencyView.alpha = bool ? 0.7 : 0.0
+            self.updateUUIDView.alpha = bool ? 1.0 : 0.0
+            self.view.bringSubview(toFront: self.updateUUIDView)
+        })
+    }
 
-//  func changeBeaconRegion() {
-//
-//    if let field = self.uuidSearchField {
-//
-//      let numberOfMatches = self.uuidRegex.numberOfMatches(in: field.text!, options: [], range: NSMakeRange(0, field.text!.characters.count))
-//
-//      self.UUIDFieldValid = (numberOfMatches > 0)
-//      print(UUIDFieldValid)
-//
-//      let beaconRegion = CLBeaconRegion(proximityUUID: (field.text?.convertToUUID())!, identifier: "Searched Region")
-//      locationManager.startRangingBeacons(in: beaconRegion)
-//      print(beaconRegion)
-//
-//      UserDefaults.standard.set(field.text, forKey: "BeaconRegion")
-//
-//    } else {
-//
-//      let failAlert = UIAlertController(title: "Invalid UUID", message: "Please enter a correct UUID", preferredStyle: .alert)
-//      failAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//
-//      self.present(failAlert, animated: true, completion: nil)
-//    }
-//  }
-
+  func updateBeaconRegions() {
+    
+    for (index, textField) in textFields.enumerated() {
+        
+        let numberOfMatches = self.uuidRegex.numberOfMatches(in: textField.text!, options: [], range: NSMakeRange(0, textField.text!.characters.count))
+        UUIDFieldValid = (numberOfMatches > 0)
+        
+        if UUIDFieldValid == false {
+            let failAlert = UIAlertController(title: "UUID \(String(index + 1)) Invalid", message: "Please enter a correct UUID", preferredStyle: .alert)
+            failAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(failAlert, animated: true, completion: nil)
+            
+            return
+        }
+    }
+    
+    Constants.defaults.set(uuidOneTextField.text, forKey: "UUIDOne")
+    Constants.defaults.set(uuidTwoTextField.text, forKey: "UUIDTwo")
+    Constants.defaults.set(uuidThreeTextField.text, forKey: "UUIDThree")
+    
+    regionOne = Constants.defaults.object(forKey: "UUIDOne") as! String
+    regionTwo = Constants.defaults.object(forKey: "UUIDTwo") as! String
+    regionThree = Constants.defaults.object(forKey: "UUIDThree") as! String
+    
+    showUpdateUUIDView(bool: false)
+  }
+    
+  func setDefaultRegions() {
+    if Constants.defaults.object(forKey: "UUIDOne") == nil {
+        Constants.defaults.set("B9407F30-F5F8-466E-AFF9-25556B57FE6D", forKey: "UUIDOne")
+    }
+    
+    if Constants.defaults.object(forKey: "UUIDTwo") == nil {
+        Constants.defaults.set("2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6", forKey: "UUIDTwo")
+    }
+    
+    if Constants.defaults.object(forKey: "UUIDThree") == nil {
+        Constants.defaults.set("B9407F30-F5F8-466E-AFF9-25556B57FE6D", forKey: "UUIDThree")
+    }
+    
+    regionOne = Constants.defaults.object(forKey: "UUIDOne") as! String
+    regionTwo = Constants.defaults.object(forKey: "UUIDTwo") as! String
+    regionThree = Constants.defaults.object(forKey: "UUIDThree") as! String
+  }
+    
   @IBAction func segmentedControlTapped(_ sender: RVSegmentedControl) {
 
     switch segmentedControl.selectedIndex {
@@ -152,5 +211,10 @@ class BeaconSearchScreen: UIViewController, UITableViewDelegate, UITableViewData
     DispatchQueue.main.async {
       self.tableView.reloadData()
     }
+  }
+    
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    view.endEditing(true)
+    return false
   }
 }

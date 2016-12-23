@@ -37,6 +37,11 @@
 		14CA08251D7E55BA000D5764 /* EstimoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA08241D7E55BA000D5764 /* EstimoteSDK.framework */; };
 		14D3FDC31DA60FA4004F39EF /* BeaconSearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D3FDC21DA60FA4004F39EF /* BeaconSearchScreen.swift */; };
 		14D3FDC51DA61215004F39EF /* BeaconSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D3FDC41DA61215004F39EF /* BeaconSearchCell.swift */; };
+		ED43DB541E0D658A001E31D1 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED43DB531E0D658A001E31D1 /* UIViewExtension.swift */; };
+		ED5FBD8D1E0A46A100FCB022 /* NSLayoutConstraintExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5FBD8C1E0A46A100FCB022 /* NSLayoutConstraintExtension.swift */; };
+		ED5FE28A1DF46EBF00C0408E /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5FE2891DF46EBF00C0408E /* UIViewControllerExtension.swift */; };
+		ED5FE28C1DF4727E00C0408E /* RVButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5FE28B1DF4727E00C0408E /* RVButton.swift */; };
+		EDB84CF71DF5051400F6CF27 /* RVTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB84CF61DF5051400F6CF27 /* RVTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +105,11 @@
 		14CA08241D7E55BA000D5764 /* EstimoteSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EstimoteSDK.framework; sourceTree = "<group>"; };
 		14D3FDC21DA60FA4004F39EF /* BeaconSearchScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconSearchScreen.swift; sourceTree = "<group>"; };
 		14D3FDC41DA61215004F39EF /* BeaconSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconSearchCell.swift; sourceTree = "<group>"; };
+		ED43DB531E0D658A001E31D1 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		ED5FBD8C1E0A46A100FCB022 /* NSLayoutConstraintExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintExtension.swift; sourceTree = "<group>"; };
+		ED5FE2891DF46EBF00C0408E /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		ED5FE28B1DF4727E00C0408E /* RVButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RVButton.swift; sourceTree = "<group>"; };
+		EDB84CF61DF5051400F6CF27 /* RVTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RVTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +153,9 @@
 				149F033A1D752EC40039ADEE /* QueryURL.swift */,
 				14B9CC8D1D7FB95500B666FC /* String.swift */,
 				14222B8B1DC8448600C9EA63 /* ArrayExtension.swift */,
+				ED5FE2891DF46EBF00C0408E /* UIViewControllerExtension.swift */,
+				ED5FBD8C1E0A46A100FCB022 /* NSLayoutConstraintExtension.swift */,
+				ED43DB531E0D658A001E31D1 /* UIViewExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -154,6 +167,8 @@
 				1496B1B51D6FE5A000DD0B2E /* BeaconHelper.swift */,
 				14B9CC8B1D7FB93000B666FC /* CSVParser.swift */,
 				143AA2111DB5C48B00485CC7 /* RVSegmentedControl.swift */,
+				ED5FE28B1DF4727E00C0408E /* RVButton.swift */,
+				EDB84CF61DF5051400F6CF27 /* RVTextField.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -385,12 +400,16 @@
 				147A4A591D37454C006D834D /* URLParameter.swift in Sources */,
 				14B9CC8C1D7FB93000B666FC /* CSVParser.swift in Sources */,
 				14A617841D1BAD370083CFF2 /* BeaconCell.swift in Sources */,
+				ED43DB541E0D658A001E31D1 /* UIViewExtension.swift in Sources */,
 				1404C8131D8F624E00981495 /* Networking.swift in Sources */,
 				143AA2121DB5C48B00485CC7 /* RVSegmentedControl.swift in Sources */,
 				14A6176F1D1BAB2B0083CFF2 /* AppDelegate.swift in Sources */,
+				EDB84CF71DF5051400F6CF27 /* RVTextField.swift in Sources */,
 				1496B1B61D6FE5A000DD0B2E /* BeaconHelper.swift in Sources */,
 				14D3FDC51DA61215004F39EF /* BeaconSearchCell.swift in Sources */,
 				1496B1B31D6FE1A400DD0B2E /* NavBarSetup.swift in Sources */,
+				ED5FE28A1DF46EBF00C0408E /* UIViewControllerExtension.swift in Sources */,
+				ED5FE28C1DF4727E00C0408E /* RVButton.swift in Sources */,
 				14B9CC8E1D7FB95500B666FC /* String.swift in Sources */,
 				14A617961D1BAEBA0083CFF2 /* AddBeaconScreen.swift in Sources */,
 				14A617821D1BAD010083CFF2 /* BeaconListScreen.swift in Sources */,
@@ -398,6 +417,7 @@
 				14222B8C1DC8448600C9EA63 /* ArrayExtension.swift in Sources */,
 				149F033B1D752EC40039ADEE /* QueryURL.swift in Sources */,
 				14A6178E1D1BADF90083CFF2 /* Constants.swift in Sources */,
+				ED5FBD8D1E0A46A100FCB022 /* NSLayoutConstraintExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,7 +466,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Rev11Scan-ShareExtension/Rev11Scan-ShareExtension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Sean Allen (H69U55MWXW)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = H69U55MWXW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -457,8 +477,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.revolution11.Rev11-Scan.Rev11Scan-ShareExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1a5f7e67-a2cc-4da7-ba8d-69f62bc8a6d0";
-				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanDistributionShareExt;
+				PROVISIONING_PROFILE = "0c83b564-a069-4ae9-8746-fe979f339edc";
+				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanShareExtDevelopment;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 3.0;
@@ -472,7 +492,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Rev11Scan-ShareExtension/Rev11Scan-ShareExtension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Sean Allen (H69U55MWXW)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = H69U55MWXW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -483,8 +503,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.revolution11.Rev11-Scan.Rev11Scan-ShareExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1a5f7e67-a2cc-4da7-ba8d-69f62bc8a6d0";
-				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanDistributionShareExt;
+				PROVISIONING_PROFILE = "0c83b564-a069-4ae9-8746-fe979f339edc";
+				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanShareExtDevelopment;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
@@ -593,7 +613,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Rev11 Scan/Rev11 Scan.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Sean Allen (H69U55MWXW)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = H69U55MWXW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -604,8 +624,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.revolution11.Rev11-Scan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1634bae9-9833-46a8-958f-254bef16c458";
-				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanDistribution;
+				PROVISIONING_PROFILE = "7306a558-af33-4e62-9a9c-1e56be1841d1";
+				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanDevelopment;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -617,7 +637,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Rev11 Scan/Rev11 Scan.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Sean Allen (H69U55MWXW)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = H69U55MWXW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -628,8 +648,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.revolution11.Rev11-Scan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1634bae9-9833-46a8-958f-254bef16c458";
-				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanDistribution;
+				PROVISIONING_PROFILE = "7306a558-af33-4e62-9a9c-1e56be1841d1";
+				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanDevelopment;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

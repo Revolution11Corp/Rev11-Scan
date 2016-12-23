@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "map-button.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "logo-words-small.png",
+      "filename" : "map-button@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "map-button@3x.png",
       "scale" : "3x"
     }
   ],
