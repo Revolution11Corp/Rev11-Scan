@@ -105,8 +105,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.75" maximumZoomScale="4" translatesAutoresizingMaskIntoConstraints="NO" id="Xtl-qL-rUF">
                                 <rect key="frame" x="0.0" y="64" width="375" height="267"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="storeMapOverall" translatesAutoresizingMaskIntoConstraints="NO" id="djo-pq-N5T">
-                                        <rect key="frame" x="0.0" y="0.0" width="422" height="343"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="storeMap16" translatesAutoresizingMaskIntoConstraints="NO" id="djo-pq-N5T">
+                                        <rect key="frame" x="0.0" y="0.0" width="845" height="687"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -680,11 +680,11 @@
         <image name="cancel-button" width="30" height="30"/>
         <image name="download-icloud" width="30" height="30"/>
         <image name="ibeacon-logo" width="150" height="150"/>
-        <image name="ibeacon-logo-white" width="128" height="128"/>
+        <image name="ibeacon-logo-white" width="100" height="100"/>
         <image name="qr-tabbar-white" width="30" height="30"/>
         <image name="r11AppIcon120" width="60" height="60"/>
         <image name="search-tabbar-grey" width="30" height="30"/>
-        <image name="storeMapOverall" width="422" height="343"/>
+        <image name="storeMap16" width="845" height="687"/>
         <image name="upArrow" width="116" height="116"/>
     </resources>
 </document>
