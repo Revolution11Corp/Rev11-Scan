@@ -17,4 +17,10 @@ extension UIView {
         layer.shadowRadius = 10
         layer.shadowOpacity = 0.35
     }
+    
+    func roundCorners() {
+        layoutIfNeeded()
+        layer.cornerRadius = frame.size.height/2
+        layer.masksToBounds = true
+    }
 }

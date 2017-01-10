@@ -130,7 +130,7 @@
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BeaconCell" id="vOn-hW-SjT" customClass="BeaconCell" customModule="Rev11_Scan" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                                 <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vOn-hW-SjT" id="yFs-jH-Kmj">
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.5" contentMode="center" tableViewCell="vOn-hW-SjT" id="yFs-jH-Kmj">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
@@ -210,6 +210,7 @@
                                                         <constraint firstItem="waW-ji-gJa" firstAttribute="top" secondItem="1GS-cO-Emp" secondAttribute="bottom" constant="-8" id="zms-fy-3Yj"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <color key="backgroundColor" red="0.86274509803921573" green="0.86274509803921573" blue="0.86274509803921573" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <outlet property="actionURLButton" destination="PgI-2C-EWf" id="Ofa-S0-rvA"/>
                                                     <outlet property="beaconImage" destination="PfF-48-aoW" id="8V6-Fl-Q2T"/>
@@ -418,7 +419,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZwK-hs-81i" id="vl6-j5-kbz">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibeacon-logo" translatesAutoresizingMaskIntoConstraints="NO" id="w0S-du-F6Q">
