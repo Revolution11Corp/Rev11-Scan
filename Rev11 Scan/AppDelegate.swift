@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
     setupTabBar()
-    ESTConfig.setupAppID(Keys.estimoteAppID, andAppToken: Keys.estimoteAppToken)
     URLParameter.sharedInstance.isFromFileMaker = false
     self.beaconManager.delegate = self
 
