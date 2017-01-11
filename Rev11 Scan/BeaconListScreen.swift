@@ -47,7 +47,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         transparencyView = createTransparencyView()
         NavBarSetup.showLogoInNavBar(self.navigationController!, navItem: self.navigationItem)
         changeFilterButtonImage()
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.hideExcessSeparatorLines()
         tableContainerView.setShadow(width: 0, height: -6)
         locationManager.delegate = self
         NotificationCenter.default.addObserver(self, selector:#selector(BeaconListScreen.reloadViewFromBackground), name:

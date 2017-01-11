@@ -41,6 +41,7 @@
 		ED5FBD8D1E0A46A100FCB022 /* NSLayoutConstraintExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5FBD8C1E0A46A100FCB022 /* NSLayoutConstraintExtension.swift */; };
 		ED5FE28A1DF46EBF00C0408E /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5FE2891DF46EBF00C0408E /* UIViewControllerExtension.swift */; };
 		ED5FE28C1DF4727E00C0408E /* RVButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5FE28B1DF4727E00C0408E /* RVButton.swift */; };
+		ED7C90161E25F47D001DAB33 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C90151E25F47D001DAB33 /* UITableViewExtension.swift */; };
 		EDB84CF71DF5051400F6CF27 /* RVTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB84CF61DF5051400F6CF27 /* RVTextField.swift */; };
 /* End PBXBuildFile section */
 
@@ -109,6 +110,7 @@
 		ED5FBD8C1E0A46A100FCB022 /* NSLayoutConstraintExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintExtension.swift; sourceTree = "<group>"; };
 		ED5FE2891DF46EBF00C0408E /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		ED5FE28B1DF4727E00C0408E /* RVButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RVButton.swift; sourceTree = "<group>"; };
+		ED7C90151E25F47D001DAB33 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		EDB84CF61DF5051400F6CF27 /* RVTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RVTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -156,6 +158,7 @@
 				ED5FE2891DF46EBF00C0408E /* UIViewControllerExtension.swift */,
 				ED5FBD8C1E0A46A100FCB022 /* NSLayoutConstraintExtension.swift */,
 				ED43DB531E0D658A001E31D1 /* UIViewExtension.swift */,
+				ED7C90151E25F47D001DAB33 /* UITableViewExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				143AA2121DB5C48B00485CC7 /* RVSegmentedControl.swift in Sources */,
 				14A6176F1D1BAB2B0083CFF2 /* AppDelegate.swift in Sources */,
 				EDB84CF71DF5051400F6CF27 /* RVTextField.swift in Sources */,
+				ED7C90161E25F47D001DAB33 /* UITableViewExtension.swift in Sources */,
 				1496B1B61D6FE5A000DD0B2E /* BeaconHelper.swift in Sources */,
 				14D3FDC51DA61215004F39EF /* BeaconSearchCell.swift in Sources */,
 				1496B1B31D6FE1A400DD0B2E /* NavBarSetup.swift in Sources */,
