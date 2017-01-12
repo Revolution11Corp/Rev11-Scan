@@ -131,7 +131,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.5" contentMode="center" tableViewCell="vOn-hW-SjT" id="yFs-jH-Kmj">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibeacon-logo-white" translatesAutoresizingMaskIntoConstraints="NO" id="PfF-48-aoW">
@@ -376,8 +376,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter a UUID to search for Beacons" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jm-Ue-qqN">
-                                <rect key="frame" x="34.5" y="291" width="306" height="85"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No beacons found for this UUID" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jm-Ue-qqN">
+                                <rect key="frame" x="34.5" y="341" width="306" height="85"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="306" id="DiC-3L-042"/>
                                     <constraint firstAttribute="height" constant="85" id="z15-dD-Dqx"/>
@@ -419,7 +419,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZwK-hs-81i" id="vl6-j5-kbz">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibeacon-logo" translatesAutoresizingMaskIntoConstraints="NO" id="w0S-du-F6Q">
@@ -632,7 +632,7 @@
                             <constraint firstItem="d8s-Pf-1eI" firstAttribute="centerX" secondItem="8AL-ZW-RdT" secondAttribute="centerX" id="99U-Ak-YeG"/>
                             <constraint firstItem="5jm-Ue-qqN" firstAttribute="centerX" secondItem="8AL-ZW-RdT" secondAttribute="centerX" id="JpC-Ok-6AW"/>
                             <constraint firstItem="DCZ-2T-6f8" firstAttribute="top" secondItem="7Kb-dG-nnk" secondAttribute="bottom" constant="25" id="Pac-If-sXl"/>
-                            <constraint firstItem="5jm-Ue-qqN" firstAttribute="centerY" secondItem="8AL-ZW-RdT" secondAttribute="centerY" id="Up8-ro-MYA"/>
+                            <constraint firstItem="5jm-Ue-qqN" firstAttribute="centerY" secondItem="8AL-ZW-RdT" secondAttribute="centerY" constant="50" id="Up8-ro-MYA"/>
                             <constraint firstItem="7Kb-dG-nnk" firstAttribute="leading" secondItem="8AL-ZW-RdT" secondAttribute="leadingMargin" id="Wbi-Ho-4nr"/>
                             <constraint firstAttribute="trailing" secondItem="DCZ-2T-6f8" secondAttribute="trailing" id="bCi-ex-e0p"/>
                             <constraint firstItem="Z9i-Qc-rwh" firstAttribute="centerY" secondItem="8AL-ZW-RdT" secondAttribute="centerY" id="c81-9H-ZhS"/>

@@ -203,6 +203,7 @@ class BeaconSearchScreen: UIViewController, UITableViewDelegate, UITableViewData
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         iBeacons = beacons
         iBeacons.sort(by: { $0.major.intValue > $1.major.intValue })
+        tableView.alpha = beacons.count == 0 ? 0.0 : 1.0
         tableView.reloadDataOnMainThread()
     }
     

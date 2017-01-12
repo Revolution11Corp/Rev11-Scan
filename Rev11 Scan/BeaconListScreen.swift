@@ -83,7 +83,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func showPermissionsView(bool: Bool) {
-        
         UIView.animate(withDuration: 0.33, animations: {
             self.transparencyView.alpha = bool ? 0.7 : 0.0
             self.permissionsView.alpha = bool ? 1.0 : 0.0
@@ -98,7 +97,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func setupBeaconRegions() {
-        
         let beaconRegions: [iBeaconItem] = iBeacons.filterDuplicates { $0.uuid == $1.uuid && $0.uuid == $1.uuid }
         
         for beacon in beaconRegions {
@@ -124,7 +122,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         if defaults?.data(forKey: Keys.spreadsheetFile) != nil {
             
-            tableView.isHidden = true
+            showEmptyState(bool: true)
             activityIndicator.startAnimating()
             emptyStateLabel.alpha = 0
             emptyStateIcon.alpha = 0
@@ -182,7 +180,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
                 }
             }
         } else {
-            tableView.isHidden = true
+            showEmptyState(bool: true)
         }
     }
     
@@ -196,10 +194,15 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             DispatchQueue.main.async {
                 self.activityIndicator.stopAnimating()
-                self.tableView.isHidden = false
+                self.showEmptyState(bool: false)
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    func showEmptyState(bool: Bool) {
+        scrollView.alpha = bool ? 0.0 : 1.0
+        tableContainerView.alpha = bool ? 0.0 : 1.0
     }
     
     func filterButtonPressed() {
