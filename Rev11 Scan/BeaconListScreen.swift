@@ -72,7 +72,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         if UserDefaults.standard.array(forKey: BeaconProperties.storedBeaconArrayKey) != nil {
             
             if defaults?.bool(forKey: Keys.isNewSharedSpreadsheet) == false {
-                loadStoredBeacons()
+                iBeacons = Persistence.loadBeacons()
                 setupBeaconRegions()
             } else {
                 readSharedCSVWithClosure()
@@ -101,17 +101,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         for beacon in beaconRegions {
             startRangingBeacon(beacon)
-        }
-    }
-    
-    func loadStoredBeacons() {
-        
-        if let storedBeacons = UserDefaults.standard.array(forKey: BeaconProperties.storedBeaconArrayKey) {
-            
-            for beaconData in storedBeacons {
-                let beacon = NSKeyedUnarchiver.unarchiveObject(with: (beaconData as! NSData) as Data) as! iBeaconItem
-                iBeacons.append(beacon)
-            }
         }
     }
     
@@ -444,7 +433,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         navigationItem.leftBarButtonItem = nil
         
-        let image = isFiltered ? UIImage(named: "filter-filled") : UIImage(named: "filter")
+        let image = isFiltered ? #imageLiteral(resourceName: "filter-filled") : #imageLiteral(resourceName: "filter")
         
         let button = UIButton.init(type: .custom)
         button.setImage(image, for: .normal)
@@ -457,7 +446,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func setupRightNavButtons() {
         
-        importButton    = UIBarButtonItem(image: UIImage(named: "download-icloud"),  style: .plain, target: self, action: #selector(BeaconListScreen.importButtonPressed(_:)))
+        importButton = UIBarButtonItem(image: #imageLiteral(resourceName: "download-icloud"),  style: .plain, target: self, action: #selector(BeaconListScreen.importButtonPressed(_:)))
         
         navigationItem.rightBarButtonItems = [importButton]
     }
@@ -470,7 +459,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         let flipped = self.isShowingMap ? CGAffineTransform(scaleX: 1, y: -1) : CGAffineTransform(scaleX: -1, y: 1)
         
         UIView.animate(withDuration: 0.5, animations: {
-//            self.hideMapButton.layer.setAffineTransform(flipped)
             self.hideMapButton.imageView?.layer.setAffineTransform(flipped)
             self.view.layoutIfNeeded()
         })

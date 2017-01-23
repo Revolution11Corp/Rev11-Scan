@@ -43,6 +43,7 @@
 		ED5FE28C1DF4727E00C0408E /* RVButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5FE28B1DF4727E00C0408E /* RVButton.swift */; };
 		ED7C90161E25F47D001DAB33 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C90151E25F47D001DAB33 /* UITableViewExtension.swift */; };
 		EDB84CF71DF5051400F6CF27 /* RVTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB84CF61DF5051400F6CF27 /* RVTextField.swift */; };
+		EDBEEAEA1E3051C100A086AF /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBEEAE91E3051C100A086AF /* Persistence.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,7 @@
 		ED5FE28B1DF4727E00C0408E /* RVButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RVButton.swift; sourceTree = "<group>"; };
 		ED7C90151E25F47D001DAB33 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		EDB84CF61DF5051400F6CF27 /* RVTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RVTextField.swift; sourceTree = "<group>"; };
+		EDBEEAE91E3051C100A086AF /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +240,7 @@
 			children = (
 				14A6176E1D1BAB2B0083CFF2 /* AppDelegate.swift */,
 				14A6178D1D1BADF90083CFF2 /* Constants.swift */,
+				EDBEEAE91E3051C100A086AF /* Persistence.swift */,
 				1404C8121D8F624E00981495 /* Networking.swift */,
 				14A6177A1D1BAB2B0083CFF2 /* Info.plist */,
 				14A617771D1BAB2B0083CFF2 /* LaunchScreen.storyboard */,
@@ -404,6 +407,7 @@
 				14B9CC8C1D7FB93000B666FC /* CSVParser.swift in Sources */,
 				14A617841D1BAD370083CFF2 /* BeaconCell.swift in Sources */,
 				ED43DB541E0D658A001E31D1 /* UIViewExtension.swift in Sources */,
+				EDBEEAEA1E3051C100A086AF /* Persistence.swift in Sources */,
 				1404C8131D8F624E00981495 /* Networking.swift in Sources */,
 				143AA2121DB5C48B00485CC7 /* RVSegmentedControl.swift in Sources */,
 				14A6176F1D1BAB2B0083CFF2 /* AppDelegate.swift in Sources */,
