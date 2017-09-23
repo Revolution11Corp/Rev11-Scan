@@ -10,17 +10,15 @@ import UIKit
 import CoreLocation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
   let locationManager = CLLocationManager()
-  let beaconManager = ESTBeaconManager()
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
     setupTabBar()
     URLParameter.sharedInstance.isFromFileMaker = false
-    self.beaconManager.delegate = self
 
 //    let notificationType: UIUserNotificationType = [UIUserNotificationType.sound, UIUserNotificationType.alert]
 //    let notificationSettings = UIUserNotificationSettings(types: notificationType, categories: nil)
@@ -67,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
 
   private func beaconManager(_ manager: AnyObject, didEnter region: CLBeaconRegion) {
     let notification = UILocalNotification()
-    notification.alertBody = "You are now entering a Estimote beacon reagion"
+    notification.alertBody = "You are now entering a beacon reagion"
     UIApplication.shared.presentLocalNotificationNow(notification)
   }
 

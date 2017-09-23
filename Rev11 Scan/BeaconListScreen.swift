@@ -139,9 +139,9 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
                 let actionType      = object["Action Type"]
                 let type            = object["Type"]
                 let mapURL          = object["Map URL"]
-                let colorR          = CGFloat(NumberFormatter().number(from: object["ColorR"]!)!)
-                let colorG          = CGFloat(NumberFormatter().number(from: object["ColorG"]!)!)
-                let colorB          = CGFloat(NumberFormatter().number(from: object["ColorB"]!)!)
+                let colorR          = CGFloat(truncating: NumberFormatter().number(from: object["ColorR"]!)!)
+                let colorG          = CGFloat(truncating: NumberFormatter().number(from: object["ColorG"]!)!)
+                let colorB          = CGFloat(truncating: NumberFormatter().number(from: object["ColorB"]!)!)
     
                 let color = UIColor(red: colorR/255.0, green: colorG/255.0, blue: colorB/255.0, alpha: 1.0)
                 let backgroundColor = Colors.white

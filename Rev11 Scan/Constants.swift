@@ -48,7 +48,6 @@ struct Images {
     static let qrTabBlue          = "qr-tabbar-blue"
     static let eddystoneTabBlue   = "eddystone-tabbar-blue"
     static let beaconTabBlue      = "beacon-tabbar-blue"
-    static let estimoteTabBlue    = "estimote-tabbar-blue"
     static let searchTabBlue      = "search-tabbar-blue"
 }
 
@@ -77,7 +76,6 @@ struct UUIDs {
 }
 
 struct Cells {
-    static let estimoteCell     = "EstimoteCell"
     static let eddystoneCell    = "EddystoneCell"
     static let beaconCell       = "BeaconCell"
     static let beaconSearchCell = "BeaconSearchCell"

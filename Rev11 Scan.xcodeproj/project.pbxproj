@@ -13,9 +13,7 @@
 		1446A6FF1D7BB7D200167BD1 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1446A6FE1D7BB7D200167BD1 /* ShareViewController.swift */; };
 		1446A7021D7BB7D200167BD1 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1446A7001D7BB7D200167BD1 /* MainInterface.storyboard */; };
 		1446A7061D7BB7D200167BD1 /* Rev11Scan-ShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1446A6FC1D7BB7D200167BD1 /* Rev11Scan-ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		14521AE71D51A03D007F38FB /* Rev11TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14521AE61D51A03D007F38FB /* Rev11TabBarController.swift */; };
 		14605E6A1D8E5B1C0072CBCA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14605E691D8E5B1C0072CBCA /* Constants.swift */; };
-		1471579A1D331D4300B98EBA /* EstimoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 147157991D331D4300B98EBA /* EstimoteSDK.framework */; };
 		147A4A591D37454C006D834D /* URLParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147A4A581D37454C006D834D /* URLParameter.swift */; };
 		1496B1B31D6FE1A400DD0B2E /* NavBarSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1496B1B21D6FE1A400DD0B2E /* NavBarSetup.swift */; };
 		1496B1B61D6FE5A000DD0B2E /* BeaconHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1496B1B51D6FE5A000DD0B2E /* BeaconHelper.swift */; };
@@ -29,14 +27,12 @@
 		14A617841D1BAD370083CFF2 /* BeaconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A617831D1BAD370083CFF2 /* BeaconCell.swift */; };
 		14A6178A1D1BAD8F0083CFF2 /* iBeaconItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A617891D1BAD8F0083CFF2 /* iBeaconItem.swift */; };
 		14A6178E1D1BADF90083CFF2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A6178D1D1BADF90083CFF2 /* Constants.swift */; };
-		14A617961D1BAEBA0083CFF2 /* AddBeaconScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A617951D1BAEBA0083CFF2 /* AddBeaconScreen.swift */; };
-		14A617981D1BAEF10083CFF2 /* QRScannerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A617971D1BAEF10083CFF2 /* QRScannerScreen.swift */; };
 		14A6179A1D1BAF1B0083CFF2 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A617991D1BAF1B0083CFF2 /* CoreBluetooth.framework */; };
 		14B9CC8C1D7FB93000B666FC /* CSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B9CC8B1D7FB93000B666FC /* CSVParser.swift */; };
 		14B9CC8E1D7FB95500B666FC /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B9CC8D1D7FB95500B666FC /* String.swift */; };
-		14CA08251D7E55BA000D5764 /* EstimoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA08241D7E55BA000D5764 /* EstimoteSDK.framework */; };
 		14D3FDC31DA60FA4004F39EF /* BeaconSearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D3FDC21DA60FA4004F39EF /* BeaconSearchScreen.swift */; };
 		14D3FDC51DA61215004F39EF /* BeaconSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D3FDC41DA61215004F39EF /* BeaconSearchCell.swift */; };
+		ED1DC0851F76189200336287 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED1DC0841F76189200336287 /* CoreLocation.framework */; };
 		ED43DB541E0D658A001E31D1 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED43DB531E0D658A001E31D1 /* UIViewExtension.swift */; };
 		ED5FBD8D1E0A46A100FCB022 /* NSLayoutConstraintExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5FBD8C1E0A46A100FCB022 /* NSLayoutConstraintExtension.swift */; };
 		ED5FE28A1DF46EBF00C0408E /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5FE2891DF46EBF00C0408E /* UIViewControllerExtension.swift */; };
@@ -80,10 +76,7 @@
 		1446A7031D7BB7D200167BD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1446A70B1D7BB87000167BD1 /* Rev11Scan-ShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Rev11Scan-ShareExtension.entitlements"; sourceTree = "<group>"; };
 		1446A70C1D7BB89600167BD1 /* Rev11 Scan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Rev11 Scan.entitlements"; sourceTree = "<group>"; };
-		14521AE61D51A03D007F38FB /* Rev11TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rev11TabBarController.swift; sourceTree = "<group>"; };
 		14605E691D8E5B1C0072CBCA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		147157991D331D4300B98EBA /* EstimoteSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EstimoteSDK.framework; sourceTree = "<group>"; };
-		1471579B1D331DA600B98EBA /* ObjcBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjcBridge.h; sourceTree = "<group>"; };
 		147A4A581D37454C006D834D /* URLParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLParameter.swift; sourceTree = "<group>"; };
 		1496B1B21D6FE1A400DD0B2E /* NavBarSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBarSetup.swift; sourceTree = "<group>"; };
 		1496B1B51D6FE5A000DD0B2E /* BeaconHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconHelper.swift; sourceTree = "<group>"; };
@@ -99,14 +92,12 @@
 		14A617831D1BAD370083CFF2 /* BeaconCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconCell.swift; sourceTree = "<group>"; };
 		14A617891D1BAD8F0083CFF2 /* iBeaconItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iBeaconItem.swift; sourceTree = "<group>"; };
 		14A6178D1D1BADF90083CFF2 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		14A617951D1BAEBA0083CFF2 /* AddBeaconScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBeaconScreen.swift; sourceTree = "<group>"; };
-		14A617971D1BAEF10083CFF2 /* QRScannerScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerScreen.swift; sourceTree = "<group>"; };
 		14A617991D1BAF1B0083CFF2 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		14B9CC8B1D7FB93000B666FC /* CSVParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVParser.swift; sourceTree = "<group>"; };
 		14B9CC8D1D7FB95500B666FC /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		14CA08241D7E55BA000D5764 /* EstimoteSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EstimoteSDK.framework; sourceTree = "<group>"; };
 		14D3FDC21DA60FA4004F39EF /* BeaconSearchScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconSearchScreen.swift; sourceTree = "<group>"; };
 		14D3FDC41DA61215004F39EF /* BeaconSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconSearchCell.swift; sourceTree = "<group>"; };
+		ED1DC0841F76189200336287 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		ED43DB531E0D658A001E31D1 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		ED5FBD8C1E0A46A100FCB022 /* NSLayoutConstraintExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintExtension.swift; sourceTree = "<group>"; };
 		ED5FE2891DF46EBF00C0408E /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -121,7 +112,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14CA08251D7E55BA000D5764 /* EstimoteSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,9 +119,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED1DC0851F76189200336287 /* CoreLocation.framework in Frameworks */,
 				1498D8A31DC9A20400BC55E7 /* CloudKit.framework in Frameworks */,
 				14A6179A1D1BAF1B0083CFF2 /* CoreBluetooth.framework in Frameworks */,
-				1471579A1D331D4300B98EBA /* EstimoteSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,7 +131,6 @@
 		1446A6FD1D7BB7D200167BD1 /* Rev11Scan-ShareExtension */ = {
 			isa = PBXGroup;
 			children = (
-				14CA08241D7E55BA000D5764 /* EstimoteSDK.framework */,
 				1446A70B1D7BB87000167BD1 /* Rev11Scan-ShareExtension.entitlements */,
 				1446A6FE1D7BB7D200167BD1 /* ShareViewController.swift */,
 				1446A7001D7BB7D200167BD1 /* MainInterface.storyboard */,
@@ -171,6 +160,7 @@
 				1496B1B21D6FE1A400DD0B2E /* NavBarSetup.swift */,
 				1496B1B51D6FE5A000DD0B2E /* BeaconHelper.swift */,
 				14B9CC8B1D7FB93000B666FC /* CSVParser.swift */,
+				147A4A581D37454C006D834D /* URLParameter.swift */,
 				143AA2111DB5C48B00485CC7 /* RVSegmentedControl.swift */,
 				ED5FE28B1DF4727E00C0408E /* RVButton.swift */,
 				EDB84CF61DF5051400F6CF27 /* RVTextField.swift */,
@@ -183,7 +173,6 @@
 			children = (
 				14A617991D1BAF1B0083CFF2 /* CoreBluetooth.framework */,
 				14A6176D1D1BAB2B0083CFF2 /* Rev11 Scan */,
-				14D3FDC11DA60F08004F39EF /* Currently Unused */,
 				1446A6FD1D7BB7D200167BD1 /* Rev11Scan-ShareExtension */,
 				14A6176C1D1BAB2B0083CFF2 /* Products */,
 				14C831B01DC99DBF00EE3FDC /* Frameworks */,
@@ -209,18 +198,8 @@
 				14AD9E5C1D41C09F0085A044 /* SupportingFiles */,
 				14A617721D1BAB2B0083CFF2 /* Main.storyboard */,
 				14A617751D1BAB2B0083CFF2 /* Assets.xcassets */,
-				1471579B1D331DA600B98EBA /* ObjcBridge.h */,
 			);
 			path = "Rev11 Scan";
-			sourceTree = "<group>";
-		};
-		14AD9E591D41BF900085A044 /* QRScanner */ = {
-			isa = PBXGroup;
-			children = (
-				14A617971D1BAEF10083CFF2 /* QRScannerScreen.swift */,
-				147A4A581D37454C006D834D /* URLParameter.swift */,
-			);
-			name = QRScanner;
 			sourceTree = "<group>";
 		};
 		14AD9E5A1D41BFCA0085A044 /* iBeacon */ = {
@@ -251,21 +230,10 @@
 		14C831B01DC99DBF00EE3FDC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ED1DC0841F76189200336287 /* CoreLocation.framework */,
 				1498D8A21DC9A20400BC55E7 /* CloudKit.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		14D3FDC11DA60F08004F39EF /* Currently Unused */ = {
-			isa = PBXGroup;
-			children = (
-				147157991D331D4300B98EBA /* EstimoteSDK.framework */,
-				14521AE61D51A03D007F38FB /* Rev11TabBarController.swift */,
-				14A617951D1BAEBA0083CFF2 /* AddBeaconScreen.swift */,
-				14AD9E591D41BF900085A044 /* QRScanner */,
-			);
-			name = "Currently Unused";
-			path = "Rev11 Scan";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -402,7 +370,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				14D3FDC31DA60FA4004F39EF /* BeaconSearchScreen.swift in Sources */,
-				14521AE71D51A03D007F38FB /* Rev11TabBarController.swift in Sources */,
 				14A6178A1D1BAD8F0083CFF2 /* iBeaconItem.swift in Sources */,
 				147A4A591D37454C006D834D /* URLParameter.swift in Sources */,
 				14B9CC8C1D7FB93000B666FC /* CSVParser.swift in Sources */,
@@ -420,9 +387,7 @@
 				ED5FE28A1DF46EBF00C0408E /* UIViewControllerExtension.swift in Sources */,
 				ED5FE28C1DF4727E00C0408E /* RVButton.swift in Sources */,
 				14B9CC8E1D7FB95500B666FC /* String.swift in Sources */,
-				14A617961D1BAEBA0083CFF2 /* AddBeaconScreen.swift in Sources */,
 				14A617821D1BAD010083CFF2 /* BeaconListScreen.swift in Sources */,
-				14A617981D1BAEF10083CFF2 /* QRScannerScreen.swift in Sources */,
 				14222B8C1DC8448600C9EA63 /* ArrayExtension.swift in Sources */,
 				149F033B1D752EC40039ADEE /* QueryURL.swift in Sources */,
 				14A6178E1D1BADF90083CFF2 /* Constants.swift in Sources */,
@@ -490,7 +455,8 @@
 				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanShareExtDevelopment;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -516,7 +482,8 @@
 				PROVISIONING_PROFILE = "0c83b564-a069-4ae9-8746-fe979f339edc";
 				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanShareExtDevelopment;
 				SKIP_INSTALL = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
@@ -649,7 +616,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "7306a558-af33-4e62-9a9c-1e56be1841d1";
 				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanDevelopment;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -674,7 +643,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "7306a558-af33-4e62-9a9c-1e56be1841d1";
 				PROVISIONING_PROFILE_SPECIFIER = Rev11ScanDevelopment;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
