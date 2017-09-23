@@ -334,7 +334,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d8s-Pf-1eI" customClass="RVSegmentedControl" customModule="Rev11_Scan" customModuleProvider="target">
-                                <rect key="frame" x="67.5" y="79" width="240" height="44"/>
+                                <rect key="frame" x="67.5" y="119" width="240" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="DbB-HF-WrW"/>
@@ -359,7 +359,7 @@
                                 </connections>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DCZ-2T-6f8">
-                                <rect key="frame" x="0.0" y="188" width="375" height="430"/>
+                                <rect key="frame" x="0.0" y="228" width="375" height="390"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BeaconSearchCell" id="ZwK-hs-81i" customClass="BeaconSearchCell" customModule="Rev11_Scan" customModuleProvider="target">
@@ -431,7 +431,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UUID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Kb-dG-nnk">
-                                <rect key="frame" x="16" y="142" width="343" height="21"/>
+                                <rect key="frame" x="16" y="182" width="343" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="IDN-zL-9nP"/>
                                 </constraints>

@@ -194,7 +194,10 @@
 				1446A70C1D7BB89600167BD1 /* Rev11 Scan.entitlements */,
 				1496B1B41D6FE1B000DD0B2E /* Classes */,
 				149063781D4EFFAF00637146 /* Extensions */,
-				14AD9E5A1D41BFCA0085A044 /* iBeacon */,
+				EDBDC6571F761CDE00DF8997 /* Cells */,
+				14AD9E5A1D41BFCA0085A044 /* Model */,
+				EDBDC6561F761CB000DF8997 /* Managers */,
+				EDBDC6581F761D0000DF8997 /* Screens */,
 				14AD9E5C1D41C09F0085A044 /* SupportingFiles */,
 				14A617721D1BAB2B0083CFF2 /* Main.storyboard */,
 				14A617751D1BAB2B0083CFF2 /* Assets.xcassets */,
@@ -202,25 +205,18 @@
 			path = "Rev11 Scan";
 			sourceTree = "<group>";
 		};
-		14AD9E5A1D41BFCA0085A044 /* iBeacon */ = {
+		14AD9E5A1D41BFCA0085A044 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				14A617811D1BAD010083CFF2 /* BeaconListScreen.swift */,
-				14D3FDC21DA60FA4004F39EF /* BeaconSearchScreen.swift */,
-				14A617831D1BAD370083CFF2 /* BeaconCell.swift */,
 				14A617891D1BAD8F0083CFF2 /* iBeaconItem.swift */,
-				14D3FDC41DA61215004F39EF /* BeaconSearchCell.swift */,
 			);
-			name = iBeacon;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		14AD9E5C1D41C09F0085A044 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
 				14A6176E1D1BAB2B0083CFF2 /* AppDelegate.swift */,
-				14A6178D1D1BADF90083CFF2 /* Constants.swift */,
-				EDBEEAE91E3051C100A086AF /* Persistence.swift */,
-				1404C8121D8F624E00981495 /* Networking.swift */,
 				14A6177A1D1BAB2B0083CFF2 /* Info.plist */,
 				14A617771D1BAB2B0083CFF2 /* LaunchScreen.storyboard */,
 			);
@@ -234,6 +230,34 @@
 				1498D8A21DC9A20400BC55E7 /* CloudKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EDBDC6561F761CB000DF8997 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				1404C8121D8F624E00981495 /* Networking.swift */,
+				EDBEEAE91E3051C100A086AF /* Persistence.swift */,
+				14A6178D1D1BADF90083CFF2 /* Constants.swift */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+		EDBDC6571F761CDE00DF8997 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				14A617831D1BAD370083CFF2 /* BeaconCell.swift */,
+				14D3FDC41DA61215004F39EF /* BeaconSearchCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		EDBDC6581F761D0000DF8997 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				14A617811D1BAD010083CFF2 /* BeaconListScreen.swift */,
+				14D3FDC21DA60FA4004F39EF /* BeaconSearchScreen.swift */,
+			);
+			name = Screens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
