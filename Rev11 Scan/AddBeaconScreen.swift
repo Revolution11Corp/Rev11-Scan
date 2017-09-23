@@ -68,7 +68,7 @@ class AddBeaconScreen: UIViewController, UITextFieldDelegate {
     }
   }
 
-  func stateChanged(_ switchState: UISwitch) {
+  @objc func stateChanged(_ switchState: UISwitch) {
 
     if switchState.isOn {
       switchViews(viewsToHide: eddystoneViews, viewsToShow: iBeaconViews)
@@ -95,22 +95,22 @@ class AddBeaconScreen: UIViewController, UITextFieldDelegate {
     }
   }
 
-  func nameTextFieldChanged(_ textField: UITextField) {
+  @objc func nameTextFieldChanged(_ textField: UITextField) {
     nameFieldValid = (textField.text!.characters.count > 0)
     updateSaveButton()
   }
 
-  func majorTextFieldChanged(_ textField: UITextField) {
+  @objc func majorTextFieldChanged(_ textField: UITextField) {
     majorFieldValid = (textField.text!.characters.count > 0)
     updateSaveButton()
   }
 
-  func minorTextFieldChanged(_ textField: UITextField) {
+  @objc func minorTextFieldChanged(_ textField: UITextField) {
     minorFieldValid = (textField.text!.characters.count > 0)
     updateSaveButton()
   }
 
-  func uuidTextFieldChanged(_ textField: UITextField) {
+  @objc func uuidTextFieldChanged(_ textField: UITextField) {
     let numberOfMatches = uuidRegex.numberOfMatches(in: textField.text!, options: [], range: NSMakeRange(0, textField.text!.characters.count))
     UUIDFieldValid = (numberOfMatches > 0)
     updateSaveButton()
@@ -157,7 +157,7 @@ class AddBeaconScreen: UIViewController, UITextFieldDelegate {
     view.addGestureRecognizer(tap)
   }
   
-  func dismissKeyboard() {
+  @objc func dismissKeyboard() {
     view.endEditing(true)
   }
 

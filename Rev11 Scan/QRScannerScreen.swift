@@ -20,7 +20,7 @@ class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
   var videoPreviewLayer: AVCaptureVideoPreviewLayer?
   var scannedURL: String?
 
-  let supportedBarCodes = [AVMetadataObjectTypeQRCode, AVMetadataObjectTypeCode128Code, AVMetadataObjectTypeCode39Code, AVMetadataObjectTypeCode93Code, AVMetadataObjectTypeUPCECode, AVMetadataObjectTypePDF417Code, AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeAztecCode]
+  let supportedBarCodes = [AVMetadataObject.ObjectType.qr, AVMetadataObject.ObjectType.code128, AVMetadataObject.ObjectType.code39, AVMetadataObject.ObjectType.code93, AVMetadataObject.ObjectType.upce, AVMetadataObject.ObjectType.pdf417, AVMetadataObject.ObjectType.ean13, AVMetadataObject.ObjectType.aztec]
 
 
   override func viewDidLoad() {
@@ -48,11 +48,11 @@ class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
 
   func setupQRCaptureSession() {
 
-    let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+    let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
 
     do {
 
-      let input = try AVCaptureDeviceInput(device: captureDevice)
+      let input = try AVCaptureDeviceInput(device: captureDevice!)
 
       captureSession = AVCaptureSession()
       captureSession?.addInput(input)
@@ -63,8 +63,8 @@ class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
       captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
       captureMetadataOutput.metadataObjectTypes = supportedBarCodes
 
-      videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-      videoPreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
+      videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
+      videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
       videoPreviewLayer?.frame = view.layer.bounds
       view.layer.addSublayer(videoPreviewLayer!)
 
@@ -77,7 +77,7 @@ class QRScannerScreen: UIViewController, AVCaptureMetadataOutputObjectsDelegate 
     }
   }
 
-  func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
+  func metadataOutput(captureOutput: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
 
     if metadataObjects == nil || metadataObjects.count == 0 {
       messageLabel.isHidden = false

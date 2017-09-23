@@ -54,7 +54,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
             NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
     }
     
-    func reloadViewFromBackground() {
+    @objc func reloadViewFromBackground() {
         viewWillAppear(true)
     }
     
@@ -194,13 +194,13 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         tableContainerView.alpha = bool ? 0.0 : 1.0
     }
     
-    func filterButtonPressed() {
+    @objc func filterButtonPressed() {
         isFiltered = isFiltered ? false : true
         changeFilterButtonImage()
         tableView.reloadData()
     }
     
-    func importButtonPressed(_ sender: UIBarButtonItem) {
+    @objc func importButtonPressed(_ sender: UIBarButtonItem) {
         
         let importMenu = UIDocumentMenuViewController(documentTypes: [kUTTypeCommaSeparatedText as String], in: .import)
         importMenu.delegate = self
@@ -317,7 +317,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         present(detailAlert, animated: true, completion: nil)
     }
     
-    func actionURLPressed(sender: UIButton) {
+    @objc func actionURLPressed(sender: UIButton) {
         
         let beaconRow = sender.tag
         let selectedBeacon = iBeacons[beaconRow]

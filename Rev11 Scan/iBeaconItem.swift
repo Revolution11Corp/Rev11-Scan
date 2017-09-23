@@ -27,7 +27,7 @@ class iBeaconItem: NSObject, NSCoding {
     var backgroundColor: UIColor?
     
     
-    dynamic var lastSeenBeacon: CLBeacon?
+    @objc dynamic var lastSeenBeacon: CLBeacon?
     
     init(name: String, uuid: UUID, majorValue: CLBeaconMajorValue?, minorValue: CLBeaconMinorValue?, itemImage: UIImage, actionURL: String, actionURLName: String, actionType: String, type: String, mapURL: String, color: UIColor, backgroundColor: UIColor) {
         self.name = name

@@ -35,7 +35,7 @@ class Rev11TabBarController: UITabBarController {
     self.view.layoutIfNeeded()
   }
 
-  func menuButtonAction(_ sender: UIButton) {
+  @objc func menuButtonAction(_ sender: UIButton) {
     self.selectedIndex = 1
   }
 }

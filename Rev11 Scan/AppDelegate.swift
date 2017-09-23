@@ -61,8 +61,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
     UITabBar.appearance().barTintColor = Colors.white
     UITabBar.appearance().backgroundColor = Colors.white
 
-    UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Colors.darkGrey], for:UIControlState())
-    UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: Colors.blue], for:.selected)
+    UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: Colors.darkGrey], for:UIControlState())
+    UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: Colors.blue], for:.selected)
   }
 
   private func beaconManager(_ manager: AnyObject, didEnter region: CLBeaconRegion) {
