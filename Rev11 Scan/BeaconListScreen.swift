@@ -47,14 +47,14 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         transparencyView = createTransparencyView()
         NavBarSetup.showLogoInNavBar(self.navigationController!, navItem: self.navigationItem)
         changeFilterButtonImage()
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.hideExcessSeparatorLines()
         tableContainerView.setShadow(width: 0, height: -6)
         locationManager.delegate = self
         NotificationCenter.default.addObserver(self, selector:#selector(BeaconListScreen.reloadViewFromBackground), name:
             NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
     }
     
-    func reloadViewFromBackground() {
+    @objc func reloadViewFromBackground() {
         viewWillAppear(true)
     }
     
@@ -72,7 +72,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         if UserDefaults.standard.array(forKey: BeaconProperties.storedBeaconArrayKey) != nil {
             
             if defaults?.bool(forKey: Keys.isNewSharedSpreadsheet) == false {
-                loadStoredBeacons()
+                iBeacons = Persistence.loadBeacons()
                 setupBeaconRegions()
             } else {
                 readSharedCSVWithClosure()
@@ -83,7 +83,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func showPermissionsView(bool: Bool) {
-        
         UIView.animate(withDuration: 0.33, animations: {
             self.transparencyView.alpha = bool ? 0.7 : 0.0
             self.permissionsView.alpha = bool ? 1.0 : 0.0
@@ -98,22 +97,10 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func setupBeaconRegions() {
-        
         let beaconRegions: [iBeaconItem] = iBeacons.filterDuplicates { $0.uuid == $1.uuid && $0.uuid == $1.uuid }
         
         for beacon in beaconRegions {
             startRangingBeacon(beacon)
-        }
-    }
-    
-    func loadStoredBeacons() {
-        
-        if let storedBeacons = UserDefaults.standard.array(forKey: BeaconProperties.storedBeaconArrayKey) {
-            
-            for beaconData in storedBeacons {
-                let beacon = NSKeyedUnarchiver.unarchiveObject(with: (beaconData as! NSData) as Data) as! iBeaconItem
-                iBeacons.append(beacon)
-            }
         }
     }
     
@@ -124,7 +111,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         if defaults?.data(forKey: Keys.spreadsheetFile) != nil {
             
-            tableView.isHidden = true
+            showEmptyState(bool: true)
             activityIndicator.startAnimating()
             emptyStateLabel.alpha = 0
             emptyStateIcon.alpha = 0
@@ -152,9 +139,9 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
                 let actionType      = object["Action Type"]
                 let type            = object["Type"]
                 let mapURL          = object["Map URL"]
-                let colorR          = CGFloat(NumberFormatter().number(from: object["ColorR"]!)!)
-                let colorG          = CGFloat(NumberFormatter().number(from: object["ColorG"]!)!)
-                let colorB          = CGFloat(NumberFormatter().number(from: object["ColorB"]!)!)
+                let colorR          = CGFloat(truncating: NumberFormatter().number(from: object["ColorR"]!)!)
+                let colorG          = CGFloat(truncating: NumberFormatter().number(from: object["ColorG"]!)!)
+                let colorB          = CGFloat(truncating: NumberFormatter().number(from: object["ColorB"]!)!)
     
                 let color = UIColor(red: colorR/255.0, green: colorG/255.0, blue: colorB/255.0, alpha: 1.0)
                 let backgroundColor = Colors.white
@@ -182,7 +169,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
                 }
             }
         } else {
-            tableView.isHidden = true
+            showEmptyState(bool: true)
         }
     }
     
@@ -196,19 +183,24 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             DispatchQueue.main.async {
                 self.activityIndicator.stopAnimating()
-                self.tableView.isHidden = false
+                self.showEmptyState(bool: false)
                 self.tableView.reloadData()
             }
         }
     }
     
-    func filterButtonPressed() {
+    func showEmptyState(bool: Bool) {
+        scrollView.alpha = bool ? 0.0 : 1.0
+        tableContainerView.alpha = bool ? 0.0 : 1.0
+    }
+    
+    @objc func filterButtonPressed() {
         isFiltered = isFiltered ? false : true
         changeFilterButtonImage()
         tableView.reloadData()
     }
     
-    func importButtonPressed(_ sender: UIBarButtonItem) {
+    @objc func importButtonPressed(_ sender: UIBarButtonItem) {
         
         let importMenu = UIDocumentMenuViewController(documentTypes: [kUTTypeCommaSeparatedText as String], in: .import)
         importMenu.delegate = self
@@ -325,7 +317,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         present(detailAlert, animated: true, completion: nil)
     }
     
-    func actionURLPressed(sender: UIButton) {
+    @objc func actionURLPressed(sender: UIButton) {
         
         let beaconRow = sender.tag
         let selectedBeacon = iBeacons[beaconRow]
@@ -441,7 +433,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         navigationItem.leftBarButtonItem = nil
         
-        let image = isFiltered ? UIImage(named: "filter-filled") : UIImage(named: "filter")
+        let image = isFiltered ? #imageLiteral(resourceName: "filter-filled") : #imageLiteral(resourceName: "filter")
         
         let button = UIButton.init(type: .custom)
         button.setImage(image, for: .normal)
@@ -454,7 +446,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func setupRightNavButtons() {
         
-        importButton    = UIBarButtonItem(image: UIImage(named: "download-icloud"),  style: .plain, target: self, action: #selector(BeaconListScreen.importButtonPressed(_:)))
+        importButton = UIBarButtonItem(image: #imageLiteral(resourceName: "download-icloud"),  style: .plain, target: self, action: #selector(BeaconListScreen.importButtonPressed(_:)))
         
         navigationItem.rightBarButtonItems = [importButton]
     }
@@ -467,7 +459,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         let flipped = self.isShowingMap ? CGAffineTransform(scaleX: 1, y: -1) : CGAffineTransform(scaleX: -1, y: 1)
         
         UIView.animate(withDuration: 0.5, animations: {
-//            self.hideMapButton.layer.setAffineTransform(flipped)
             self.hideMapButton.imageView?.layer.setAffineTransform(flipped)
             self.view.layoutIfNeeded()
         })

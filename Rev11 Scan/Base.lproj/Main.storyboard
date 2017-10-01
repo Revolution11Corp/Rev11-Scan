@@ -1,60 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="g6g-Rq-njg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="g6g-Rq-njg">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+            <string>HelveticaNeue-Bold</string>
+            <string>HelveticaNeue-Medium</string>
+        </array>
+        <array key="HelveticaNeueLights.ttc">
+            <string>HelveticaNeue-Light</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--Scanner Screen-->
-        <scene sceneID="cuw-86-MYq">
-            <objects>
-                <viewController id="BRj-Gv-JRG" customClass="QRScannerScreen" customModule="Rev11_Scan" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="aWf-yT-iHz"/>
-                        <viewControllerLayoutGuide type="bottom" id="CMe-J2-cf8"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="P41-r4-fWf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No QR Code Detected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hFC-zL-fvR">
-                                <rect key="frame" x="0.0" y="584" width="375" height="40"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.27671030410000003" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="6xq-br-7LP"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="ao2-mR-kyb"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="ao2-mR-kyb"/>
-                                    </mask>
-                                </variation>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="hFC-zL-fvR" firstAttribute="leading" secondItem="P41-r4-fWf" secondAttribute="leading" id="1dh-zc-V3m"/>
-                            <constraint firstAttribute="trailing" secondItem="hFC-zL-fvR" secondAttribute="trailing" id="Kmy-dY-NTO"/>
-                            <constraint firstItem="CMe-J2-cf8" firstAttribute="top" secondItem="hFC-zL-fvR" secondAttribute="bottom" constant="43" id="V4W-Lf-f5s"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="kIY-2Y-0ta"/>
-                    <connections>
-                        <outlet property="messageLabel" destination="hFC-zL-fvR" id="TvO-QM-BfK"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5iR-Np-FmH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1918" y="-584"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="DgY-bJ-GuN">
             <objects>
@@ -130,8 +96,8 @@
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BeaconCell" id="vOn-hW-SjT" customClass="BeaconCell" customModule="Rev11_Scan" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                                 <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vOn-hW-SjT" id="yFs-jH-Kmj">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.5" contentMode="center" tableViewCell="vOn-hW-SjT" id="yFs-jH-Kmj">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibeacon-logo-white" translatesAutoresizingMaskIntoConstraints="NO" id="PfF-48-aoW">
@@ -210,6 +176,7 @@
                                                         <constraint firstItem="waW-ji-gJa" firstAttribute="top" secondItem="1GS-cO-Emp" secondAttribute="bottom" constant="-8" id="zms-fy-3Yj"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <color key="backgroundColor" red="0.86274509803921573" green="0.86274509803921573" blue="0.86274509803921573" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <outlet property="actionURLButton" destination="PgI-2C-EWf" id="Ofa-S0-rvA"/>
                                                     <outlet property="beaconImage" destination="PfF-48-aoW" id="8V6-Fl-Q2T"/>
@@ -331,7 +298,7 @@
                     <tabBarItem key="tabBarItem" title="Beacons" image="beacon-tabbar-grey" id="Gi8-g2-rh5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="u6B-Yp-A9s">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
@@ -343,25 +310,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l62-0c-Z1M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="337" y="9"/>
-        </scene>
-        <!--QR Reader-->
-        <scene sceneID="jN1-9w-x9w">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yig-Su-2qE" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="QR Reader" image="qr-tabbar-white" id="Az5-Nh-gz4"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="M7l-Nk-bPw">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BRj-Gv-JRG" kind="relationship" relationship="rootViewController" id="Auu-tC-ksZ"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fHf-hO-0Y9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2729" y="-584"/>
         </scene>
         <!--Beacon List-->
         <scene sceneID="kaQ-tQ-QCL">
@@ -375,8 +323,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter a UUID to search for Beacons" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jm-Ue-qqN">
-                                <rect key="frame" x="34.5" y="291" width="306" height="85"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No beacons found for this UUID" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jm-Ue-qqN">
+                                <rect key="frame" x="34.5" y="341" width="306" height="85"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="306" id="DiC-3L-042"/>
                                     <constraint firstAttribute="height" constant="85" id="z15-dD-Dqx"/>
@@ -386,7 +334,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d8s-Pf-1eI" customClass="RVSegmentedControl" customModule="Rev11_Scan" customModuleProvider="target">
-                                <rect key="frame" x="67.5" y="79" width="240" height="44"/>
+                                <rect key="frame" x="67.5" y="119" width="240" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="DbB-HF-WrW"/>
@@ -411,14 +359,14 @@
                                 </connections>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DCZ-2T-6f8">
-                                <rect key="frame" x="0.0" y="188" width="375" height="430"/>
+                                <rect key="frame" x="0.0" y="228" width="375" height="390"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BeaconSearchCell" id="ZwK-hs-81i" customClass="BeaconSearchCell" customModule="Rev11_Scan" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZwK-hs-81i" id="vl6-j5-kbz">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibeacon-logo" translatesAutoresizingMaskIntoConstraints="NO" id="w0S-du-F6Q">
@@ -483,7 +431,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UUID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Kb-dG-nnk">
-                                <rect key="frame" x="16" y="142" width="343" height="21"/>
+                                <rect key="frame" x="16" y="182" width="343" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="IDN-zL-9nP"/>
                                 </constraints>
@@ -631,7 +579,7 @@
                             <constraint firstItem="d8s-Pf-1eI" firstAttribute="centerX" secondItem="8AL-ZW-RdT" secondAttribute="centerX" id="99U-Ak-YeG"/>
                             <constraint firstItem="5jm-Ue-qqN" firstAttribute="centerX" secondItem="8AL-ZW-RdT" secondAttribute="centerX" id="JpC-Ok-6AW"/>
                             <constraint firstItem="DCZ-2T-6f8" firstAttribute="top" secondItem="7Kb-dG-nnk" secondAttribute="bottom" constant="25" id="Pac-If-sXl"/>
-                            <constraint firstItem="5jm-Ue-qqN" firstAttribute="centerY" secondItem="8AL-ZW-RdT" secondAttribute="centerY" id="Up8-ro-MYA"/>
+                            <constraint firstItem="5jm-Ue-qqN" firstAttribute="centerY" secondItem="8AL-ZW-RdT" secondAttribute="centerY" constant="50" id="Up8-ro-MYA"/>
                             <constraint firstItem="7Kb-dG-nnk" firstAttribute="leading" secondItem="8AL-ZW-RdT" secondAttribute="leadingMargin" id="Wbi-Ho-4nr"/>
                             <constraint firstAttribute="trailing" secondItem="DCZ-2T-6f8" secondAttribute="trailing" id="bCi-ex-e0p"/>
                             <constraint firstItem="Z9i-Qc-rwh" firstAttribute="centerY" secondItem="8AL-ZW-RdT" secondAttribute="centerY" id="c81-9H-ZhS"/>
@@ -675,7 +623,7 @@
                     <tabBarItem key="tabBarItem" title="Scan" image="search-tabbar-grey" id="0aP-xK-UOn"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QHC-9u-Bwf">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
@@ -695,7 +643,6 @@
         <image name="download-icloud" width="30" height="30"/>
         <image name="ibeacon-logo" width="150" height="150"/>
         <image name="ibeacon-logo-white" width="100" height="100"/>
-        <image name="qr-tabbar-white" width="30" height="30"/>
         <image name="r11AppIcon120" width="60" height="60"/>
         <image name="search-tabbar-grey" width="30" height="30"/>
         <image name="storeMap16" width="422" height="343"/>

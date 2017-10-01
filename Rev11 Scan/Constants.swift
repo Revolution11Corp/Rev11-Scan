@@ -48,7 +48,6 @@ struct Images {
     static let qrTabBlue          = "qr-tabbar-blue"
     static let eddystoneTabBlue   = "eddystone-tabbar-blue"
     static let beaconTabBlue      = "beacon-tabbar-blue"
-    static let estimoteTabBlue    = "estimote-tabbar-blue"
     static let searchTabBlue      = "search-tabbar-blue"
 }
 
@@ -64,13 +63,19 @@ struct Keys {
     static let suiteName              = "group.rev11scan"
     static let spreadsheetFile        = "spreadsheetFileAsData"
     static let isNewSharedSpreadsheet = "isNewSharedSpreadsheet"
-    static let beaconRegionUUID       = "B9407F30-F5F8-466E-AFF9-25556B57FE6D"
-    static let estimoteAppID          = "rev11scan-nxl"
-    static let estimoteAppToken       = "d55de5f606394c3cb74f007ec8bd1244"
+    
+    static let uuidOneKey             = "UUIDOne"
+    static let uuidTwoKey             = "UUIDTwo"
+    static let uuidThreeKey           = "UUIDThree"
+}
+
+struct UUIDs {
+    static let one      = "B9407F30-F5F8-466E-AFF9-25556B57FE6D"
+    static let two      = "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6"
+    static let three    = "B9407F30-F5F8-466E-AFF9-25556B57FE6D"
 }
 
 struct Cells {
-    static let estimoteCell     = "EstimoteCell"
     static let eddystoneCell    = "EddystoneCell"
     static let beaconCell       = "BeaconCell"
     static let beaconSearchCell = "BeaconSearchCell"
