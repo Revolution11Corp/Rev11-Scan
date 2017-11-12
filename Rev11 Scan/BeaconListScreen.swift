@@ -52,6 +52,14 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         locationManager.delegate = self
         NotificationCenter.default.addObserver(self, selector:#selector(BeaconListScreen.reloadViewFromBackground), name:
             NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        
+        NetworkManager.shared.authenticateDemoUser { (token, error) in
+            print("Token = \(token)")
+            
+            NetworkManager.shared.getBeaconEntries(token: token!, completed: { (beacons, error) in
+                
+            })
+        }
     }
     
     @objc func reloadViewFromBackground() {

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 class Networking {
 
@@ -49,5 +50,4 @@ class Networking {
 
     dataTask.resume()
   }
-
 }
