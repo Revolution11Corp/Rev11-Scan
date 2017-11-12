@@ -10,127 +10,201 @@ import UIKit
 import Foundation
 import CoreLocation
 
-class iBeaconItem: NSObject, NSCoding {
+//class iBeaconItem: NSObject, NSCoding {
+class iBeaconItem: NSObject {
     
-    let name: String
-    let uuid: UUID
-    let majorValue: CLBeaconMajorValue
-    let minorValue: CLBeaconMinorValue
-    let actionURL: String
-    let actionURLName: String
-    let actionType: String
-    let type: String
-    let itemImage: UIImage
-    let mapURL: String
-    let color: UIColor
+    private let kCreatedBy                      = "z_createdBy"
+    private let kModifiedBy                     = "z_modifiedBy"
+    private let kModifiedOn                     = "z_modifiedOn"
+    private let kCreatedOn                      = "z_createdOn"
+    private let kName                           = "name"
+    private let kImageURL                       = "ImageURL"
+    private let kActionURL                      = "ActionURL"
+    private let kBeaconName                     = "BeaconName"
+    private let kMajor                          = "Major"
+    private let kMinor                          = "Minor"
+    private let kType                           = "type"
+    private let kActionURLName                  = "actionURLName"
+    private let kActionType                     = "actionType"
+    private let kMapURL                         = "mapURL"
+    private let kColor                          = "color"
+    private let kUUID                           = "UUID"
+    private let kIDVend                         = "ID_VEND"
+    private let kIDOwn                          = "ID_OWN"
+    private let kLatitude                       = "lat"
+    private let kLongitude                      = "lon"
+    private let kStreetAddress                  = "address"
+    private let kCity                           = "city"
+    private let kState                          = "state"
+    private let kZipcode                        = "zip"
+    private let kDocumentOneURL                 = "document1_URL"
+    private let kDocumentOneName                = "document1Name"
+    private let kTelemetryURLOne                = "telemetryURL_1"
+    private let kTelemetryURLTwo                = "telemetryURL_2"
+    private let kTelemetryURLThree              = "telemetryURL_3"
+    private let kOwnerLogoURL                   = "ownerLogoURL"
+    private let kRouteURL                       = "routeURL"
     
-    var backgroundColor: UIColor?
+    private let kRecordID                       = "recordId"
+    private let kModID                          = "modId"
     
+    
+    var createdBy: String!
+    var modifiedBy: String!
+    var modifiedOn: String!
+    var createdOn: String!
+    var name: String!
+    var imageURL: String!
+    var actionURL: String!
+    var beaconName: String!
+    var major: String!
+    var minor: String!
+    var type: String!
+    var actionURLName: String!
+    var mapURL: String!
+    var color: String!
+    var UUID: UUID!
+    var IDVend: String!
+    var IDOwn: String!
+    var latitude: String!
+    var longitude: String!
+    var streetAddress: String!
+    var city: String!
+    var state: String!
+    var zipcode: String!
+    var documentOneURL: String!
+    var documentOneName: String!
+    var telemetryOneURL: String!
+    var telemetryTwoURL: String!
+    var telemetryThreeURL: String!
+    var ownerLogoURL: String!
+    var routeURL: String!
+    
+    var recordID: String!
+    var modID: String!
     
     @objc dynamic var lastSeenBeacon: CLBeacon?
     
-    init(name: String, uuid: UUID, majorValue: CLBeaconMajorValue?, minorValue: CLBeaconMinorValue?, itemImage: UIImage, actionURL: String, actionURLName: String, actionType: String, type: String, mapURL: String, color: UIColor, backgroundColor: UIColor) {
-        self.name = name
-        self.uuid = uuid
-        self.majorValue = majorValue!
-        self.minorValue = minorValue!
-        self.itemImage = itemImage
-        self.actionURL = actionURL
-        self.actionURLName = actionURLName
-        self.actionType = actionType
-        self.type = type
-        self.mapURL = mapURL
-        self.color = color
-        
-        self.backgroundColor = Colors.white
+    init(data: [String : Any]) {
+        createdBy           = data[kCreatedBy] as! String
+        modifiedBy          = data[kModifiedBy] as! String
+        modifiedOn          = data[kModifiedOn] as! String
+        createdOn           = data[kCreatedOn] as! String
+        name                = data[kName] as! String
+        imageURL            = data[kImageURL] as! String
+        actionURL           = data[kActionURL] as! String
+        beaconName          = data[kBeaconName] as! String
+        major               = data[kMajor] as! String
+        minor               = data[kMinor] as! String
+        type                = data[kType] as! String
+        actionURLName       = data[kActionURLName] as! String
+        mapURL              = data[kMapURL] as! String
+        color               = data[kColor] as! String
+        UUID                = (data[kUUID] as! String).convertToUUID()
+        IDVend              = data[kIDVend] as! String
+        IDOwn               = data[kIDOwn] as! String
+        latitude            = data[kLatitude] as! String
+        longitude           = data[kLongitude] as! String
+        streetAddress       = data[kStreetAddress] as! String
+        city                = data[kCity] as! String
+        state               = data[kState] as! String
+        zipcode             = data[kZipcode] as! String
+        documentOneURL      = data[kDocumentOneURL] as! String
+        documentOneName     = data[kDocumentOneName] as! String
+        telemetryOneURL     = data[kTelemetryURLOne] as! String
+        telemetryTwoURL     = data[kTelemetryURLTwo] as! String
+        telemetryThreeURL   = data[kTelemetryURLThree] as! String
+        ownerLogoURL        = data[kOwnerLogoURL] as! String
+        routeURL            = data[kRouteURL] as! String
     }
-    
-    //MARK: NSCoding
-    required init?(coder aDecoder: NSCoder) {
-        if let aName = aDecoder.decodeObject(forKey: BeaconProperties.nameKey) as? String {
-            name = aName
-        }
-        else {
-            name = ""
-        }
-        if let aUUID = aDecoder.decodeObject(forKey: BeaconProperties.uuidKey) as? UUID {
-            uuid = aUUID
-        }
-        else {
-            uuid = UUID()
-        }
-        majorValue = UInt16(aDecoder.decodeInteger(forKey: BeaconProperties.majorKey))
-        minorValue = UInt16(aDecoder.decodeInteger(forKey: BeaconProperties.minorKey))
-        
-        if let aActionURL = aDecoder.decodeObject(forKey: BeaconProperties.actionURLKey) as? String {
-            actionURL = aActionURL
-        } else {
-            actionURL = ""
-        }
-        
-        if let aActionURLName = aDecoder.decodeObject(forKey: BeaconProperties.actionURLNameKey) as? String {
-            actionURLName = aActionURLName
-        } else {
-            actionURLName = ""
-        }
-        
-        if let aActionType = aDecoder.decodeObject(forKey: BeaconProperties.actionType) as? String {
-            actionType = aActionType
-        } else {
-            actionType = ""
-        }
-        
-        if let aType = aDecoder.decodeObject(forKey: BeaconProperties.typeKey) as? String {
-            type = aType
-        } else {
-            type = ""
-        }
-        
-        if let aItemImage = aDecoder.decodeObject(forKey: BeaconProperties.itemImageKey) as? UIImage {
-            itemImage = aItemImage
-        } else {
-            itemImage = UIImage()
-        }
-        
-        if let aMapURL = aDecoder.decodeObject(forKey: BeaconProperties.mapURL) as? String {
-            mapURL = aMapURL
-        } else {
-            mapURL = ""
-        }
-        
-        if let aColor = aDecoder.decodeObject(forKey: BeaconProperties.colorKey) as? UIColor {
-            color = aColor
-        } else {
-            color = UIColor()
-        }
-        
-        if let aBackgroundColor = aDecoder.decodeObject(forKey: BeaconProperties.backgroundColorKey) as? UIColor {
-            backgroundColor = aBackgroundColor
-        } else {
-            backgroundColor = UIColor()
-        }
-    }
-    
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(name, forKey: BeaconProperties.nameKey)
-        aCoder.encode(uuid, forKey: BeaconProperties.uuidKey)
-        aCoder.encode(Int(majorValue), forKey: BeaconProperties.majorKey)
-        aCoder.encode(Int(minorValue), forKey: BeaconProperties.minorKey)
-        aCoder.encode(actionURL, forKey: BeaconProperties.actionURLKey)
-        aCoder.encode(actionURLName, forKey: BeaconProperties.actionURLNameKey)
-        aCoder.encode(actionType, forKey: BeaconProperties.actionType)
-        aCoder.encode(type, forKey: BeaconProperties.typeKey)
-        aCoder.encode(itemImage, forKey: BeaconProperties.itemImageKey)
-        aCoder.encode(mapURL, forKey: BeaconProperties.mapURL)
-        aCoder.encode(color, forKey: BeaconProperties.colorKey)
-        aCoder.encode(backgroundColor, forKey: BeaconProperties.backgroundColorKey)
-    }
-    
 }
 
-func ==(item: iBeaconItem, beacon: CLBeacon) -> Bool {
-    return ((beacon.proximityUUID.uuidString == item.uuid.uuidString)
-        && (Int(truncating: beacon.major) == Int(item.majorValue))
-        && (Int(truncating: beacon.minor) == Int(item.minorValue)))
-}
+//MARK: NSCoding
+//    required init?(coder aDecoder: NSCoder) {
+//        if let aName = aDecoder.decodeObject(forKey: BeaconProperties.nameKey) as? String {
+//            name = aName
+//        }
+//        else {
+//            name = ""
+//        }
+//        if let aUUID = aDecoder.decodeObject(forKey: BeaconProperties.uuidKey) as? UUID {
+//            uuid = aUUID
+//        }
+//        else {
+//            uuid = UUID()
+//        }
+//        majorValue = UInt16(aDecoder.decodeInteger(forKey: BeaconProperties.majorKey))
+//        minorValue = UInt16(aDecoder.decodeInteger(forKey: BeaconProperties.minorKey))
+//
+//        if let aActionURL = aDecoder.decodeObject(forKey: BeaconProperties.actionURLKey) as? String {
+//            actionURL = aActionURL
+//        } else {
+//            actionURL = ""
+//        }
+//
+//        if let aActionURLName = aDecoder.decodeObject(forKey: BeaconProperties.actionURLNameKey) as? String {
+//            actionURLName = aActionURLName
+//        } else {
+//            actionURLName = ""
+//        }
+//
+//        if let aActionType = aDecoder.decodeObject(forKey: BeaconProperties.actionType) as? String {
+//            actionType = aActionType
+//        } else {
+//            actionType = ""
+//        }
+//
+//        if let aType = aDecoder.decodeObject(forKey: BeaconProperties.typeKey) as? String {
+//            type = aType
+//        } else {
+//            type = ""
+//        }
+//
+//        if let aItemImage = aDecoder.decodeObject(forKey: BeaconProperties.itemImageKey) as? UIImage {
+//            itemImage = aItemImage
+//        } else {
+//            itemImage = UIImage()
+//        }
+//
+//        if let aMapURL = aDecoder.decodeObject(forKey: BeaconProperties.mapURL) as? String {
+//            mapURL = aMapURL
+//        } else {
+//            mapURL = ""
+//        }
+//
+//        if let aColor = aDecoder.decodeObject(forKey: BeaconProperties.colorKey) as? UIColor {
+//            color = aColor
+//        } else {
+//            color = UIColor()
+//        }
+//
+//        if let aBackgroundColor = aDecoder.decodeObject(forKey: BeaconProperties.backgroundColorKey) as? UIColor {
+//            backgroundColor = aBackgroundColor
+//        } else {
+//            backgroundColor = UIColor()
+//        }
+//    }
+//
+//    func encode(with aCoder: NSCoder) {
+//        aCoder.encode(name, forKey: BeaconProperties.nameKey)
+//        aCoder.encode(uuid, forKey: BeaconProperties.uuidKey)
+//        aCoder.encode(Int(majorValue), forKey: BeaconProperties.majorKey)
+//        aCoder.encode(Int(minorValue), forKey: BeaconProperties.minorKey)
+//        aCoder.encode(actionURL, forKey: BeaconProperties.actionURLKey)
+//        aCoder.encode(actionURLName, forKey: BeaconProperties.actionURLNameKey)
+//        aCoder.encode(actionType, forKey: BeaconProperties.actionType)
+//        aCoder.encode(type, forKey: BeaconProperties.typeKey)
+//        aCoder.encode(itemImage, forKey: BeaconProperties.itemImageKey)
+//        aCoder.encode(mapURL, forKey: BeaconProperties.mapURL)
+//        aCoder.encode(color, forKey: BeaconProperties.colorKey)
+//        aCoder.encode(backgroundColor, forKey: BeaconProperties.backgroundColorKey)
+//    }
+//
+//}
+//
+//func ==(item: iBeaconItem, beacon: CLBeacon) -> Bool {
+//    return ((beacon.proximityUUID.uuidString == item.uuid.uuidString)
+//        && (Int(truncating: beacon.major) == Int(item.majorValue))
+//        && (Int(truncating: beacon.minor) == Int(item.minorValue)))
+//}
 

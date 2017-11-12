@@ -58,7 +58,7 @@ class BeaconCell: UITableViewCell {
                 
                 let proximity = nameForProximity(aBeacon.lastSeenBeacon!.proximity)
                 locationLabel.text = proximity == "Unknown" ? "--" : "\(proximity)"
-                backgroundColor = beacon?.backgroundColor
+//                backgroundColor = beacon?.backgroundColor
             }
         }
     }
@@ -88,7 +88,7 @@ class BeaconCell: UITableViewCell {
     
     
     func updateCellUI(_ backgroundColor: UIColor, textColor: UIColor, alpha: CGFloat, distanceValue: String) {
-        beacon!.backgroundColor = backgroundColor
+//        beacon!.backgroundColor = backgroundColor
         locationLabel.textColor = textColor
         distanceLabel.text = distanceValue
         contentView.alpha = alpha

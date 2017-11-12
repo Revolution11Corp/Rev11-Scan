@@ -20,8 +20,14 @@ extension String {
   }
 
   func convertToUUID() -> UUID {
-    let convertedString = UUID(uuidString: self)
-    return convertedString!
+    if let convertedString = UUID(uuidString: self) {
+        return convertedString
+    } else {
+        //TODO: This is temporary to get the app running. Figure out a better way to handle a bad UUID input
+        let defaultFailureUUID = UUID(uuidString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!
+        return defaultFailureUUID
+    }
+ 
   }
 
   func convertToMajorValue() -> CLBeaconMajorValue {

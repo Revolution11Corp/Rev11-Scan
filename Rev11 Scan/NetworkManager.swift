@@ -55,17 +55,30 @@ class NetworkManager {
                 
             case .success(_):
                 
-                let data  = response.result.value as! [String : Any]
-//                let token = data["token"] as! String
+                let responseData  = response.result.value as! [String : Any]
+                let data          = responseData["data"] as! [[String: Any]]
                 
-                completed([], nil)
+                var beacons: [iBeaconItem] = []
+                
+                for item in data {
+                    
+                    let fieldData   = item["fieldData"] as! [String: Any]
+                    let recordID    = item["recordId"] as! String
+                    let modID       = item["modId"] as! String
+                    
+                    let beacon      = iBeaconItem(data: fieldData)
+                    beacon.recordID = recordID
+                    beacon.modID    = modID
+                    
+                    beacons.append(beacon)
+                }
+                
+                completed(beacons, nil)
                 
             case .failure(let error):
                 completed(nil, error)
             }
         }
     }
-
-
 
 }

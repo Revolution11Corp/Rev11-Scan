@@ -58,6 +58,16 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             NetworkManager.shared.getBeaconEntries(token: token!, completed: { (beacons, error) in
                 
+                if let beacons = beacons {
+                    
+                    print("Beacons Count = \(beacons.count)")
+                    
+                    print("First Beacon = \(beacons.first)")
+                    print("First Beacon = \(beacons.first?.mapURL)")
+                    
+                }
+
+                
             })
         }
     }
@@ -105,7 +115,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func setupBeaconRegions() {
-        let beaconRegions: [iBeaconItem] = iBeacons.filterDuplicates { $0.uuid == $1.uuid && $0.uuid == $1.uuid }
+        let beaconRegions: [iBeaconItem] = iBeacons.filterDuplicates { $0.UUID == $1.UUID && $0.UUID == $1.UUID }
         
         for beacon in beaconRegions {
             startRangingBeacon(beacon)
@@ -114,71 +124,73 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func readSharedCSV(completionHandler: @escaping (() -> ())) {
         
-        iBeacons.removeAll()
-        filteredBeacons.removeAll()
+        //TODO: Update Read CSV with new iBeaconItem
         
-        if defaults?.data(forKey: Keys.spreadsheetFile) != nil {
-            
-            showEmptyState(bool: true)
-            activityIndicator.startAnimating()
-            emptyStateLabel.alpha = 0
-            emptyStateIcon.alpha = 0
-            
-            let data = defaults?.data(forKey: Keys.spreadsheetFile)
-            let dataString = String(data: data!, encoding: .utf8)
-            
-            let cleanString = dataString?.replacingOccurrences(of: "\r", with: "\n")
-            let csv = CSVParser(with: cleanString!)
-            
-            let csvCount = csv.keyedRows!.count
-            var beaconCounter = 0
-            
-            for object in csv.keyedRows! {
-                
-                var newBeacon: iBeaconItem?
-                
-                //Need to handle nils, for when the spreadsheet has blank spots
-                let name            = object["Beacon Name"]
-                let uuid            = object["UUID"]?.convertToUUID()
-                let major           = object["Major"]?.convertToMajorValue()
-                let minor           = object["Minor"]?.convertToMinorValue()
-                let actionURL       = object["Action URL"]
-                let actionURLName   = object["Action URL Name"]
-                let actionType      = object["Action Type"]
-                let type            = object["Type"]
-                let mapURL          = object["Map URL"]
-                let colorR          = CGFloat(truncating: NumberFormatter().number(from: object["ColorR"]!)!)
-                let colorG          = CGFloat(truncating: NumberFormatter().number(from: object["ColorG"]!)!)
-                let colorB          = CGFloat(truncating: NumberFormatter().number(from: object["ColorB"]!)!)
-    
-                let color = UIColor(red: colorR/255.0, green: colorG/255.0, blue: colorB/255.0, alpha: 1.0)
-                let backgroundColor = Colors.white
-                
-                if let imageURL = object["Image URL"] {
-                    
-                    let convertedURL = NSURL(string: imageURL)
-                    let networking = Networking(url: convertedURL!)
-                    
-                    networking.downloadImage(completion: { (imageData) in
-                        
-                        let itemImage = UIImage(data: imageData)
-                        
-                        newBeacon = iBeaconItem(name: name!, uuid: uuid!, majorValue: major, minorValue: minor, itemImage: itemImage!, actionURL: actionURL!, actionURLName: actionURLName!, actionType: actionType!, type: type!, mapURL: mapURL!, color: color, backgroundColor: backgroundColor)
-                        
-                        self.iBeacons.append(newBeacon!)
-                        
-                        beaconCounter += 1
-                        
-                        if beaconCounter == csvCount {
-                            
-                            completionHandler()
-                        }
-                    })
-                }
-            }
-        } else {
-            showEmptyState(bool: true)
-        }
+//        iBeacons.removeAll()
+//        filteredBeacons.removeAll()
+//
+//        if defaults?.data(forKey: Keys.spreadsheetFile) != nil {
+//
+//            showEmptyState(bool: true)
+//            activityIndicator.startAnimating()
+//            emptyStateLabel.alpha = 0
+//            emptyStateIcon.alpha = 0
+//
+//            let data = defaults?.data(forKey: Keys.spreadsheetFile)
+//            let dataString = String(data: data!, encoding: .utf8)
+//
+//            let cleanString = dataString?.replacingOccurrences(of: "\r", with: "\n")
+//            let csv = CSVParser(with: cleanString!)
+//
+//            let csvCount = csv.keyedRows!.count
+//            var beaconCounter = 0
+//
+//            for object in csv.keyedRows! {
+//
+//                var newBeacon: iBeaconItem?
+//
+//                //Need to handle nils, for when the spreadsheet has blank spots
+//                let name            = object["Beacon Name"]
+//                let uuid            = object["UUID"]?.convertToUUID()
+//                let major           = object["Major"]?.convertToMajorValue()
+//                let minor           = object["Minor"]?.convertToMinorValue()
+//                let actionURL       = object["Action URL"]
+//                let actionURLName   = object["Action URL Name"]
+//                let actionType      = object["Action Type"]
+//                let type            = object["Type"]
+//                let mapURL          = object["Map URL"]
+//                let colorR          = CGFloat(truncating: NumberFormatter().number(from: object["ColorR"]!)!)
+//                let colorG          = CGFloat(truncating: NumberFormatter().number(from: object["ColorG"]!)!)
+//                let colorB          = CGFloat(truncating: NumberFormatter().number(from: object["ColorB"]!)!)
+//
+//                let color = UIColor(red: colorR/255.0, green: colorG/255.0, blue: colorB/255.0, alpha: 1.0)
+//                let backgroundColor = Colors.white
+//
+//                if let imageURL = object["Image URL"] {
+//
+//                    let convertedURL = NSURL(string: imageURL)
+//                    let networking = Networking(url: convertedURL!)
+//
+//                    networking.downloadImage(completion: { (imageData) in
+//
+//                        let itemImage = UIImage(data: imageData)
+//
+//                        newBeacon = iBeaconItem(name: name!, uuid: uuid!, majorValue: major, minorValue: minor, itemImage: itemImage!, actionURL: actionURL!, actionURLName: actionURLName!, actionType: actionType!, type: type!, mapURL: mapURL!, color: color, backgroundColor: backgroundColor)
+//
+//                        self.iBeacons.append(newBeacon!)
+//
+//                        beaconCounter += 1
+//
+//                        if beaconCounter == csvCount {
+//
+//                            completionHandler()
+//                        }
+//                    })
+//                }
+//            }
+//        } else {
+//            showEmptyState(bool: true)
+//        }
     }
     
     func readSharedCSVWithClosure() {
@@ -285,7 +297,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         cell.nameLabel!.text = beacon.name
         cell.typeLabel!.text = "Type: \(beacon.type)"
         cell.actionURLButton.setTitle(beacon.actionURLName, for: .normal)
-        cell.beaconImage.backgroundColor = beacon.color
+//        cell.beaconImage.backgroundColor = beacon.color
         
         cell.actionURLButton.tag = indexPath.row
         cell.actionURLButton.addTarget(self, action: #selector(BeaconListScreen.actionURLPressed(sender:)), for: .touchUpInside)
@@ -317,8 +329,8 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         tableView.deselectRow(at: indexPath, animated: true)
         
         let beacon = iBeacons[(indexPath as NSIndexPath).row] as iBeaconItem
-        let uuid = beacon.uuid.uuidString
-        let detailMessage = "UUID: \(uuid)\nMajor: \(beacon.majorValue)\nMinor: \(beacon.minorValue)"
+        let uuid = beacon.UUID.uuidString
+        let detailMessage = "UUID: \(uuid)\nMajor: \(beacon.major)\nMinor: \(beacon.minor)"
         let detailAlert = UIAlertController(title: "Beacon Info", message: detailMessage, preferredStyle: .alert)
         detailAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         
@@ -330,7 +342,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         let beaconRow = sender.tag
         let selectedBeacon = iBeacons[beaconRow]
         
-        switch selectedBeacon.actionType {
+        switch selectedBeacon.actionURLName {
             
         case "Website":
             
@@ -340,7 +352,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
             
         case "FileMaker":
             
-            let urlFromBeacon = selectedBeacon.actionURL
+            let urlFromBeacon = selectedBeacon.actionURL!
             
             if let url = URL(string: urlFromBeacon) {
                 DispatchQueue.main.async(execute: {
@@ -378,7 +390,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func beaconRegionWithItem(_ beacon: iBeaconItem) -> CLBeaconRegion {
-        let beaconRegion = CLBeaconRegion(proximityUUID: beacon.uuid as UUID, identifier: beacon.name)
+        let beaconRegion = CLBeaconRegion(proximityUUID: beacon.UUID as UUID, identifier: beacon.name)
         return beaconRegion
     }
     
