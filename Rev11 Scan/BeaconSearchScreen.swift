@@ -85,7 +85,7 @@ class BeaconSearchScreen: UIViewController, UITableViewDelegate, UITableViewData
         
         for (index, textField) in textFields.enumerated() {
             
-            let numberOfMatches = self.uuidRegex.numberOfMatches(in: textField.text!, options: [], range: NSMakeRange(0, textField.text!.characters.count))
+            let numberOfMatches = self.uuidRegex.numberOfMatches(in: textField.text!, options: [], range: NSMakeRange(0, textField.text!.count))
             UUIDFieldValid = (numberOfMatches > 0)
             
             if UUIDFieldValid == false {

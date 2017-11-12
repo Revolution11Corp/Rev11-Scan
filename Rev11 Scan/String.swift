@@ -12,7 +12,7 @@ import CoreLocation
 extension String {
 
   var isEmptyOrWhitespace: Bool {
-    return characters.isEmpty ? true : trimmingCharacters(in: .whitespaces) == ""
+    return isEmpty ? true : trimmingCharacters(in: .whitespaces) == ""
   }
 
   var isNotEmptyOrWhitespace: Bool {
