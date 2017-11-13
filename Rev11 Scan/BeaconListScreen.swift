@@ -319,7 +319,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         cell.beacon = beacon
         
         cell.nameLabel!.text = beacon.name
-        cell.typeLabel!.text = "Type: \(beacon.type)"
+//        cell.typeLabel!.text = "Type: \(beacon.type)"
         cell.actionURLButton.setTitle(beacon.actionURLName, for: .normal)
 //        cell.beaconImage.backgroundColor = beacon.color
         

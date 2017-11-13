@@ -9,21 +9,24 @@
 import UIKit
 import CoreLocation
 import SafariServices
+import MapKit
 
 class BeaconCell: UITableViewCell {
     
-    @IBOutlet weak var beaconImage: UIImageView!
+    @IBOutlet weak var ownerLogoImageView: UIImageView!
+    @IBOutlet weak var itemImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var itemMapView: MKMapView!
+    @IBOutlet weak var streetAddressLabel: UILabel!
+    @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var actionURLButton: UIButton!
-    @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var actionURLButton: UIButton!
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         actionURLButton.roundCorners()
-        beaconImage.roundCorners()
     }
     
     
