@@ -130,5 +130,6 @@ class BeaconCell: UITableViewCell {
         locationLabel.text = "--"
         distanceLabel.text = "Not Found"
         locationLabel.textColor = Colors.darkGrey
+        itemMapView.removeAnnotations(itemMapView.annotations)
     }
 }

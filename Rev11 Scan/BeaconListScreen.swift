@@ -57,16 +57,24 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
             NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
         
         NetworkManager.shared.authenticateDemoUser { (token, error) in
-            print("Token = \(token)")
             
-            NetworkManager.shared.getBeaconEntries(token: token!, completed: { (beacons, error) in
+            if let token = token {
+                print("Token = \(token)")
                 
-                if let beacons = beacons {
-                    self.iBeacons.removeAll()
-                    self.iBeacons.append(contentsOf: beacons)
-                    self.tableView.reloadDataOnMainThread()
-                }
-            })
+                NetworkManager.shared.getBeaconEntries(token: token, completed: { (beacons, error) in
+                    if let beacons = beacons {
+                        self.iBeacons.removeAll()
+                        self.iBeacons.append(contentsOf: beacons)
+                        self.tableView.reloadDataOnMainThread()
+                        DispatchQueue.main.async {
+                            self.createMapAnnotations(beacons: self.iBeacons)
+                        }
+                    }
+                })
+                
+            } else {
+                print("Noken = nil")
+            }
         }
     }
     
@@ -105,6 +113,20 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         DispatchQueue.main.async {
             self.locationManager.startUpdatingLocation()
+        }
+    }
+    
+    func createMapAnnotations(beacons: [iBeaconItem]) {
+        
+        for beacon in beacons {
+            
+            let lat  = Double(beacon.latitude.removeWhitespaces())! //TODO: THis has bad data incoming, which requires removal of whitespace
+            let long = Double(beacon.longitude.removeWhitespaces())!
+            
+            let beaconAnnotation        = MKPointAnnotation()
+            beaconAnnotation.coordinate = CLLocationCoordinate2DMake(lat, long)
+            beaconAnnotation.title      = beacon.name
+            mapView.addAnnotation(beaconAnnotation)
         }
     }
     
