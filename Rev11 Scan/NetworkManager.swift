@@ -80,5 +80,46 @@ class NetworkManager {
             }
         }
     }
+    
+    
+    func downloadImage(url: String, completion: @escaping ((Data) -> Void)) {
+        
+        let configuration: URLSessionConfiguration = .default
+        let session = URLSession(configuration: configuration)
+        
+        var request: URLRequest!
+        
+        if let url = URL(string: url) {
+            request = URLRequest(url: url)
+        } else {
+            return
+        }
+      
+        let dataTask = session.dataTask(with: request as URLRequest) { (data, response, error) in
+            
+            if error == nil {
+                
+                if let httpResponse = response as? HTTPURLResponse {
+                    
+                    switch (httpResponse.statusCode) {
+                        
+                    case 200:
+                        if let data = data {
+                            completion(data)
+                        }
+                        
+                    default:
+                        print("Status Code = \(httpResponse.statusCode)")
+                    }
+                }
+                
+            } else {
+                //TODO: Handle download error - Maybe show placeholder image
+                print("Error downloading data: \(String(describing: error?.localizedDescription))")
+            }
+        }
+        
+        dataTask.resume()
+    }
 
 }

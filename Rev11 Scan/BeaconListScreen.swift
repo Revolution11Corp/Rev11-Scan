@@ -40,6 +40,8 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     var isFiltered = false
     var isShowingMap = true
     
+    var cache: NSCache<AnyObject, AnyObject>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupRightNavButtons()
@@ -47,6 +49,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         NavBarSetup.showLogoInNavBar(self.navigationController!, navItem: self.navigationItem)
         changeFilterButtonImage()
         setupMapView()
+        cache = NSCache()
         tableView.hideExcessSeparatorLines()
         tableContainerView.setShadow(width: 0, height: -6)
         locationManager.delegate = self
@@ -59,12 +62,9 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
             NetworkManager.shared.getBeaconEntries(token: token!, completed: { (beacons, error) in
                 
                 if let beacons = beacons {
-                    
-                    print("Beacons Count = \(beacons.count)")
-                    
-                    print("First Beacon = \(beacons.first)")
-                    print("First Beacon = \(beacons.first?.mapURL)")
-                    
+                    self.iBeacons.removeAll()
+                    self.iBeacons.append(contentsOf: beacons)
+                    self.tableView.reloadDataOnMainThread()
                 }
             })
         }
@@ -106,7 +106,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         DispatchQueue.main.async {
             self.locationManager.startUpdatingLocation()
         }
-        
     }
     
     func checkForExistingCSV() {
@@ -316,15 +315,47 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         let cell = tableView.dequeueReusableCell(withIdentifier: Cells.beaconCell, for: indexPath) as! BeaconCell
         let beacon = isFiltered ? filteredBeacons[(indexPath as NSIndexPath).row] : iBeacons[(indexPath as NSIndexPath).row]
         
-        cell.beacon = beacon
-        
-        cell.nameLabel!.text = beacon.name
-//        cell.typeLabel!.text = "Type: \(beacon.type)"
-        cell.actionURLButton.setTitle(beacon.actionURLName, for: .normal)
-//        cell.beaconImage.backgroundColor = beacon.color
-        
         cell.actionURLButton.tag = indexPath.row
-        cell.actionURLButton.addTarget(self, action: #selector(BeaconListScreen.actionURLPressed(sender:)), for: .touchUpInside)
+        cell.setBeaconCell(beacon: beacon)
+        
+        let ownerImageKey   = beacon.ownerLogoURL as AnyObject
+        let objectImageKey  = beacon.imageURL as AnyObject
+        
+        if cache.object(forKey: ownerImageKey) != nil {
+            cell.ownerLogoImageView.image = cache.object(forKey: ownerImageKey) as? UIImage
+            
+        } else {
+            
+            NetworkManager.shared.downloadImage(url: beacon.ownerLogoURL, completion: { (imageData) in
+                
+                if let image = UIImage(data: imageData) {
+                    DispatchQueue.main.async {
+                        cell.ownerLogoImageView.image = image
+                        self.cache.setObject(image, forKey: ownerImageKey)
+                    }
+                } else {
+                    //TODO: Set placeholder image
+                }
+            })
+        }
+        
+        if cache.object(forKey: objectImageKey) != nil {
+            cell.itemImageView.image = cache.object(forKey: objectImageKey) as? UIImage
+            
+        } else {
+            
+            NetworkManager.shared.downloadImage(url: beacon.imageURL, completion: { (imageData) in
+                
+                if let image = UIImage(data: imageData) {
+                    DispatchQueue.main.async {
+                        cell.itemImageView.image = image
+                        self.cache.setObject(image, forKey: objectImageKey)
+                    }
+                } else {
+                    //TODO: Set placeholder image
+                }
+            })
+        }
         
         return cell
     }

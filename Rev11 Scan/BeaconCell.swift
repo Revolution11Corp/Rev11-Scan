@@ -21,8 +21,7 @@ class BeaconCell: UITableViewCell {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var actionURLButton: UIButton!
-    
+    @IBOutlet weak var actionURLButton: UIButton!    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -53,6 +52,34 @@ class BeaconCell: UITableViewCell {
         resetCellUI()
     }
     
+    func setBeaconCell(beacon: iBeaconItem) {
+        self.beacon = beacon
+    
+        nameLabel!.text = beacon.name
+        actionURLButton.setTitle(beacon.actionURLName, for: .normal)
+        actionURLButton.addTarget(self, action: #selector(BeaconListScreen.actionURLPressed(sender:)), for: .touchUpInside)
+        setupMapView(beacon: beacon)
+        streetAddressLabel.text = beacon.streetAddress
+        cityLabel.text = "\(beacon.city!), \(beacon.state!)  \(beacon.zipcode!)"
+    }
+    
+    func setupMapView(beacon: iBeaconItem) {
+        
+        let lat  = Double(beacon.latitude.removeWhitespaces())! //TODO: THis has bad data incoming, which requires removal of whitespace
+        let long = Double(beacon.longitude.removeWhitespaces())!
+        
+        let regionRadius: CLLocationDistance = 1000
+        let beaconLocation = CLLocation(latitude: lat, longitude: long)
+
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(beaconLocation.coordinate, regionRadius, regionRadius)
+        itemMapView.setRegion(coordinateRegion, animated: false)
+        
+        let beaconAnnotation = MKPointAnnotation()
+        beaconAnnotation.coordinate = CLLocationCoordinate2DMake(lat, long)
+        beaconAnnotation.title = beacon.name
+        itemMapView.addAnnotation(beaconAnnotation)
+    }
+    
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
@@ -61,7 +88,6 @@ class BeaconCell: UITableViewCell {
                 
                 let proximity = nameForProximity(aBeacon.lastSeenBeacon!.proximity)
                 locationLabel.text = proximity == "Unknown" ? "--" : "\(proximity)"
-//                backgroundColor = beacon?.backgroundColor
             }
         }
     }
@@ -72,7 +98,7 @@ class BeaconCell: UITableViewCell {
         switch proximity {
             
         case .unknown:
-            updateCellUI(Colors.lightGrey, textColor: Colors.darkGrey, alpha: 0.5, distanceValue: "Weak Signal")
+            updateCellUI(Colors.lightGrey, textColor: Colors.darkGrey, alpha: 1.0, distanceValue: "Weak Signal")
             return "Unknown"
             
         case .immediate:
@@ -91,7 +117,6 @@ class BeaconCell: UITableViewCell {
     
     
     func updateCellUI(_ backgroundColor: UIColor, textColor: UIColor, alpha: CGFloat, distanceValue: String) {
-//        beacon!.backgroundColor = backgroundColor
         locationLabel.textColor = textColor
         distanceLabel.text = distanceValue
         contentView.alpha = alpha
@@ -102,7 +127,5 @@ class BeaconCell: UITableViewCell {
         locationLabel.text = "--"
         distanceLabel.text = "Not Found"
         locationLabel.textColor = Colors.darkGrey
-        backgroundColor = Colors.lightGrey
-        contentView.alpha = 0.5
     }
 }
