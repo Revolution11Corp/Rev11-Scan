@@ -61,6 +61,9 @@ class BeaconCell: UITableViewCell {
         setupMapView(beacon: beacon)
         streetAddressLabel.text = beacon.streetAddress
         cityLabel.text = "\(beacon.city!), \(beacon.state!)  \(beacon.zipcode!)"
+        
+        actionURLButton.alpha     = Reachability.isConnectedToNetwork() ? 1.0 : 0.15
+        actionURLButton.isEnabled = Reachability.isConnectedToNetwork()
     }
     
     func setupMapView(beacon: iBeaconItem) {

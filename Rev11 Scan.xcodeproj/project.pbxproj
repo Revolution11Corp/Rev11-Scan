@@ -43,6 +43,7 @@
 		ED7C90161E25F47D001DAB33 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C90151E25F47D001DAB33 /* UITableViewExtension.swift */; };
 		EDB84CF71DF5051400F6CF27 /* RVTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB84CF61DF5051400F6CF27 /* RVTextField.swift */; };
 		EDBEEAEA1E3051C100A086AF /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBEEAE91E3051C100A086AF /* Persistence.swift */; };
+		EDED4DC01FBA3C7C007A2106 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDED4DBF1FBA3C7C007A2106 /* Reachability.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +116,7 @@
 		ED7C90151E25F47D001DAB33 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		EDB84CF61DF5051400F6CF27 /* RVTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RVTextField.swift; sourceTree = "<group>"; };
 		EDBEEAE91E3051C100A086AF /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		EDED4DBF1FBA3C7C007A2106 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +178,7 @@
 				143AA2111DB5C48B00485CC7 /* RVSegmentedControl.swift */,
 				ED5FE28B1DF4727E00C0408E /* RVButton.swift */,
 				EDB84CF61DF5051400F6CF27 /* RVTextField.swift */,
+				EDED4DBF1FBA3C7C007A2106 /* Reachability.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -535,6 +538,7 @@
 				14222B8C1DC8448600C9EA63 /* ArrayExtension.swift in Sources */,
 				149F033B1D752EC40039ADEE /* QueryURL.swift in Sources */,
 				14A6178E1D1BADF90083CFF2 /* Constants.swift in Sources */,
+				EDED4DC01FBA3C7C007A2106 /* Reachability.swift in Sources */,
 				ED5FBD8D1E0A46A100FCB022 /* NSLayoutConstraintExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
