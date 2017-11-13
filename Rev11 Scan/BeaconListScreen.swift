@@ -40,7 +40,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     var isFiltered = false
     var isShowingMap = true
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupRightNavButtons()
@@ -66,8 +65,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
                     print("First Beacon = \(beacons.first?.mapURL)")
                     
                 }
-
-                
             })
         }
     }

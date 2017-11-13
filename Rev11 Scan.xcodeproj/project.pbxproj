@@ -592,7 +592,7 @@
 					"$(PROJECT_DIR)/Rev11Scan-ShareExtension",
 				);
 				INFOPLIST_FILE = "Rev11Scan-ShareExtension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.revolution11.Rev11-Scan.Rev11Scan-ShareExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -621,7 +621,7 @@
 					"$(PROJECT_DIR)/Rev11Scan-ShareExtension",
 				);
 				INFOPLIST_FILE = "Rev11Scan-ShareExtension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.revolution11.Rev11-Scan.Rev11Scan-ShareExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -757,7 +757,7 @@
 					"\"$(PROJECT_DIR)\"/\"Rev11 Scan\"/**",
 				);
 				INFOPLIST_FILE = "Rev11 Scan/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.revolution11.Rev11-Scan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -767,6 +767,7 @@
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -785,7 +786,7 @@
 					"\"$(PROJECT_DIR)\"/\"Rev11 Scan\"/**",
 				);
 				INFOPLIST_FILE = "Rev11 Scan/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.revolution11.Rev11-Scan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -795,6 +796,7 @@
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
