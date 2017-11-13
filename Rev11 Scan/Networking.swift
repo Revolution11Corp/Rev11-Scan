@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 class Networking {
 
@@ -43,11 +44,10 @@ class Networking {
       } else {
 
         //handle download error - Maybe show placeholder image
-        print("Error downloading data: \(error?.localizedDescription)")
+        print("Error downloading data: \(String(describing: error?.localizedDescription))")
       }
     }
 
     dataTask.resume()
   }
-
 }

@@ -10,20 +10,20 @@ import UIKit
 import CoreLocation
 import SafariServices
 import MobileCoreServices
+import MapKit
 
-class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, UIDocumentMenuDelegate, UIDocumentPickerDelegate, UIScrollViewDelegate {
+class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, UIDocumentMenuDelegate, UIDocumentPickerDelegate, UIScrollViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyStateIcon: UIImageView!
     @IBOutlet weak var emptyStateLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var permissionsView: UIView!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var mapImageView: UIImageView!
     @IBOutlet weak var tableContainerView: UIView!
     @IBOutlet weak var hideMapButton: UIButton!
     
-    @IBOutlet weak var scrollViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var mapViewHeightConstraint: NSLayoutConstraint!
     
     
     let locationManager = CLLocationManager()
@@ -40,6 +40,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     var isFiltered = false
     var isShowingMap = true
     
+    var cache: NSCache<AnyObject, AnyObject>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,14 +48,37 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         transparencyView = createTransparencyView()
         NavBarSetup.showLogoInNavBar(self.navigationController!, navItem: self.navigationItem)
         changeFilterButtonImage()
+        setupMapView()
+        cache = NSCache()
         tableView.hideExcessSeparatorLines()
         tableContainerView.setShadow(width: 0, height: -6)
         locationManager.delegate = self
         NotificationCenter.default.addObserver(self, selector:#selector(BeaconListScreen.reloadViewFromBackground), name:
             NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        
+        NetworkManager.shared.authenticateDemoUser { (token, error) in
+            
+            if let token = token {
+                print("Token = \(token)")
+                
+                NetworkManager.shared.getBeaconEntries(token: token, completed: { (beacons, error) in
+                    if let beacons = beacons {
+                        self.iBeacons.removeAll()
+                        self.iBeacons.append(contentsOf: beacons)
+                        self.tableView.reloadDataOnMainThread()
+                        DispatchQueue.main.async {
+                            self.createMapAnnotations(beacons: self.iBeacons)
+                        }
+                    }
+                })
+                
+            } else {
+                print("Noken = nil")
+            }
+        }
     }
     
-    func reloadViewFromBackground() {
+    @objc func reloadViewFromBackground() {
         viewWillAppear(true)
     }
     
@@ -64,6 +88,45 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         if Constants.defaults.bool(forKey: Keys.hasViewedPermissions) != true {
             showPermissionsView(bool: true)
+        }
+    }
+    
+    func setupMapView() {
+        
+        mapView.showsUserLocation = true
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.delegate = self
+        
+        if (CLLocationManager.locationServicesEnabled()) {
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()
+        }
+        
+        locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+        }
+        
+        let noLocation = CLLocationCoordinate2D()
+        let viewRegion = MKCoordinateRegionMakeWithDistance(noLocation, 2000, 2000)
+        mapView.setRegion(viewRegion, animated: false)
+        
+        DispatchQueue.main.async {
+            self.locationManager.startUpdatingLocation()
+        }
+    }
+    
+    func createMapAnnotations(beacons: [iBeaconItem]) {
+        
+        for beacon in beacons {
+            
+            let lat  = Double(beacon.latitude.removeWhitespaces())! //TODO: THis has bad data incoming, which requires removal of whitespace
+            let long = Double(beacon.longitude.removeWhitespaces())!
+            
+            let beaconAnnotation        = MKPointAnnotation()
+            beaconAnnotation.coordinate = CLLocationCoordinate2DMake(lat, long)
+            beaconAnnotation.title      = beacon.name
+            mapView.addAnnotation(beaconAnnotation)
         }
     }
     
@@ -97,7 +160,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func setupBeaconRegions() {
-        let beaconRegions: [iBeaconItem] = iBeacons.filterDuplicates { $0.uuid == $1.uuid && $0.uuid == $1.uuid }
+        let beaconRegions: [iBeaconItem] = iBeacons.filterDuplicates { $0.UUID == $1.UUID && $0.UUID == $1.UUID }
         
         for beacon in beaconRegions {
             startRangingBeacon(beacon)
@@ -106,71 +169,73 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func readSharedCSV(completionHandler: @escaping (() -> ())) {
         
-        iBeacons.removeAll()
-        filteredBeacons.removeAll()
+        //TODO: Update Read CSV with new iBeaconItem
         
-        if defaults?.data(forKey: Keys.spreadsheetFile) != nil {
-            
-            showEmptyState(bool: true)
-            activityIndicator.startAnimating()
-            emptyStateLabel.alpha = 0
-            emptyStateIcon.alpha = 0
-            
-            let data = defaults?.data(forKey: Keys.spreadsheetFile)
-            let dataString = String(data: data!, encoding: .utf8)
-            
-            let cleanString = dataString?.replacingOccurrences(of: "\r", with: "\n")
-            let csv = CSVParser(with: cleanString!)
-            
-            let csvCount = csv.keyedRows!.count
-            var beaconCounter = 0
-            
-            for object in csv.keyedRows! {
-                
-                var newBeacon: iBeaconItem?
-                
-                //Need to handle nils, for when the spreadsheet has blank spots
-                let name            = object["Beacon Name"]
-                let uuid            = object["UUID"]?.convertToUUID()
-                let major           = object["Major"]?.convertToMajorValue()
-                let minor           = object["Minor"]?.convertToMinorValue()
-                let actionURL       = object["Action URL"]
-                let actionURLName   = object["Action URL Name"]
-                let actionType      = object["Action Type"]
-                let type            = object["Type"]
-                let mapURL          = object["Map URL"]
-                let colorR          = CGFloat(NumberFormatter().number(from: object["ColorR"]!)!)
-                let colorG          = CGFloat(NumberFormatter().number(from: object["ColorG"]!)!)
-                let colorB          = CGFloat(NumberFormatter().number(from: object["ColorB"]!)!)
-    
-                let color = UIColor(red: colorR/255.0, green: colorG/255.0, blue: colorB/255.0, alpha: 1.0)
-                let backgroundColor = Colors.white
-                
-                if let imageURL = object["Image URL"] {
-                    
-                    let convertedURL = NSURL(string: imageURL)
-                    let networking = Networking(url: convertedURL!)
-                    
-                    networking.downloadImage(completion: { (imageData) in
-                        
-                        let itemImage = UIImage(data: imageData)
-                        
-                        newBeacon = iBeaconItem(name: name!, uuid: uuid!, majorValue: major, minorValue: minor, itemImage: itemImage!, actionURL: actionURL!, actionURLName: actionURLName!, actionType: actionType!, type: type!, mapURL: mapURL!, color: color, backgroundColor: backgroundColor)
-                        
-                        self.iBeacons.append(newBeacon!)
-                        
-                        beaconCounter += 1
-                        
-                        if beaconCounter == csvCount {
-                            
-                            completionHandler()
-                        }
-                    })
-                }
-            }
-        } else {
-            showEmptyState(bool: true)
-        }
+//        iBeacons.removeAll()
+//        filteredBeacons.removeAll()
+//
+//        if defaults?.data(forKey: Keys.spreadsheetFile) != nil {
+//
+//            showEmptyState(bool: true)
+//            activityIndicator.startAnimating()
+//            emptyStateLabel.alpha = 0
+//            emptyStateIcon.alpha = 0
+//
+//            let data = defaults?.data(forKey: Keys.spreadsheetFile)
+//            let dataString = String(data: data!, encoding: .utf8)
+//
+//            let cleanString = dataString?.replacingOccurrences(of: "\r", with: "\n")
+//            let csv = CSVParser(with: cleanString!)
+//
+//            let csvCount = csv.keyedRows!.count
+//            var beaconCounter = 0
+//
+//            for object in csv.keyedRows! {
+//
+//                var newBeacon: iBeaconItem?
+//
+//                //Need to handle nils, for when the spreadsheet has blank spots
+//                let name            = object["Beacon Name"]
+//                let uuid            = object["UUID"]?.convertToUUID()
+//                let major           = object["Major"]?.convertToMajorValue()
+//                let minor           = object["Minor"]?.convertToMinorValue()
+//                let actionURL       = object["Action URL"]
+//                let actionURLName   = object["Action URL Name"]
+//                let actionType      = object["Action Type"]
+//                let type            = object["Type"]
+//                let mapURL          = object["Map URL"]
+//                let colorR          = CGFloat(truncating: NumberFormatter().number(from: object["ColorR"]!)!)
+//                let colorG          = CGFloat(truncating: NumberFormatter().number(from: object["ColorG"]!)!)
+//                let colorB          = CGFloat(truncating: NumberFormatter().number(from: object["ColorB"]!)!)
+//
+//                let color = UIColor(red: colorR/255.0, green: colorG/255.0, blue: colorB/255.0, alpha: 1.0)
+//                let backgroundColor = Colors.white
+//
+//                if let imageURL = object["Image URL"] {
+//
+//                    let convertedURL = NSURL(string: imageURL)
+//                    let networking = Networking(url: convertedURL!)
+//
+//                    networking.downloadImage(completion: { (imageData) in
+//
+//                        let itemImage = UIImage(data: imageData)
+//
+//                        newBeacon = iBeaconItem(name: name!, uuid: uuid!, majorValue: major, minorValue: minor, itemImage: itemImage!, actionURL: actionURL!, actionURLName: actionURLName!, actionType: actionType!, type: type!, mapURL: mapURL!, color: color, backgroundColor: backgroundColor)
+//
+//                        self.iBeacons.append(newBeacon!)
+//
+//                        beaconCounter += 1
+//
+//                        if beaconCounter == csvCount {
+//
+//                            completionHandler()
+//                        }
+//                    })
+//                }
+//            }
+//        } else {
+//            showEmptyState(bool: true)
+//        }
     }
     
     func readSharedCSVWithClosure() {
@@ -190,17 +255,17 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func showEmptyState(bool: Bool) {
-        scrollView.alpha = bool ? 0.0 : 1.0
+        mapView.alpha = bool ? 0.0 : 1.0
         tableContainerView.alpha = bool ? 0.0 : 1.0
     }
     
-    func filterButtonPressed() {
+    @objc func filterButtonPressed() {
         isFiltered = isFiltered ? false : true
         changeFilterButtonImage()
         tableView.reloadData()
     }
     
-    func importButtonPressed(_ sender: UIBarButtonItem) {
+    @objc func importButtonPressed(_ sender: UIBarButtonItem) {
         
         let importMenu = UIDocumentMenuViewController(documentTypes: [kUTTypeCommaSeparatedText as String], in: .import)
         importMenu.delegate = self
@@ -272,15 +337,47 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         let cell = tableView.dequeueReusableCell(withIdentifier: Cells.beaconCell, for: indexPath) as! BeaconCell
         let beacon = isFiltered ? filteredBeacons[(indexPath as NSIndexPath).row] : iBeacons[(indexPath as NSIndexPath).row]
         
-        cell.beacon = beacon
-        
-        cell.nameLabel!.text = beacon.name
-        cell.typeLabel!.text = "Type: \(beacon.type)"
-        cell.actionURLButton.setTitle(beacon.actionURLName, for: .normal)
-        cell.beaconImage.backgroundColor = beacon.color
-        
         cell.actionURLButton.tag = indexPath.row
-        cell.actionURLButton.addTarget(self, action: #selector(BeaconListScreen.actionURLPressed(sender:)), for: .touchUpInside)
+        cell.setBeaconCell(beacon: beacon)
+        
+        let ownerImageKey   = beacon.ownerLogoURL as AnyObject
+        let objectImageKey  = beacon.imageURL as AnyObject
+        
+        if cache.object(forKey: ownerImageKey) != nil {
+            cell.ownerLogoImageView.image = cache.object(forKey: ownerImageKey) as? UIImage
+            
+        } else {
+            
+            NetworkManager.shared.downloadImage(url: beacon.ownerLogoURL, completion: { (imageData) in
+                
+                if let image = UIImage(data: imageData) {
+                    DispatchQueue.main.async {
+                        cell.ownerLogoImageView.image = image
+                        self.cache.setObject(image, forKey: ownerImageKey)
+                    }
+                } else {
+                    //TODO: Set placeholder image
+                }
+            })
+        }
+        
+        if cache.object(forKey: objectImageKey) != nil {
+            cell.itemImageView.image = cache.object(forKey: objectImageKey) as? UIImage
+            
+        } else {
+            
+            NetworkManager.shared.downloadImage(url: beacon.imageURL, completion: { (imageData) in
+                
+                if let image = UIImage(data: imageData) {
+                    DispatchQueue.main.async {
+                        cell.itemImageView.image = image
+                        self.cache.setObject(image, forKey: objectImageKey)
+                    }
+                } else {
+                    //TODO: Set placeholder image
+                }
+            })
+        }
         
         return cell
     }
@@ -309,20 +406,20 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         tableView.deselectRow(at: indexPath, animated: true)
         
         let beacon = iBeacons[(indexPath as NSIndexPath).row] as iBeaconItem
-        let uuid = beacon.uuid.uuidString
-        let detailMessage = "UUID: \(uuid)\nMajor: \(beacon.majorValue)\nMinor: \(beacon.minorValue)"
+        let uuid = beacon.UUID.uuidString
+        let detailMessage = "UUID: \(uuid)\nMajor: \(beacon.major)\nMinor: \(beacon.minor)"
         let detailAlert = UIAlertController(title: "Beacon Info", message: detailMessage, preferredStyle: .alert)
         detailAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         
         present(detailAlert, animated: true, completion: nil)
     }
     
-    func actionURLPressed(sender: UIButton) {
+    @objc func actionURLPressed(sender: UIButton) {
         
         let beaconRow = sender.tag
         let selectedBeacon = iBeacons[beaconRow]
         
-        switch selectedBeacon.actionType {
+        switch selectedBeacon.actionURLName {
             
         case "Website":
             
@@ -332,7 +429,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
             
         case "FileMaker":
             
-            let urlFromBeacon = selectedBeacon.actionURL
+            let urlFromBeacon = selectedBeacon.actionURL!
             
             if let url = URL(string: urlFromBeacon) {
                 DispatchQueue.main.async(execute: {
@@ -370,7 +467,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func beaconRegionWithItem(_ beacon: iBeaconItem) -> CLBeaconRegion {
-        let beaconRegion = CLBeaconRegion(proximityUUID: beacon.uuid as UUID, identifier: beacon.name)
+        let beaconRegion = CLBeaconRegion(proximityUUID: beacon.UUID as UUID, identifier: beacon.name)
         return beaconRegion
     }
     
@@ -454,7 +551,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBAction func hideMapButtonPressed(_ sender: UIButton) {
         
         let multiplier: CGFloat = isShowingMap ? 0.001 : 0.4
-        scrollViewHeightConstraint = scrollViewHeightConstraint.setMultiplier(multiplier: multiplier)
+        mapViewHeightConstraint = mapViewHeightConstraint.setMultiplier(multiplier: multiplier)
         
         let flipped = self.isShowingMap ? CGAffineTransform(scaleX: 1, y: -1) : CGAffineTransform(scaleX: -1, y: 1)
         
@@ -465,9 +562,16 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         isShowingMap = isShowingMap ? false : true
     }
-    
+}
 
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return mapImageView
+extension BeaconListScreen: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let userLocation: CLLocation = locations[0]
+        let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        
+        mapView.setRegion(region, animated: true)
     }
 }
