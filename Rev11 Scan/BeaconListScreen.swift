@@ -10,20 +10,20 @@ import UIKit
 import CoreLocation
 import SafariServices
 import MobileCoreServices
+import MapKit
 
-class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, UIDocumentMenuDelegate, UIDocumentPickerDelegate, UIScrollViewDelegate {
+class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, UIDocumentMenuDelegate, UIDocumentPickerDelegate, UIScrollViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyStateIcon: UIImageView!
     @IBOutlet weak var emptyStateLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var permissionsView: UIView!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var mapImageView: UIImageView!
     @IBOutlet weak var tableContainerView: UIView!
     @IBOutlet weak var hideMapButton: UIButton!
     
-    @IBOutlet weak var scrollViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var mapViewHeightConstraint: NSLayoutConstraint!
     
     
     let locationManager = CLLocationManager()
@@ -46,6 +46,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         transparencyView = createTransparencyView()
         NavBarSetup.showLogoInNavBar(self.navigationController!, navItem: self.navigationItem)
         changeFilterButtonImage()
+        setupMapView()
         tableView.hideExcessSeparatorLines()
         tableContainerView.setShadow(width: 0, height: -6)
         locationManager.delegate = self
@@ -80,6 +81,32 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         if Constants.defaults.bool(forKey: Keys.hasViewedPermissions) != true {
             showPermissionsView(bool: true)
         }
+    }
+    
+    func setupMapView() {
+        
+        mapView.showsUserLocation = true
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.delegate = self
+        
+        if (CLLocationManager.locationServicesEnabled()) {
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()
+        }
+        
+        locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+        }
+        
+        let noLocation = CLLocationCoordinate2D()
+        let viewRegion = MKCoordinateRegionMakeWithDistance(noLocation, 2000, 2000)
+        mapView.setRegion(viewRegion, animated: false)
+        
+        DispatchQueue.main.async {
+            self.locationManager.startUpdatingLocation()
+        }
+        
     }
     
     func checkForExistingCSV() {
@@ -207,7 +234,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func showEmptyState(bool: Bool) {
-        scrollView.alpha = bool ? 0.0 : 1.0
+        mapView.alpha = bool ? 0.0 : 1.0
         tableContainerView.alpha = bool ? 0.0 : 1.0
     }
     
@@ -471,7 +498,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBAction func hideMapButtonPressed(_ sender: UIButton) {
         
         let multiplier: CGFloat = isShowingMap ? 0.001 : 0.4
-        scrollViewHeightConstraint = scrollViewHeightConstraint.setMultiplier(multiplier: multiplier)
+        mapViewHeightConstraint = mapViewHeightConstraint.setMultiplier(multiplier: multiplier)
         
         let flipped = self.isShowingMap ? CGAffineTransform(scaleX: 1, y: -1) : CGAffineTransform(scaleX: -1, y: 1)
         
@@ -482,9 +509,16 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         isShowingMap = isShowingMap ? false : true
     }
-    
+}
 
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return mapImageView
+extension BeaconListScreen: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let userLocation: CLLocation = locations[0]
+        let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        
+        mapView.setRegion(region, animated: true)
     }
 }

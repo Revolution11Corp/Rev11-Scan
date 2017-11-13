@@ -68,24 +68,6 @@
                                 <color key="textColor" red="0.2156862745" green="0.37254901959999998" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.75" maximumZoomScale="4" translatesAutoresizingMaskIntoConstraints="NO" id="Xtl-qL-rUF">
-                                <rect key="frame" x="0.0" y="64" width="1024" height="307"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="storeMap16" translatesAutoresizingMaskIntoConstraints="NO" id="djo-pq-N5T">
-                                        <rect key="frame" x="0.0" y="0.0" width="422" height="343"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="djo-pq-N5T" firstAttribute="top" secondItem="Xtl-qL-rUF" secondAttribute="top" id="BS1-BO-17a"/>
-                                    <constraint firstAttribute="bottom" secondItem="djo-pq-N5T" secondAttribute="bottom" id="adK-sh-gIh"/>
-                                    <constraint firstAttribute="trailing" secondItem="djo-pq-N5T" secondAttribute="trailing" id="uPl-Rq-u4z"/>
-                                    <constraint firstItem="djo-pq-N5T" firstAttribute="leading" secondItem="Xtl-qL-rUF" secondAttribute="leading" id="zUi-Lx-a1W"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="delegate" destination="x8K-YJ-Js2" id="nFc-JT-yJV"/>
-                                </connections>
-                            </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E4D-hj-Co9">
                                 <rect key="frame" x="0.0" y="371" width="1024" height="348"/>
                                 <subviews>
@@ -252,25 +234,31 @@
                                     <constraint firstAttribute="height" constant="300" id="rrZ-ML-w3L"/>
                                 </constraints>
                             </view>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7HJ-sD-P9o">
+                                <rect key="frame" x="0.0" y="64" width="1024" height="307"/>
+                                <connections>
+                                    <outlet property="delegate" destination="x8K-YJ-Js2" id="T9L-pp-jgg"/>
+                                </connections>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="p1J-6X-JuN" firstAttribute="centerY" secondItem="Kcx-cA-3kl" secondAttribute="centerY" id="1RD-Rc-gng"/>
+                            <constraint firstItem="7HJ-sD-P9o" firstAttribute="top" secondItem="96j-2w-l7j" secondAttribute="bottom" id="4p0-fn-60s"/>
+                            <constraint firstItem="7HJ-sD-P9o" firstAttribute="height" secondItem="Kcx-cA-3kl" secondAttribute="height" multiplier="0.4" id="8ba-pd-NoS"/>
                             <constraint firstItem="oUZ-7Z-Im6" firstAttribute="top" secondItem="M71-Ps-skr" secondAttribute="bottom" constant="-18" id="EBT-xo-n64"/>
-                            <constraint firstAttribute="trailing" secondItem="Xtl-qL-rUF" secondAttribute="trailing" id="R0r-wn-wLC"/>
                             <constraint firstAttribute="trailing" secondItem="E4D-hj-Co9" secondAttribute="trailing" id="SwG-Or-rJB"/>
                             <constraint firstItem="xA7-pS-s3t" firstAttribute="centerX" secondItem="Kcx-cA-3kl" secondAttribute="centerX" id="YqR-PC-RfD"/>
                             <constraint firstItem="p1J-6X-JuN" firstAttribute="centerX" secondItem="Kcx-cA-3kl" secondAttribute="centerX" id="b7Q-7e-ubs"/>
                             <constraint firstItem="oUZ-7Z-Im6" firstAttribute="centerX" secondItem="Kcx-cA-3kl" secondAttribute="centerX" id="f7l-EV-oIm"/>
                             <constraint firstItem="xA7-pS-s3t" firstAttribute="centerY" secondItem="Kcx-cA-3kl" secondAttribute="centerY" id="fZR-At-gDA"/>
-                            <constraint firstItem="E4D-hj-Co9" firstAttribute="top" secondItem="Xtl-qL-rUF" secondAttribute="bottom" id="fbU-PZ-6MV"/>
-                            <constraint firstItem="Xtl-qL-rUF" firstAttribute="top" secondItem="96j-2w-l7j" secondAttribute="bottom" id="hPP-Aj-IcZ"/>
                             <constraint firstItem="oUZ-7Z-Im6" firstAttribute="centerY" secondItem="Kcx-cA-3kl" secondAttribute="centerY" id="jV6-R3-yJ0"/>
                             <constraint firstItem="M71-Ps-skr" firstAttribute="centerX" secondItem="oUZ-7Z-Im6" secondAttribute="centerX" id="kxW-Dc-gem"/>
-                            <constraint firstItem="Xtl-qL-rUF" firstAttribute="leading" secondItem="Kcx-cA-3kl" secondAttribute="leading" id="pLr-OV-vmD"/>
                             <constraint firstItem="Qqo-D6-w8j" firstAttribute="top" secondItem="E4D-hj-Co9" secondAttribute="bottom" id="r9D-y3-8YE"/>
-                            <constraint firstItem="Xtl-qL-rUF" firstAttribute="height" secondItem="Kcx-cA-3kl" secondAttribute="height" multiplier="0.4" id="uRt-LN-fuj"/>
+                            <constraint firstAttribute="trailing" secondItem="7HJ-sD-P9o" secondAttribute="trailing" id="tjz-Dg-Gbm"/>
                             <constraint firstItem="E4D-hj-Co9" firstAttribute="leading" secondItem="Kcx-cA-3kl" secondAttribute="leading" id="vG8-fl-J0K"/>
+                            <constraint firstItem="7HJ-sD-P9o" firstAttribute="leading" secondItem="Kcx-cA-3kl" secondAttribute="leading" id="vI1-w0-MzZ"/>
+                            <constraint firstItem="E4D-hj-Co9" firstAttribute="top" secondItem="7HJ-sD-P9o" secondAttribute="bottom" id="xGp-84-a1X"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Beacons" id="kc1-J8-ZgF"/>
@@ -279,17 +267,16 @@
                         <outlet property="emptyStateIcon" destination="M71-Ps-skr" id="248-Pd-o0M"/>
                         <outlet property="emptyStateLabel" destination="oUZ-7Z-Im6" id="xa0-Dw-AcB"/>
                         <outlet property="hideMapButton" destination="fsh-bP-Sda" id="bpS-lk-FmK"/>
-                        <outlet property="mapImageView" destination="djo-pq-N5T" id="iBb-7y-YBP"/>
+                        <outlet property="mapView" destination="7HJ-sD-P9o" id="PDl-CP-Ifo"/>
+                        <outlet property="mapViewHeightConstraint" destination="8ba-pd-NoS" id="Xa2-fE-kMF"/>
                         <outlet property="permissionsView" destination="p1J-6X-JuN" id="Ktr-NN-qGY"/>
-                        <outlet property="scrollView" destination="Xtl-qL-rUF" id="dyL-36-blk"/>
-                        <outlet property="scrollViewHeightConstraint" destination="uRt-LN-fuj" id="Aoz-72-xzx"/>
                         <outlet property="tableContainerView" destination="E4D-hj-Co9" id="Bol-yH-GWO"/>
                         <outlet property="tableView" destination="eYw-Yr-E88" id="f0x-Ir-BQQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J7g-PT-fHa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1044" y="8.5457271364317844"/>
+            <point key="canvasLocation" x="1043.5546875" y="7.8125"/>
         </scene>
         <!--Beacons-->
         <scene sceneID="MKT-Mq-hbX">
@@ -645,7 +632,6 @@
         <image name="ibeacon-logo-white" width="100" height="100"/>
         <image name="r11AppIcon120" width="60" height="60"/>
         <image name="search-tabbar-grey" width="30" height="30"/>
-        <image name="storeMap16" width="422" height="343"/>
         <image name="upArrow-bar" width="50" height="20"/>
     </resources>
 </document>
