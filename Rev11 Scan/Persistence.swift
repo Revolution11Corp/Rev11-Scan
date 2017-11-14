@@ -16,7 +16,7 @@ class Persistence {
         
         var beacons: [iBeaconItem] = []
         
-        if let storedBeacons = UserDefaults.standard.array(forKey: BeaconProperties.storedBeaconArrayKey) {
+        if let storedBeacons = UserDefaults.standard.array(forKey: Keys.storedBeaconArrayKey) {
             
             for beaconData in storedBeacons {
                 let beacon = NSKeyedUnarchiver.unarchiveObject(with: (beaconData as! NSData) as Data) as! iBeaconItem

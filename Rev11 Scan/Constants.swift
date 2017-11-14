@@ -9,29 +9,6 @@
 import Foundation
 import UIKit
 
-struct BeaconProperties {
-    static let nameKey = "name"
-    
-    // iBeacon Properties
-    static let uuidKey              = "uuid"
-    static let majorKey             = "major"
-    static let minorKey             = "minor"
-    static let actionURLKey         = "actionURL"
-    static let actionURLNameKey     = "actionURLName"
-    static let actionType           = "actionType"
-    static let typeKey              = "type"
-    static let itemImageKey         = "itemImage"
-    static let mapURL               = "mapURL"
-    static let backgroundColorKey   = "backgroundColor"
-    static let colorKey             = "color"
-    
-    static let storedBeaconArrayKey = "storedBeaconsArray"
-    
-    // Eddystone Properties
-    static let namespaceKey = "namespace"
-    static let instanceKey = "instance"
-    static let urlKey = "url"
-}
 
 struct Colors {
     static let white      = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)
@@ -63,6 +40,7 @@ struct Keys {
     static let suiteName              = "group.rev11scan"
     static let spreadsheetFile        = "spreadsheetFileAsData"
     static let isNewSharedSpreadsheet = "isNewSharedSpreadsheet"
+    static let storedBeaconArrayKey = "storedBeaconsArray"
     
     static let uuidOneKey             = "UUIDOne"
     static let uuidTwoKey             = "UUIDTwo"

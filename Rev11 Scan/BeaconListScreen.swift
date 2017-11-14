@@ -12,7 +12,7 @@ import SafariServices
 import MobileCoreServices
 import MapKit
 
-class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, UIDocumentMenuDelegate, UIDocumentPickerDelegate, UIScrollViewDelegate {
+class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSource, UIDocumentMenuDelegate, UIDocumentPickerDelegate, UIScrollViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyStateIcon: UIImageView!
@@ -55,33 +55,48 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         locationManager.delegate = self
         NotificationCenter.default.addObserver(self, selector:#selector(BeaconListScreen.reloadViewFromBackground), name:
             NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+    }
+    
+    func checkForExistingBeacons() {
         
-        NetworkManager.shared.authenticateDemoUser { (token, error) in
+        if UserDefaults.standard.array(forKey: Keys.storedBeaconArrayKey) != nil {
+            iBeacons.removeAll()
+            iBeacons = Persistence.loadBeacons()
+            self.createMapAnnotations(beacons: self.iBeacons)
+            tableView.reloadDataOnMainThread()
+            setupBeaconRegions()
             
-            if let token = token {
-                print("Token = \(token)")
+        } else {
+            
+            NetworkManager.shared.authenticateDemoUser { (token, error) in
                 
-                NetworkManager.shared.getBeaconEntries(token: token, completed: { (beacons, error) in
-                    if let beacons = beacons {
-                        self.iBeacons.removeAll()
-                        
-                        //TODO: Sean's test beacon. Remove when confirmed to be working
-//                        let newBeacon = iBeaconItem(data: ["UUID": "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6",
-//                                                           "name": "Sean Test", "Major": "3426", "Minor": "1111"])
-//                        self.iBeacons.append(newBeacon)
-                        self.iBeacons.append(contentsOf: beacons)
-                        self.tableView.reloadDataOnMainThread()
-                        
-                        DispatchQueue.main.async {
-                            self.createMapAnnotations(beacons: self.iBeacons)
-                            self.setupBeaconRegions()
+                if let token = token {
+                    print("Token = \(token)")
+                    
+                    NetworkManager.shared.getBeaconEntries(token: token, completed: { (beacons, error) in
+                        if let beacons = beacons {
+                            self.iBeacons.removeAll()
+                            
+                            //TODO: Sean's test beacon. Remove when confirmed to be working
+                            //                        let newBeacon = iBeaconItem(data: ["UUID": "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6",
+                            //                                                           "name": "Sean Test", "Major": "3426", "Minor": "1111"])
+                            //                        self.iBeacons.append(newBeacon)
+                            self.iBeacons.append(contentsOf: beacons)
+                            self.persistBeacons()
+                            self.tableView.reloadDataOnMainThread()
+                            
+                            DispatchQueue.main.async {
+                                self.createMapAnnotations(beacons: self.iBeacons)
+                                self.setupBeaconRegions()
+                            }
                         }
-                    }
-                })
-                
-            } else {
-                print("Noken = nil")
+                    })
+                    
+                } else {
+                    print("Noken = nil")
+                }
             }
+            
         }
     }
     
@@ -91,7 +106,8 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        checkForExistingCSV()
+//        checkForExistingCSV()
+        checkForExistingBeacons()
         
         if Constants.defaults.bool(forKey: Keys.hasViewedPermissions) != true {
             showPermissionsView(bool: true)
@@ -114,13 +130,9 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
             locationManager.startUpdatingLocation()
         }
         
-        let noLocation = CLLocationCoordinate2D()
-        let viewRegion = MKCoordinateRegionMakeWithDistance(noLocation, 2000, 2000)
+        let SanFrancsicoCenter = CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194)
+        let viewRegion = MKCoordinateRegionMakeWithDistance(SanFrancsicoCenter, 2000, 2000)
         mapView.setRegion(viewRegion, animated: false)
-        
-        DispatchQueue.main.async {
-            self.locationManager.startUpdatingLocation()
-        }
     }
     
     func createMapAnnotations(beacons: [iBeaconItem]) {
@@ -139,7 +151,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func checkForExistingCSV() {
         
-        if UserDefaults.standard.array(forKey: BeaconProperties.storedBeaconArrayKey) != nil {
+        if UserDefaults.standard.array(forKey: Keys.storedBeaconArrayKey) != nil {
             
             if defaults?.bool(forKey: Keys.isNewSharedSpreadsheet) == false {
                 iBeacons = Persistence.loadBeacons()
@@ -487,7 +499,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
             beaconsDataArray.append(beaconData)
         }
         
-        UserDefaults.standard.set(beaconsDataArray, forKey: BeaconProperties.storedBeaconArrayKey)
+        UserDefaults.standard.set(beaconsDataArray, forKey: Keys.storedBeaconArrayKey)
     }
     
     //MARK: - Core Location Methods
@@ -569,14 +581,15 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
 }
 
-extension BeaconListScreen: CLLocationManagerDelegate {
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        let userLocation: CLLocation = locations[0]
-        let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        
-        mapView.setRegion(region, animated: true)
-    }
-}
+//extension BeaconListScreen: CLLocationManagerDelegate {
+//
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//
+//        let userLocation: CLLocation = locations[0]
+//        let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+//        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+//
+//        mapView.setRegion(region, animated: true)
+//    }
+//}
+
