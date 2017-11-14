@@ -68,8 +68,8 @@ class BeaconCell: UITableViewCell {
     
     func setupMapView(beacon: iBeaconItem) {
         
-        let lat  = Double(beacon.latitude.removeWhitespaces())! //TODO: THis has bad data incoming, which requires removal of whitespace
-        let long = Double(beacon.longitude.removeWhitespaces())!
+        let lat  = Double(beacon.latitude.removeWhitespaces()) ?? 0.00 //TODO: THis has bad data incoming, which requires removal of whitespace
+        let long = Double(beacon.longitude.removeWhitespaces()) ?? 0.00
         
         let regionRadius: CLLocationDistance = 1000
         let beaconLocation = CLLocation(latitude: lat, longitude: long)
@@ -85,10 +85,9 @@ class BeaconCell: UITableViewCell {
     
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        
+    
         if let aBeacon = object as? iBeaconItem {
             if aBeacon == beacon && keyPath == Keys.lastSeenBeacon {
-                
                 let proximity = nameForProximity(aBeacon.lastSeenBeacon!.proximity)
                 locationLabel.text = proximity == "Unknown" ? "--" : "\(proximity)"
             }
@@ -130,6 +129,8 @@ class BeaconCell: UITableViewCell {
         locationLabel.text = "--"
         distanceLabel.text = "Not Found"
         locationLabel.textColor = Colors.darkGrey
+        ownerLogoImageView.image = nil
+        itemImageView.image = nil
         itemMapView.removeAnnotations(itemMapView.annotations)
     }
 }

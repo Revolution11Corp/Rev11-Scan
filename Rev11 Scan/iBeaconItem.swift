@@ -57,8 +57,8 @@ class iBeaconItem: NSObject {
     var imageURL: String!
     var actionURL: String!
     var beaconName: String!
-    var major: String!
-    var minor: String!
+    var major: CLBeaconMajorValue!
+    var minor: CLBeaconMinorValue!
     var type: String!
     var actionURLName: String!
     var mapURL: String!
@@ -86,36 +86,36 @@ class iBeaconItem: NSObject {
     @objc dynamic var lastSeenBeacon: CLBeacon?
     
     init(data: [String : Any]) {
-        createdBy           = data[kCreatedBy] as! String
-        modifiedBy          = data[kModifiedBy] as! String
-        modifiedOn          = data[kModifiedOn] as! String
-        createdOn           = data[kCreatedOn] as! String
-        name                = data[kName] as! String
-        imageURL            = data[kImageURL] as! String
-        actionURL           = data[kActionURL] as! String
-        beaconName          = data[kBeaconName] as! String
-        major               = data[kMajor] as! String
-        minor               = data[kMinor] as! String
-        type                = data[kType] as! String
-        actionURLName       = data[kActionURLName] as! String
-        mapURL              = data[kMapURL] as! String
-        color               = data[kColor] as! String
+        createdBy           = data[kCreatedBy] as? String ?? ""
+        modifiedBy          = data[kModifiedBy] as? String ?? ""
+        modifiedOn          = data[kModifiedOn] as? String ?? ""
+        createdOn           = data[kCreatedOn] as? String ?? ""
+        name                = data[kName] as? String ?? ""
+        imageURL            = data[kImageURL] as? String ?? ""
+        actionURL           = data[kActionURL] as? String ?? ""
+        beaconName          = data[kBeaconName] as? String ?? ""
+        major               = (data[kMajor] as! String).convertToMajorValue()
+        minor               = (data[kMinor] as! String).convertToMinorValue()
+        type                = data[kType] as? String ?? ""
+        actionURLName       = data[kActionURLName] as? String ?? ""
+        mapURL              = data[kMapURL] as? String ?? ""
+        color               = data[kColor] as? String ?? ""
         UUID                = (data[kUUID] as! String).convertToUUID()
-        IDVend              = data[kIDVend] as! String
-        IDOwn               = data[kIDOwn] as! String
-        latitude            = data[kLatitude] as! String
-        longitude           = data[kLongitude] as! String
-        streetAddress       = data[kStreetAddress] as! String
-        city                = data[kCity] as! String
-        state               = data[kState] as! String
-        zipcode             = data[kZipcode] as! String
-        documentOneURL      = data[kDocumentOneURL] as! String
-        documentOneName     = data[kDocumentOneName] as! String
-        telemetryOneURL     = data[kTelemetryURLOne] as! String
-        telemetryTwoURL     = data[kTelemetryURLTwo] as! String
-        telemetryThreeURL   = data[kTelemetryURLThree] as! String
-        ownerLogoURL        = data[kOwnerLogoURL] as! String
-        routeURL            = data[kRouteURL] as! String
+        IDVend              = data[kIDVend] as? String ?? ""
+        IDOwn               = data[kIDOwn] as? String ?? ""
+        latitude            = data[kLatitude] as? String ?? ""
+        longitude           = data[kLongitude] as? String ?? ""
+        streetAddress       = data[kStreetAddress] as? String ?? ""
+        city                = data[kCity] as? String ?? ""
+        state               = data[kState] as? String ?? ""
+        zipcode             = data[kZipcode] as? String ?? ""
+        documentOneURL      = data[kDocumentOneURL] as? String ?? ""
+        documentOneName     = data[kDocumentOneName] as? String ?? ""
+        telemetryOneURL     = data[kTelemetryURLOne] as? String ?? ""
+        telemetryTwoURL     = data[kTelemetryURLTwo] as? String ?? ""
+        telemetryThreeURL   = data[kTelemetryURLThree] as? String ?? ""
+        ownerLogoURL        = data[kOwnerLogoURL] as? String ?? ""
+        routeURL            = data[kRouteURL] as? String ?? ""
     }
 }
 
@@ -202,9 +202,9 @@ class iBeaconItem: NSObject {
 //
 //}
 //
-//func ==(item: iBeaconItem, beacon: CLBeacon) -> Bool {
-//    return ((beacon.proximityUUID.uuidString == item.uuid.uuidString)
-//        && (Int(truncating: beacon.major) == Int(item.majorValue))
-//        && (Int(truncating: beacon.minor) == Int(item.minorValue)))
-//}
+func ==(item: iBeaconItem, beacon: CLBeacon) -> Bool {
+    return ((beacon.proximityUUID.uuidString == item.UUID.uuidString)
+        && (Int(truncating: beacon.major) == Int(item.major))
+        && (Int(truncating: beacon.minor) == Int(item.minor)))
+}
 

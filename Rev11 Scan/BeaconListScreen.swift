@@ -64,10 +64,17 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
                 NetworkManager.shared.getBeaconEntries(token: token, completed: { (beacons, error) in
                     if let beacons = beacons {
                         self.iBeacons.removeAll()
+                        
+                        //TODO: Sean's test beacon. Remove when confirmed to be working
+//                        let newBeacon = iBeaconItem(data: ["UUID": "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6",
+//                                                           "name": "Sean Test", "Major": "3426", "Minor": "1111"])
+//                        self.iBeacons.append(newBeacon)
                         self.iBeacons.append(contentsOf: beacons)
                         self.tableView.reloadDataOnMainThread()
+                        
                         DispatchQueue.main.async {
                             self.createMapAnnotations(beacons: self.iBeacons)
+                            self.setupBeaconRegions()
                         }
                     }
                 })
@@ -120,8 +127,8 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         for beacon in beacons {
             
-            let lat  = Double(beacon.latitude.removeWhitespaces())! //TODO: THis has bad data incoming, which requires removal of whitespace
-            let long = Double(beacon.longitude.removeWhitespaces())!
+            let lat  = Double(beacon.latitude.removeWhitespaces()) ??  0.00 //TODO: THis has bad data incoming, which requires removal of whitespace
+            let long = Double(beacon.longitude.removeWhitespaces()) ?? 0.00
             
             let beaconAnnotation        = MKPointAnnotation()
             beaconAnnotation.coordinate = CLLocationCoordinate2DMake(lat, long)
@@ -495,7 +502,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         
         if isFiltered {
-            
+    
             for beacon in beacons {
                 
                 for iBeacon in iBeacons {
@@ -515,9 +522,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         } else {
             
             for beacon in beacons {
-                
                 for iBeacon in iBeacons {
-                    
                     if iBeacon == beacon {
                         iBeacon.lastSeenBeacon = beacon
                     }
