@@ -304,7 +304,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         let url = URL(string: fileMakerURL)
         
         DispatchQueue.main.async(execute: {
-            UIApplication.shared.openURL(url!)
+            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
         })
     }
     
@@ -452,7 +452,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             if let url = URL(string: urlFromBeacon) {
                 DispatchQueue.main.async(execute: {
-                    UIApplication.shared.openURL(url)
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 })
             }
             
@@ -462,7 +462,8 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
             let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in }
             
             let callAction = UIAlertAction(title: "Call", style: .default) { (action) in
-                UIApplication.shared.openURL(NSURL(string: "tel://\(selectedBeacon.actionURL)")! as URL)
+                let url = URL(string: "tel://\(selectedBeacon.actionURL)")
+                UIApplication.shared.open(url!, options: [:], completionHandler: nil)
             }
             
             alert.addAction(callAction)
