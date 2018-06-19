@@ -11,6 +11,10 @@ import CoreLocation
 import SafariServices
 import MapKit
 
+protocol BeaconCellDelegate {
+    func didTapActionButton(atRow: Int)
+}
+
 class BeaconCell: UITableViewCell {
     
     @IBOutlet weak var ownerLogoImageView: UIImageView!
@@ -28,6 +32,8 @@ class BeaconCell: UITableViewCell {
         actionURLButton.roundCorners()
     }
     
+    var row: Int!
+    var delegate: BeaconCellDelegate!
     
     var beacon: iBeaconItem? = nil {
         willSet {
@@ -57,7 +63,6 @@ class BeaconCell: UITableViewCell {
     
         nameLabel!.text = beacon.name
         actionURLButton.setTitle(beacon.actionURLName, for: .normal)
-        actionURLButton.addTarget(self, action: #selector(BeaconListScreen.actionURLPressed(sender:)), for: .touchUpInside)
         setupMapView(beacon: beacon)
         streetAddressLabel.text = beacon.streetAddress
         cityLabel.text = "\(beacon.city!), \(beacon.state!)  \(beacon.zipcode!)"
@@ -81,6 +86,11 @@ class BeaconCell: UITableViewCell {
         beaconAnnotation.coordinate = CLLocationCoordinate2DMake(lat, long)
         beaconAnnotation.title = beacon.name
         itemMapView.addAnnotation(beaconAnnotation)
+    }
+    
+    
+    @IBAction func actionButtonTapped(_ sender: UIButton) {
+        delegate.didTapActionButton(atRow: row)
     }
     
     

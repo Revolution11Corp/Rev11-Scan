@@ -357,6 +357,8 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         let beacon = isFiltered ? filteredBeacons[(indexPath as NSIndexPath).row] : iBeacons[(indexPath as NSIndexPath).row]
         
         cell.actionURLButton.tag = indexPath.row
+        cell.delegate = self
+        cell.row = indexPath.row
         cell.setBeaconCell(beacon: beacon)
         
         let ownerImageKey   = beacon.ownerLogoURL as AnyObject
@@ -433,10 +435,10 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         present(detailAlert, animated: true, completion: nil)
     }
     
-    @objc func actionURLPressed(sender: UIButton) {
+    @objc func actionURLPressed(atRow: Int) {
+        print("Button Action Switch Statement Triggered")
         
-        let beaconRow = sender.tag
-        let selectedBeacon = iBeacons[beaconRow]
+        let selectedBeacon = iBeacons[atRow]
         
         switch selectedBeacon.actionURLName {
             
@@ -579,6 +581,12 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         })
         
         isShowingMap = isShowingMap ? false : true
+    }
+}
+
+extension BeaconListScreen: BeaconCellDelegate {
+    func didTapActionButton(atRow: Int) {
+        actionURLPressed(atRow: atRow)
     }
 }
 
