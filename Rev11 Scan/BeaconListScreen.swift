@@ -436,7 +436,6 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     @objc func actionURLPressed(atRow: Int) {
-        print("Button Action Switch Statement Triggered")
         
         let selectedBeacon = iBeacons[atRow]
         
