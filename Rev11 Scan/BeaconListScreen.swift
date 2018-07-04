@@ -472,7 +472,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
             self.view.window?.rootViewController?.present(alert, animated: true, completion: nil)
             
         default:
-            break
+            Alert.showBasic(title: "Work in Progress", message: "Individual button functionality coming soon", vc: self)
         }
     }
     
