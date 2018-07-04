@@ -304,7 +304,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         let url = URL(string: fileMakerURL)
         
         DispatchQueue.main.async(execute: {
-            UIApplication.shared.openURL(url!)
+            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
         })
     }
     
@@ -357,6 +357,8 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         let beacon = isFiltered ? filteredBeacons[(indexPath as NSIndexPath).row] : iBeacons[(indexPath as NSIndexPath).row]
         
         cell.actionURLButton.tag = indexPath.row
+        cell.delegate = self
+        cell.row = indexPath.row
         cell.setBeaconCell(beacon: beacon)
         
         let ownerImageKey   = beacon.ownerLogoURL as AnyObject
@@ -433,10 +435,9 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         present(detailAlert, animated: true, completion: nil)
     }
     
-    @objc func actionURLPressed(sender: UIButton) {
+    @objc func actionURLPressed(atRow: Int) {
         
-        let beaconRow = sender.tag
-        let selectedBeacon = iBeacons[beaconRow]
+        let selectedBeacon = iBeacons[atRow]
         
         switch selectedBeacon.actionURLName {
             
@@ -452,7 +453,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             if let url = URL(string: urlFromBeacon) {
                 DispatchQueue.main.async(execute: {
-                    UIApplication.shared.openURL(url)
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 })
             }
             
@@ -462,7 +463,8 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
             let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (action) in }
             
             let callAction = UIAlertAction(title: "Call", style: .default) { (action) in
-                UIApplication.shared.openURL(NSURL(string: "tel://\(selectedBeacon.actionURL)")! as URL)
+                let url = URL(string: "tel://\(selectedBeacon.actionURL)")
+                UIApplication.shared.open(url!, options: [:], completionHandler: nil)
             }
             
             alert.addAction(callAction)
@@ -470,7 +472,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
             self.view.window?.rootViewController?.present(alert, animated: true, completion: nil)
             
         default:
-            break
+            Alert.showBasic(title: "Work in Progress", message: "Individual button functionality coming soon", vc: self)
         }
     }
     
@@ -578,6 +580,12 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         })
         
         isShowingMap = isShowingMap ? false : true
+    }
+}
+
+extension BeaconListScreen: BeaconCellDelegate {
+    func didTapActionButton(atRow: Int) {
+        actionURLPressed(atRow: atRow)
     }
 }
 

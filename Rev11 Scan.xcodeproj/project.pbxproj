@@ -44,6 +44,7 @@
 		EDB84CF71DF5051400F6CF27 /* RVTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB84CF61DF5051400F6CF27 /* RVTextField.swift */; };
 		EDBEEAEA1E3051C100A086AF /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBEEAE91E3051C100A086AF /* Persistence.swift */; };
 		EDED4DC01FBA3C7C007A2106 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDED4DBF1FBA3C7C007A2106 /* Reachability.swift */; };
+		EDFA82C520ED414500BFE835 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFA82C420ED414500BFE835 /* Alert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,7 @@
 		EDB84CF61DF5051400F6CF27 /* RVTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RVTextField.swift; sourceTree = "<group>"; };
 		EDBEEAE91E3051C100A086AF /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		EDED4DBF1FBA3C7C007A2106 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		EDFA82C420ED414500BFE835 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +270,7 @@
 				EDBEEAE91E3051C100A086AF /* Persistence.swift */,
 				14A6178D1D1BADF90083CFF2 /* Constants.swift */,
 				ED2400091FB7D18400C85682 /* NetworkManager.swift */,
+				EDFA82C420ED414500BFE835 /* Alert.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -301,7 +304,6 @@
 				1446A6F81D7BB7D200167BD1 /* Sources */,
 				1446A6F91D7BB7D200167BD1 /* Frameworks */,
 				1446A6FA1D7BB7D200167BD1 /* Resources */,
-				C85CD8F68F314B3CC2CC4201 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -322,7 +324,6 @@
 				14A617691D1BAB2B0083CFF2 /* Resources */,
 				1446A70A1D7BB7D200167BD1 /* Embed App Extensions */,
 				49A967F345E12261CD9FC57A /* [CP] Embed Pods Frameworks */,
-				4DA1C409D61B8FAF7F973CA7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -341,7 +342,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = Revolution11;
 				TargetAttributes = {
 					1446A6FB1D7BB7D200167BD1 = {
@@ -433,21 +434,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Rev11 Scan/Pods-Rev11 Scan-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4DA1C409D61B8FAF7F973CA7 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Rev11 Scan/Pods-Rev11 Scan-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B7DA70EEA17CBC5D98E7EBEB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -464,21 +450,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C85CD8F68F314B3CC2CC4201 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Rev11Scan-ShareExtension/Pods-Rev11Scan-ShareExtension-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F3D96F5DA17A8531CE91F325 /* [CP] Check Pods Manifest.lock */ = {
@@ -533,6 +504,7 @@
 				1496B1B31D6FE1A400DD0B2E /* NavBarSetup.swift in Sources */,
 				ED5FE28A1DF46EBF00C0408E /* UIViewControllerExtension.swift in Sources */,
 				ED5FE28C1DF4727E00C0408E /* RVButton.swift in Sources */,
+				EDFA82C520ED414500BFE835 /* Alert.swift in Sources */,
 				14B9CC8E1D7FB95500B666FC /* String.swift in Sources */,
 				14A617821D1BAD010083CFF2 /* BeaconListScreen.swift in Sources */,
 				14222B8C1DC8448600C9EA63 /* ArrayExtension.swift in Sources */,
@@ -651,12 +623,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -708,12 +682,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
