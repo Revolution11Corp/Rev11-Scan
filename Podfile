@@ -3,7 +3,7 @@ platform :ios, '10.0'
 target 'Rev11 Scan' do
   use_frameworks!
 
-pod 'Alamofire', '~> 4.5'
+pod 'Alamofire', '~> 5.0.0-rc.2'
 
 end
 

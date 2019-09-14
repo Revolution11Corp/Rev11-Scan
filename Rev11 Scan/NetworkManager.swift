@@ -24,15 +24,15 @@ class NetworkManager {
         
         let parameters: [String: String] =  ["user": "dataAPI", "password": "dataAPI", "layout": "REG__Registry"]
         
-        let request = Alamofire.request(authenticateDemoUserURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil)
+        let request = AF.request(authenticateDemoUserURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil)
         
-        request.responseJSON { (response: DataResponse<Any>) in
+        request.responseJSON { (response: AFDataResponse<Any>) in
             
             switch(response.result) {
                 
             case .success(_):
-                
-                let data  = response.result.value as! [String : Any]
+
+                let data = response.value as! [String: Any]
                 let token = data["token"] as! String
                 
                 completed(token, nil)
@@ -44,18 +44,17 @@ class NetworkManager {
     }
     
     func getBeaconEntries(token: String, completed: @escaping (([iBeaconItem]?, Error?) -> Void)) {
+
+        let headers = HTTPHeaders([HTTPHeader(name: "FM-Data-Token", value: token)])
+        let request = AF.request(beconEntriesURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers)
         
-        let headers: [String: String] =  ["FM-Data-Token": token]
-        
-        let request = Alamofire.request(beconEntriesURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers)
-        
-        request.responseJSON { (response: DataResponse<Any>) in
+        request.responseJSON { (response: AFDataResponse<Any>) in
             
             switch(response.result) {
                 
             case .success(_):
                 
-                let responseData  = response.result.value as! [String : Any]
+                let responseData  = response.value as! [String : Any]
                 let data          = responseData["data"] as! [[String: Any]]
                 
                 var beacons: [iBeaconItem] = []
