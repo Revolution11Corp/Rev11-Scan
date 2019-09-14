@@ -54,7 +54,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         tableContainerView.setShadow(width: 0, height: -6)
         locationManager.delegate = self
         NotificationCenter.default.addObserver(self, selector:#selector(BeaconListScreen.reloadViewFromBackground), name:
-            NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+            UIApplication.willEnterForegroundNotification, object: nil)
     }
     
     func checkForExistingBeacons() {
@@ -131,7 +131,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         
         let SanFrancsicoCenter = CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194)
-        let viewRegion = MKCoordinateRegionMakeWithDistance(SanFrancsicoCenter, 2000, 2000)
+        let viewRegion = MKCoordinateRegion.init(center: SanFrancsicoCenter, latitudinalMeters: 2000, longitudinalMeters: 2000)
         mapView.setRegion(viewRegion, animated: false)
     }
     
@@ -168,7 +168,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         UIView.animate(withDuration: 0.33, animations: {
             self.transparencyView.alpha = bool ? 0.7 : 0.0
             self.permissionsView.alpha = bool ? 1.0 : 0.0
-            self.view.bringSubview(toFront: self.permissionsView)
+            self.view.bringSubviewToFront(self.permissionsView)
         })
     }
     
@@ -304,7 +304,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         let url = URL(string: fileMakerURL)
         
         DispatchQueue.main.async(execute: {
-            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+            UIApplication.shared.open(url!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
         })
     }
     
@@ -407,7 +407,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         return true
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
             
@@ -453,7 +453,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             if let url = URL(string: urlFromBeacon) {
                 DispatchQueue.main.async(execute: {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
                 })
             }
             
@@ -464,7 +464,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             let callAction = UIAlertAction(title: "Call", style: .default) { (action) in
                 let url = URL(string: "tel://\(selectedBeacon.actionURL)")
-                UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+                UIApplication.shared.open(url!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             }
             
             alert.addAction(callAction)
@@ -601,3 +601,8 @@ extension BeaconListScreen: BeaconCellDelegate {
 //    }
 //}
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+}

@@ -79,7 +79,7 @@ class BeaconCell: UITableViewCell {
         let regionRadius: CLLocationDistance = 1000
         let beaconLocation = CLLocation(latitude: lat, longitude: long)
 
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(beaconLocation.coordinate, regionRadius, regionRadius)
+        let coordinateRegion = MKCoordinateRegion.init(center: beaconLocation.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
         itemMapView.setRegion(coordinateRegion, animated: false)
         
         let beaconAnnotation = MKPointAnnotation()

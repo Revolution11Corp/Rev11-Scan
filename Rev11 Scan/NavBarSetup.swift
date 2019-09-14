@@ -23,7 +23,7 @@ class NavBarSetup {
     let bannerY = bannerHeight / 2 - banner!.size.height / 2
     
     imageView.frame = CGRect(x: bannerX, y: bannerY, width: 180, height: bannerHeight)
-    imageView.contentMode = UIViewContentMode.scaleAspectFit
+    imageView.contentMode = UIView.ContentMode.scaleAspectFit
     
     navItem.titleView = imageView
   }

@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
   let locationManager = CLLocationManager()
 
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
     setupTabBar()
     URLParameter.sharedInstance.isFromFileMaker = false
@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     return true
   }
 
-  func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+  func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
 
     if url.scheme! == "rev11scan" {
 
@@ -59,8 +59,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UITabBar.appearance().barTintColor = Colors.white
     UITabBar.appearance().backgroundColor = Colors.white
 
-    UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: Colors.darkGrey], for:UIControlState())
-    UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: Colors.blue], for:.selected)
+    UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Colors.darkGrey], for:UIControl.State())
+    UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Colors.blue], for:.selected)
   }
 
   private func beaconManager(_ manager: AnyObject, didEnter region: CLBeaconRegion) {

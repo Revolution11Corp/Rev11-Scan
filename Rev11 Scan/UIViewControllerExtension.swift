@@ -36,7 +36,7 @@ extension UIViewController {
         blackTransparency.backgroundColor = Colors.black
         blackTransparency.alpha = 0.0
         view.addSubview(blackTransparency)
-        view.bringSubview(toFront: blackTransparency)
+        view.bringSubviewToFront(blackTransparency)
         
         return blackTransparency
     }

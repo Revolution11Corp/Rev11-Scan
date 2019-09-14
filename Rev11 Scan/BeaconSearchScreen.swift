@@ -77,7 +77,7 @@ class BeaconSearchScreen: UIViewController, UITableViewDelegate, UITableViewData
         UIView.animate(withDuration: 0.33, animations: {
             self.transparencyView.alpha = bool ? 0.7 : 0.0
             self.updateUUIDView.alpha = bool ? 1.0 : 0.0
-            self.view.bringSubview(toFront: self.updateUUIDView)
+            self.view.bringSubviewToFront(self.updateUUIDView)
         })
     }
     
