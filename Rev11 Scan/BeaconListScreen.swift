@@ -93,7 +93,7 @@ class BeaconListScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
                     })
                     
                 } else {
-                    print("Noken = nil")
+                    print("Token = nil")
                 }
             }
             

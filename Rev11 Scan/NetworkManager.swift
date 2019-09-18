@@ -12,19 +12,26 @@ import Alamofire
 class NetworkManager {
     
     static let shared    = NetworkManager()
-    static let baseURL   = "https://fms4398.triple8.net/fmi/rest/api/"
+    static let baseURL   = "https://fms4446.triple8.net/fmi/data/v1/databases/registry/"
     
-    fileprivate let authenticateDemoUserURL = baseURL + "auth/registry"
-    fileprivate let beconEntriesURL         = baseURL + "record/registry/REG__Registry"
+    fileprivate let authenticateDemoUserURL = baseURL + "sessions"
+    fileprivate let beconEntriesURL         = baseURL + "layouts/REG__Registry/records"
 
     private init() {}
     
     
     func authenticateDemoUser(completed: @escaping ((String?, Error?) -> Void)) {
-        
-        let parameters: [String: String] =  ["user": "dataAPI", "password": "dataAPI", "layout": "REG__Registry"]
-        
-        let request = AF.request(authenticateDemoUserURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil)
+
+        let user                = "dataAPI"
+        let password            = "dataAPI"
+        let credentialData      = "\(user):\(password)".data(using: String.Encoding.utf8)!
+        let base64Credentials   = credentialData.base64EncodedString(options: [])
+
+        let auth                = HTTPHeader(name: "Authorization", value: "Basic \(base64Credentials)")
+        let contentType         = HTTPHeader(name: "Content-Type", value: "application/json")
+        let headers             = HTTPHeaders([auth, contentType])
+
+        let request             = AF.request(authenticateDemoUserURL, method: .post, parameters: nil, encoding: JSONEncoding.default, headers: headers)
         
         request.responseJSON { (response: AFDataResponse<Any>) in
             
@@ -32,8 +39,9 @@ class NetworkManager {
                 
             case .success(_):
 
-                let data = response.value as! [String: Any]
-                let token = data["token"] as! String
+                let data        = response.value as! [String: Any]
+                let response    = data["response"] as! [String: String]
+                let token       = response["token"]
                 
                 completed(token, nil)
                 
@@ -45,7 +53,7 @@ class NetworkManager {
     
     func getBeaconEntries(token: String, completed: @escaping (([iBeaconItem]?, Error?) -> Void)) {
 
-        let headers = HTTPHeaders([HTTPHeader(name: "FM-Data-Token", value: token)])
+        let headers = HTTPHeaders([HTTPHeader(name: "Authorization", value: "Bearer \(token)")])
         let request = AF.request(beconEntriesURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers)
         
         request.responseJSON { (response: AFDataResponse<Any>) in
@@ -54,8 +62,9 @@ class NetworkManager {
                 
             case .success(_):
                 
-                let responseData  = response.value as! [String : Any]
-                let data          = responseData["data"] as! [[String: Any]]
+                let responseData    = response.value as! [String : Any]
+                let response        = responseData["response"] as! [String: Any]
+                let data            = response["data"] as! [[String: Any]]
                 
                 var beacons: [iBeaconItem] = []
                 
